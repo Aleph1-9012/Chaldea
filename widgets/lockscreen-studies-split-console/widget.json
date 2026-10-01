@@ -1,0 +1,67 @@
+{
+  "id": "lockscreen-studies-split-console",
+  "title": "Tsugumori / Lockscreen studies / Split console",
+  "summary": "Type a demo password and try the lock, unlock, or power animations. This preview does not authenticate or control the computer.",
+  "category": "Lockscreens",
+  "tags": [
+    "lockscreen",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Auth",
+      "label": "Password state",
+      "type": "enum",
+      "default": "Filled",
+      "choices": [
+        "Filled",
+        "Empty",
+        "Incorrect password"
+      ]
+    },
+    {
+      "key": "s1Grid",
+      "label": "Background grid",
+      "type": "number",
+      "default": 16,
+      "min": 0,
+      "max": 35,
+      "step": 1
+    },
+    {
+      "key": "s2Motion",
+      "label": "Unlock animation",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

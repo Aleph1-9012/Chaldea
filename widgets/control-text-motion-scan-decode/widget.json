@@ -1,0 +1,50 @@
+{
+  "id": "control-text-motion-scan-decode",
+  "title": "Tsugumori / Text motion / Scan decode",
+  "summary": "Try the panel controls with sample device and service states. All actions stay in this preview.",
+  "category": "Control center",
+  "tags": [
+    "control-center",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Speed",
+      "label": "Text playback speed",
+      "type": "number",
+      "default": 1,
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.25
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

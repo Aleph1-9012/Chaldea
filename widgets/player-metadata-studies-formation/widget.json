@@ -1,0 +1,65 @@
+{
+  "id": "player-metadata-studies-formation",
+  "title": "Tsugumori / Metadata studies / Formation",
+  "summary": "Play or pause the silent sample timeline, seek, switch tracks, and inspect the player artwork.",
+  "category": "Player",
+  "tags": [
+    "player",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0MissingArtwork",
+      "label": "Simulate missing artwork",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "key": "s1RevealRadius",
+      "label": "Reveal radius",
+      "type": "number",
+      "default": 11.4,
+      "min": 7.2,
+      "max": 16.8,
+      "step": 0.1
+    },
+    {
+      "key": "s2MarkingContrast",
+      "label": "Marking contrast",
+      "type": "number",
+      "default": 82,
+      "min": 40,
+      "max": 100,
+      "step": 1
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

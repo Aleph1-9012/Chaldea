@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Control center b2 controls</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden],[data-archive-omitted]{display:none!important}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn,.nav-link{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true],.nav-link.active{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px}.text-muted{color:#999}.form-control,.form-select{background:#151515;color:#eee;border:1px solid #666;padding:7px}.form-range{accent-color:#cc1515}.nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}figure{margin:0}svg{flex-shrink:0}.archive-settings{border-top:1px solid #383434;margin:18px 0 0;padding:12px 0;font-size:11px}.archive-settings summary{cursor:pointer;color:#aaa;letter-spacing:1px}.archive-settings label{display:flex;align-items:center;gap:12px;padding-top:10px;flex-wrap:wrap}.archive-settings label span{min-width:145px}.archive-settings input[type=range]{width:150px;max-width:100%;accent-color:#cc1515}.archive-settings select{max-width:100%;background:#151515;color:#ddd;border:1px solid #555;padding:5px}.archive-settings output{color:#aaa}.archive-settings input[type=checkbox]{accent-color:#cc1515}
+</style></head><body><div aria-label="B2 control center UI improvements" id="ts-b2-controls">
+<style>
+
+    #ts-b2-controls { --bc-white:#e8e8e8; --bc-soft:#989898; --bc-red:#cc1515; --bc-panel:#111; --bc-line:#e8e8e840; --bc-mono:'JetBrains Mono',monospace; --bc-row-height:50px; width:100%; font:400 13px/1.45 var(--bc-mono); color:var(--bc-white); container-type:inline-size; }
+    #ts-b2-controls * { box-sizing:border-box; }
+    #ts-b2-controls [hidden] { display:none !important; }
+    #ts-b2-controls button,#ts-b2-controls input,#ts-b2-controls select { font:inherit; border-radius:0; }
+    #ts-b2-controls button { cursor:pointer; }
+    #ts-b2-controls button:disabled { cursor:default; opacity:.4; }
+    #ts-b2-controls .bc-toolbar { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+    #ts-b2-controls .bc-route { background:transparent; border:1px solid light-dark(#aaa,#555); color:light-dark(#303030,#d0d0d0); padding:9px 12px; min-height:36px; font-size:12px; }
+    #ts-b2-controls .bc-route[aria-pressed="true"] { background:var(--bc-red); border-color:var(--bc-red); color:#080808; }
+    #ts-b2-controls .bc-preview-label { margin-left:auto; color:light-dark(#615a55,#aaa39e); font-size:11px; }
+    #ts-b2-controls .bc-stage { padding:46px 24px; background:#0a0a0a; color-scheme:dark; }
+    #ts-b2-controls .bc-frame { position:relative; min-width:0; border:1px solid #b8b8b8; background-color:var(--bc-panel); background-image:linear-gradient(#cc15150f 1px,transparent 1px),linear-gradient(90deg,#cc15150f 1px,transparent 1px); background-size:12px 12px; color:var(--bc-white); }
+    #ts-b2-controls .bc-frame::before { content:''; position:absolute; inset:3px; border:1px solid #e8e8e840; pointer-events:none; }
+    #ts-b2-controls .bc-corner { position:absolute; width:8px; height:8px; border:0 solid var(--bc-white); pointer-events:none; }
+    #ts-b2-controls .bc-corner.tl { left:5px; top:-3px; border-left-width:2px; border-top-width:2px; }
+    #ts-b2-controls .bc-corner.tr { right:-1px; top:-3px; border-right-width:2px; border-top-width:2px; }
+    #ts-b2-controls .bc-corner.bl { left:5px; bottom:-3px; border-left-width:2px; border-bottom-width:2px; }
+    #ts-b2-controls .bc-corner.br { right:-1px; bottom:-3px; border-right-width:2px; border-bottom-width:2px; }
+    #ts-b2-controls .bc-head { position:absolute; left:4px; top:4px; right:4px; height:26px; display:flex; align-items:center; background:#1c1c1c; border-bottom:1px solid #e8e8e833; font-size:13px; font-weight:500; letter-spacing:.25px; text-transform:uppercase; text-align:left; }
+    #ts-b2-controls .bc-index { width:32px; height:100%; display:flex; align-items:center; justify-content:center; flex-shrink:0; border-right:1px solid var(--bc-line); font-size:11px; letter-spacing:0; }
+    #ts-b2-controls .bc-head-label { flex:1; min-width:0; padding:0 12px; white-space:nowrap; }
+    #ts-b2-controls .bc-selected { border-color:var(--bc-white); }
+    #ts-b2-controls .bc-selected > .bc-head { background:var(--bc-red); color:#080808; border-bottom-color:var(--bc-red); }
+    #ts-b2-controls .bc-selected > .bc-head .bc-index { border-right-color:#08080855; }
+    #ts-b2-controls .bc-side { position:absolute; left:-1px; top:0; bottom:0; width:4px; background:var(--bc-white); transition:background 220ms; }
+    #ts-b2-controls .bc-selected > .bc-side { background:var(--bc-red); }
+    #ts-b2-controls .bc-slot { display:block; height:96px; width:100%; padding:0; text-align:left; transition:transform 220ms cubic-bezier(.2,.7,.2,1); }
+    #ts-b2-controls .bc-slot-value { position:absolute; left:48px; right:14px; top:39px; font-size:13px; line-height:20px; color:#bcbcbc; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    #ts-b2-controls .bc-selected .bc-slot-value { color:var(--bc-white); }
+    #ts-b2-controls .bc-square { position:absolute; width:5px; height:5px; left:18px; top:46px; background:var(--bc-white); opacity:.85; transition:opacity 220ms,transform 220ms; }
+    #ts-b2-controls .bc-selected .bc-square { opacity:0; transform:scale(0); }
+    #ts-b2-controls .bc-slot-status { position:absolute; left:4px; right:4px; bottom:4px; height:25px; display:flex; justify-content:space-between; align-items:center; gap:6px; padding:0 12px; border-top:1px solid #e8e8e833; background:#111; color:var(--bc-soft); font-size:11px; white-space:nowrap; }
+    #ts-b2-controls .bc-pair { display:flex; align-items:center; gap:5px; }
+    #ts-b2-controls .bc-value { color:var(--bc-white); font-variant-numeric:tabular-nums; }
+    #ts-b2-controls .bc-cross { display:grid; grid-template-columns:minmax(0,1fr) 70px minmax(0,1fr) 70px minmax(0,1fr); grid-template-rows:96px 54px 96px 54px 96px; align-items:center; }
+    #ts-b2-controls .bc-cross [data-node="connection"] { grid-column:3; grid-row:1; }
+    #ts-b2-controls .bc-cross [data-node="share"] { grid-column:1; grid-row:3; }
+    #ts-b2-controls .bc-cross [data-node="notifications"] { grid-column:5; grid-row:3; }
+    #ts-b2-controls .bc-cross [data-node="audio"] { grid-column:3; grid-row:5; }
+    #ts-b2-controls .bc-cross .bc-selected { transform:translateX(8px); }
+    #ts-b2-controls .bc-center { grid-column:3; grid-row:3; height:56px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#111; }
+    #ts-b2-controls .bc-center strong { font-size:17px; font-weight:500; letter-spacing:3px; margin-left:3px; }
+    #ts-b2-controls .bc-center small { font-size:11px; color:var(--bc-soft); }
+    #ts-b2-controls .bc-focus { position:absolute; left:-32px; top:calc(50% - 7px); width:18px; height:14px; opacity:0; transition:opacity 220ms; }
+    #ts-b2-controls .bc-focus::before { content:''; position:absolute; top:3px; left:0; width:7px; height:7px; background:var(--bc-white); transform:rotate(45deg); }
+    #ts-b2-controls .bc-focus::after { content:''; position:absolute; top:3px; left:10px; width:7px; height:7px; border-top:1px solid var(--bc-white); border-right:1px solid var(--bc-white); transform:rotate(45deg); }
+    #ts-b2-controls .bc-selected .bc-focus { opacity:1; }
+    #ts-b2-controls .bc-arrow { width:36px; height:36px; justify-self:center; position:relative; pointer-events:none; transform:rotate(var(--bc-angle,180deg)); transition:transform 320ms cubic-bezier(.2,.7,.2,1); }
+    #ts-b2-controls .bc-arrow[data-axis="connection"] { grid-column:3; grid-row:2; }
+    #ts-b2-controls .bc-arrow[data-axis="share"] { grid-column:2; grid-row:3; }
+    #ts-b2-controls .bc-arrow[data-axis="notifications"] { grid-column:4; grid-row:3; }
+    #ts-b2-controls .bc-arrow[data-axis="audio"] { grid-column:3; grid-row:4; }
+    #ts-b2-controls .bc-glyph { display:block; position:relative; width:36px; height:36px; font-size:36px; opacity:.65; transition:opacity 220ms; }
+    #ts-b2-controls .bc-active .bc-glyph { opacity:1; }
+    #ts-b2-controls .bc-gate { position:absolute; width:.16em; height:.16em; border:0 solid currentColor; }
+    #ts-b2-controls .bc-gate.g1 { top:.16em; left:.16em; border-top-width:.036em; border-left-width:.036em; }
+    #ts-b2-controls .bc-gate.g2 { top:.16em; right:.16em; border-top-width:.036em; border-right-width:.036em; }
+    #ts-b2-controls .bc-gate.g3 { bottom:.16em; left:.16em; border-bottom-width:.036em; border-left-width:.036em; }
+    #ts-b2-controls .bc-gate.g4 { bottom:.16em; right:.16em; border-bottom-width:.036em; border-right-width:.036em; }
+    #ts-b2-controls .bc-core { display:block; position:absolute; inset:.24em; transition:color 220ms; }
+    #ts-b2-controls .bc-core svg { width:100% !important; height:100% !important; display:block; stroke-width:1.8; stroke-linecap:square; stroke-linejoin:miter; }
+    #ts-b2-controls .bc-active .bc-core { color:var(--bc-red); }
+    #ts-b2-controls .bc-details { display:grid; grid-template-columns:218px 36px minmax(0,430px); gap:22px; align-items:center; max-width:728px; margin:0 auto; }
+    #ts-b2-controls .bc-context { display:flex; flex-direction:column; gap:16px; }
+    #ts-b2-controls .bc-back { display:flex; align-items:center; gap:8px; align-self:flex-start; padding:6px 0; border:0; background:transparent; color:var(--bc-soft); font-size:11px; min-height:32px; }
+    #ts-b2-controls .bc-back:hover { color:var(--bc-white); }
+    #ts-b2-controls .bc-back svg { width:14px; height:14px; }
+    #ts-b2-controls .bc-context .bc-slot-value { left:48px; right:10px; font-size:12px; }
+    #ts-b2-controls .bc-context .bc-head-label { padding:0 10px; font-size:12px; }
+    #ts-b2-controls .bc-context .bc-slot-status { padding:0 9px; }
+    #ts-b2-controls .bc-detail { padding:48px 18px 18px; min-height:340px; }
+    #ts-b2-controls .bc-detail > .bc-head { height:30px; }
+    #ts-b2-controls .bc-close { align-self:stretch; width:30px; padding:0; display:flex; align-items:center; justify-content:center; background:transparent; border:0; border-left:1px solid #08080855; color:inherit; }
+    #ts-b2-controls .bc-close:hover { background:#080808; color:var(--bc-red); }
+    #ts-b2-controls .bc-close svg { width:15px; height:15px; }
+    #ts-b2-controls .bc-content { position:relative; }
+    #ts-b2-controls .bc-tabs { display:grid; grid-template-columns:1fr 1fr; margin-bottom:21px; border:1px solid #e8e8e870; background:#111; }
+    #ts-b2-controls .bc-tab { position:relative; min-height:36px; border:0; background:transparent; color:var(--bc-soft); padding:8px; font-size:11px; }
+    #ts-b2-controls .bc-tab + .bc-tab { border-left:1px solid #e8e8e840; }
+    #ts-b2-controls .bc-tab[aria-pressed="true"] { color:var(--bc-white); box-shadow:inset 0 -2px var(--bc-red); background:#cc15150c; }
+    #ts-b2-controls .bc-switch-line { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:22px; }
+    #ts-b2-controls .bc-setting-name { font-size:13px; font-weight:500; }
+    #ts-b2-controls .bc-hint { font-size:11px; color:var(--bc-soft); margin-top:4px; }
+    #ts-b2-controls .bc-switch { position:relative; width:68px; height:30px; flex-shrink:0; background:#111; border:1px solid #e8e8e880; padding:0; color:#bcbcbc; transition:background 180ms,border-color 180ms; }
+    #ts-b2-controls .bc-switch-thumb { display:block; position:absolute; left:4px; top:4px; width:12px; height:20px; background:#bcbcbc; transition:transform 180ms,background 180ms; }
+    #ts-b2-controls .bc-switch-text { display:block; position:absolute; left:21px; right:2px; top:6px; font-size:11px; }
+    #ts-b2-controls .bc-switch[aria-checked="true"] { background:var(--bc-red); border-color:var(--bc-red); color:#080808; }
+    #ts-b2-controls .bc-switch[aria-checked="true"] .bc-switch-thumb { transform:translateX(45px); background:#080808; }
+    #ts-b2-controls .bc-switch[aria-checked="true"] .bc-switch-text { left:2px; right:21px; }
+    #ts-b2-controls .bc-list-label { display:flex; justify-content:space-between; align-items:center; gap:8px; padding-bottom:9px; color:var(--bc-soft); font-size:11px; border-bottom:1px solid #e8e8e866; }
+    #ts-b2-controls .bc-device { width:100%; min-height:var(--bc-row-height); display:grid; grid-template-columns:12px minmax(0,1fr) 34px 14px 62px; align-items:center; gap:8px; padding:9px 8px; text-align:left; border:0; border-bottom:1px solid var(--bc-line); background:#111; color:var(--bc-white); transition:background 180ms,color 180ms; }
+    #ts-b2-controls .bc-device:hover { background:#cc151518; }
+    #ts-b2-controls .bc-row-marker { width:6px; height:6px; border:1px solid #e8e8e859; transform:rotate(45deg); }
+    #ts-b2-controls .bc-device[aria-pressed="true"] { background:var(--bc-red); color:#080808; }
+    #ts-b2-controls .bc-device[aria-pressed="true"] .bc-row-marker { background:currentColor; border-color:currentColor; }
+    #ts-b2-controls .bc-device-name { font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    #ts-b2-controls .bc-device-state { text-align:right; font-size:11px; }
+    #ts-b2-controls .bc-device svg { width:13px; height:13px; }
+    #ts-b2-controls .bc-signal { display:flex; align-items:flex-end; gap:2px; height:14px; }
+    #ts-b2-controls .bc-signal i { width:4px; background:currentColor; }
+    #ts-b2-controls .bc-signal i:nth-child(1) { height:4px; } #ts-b2-controls .bc-signal i:nth-child(2) { height:7px; } #ts-b2-controls .bc-signal i:nth-child(3) { height:10px; } #ts-b2-controls .bc-signal i:nth-child(4) { height:14px; }
+    #ts-b2-controls .bc-signal i.bc-dim { opacity:.2; }
+    #ts-b2-controls .bc-empty { padding:24px 8px; text-align:center; color:var(--bc-soft); font-size:12px; background:#111; border-bottom:1px solid var(--bc-line); }
+    #ts-b2-controls .bc-output-label { display:block; margin:0 0 8px; font-size:11px; letter-spacing:1px; color:var(--bc-soft); }
+    #ts-b2-controls .bc-output { width:100%; min-height:38px; background:#111; color:var(--bc-white); border:1px solid #e8e8e870; padding:8px 10px; font-size:12px; }
+    #ts-b2-controls .bc-channel { padding-top:21px; margin-top:21px; border-top:1px solid var(--bc-line); }
+    #ts-b2-controls .bc-channel-head { display:flex; align-items:center; gap:9px; margin-bottom:13px; }
+    #ts-b2-controls .bc-channel-head label { flex:1; font-size:12px; letter-spacing:.5px; }
+    #ts-b2-controls .bc-channel-head output { display:block; min-width:62px; padding:5px 7px; text-align:right; border:1px solid #e8e8e870; background:#111; font-size:16px; font-variant-numeric:tabular-nums; }
+    #ts-b2-controls .bc-icon-button { min-width:30px; min-height:30px; display:inline-flex; align-items:center; justify-content:center; padding:4px; border:1px solid #e8e8e870; background:#111; color:var(--bc-white); }
+    #ts-b2-controls .bc-icon-button svg { width:15px; height:15px; }
+    #ts-b2-controls .bc-icon-button:hover { border-color:var(--bc-red); }
+    #ts-b2-controls .bc-icon-button[aria-pressed="true"] { color:#080808; background:var(--bc-red); border-color:var(--bc-red); }
+    #ts-b2-controls .bc-slider-row { display:grid; grid-template-columns:30px minmax(0,1fr) 30px; gap:8px; align-items:center; }
+    #ts-b2-controls .bc-track { position:relative; height:26px; border:1px solid var(--bc-white); background:#111; --bc-fill:var(--bc-red); }
+    #ts-b2-controls .bc-track::after { content:''; position:absolute; inset:2px; border:1px solid #e8e8e840; pointer-events:none; }
+    #ts-b2-controls .bc-range { display:block; width:calc(100% - 4px); height:24px; margin:0 2px; appearance:none; background:transparent; cursor:pointer; }
+    #ts-b2-controls .bc-range::-webkit-slider-runnable-track { height:18px; background:linear-gradient(90deg,var(--bc-fill) var(--bc-percent),transparent var(--bc-percent)); }
+    #ts-b2-controls .bc-range::-webkit-slider-thumb { appearance:none; width:3px; height:24px; margin-top:-3px; border:0; border-radius:0; background:var(--bc-white); }
+    #ts-b2-controls .bc-range::-moz-range-track { height:18px; background:transparent; }
+    #ts-b2-controls .bc-range::-moz-range-progress { height:18px; background:var(--bc-fill); }
+    #ts-b2-controls .bc-range::-moz-range-thumb { width:3px; height:24px; border:0; border-radius:0; background:var(--bc-white); }
+    #ts-b2-controls .bc-channel-foot { display:flex; justify-content:space-between; gap:10px; margin-top:8px; color:var(--bc-soft); font-size:11px; }
+    #ts-b2-controls .bc-muted .bc-track { --bc-fill:#777; }
+    #ts-b2-controls .bc-notice-list { border-top:1px solid #e8e8e866; }
+    #ts-b2-controls .bc-notice { display:grid; grid-template-columns:28px minmax(0,1fr) 28px; gap:10px; padding:14px 0; border-bottom:1px solid var(--bc-line); }
+    #ts-b2-controls .bc-notice-app { width:28px; height:28px; border:1px solid #e8e8e860; display:flex; align-items:center; justify-content:center; color:var(--bc-soft); background:#111; }
+    #ts-b2-controls .bc-notice-app svg { width:14px; height:14px; }
+    #ts-b2-controls .bc-notice-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:5px 10px; color:var(--bc-soft); font-size:11px; margin-bottom:5px; }
+    #ts-b2-controls .bc-notice-title { font-size:12px; }
+    #ts-b2-controls .bc-dismiss { align-self:start; min-width:28px; min-height:28px; }
+    #ts-b2-controls .bc-history-foot { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:16px; font-size:11px; color:var(--bc-soft); }
+    #ts-b2-controls .bc-clear { border:1px solid #e8e8e866; background:#111; color:var(--bc-white); padding:7px 10px; min-height:30px; font-size:11px; }
+    #ts-b2-controls .bc-clear:hover:not(:disabled) { border-color:var(--bc-red); color:var(--bc-red); }
+    #ts-b2-controls .bc-footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-top:12px; font-size:11px; color:light-dark(#615a55,#aaa39e); }
+    #ts-b2-controls[data-selection="edge"] .bc-device[aria-pressed="true"] { color:var(--bc-white); background:#cc151512; box-shadow:inset 2px 0 var(--bc-red); }
+    #ts-b2-controls[data-selection="edge"] .bc-device[aria-pressed="true"] .bc-row-marker { background:var(--bc-red); border-color:var(--bc-red); }
+    @container(max-width:850px) {
+      #ts-b2-controls .bc-stage { padding:38px 18px; }
+      #ts-b2-controls .bc-cross { grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr) 48px minmax(0,1fr); }
+      #ts-b2-controls .bc-slot .bc-head-label { padding:0 9px; font-size:12px; letter-spacing:0; }
+      #ts-b2-controls .bc-slot-value { right:10px; font-size:12px; }
+      #ts-b2-controls .bc-slot-status { padding:0 8px; gap:4px; }
+      #ts-b2-controls .bc-details { grid-template-columns:180px 36px minmax(0,1fr); gap:16px; }
+      #ts-b2-controls .bc-context .bc-slot-value { left:20px; }
+      #ts-b2-controls .bc-focus { left:-20px; width:12px; }
+      #ts-b2-controls .bc-focus::before { width:5px; height:5px; top:5px; }
+      #ts-b2-controls .bc-focus::after { width:5px; height:5px; top:5px; left:6px; }
+    }
+    @container(max-width:700px) {
+      #ts-b2-controls .bc-preview-label { margin-left:0; width:100%; padding-top:4px; }
+      #ts-b2-controls .bc-details { grid-template-columns:minmax(0,1fr); gap:20px; max-width:430px; }
+      #ts-b2-controls .bc-context { gap:0; }
+      #ts-b2-controls .bc-context .bc-slot,#ts-b2-controls .bc-detail-arrow { display:none; }
+      #ts-b2-controls .bc-detail { padding:48px 16px 16px; }
+    }
+    @container(max-width:620px) {
+      #ts-b2-controls .bc-stage { padding:24px 14px; }
+      #ts-b2-controls .bc-cross { grid-template-columns:44px minmax(0,1fr); grid-template-rows:56px repeat(4,96px); gap:20px 12px; }
+      #ts-b2-controls .bc-center { grid-column:1 / -1; grid-row:1; }
+      #ts-b2-controls .bc-cross [data-node="connection"] { grid-column:2; grid-row:2; }
+      #ts-b2-controls .bc-cross [data-node="share"] { grid-column:2; grid-row:3; }
+      #ts-b2-controls .bc-cross [data-node="audio"] { grid-column:2; grid-row:4; }
+      #ts-b2-controls .bc-cross [data-node="notifications"] { grid-column:2; grid-row:5; }
+      #ts-b2-controls .bc-arrow[data-axis="connection"] { grid-column:1; grid-row:2; }
+      #ts-b2-controls .bc-arrow[data-axis="share"] { grid-column:1; grid-row:3; }
+      #ts-b2-controls .bc-arrow[data-axis="audio"] { grid-column:1; grid-row:4; }
+      #ts-b2-controls .bc-arrow[data-axis="notifications"] { grid-column:1; grid-row:5; }
+      #ts-b2-controls .bc-cross .bc-selected { transform:translateX(3px); }
+      #ts-b2-controls .bc-focus { display:none; }
+    }
+    @container(max-width:380px) {
+      #ts-b2-controls .bc-detail { padding-left:12px; padding-right:12px; }
+      #ts-b2-controls .bc-device { grid-template-columns:9px minmax(0,1fr) 24px 12px 49px; gap:5px; padding:9px 6px; }
+      #ts-b2-controls .bc-device-name { font-size:11px; }
+      #ts-b2-controls .bc-signal i { width:3px; }
+      #ts-b2-controls .bc-slider-row { gap:6px; }
+      #ts-b2-controls .bc-notice { gap:7px; }
+    }
+    @media(pointer:coarse) {
+      #ts-b2-controls .bc-output { font-size:16px; }
+      #ts-b2-controls .bc-route,#ts-b2-controls .bc-tab,#ts-b2-controls .bc-icon-button,#ts-b2-controls .bc-clear,#ts-b2-controls .bc-back,#ts-b2-controls .bc-output { min-height:44px; }
+      #ts-b2-controls .bc-icon-button { min-width:44px; }
+      #ts-b2-controls .bc-slider-row { grid-template-columns:44px minmax(0,1fr) 44px; }
+      #ts-b2-controls .bc-switch { height:44px; }
+      #ts-b2-controls .bc-switch-thumb { top:11px; } #ts-b2-controls .bc-switch-text { top:13px; }
+      #ts-b2-controls .bc-notice { grid-template-columns:28px minmax(0,1fr) 44px; }
+      #ts-b2-controls .bc-detail > .bc-head { height:44px; }
+      #ts-b2-controls .bc-detail { padding-top:62px; }
+      #ts-b2-controls .bc-close { width:44px; }
+      #ts-b2-controls .bc-range { height:44px; position:relative; top:-10px; }
+    }
+    @media(prefers-reduced-motion:reduce) { #ts-b2-controls *,#ts-b2-controls *::before,#ts-b2-controls *::after { animation:none !important; transition:none !important; } }
+  </style>
+<nav aria-label="UI improvement previews" class="bc-toolbar">
+<button aria-pressed="false" class="bc-route" data-route="overview" type="button">Overview</button>
+<button aria-pressed="false" class="bc-route" data-route="connection" type="button">Connections</button>
+<button aria-pressed="true" class="bc-route" data-route="audio" type="button">Audio / Display</button>
+<button aria-pressed="false" class="bc-route" data-route="notifications" type="button">Notifications</button>
+<span class="bc-preview-label">B2 // SAMPLE DATA</span>
+</nav>
+<section aria-label="Control center preview" class="bc-stage">
+<div class="bc-cross" hidden="">
+<button aria-label="Open Connections" aria-pressed="false" class="bc-frame bc-slot" data-node="connection" type="button"></button>
+<button aria-label="Focus Quickshare" aria-pressed="false" class="bc-frame bc-slot" data-node="share" type="button"></button>
+<div class="bc-frame bc-center"><strong>MENU</strong><small>CONTROL CENTER</small></div>
+<button aria-label="Open Notifications" aria-pressed="false" class="bc-frame bc-slot" data-node="notifications" type="button"></button>
+<button aria-label="Open Audio and Display" aria-pressed="true" class="bc-frame bc-slot" data-node="audio" type="button"></button>
+<div aria-hidden="true" class="bc-arrow" data-axis="connection"></div><div aria-hidden="true" class="bc-arrow" data-axis="share"></div><div aria-hidden="true" class="bc-arrow" data-axis="notifications"></div><div aria-hidden="true" class="bc-arrow" data-axis="audio"></div>
+</div>
+<div class="bc-details">
+<aside aria-label="Selected branch" class="bc-context"><button class="bc-back" data-go-back="" type="button"><i aria-hidden="true" data-lucide="arrow-left"></i>MENU</button><div class="bc-frame bc-slot bc-selected" data-context-slot=""></div></aside>
+<div aria-hidden="true" class="bc-arrow bc-detail-arrow bc-active"></div>
+<section aria-label="Connection controls" class="bc-frame bc-detail bc-selected" data-panel="connection" hidden="">
+<div class="bc-head"><span class="bc-index">01</span><span class="bc-head-label">Connection</span><button aria-label="Close Connection preview" class="bc-close" data-go-back="" type="button"><i aria-hidden="true" data-lucide="x"></i></button></div><span aria-hidden="true" class="bc-side"></span>
+<div class="bc-content"><nav aria-label="Connection type" class="bc-tabs"><button aria-pressed="true" class="bc-tab" data-connection="wifi" type="button">WI-FI</button><button aria-pressed="false" class="bc-tab" data-connection="bt" type="button">BLUETOOTH</button></nav><div data-connection-content=""></div></div>
+</section>
+<section aria-label="Audio and display controls" class="bc-frame bc-detail bc-selected" data-panel="audio">
+<div class="bc-head"><span class="bc-index">04</span><span class="bc-head-label">Audio / Display</span><button aria-label="Close Audio preview" class="bc-close" data-go-back="" type="button"><i aria-hidden="true" data-lucide="x"></i></button></div><span aria-hidden="true" class="bc-side"></span>
+<div class="bc-content">
+<label class="bc-output-label" for="b2-output">OUTPUT DEVICE</label><select aria-label="Output device" class="bc-output" id="b2-output"><option>Speakers</option><option>Headphones</option><option>HDMI output</option></select>
+<div class="bc-channel" data-channel="volume"><div class="bc-channel-head"><label for="b2-volume">VOLUME</label><button aria-label="Mute audio" aria-pressed="false" class="bc-icon-button" data-mute="" type="button"><i aria-hidden="true" data-lucide="volume-x"></i></button><output for="b2-volume">64%</output></div><div class="bc-slider-row"><button aria-label="Decrease volume" class="bc-icon-button" data-step="volume:-5" type="button"><i aria-hidden="true" data-lucide="minus"></i></button><div class="bc-track" style="--bc-percent:64%"><input aria-label="Volume" class="bc-range" id="b2-volume" max="100" min="0" step="1" type="range" value="64"/></div><button aria-label="Increase volume" class="bc-icon-button" data-step="volume:5" type="button"><i aria-hidden="true" data-lucide="plus"></i></button></div><div class="bc-channel-foot"><span data-output-status="">Speakers</span><span>0–100</span></div></div>
+<div class="bc-channel" data-channel="brightness"><div class="bc-channel-head"><label for="b2-brightness">BRIGHTNESS</label><output for="b2-brightness">72%</output></div><div class="bc-slider-row"><button aria-label="Decrease brightness" class="bc-icon-button" data-step="brightness:-5" type="button"><i aria-hidden="true" data-lucide="minus"></i></button><div class="bc-track" style="--bc-percent:72%"><input aria-label="Brightness" class="bc-range" id="b2-brightness" max="100" min="1" step="1" type="range" value="72"/></div><button aria-label="Increase brightness" class="bc-icon-button" data-step="brightness:5" type="button"><i aria-hidden="true" data-lucide="plus"></i></button></div><div class="bc-channel-foot"><span>Current display</span><span>1–100</span></div></div>
+</div>
+</section>
+<section aria-label="Notification controls" class="bc-frame bc-detail bc-selected" data-panel="notifications" hidden="">
+<div class="bc-head"><span class="bc-index">03</span><span class="bc-head-label">Notifications</span><button aria-label="Close Notifications preview" class="bc-close" data-go-back="" type="button"><i aria-hidden="true" data-lucide="x"></i></button></div><span aria-hidden="true" class="bc-side"></span><div class="bc-content" data-notification-content=""></div>
+</section>
+</div>
+</section>
+<div class="bc-footer"><span class="bc-caption">Boxed values · slider steps · mute control</span><span aria-live="polite" class="bc-feedback" role="status">Preview only · no system changes</span></div>
+
+</div>
+<style></style><script src="../preview-runtime.js"></script><script src="support.js"></script><script src="demo.js"></script></body></html>

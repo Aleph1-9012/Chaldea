@@ -1,0 +1,65 @@
+{
+  "id": "control-refinement-refined",
+  "title": "Tsugumori / Control center refinement / Refined",
+  "summary": "Try the panel controls with sample device and service states. All actions stay in this preview.",
+  "category": "Control center",
+  "tags": [
+    "control-center",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Inner",
+      "label": "Refined inner border opacity",
+      "type": "number",
+      "default": 22,
+      "min": 15,
+      "max": 35,
+      "step": 1
+    },
+    {
+      "key": "s1Subtitle",
+      "label": "Refined subtitle size",
+      "type": "number",
+      "default": 11,
+      "min": 11,
+      "max": 12,
+      "step": 1
+    },
+    {
+      "key": "s2RedArrow",
+      "label": "Red focused arrow in refined view",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

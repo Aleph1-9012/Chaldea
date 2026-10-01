@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Notes a cassette</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden]{display:none!important}
+</style></head><body><style>
+
+#ts-notes-a { --ta-bg:var(--notes-paper,#111111); --ta-ink:var(--notes-ink,#e8e8e8); --ta-muted:var(--notes-muted,#909090); --ta-red:var(--notes-accent,#cc1515); --ta-body-size:16px; width:100%; padding:8px; color:var(--ta-ink); font-family:Inter,sans-serif; }
+#ts-notes-a * { box-sizing:border-box; }
+#ts-notes-a button,#ts-notes-a input,#ts-notes-a textarea { font:inherit; color:inherit; border-radius:0; }
+#ts-notes-a .ta-panel { position:relative; max-width:420px; margin:auto; padding:20px; background:var(--ta-bg); border:1px solid var(--ta-ink); }
+#ts-notes-a .ta-panel::before { content:''; position:absolute; inset:4px; border:1px solid var(--notes-rule,#5c5c5c); pointer-events:none; }
+#ts-notes-a[data-inner='false'] .ta-panel::before { display:none; }
+#ts-notes-a .ta-panel::after { content:''; position:absolute; top:16px; left:-1px; width:4px; height:40px; background:var(--ta-red); }
+#ts-notes-a .ta-corner { position:absolute; width:8px; height:8px; border-color:var(--ta-ink); border-style:solid; pointer-events:none; }
+#ts-notes-a .ta-tl { top:-2px; left:6px; border-width:2px 0 0 2px; }
+#ts-notes-a .ta-tr { top:-2px; right:0; border-width:2px 2px 0 0; }
+#ts-notes-a .ta-bl { bottom:-2px; left:6px; border-width:0 0 2px 2px; }
+#ts-notes-a .ta-br { bottom:-2px; right:0; border-width:0 2px 2px 0; }
+#ts-notes-a .ta-header { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+#ts-notes-a .ta-caption { flex:1; min-width:0; }
+#ts-notes-a .ta-caption h2 { margin:0; font-size:12px; line-height:1.4; font-weight:500; letter-spacing:4px; color:var(--notes-ink,#c2c2c2); }
+#ts-notes-a .ta-short-rule { width:36px; height:1px; background:var(--notes-muted,#7d7d7d); margin-top:8px; }
+#ts-notes-a .ta-close { padding:7px 10px; min-width:34px; background:transparent; border:1px solid var(--notes-muted,#909090); cursor:pointer; font-size:11px; line-height:1.3; letter-spacing:1px; }
+#ts-notes-a .ta-close:hover { background:var(--ta-ink); color:var(--ta-bg); }
+#ts-notes-a .ta-index { display:grid; gap:7px; margin-bottom:20px; }
+#ts-notes-a .ta-note { position:relative; text-align:left; padding:10px 12px 10px 24px; background:transparent; border:1px solid var(--notes-rule,#808080); cursor:pointer; font-size:11px; line-height:1.5; font-weight:500; letter-spacing:1.6px; text-transform:uppercase; overflow-wrap:anywhere; }
+#ts-notes-a .ta-note[aria-pressed='true'] { background:var(--ta-ink); border-color:var(--ta-ink); color:var(--ta-bg); }
+#ts-notes-a .ta-note[aria-pressed='true']::before { content:''; position:absolute; width:6px; height:6px; background:var(--ta-bg); left:9px; top:calc(50% - 3px); transform:rotate(45deg); }
+#ts-notes-a .ta-note:not([aria-pressed='true']):hover { border-color:var(--ta-ink); background:var(--notes-hover,#252525); }
+#ts-notes-a .ta-meta { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color:var(--ta-muted); font-family:'Share Tech Mono',monospace; font-size:11px; line-height:1.5; letter-spacing:1px; margin-bottom:8px; }
+#ts-notes-a .ta-title { display:block; width:100%; padding:0 0 10px; background:transparent; border:0; border-bottom:1px solid var(--notes-rule,#4a4a4a); font-size:var(--notes-title-size); line-height:1.5; font-weight:500; }
+#ts-notes-a .ta-body { display:block; width:100%; height:130px; min-height:100px; resize:vertical; padding:12px 0; background:transparent; border:0; font-size:var(--ta-body-size); line-height:1.75; }
+#ts-notes-a .ta-title::selection,#ts-notes-a .ta-body::selection { background:var(--ta-ink); color:var(--ta-bg); }
+#ts-notes-a .ta-footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--notes-rule,#4a4a4a); padding-top:14px; }
+#ts-notes-a .ta-add { position:relative; isolation:isolate; padding:9px 13px; font-size:11px; line-height:1.4; letter-spacing:1.5px; background:transparent; border:1px solid var(--notes-muted,#909090); cursor:pointer; }
+#ts-notes-a .ta-add::before { content:''; position:absolute; inset:0; transform:scaleX(0); transform-origin:left; background:var(--ta-ink); transition:transform 220ms ease; z-index:-1; }
+#ts-notes-a .ta-add:hover::before { transform:scaleX(1); }
+#ts-notes-a .ta-add:hover { color:var(--ta-bg); }
+#ts-notes-a .ta-preview { color:var(--ta-muted); font:11px/1.5 'Share Tech Mono',monospace; letter-spacing:.5px; text-align:right; }
+#ts-notes-a [hidden] { display:none!important; }
+#ts-notes-a[data-open='false'] .ta-header { margin-bottom:0; }
+@media(max-width:360px) { #ts-notes-a .ta-panel { padding:17px; } #ts-notes-a .ta-caption h2 { letter-spacing:2.5px; } }
+@media(pointer:coarse) { #ts-notes-a button { min-height:44px; } }
+@media(prefers-reduced-motion:reduce) { #ts-notes-a .ta-add::before { transition:none; } }
+</style>
+<div aria-label="A, Control Center cassette notes drawer" data-open="true" id="ts-notes-a">
+<section aria-label="Quick notes" class="ta-panel">
+<span aria-hidden="true" class="ta-corner ta-tl"></span><span aria-hidden="true" class="ta-corner ta-tr"></span><span aria-hidden="true" class="ta-corner ta-bl"></span><span aria-hidden="true" class="ta-corner ta-br"></span>
+<header class="ta-header">
+<div class="ta-caption"><h2>QUICK NOTES</h2><div aria-hidden="true" class="ta-short-rule"></div></div>
+<button aria-controls="ta-content" aria-expanded="true" aria-label="Close notes" class="ta-close" data-close="" type="button">ESC</button>
+</header>
+<div id="ta-content">
+<div aria-label="Choose a note" class="ta-index" data-index="" role="group"></div>
+<div class="ta-meta"><span>PERSONAL / 05 SEP</span><span data-count="">01 / 02</span></div>
+<span data-text-count="" hidden=""></span>
+<input aria-label="Note title" class="ta-title" data-title="" maxlength="120" value="Before I leave"/>
+<textarea aria-label="Note contents" class="ta-body" data-body="" spellcheck="false">Pick up groceries
+Charge the headphones
+Back up the dotfiles</textarea>
+<footer class="ta-footer"><button class="ta-add" data-add="" type="button">+ NEW NOTE</button><span aria-live="polite" class="ta-preview" data-status="" role="status">PREVIEW / SESSION ONLY</span></footer>
+</div>
+</section>
+</div>
+
+<style>
+
+
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) { --ta-bg:var(--notes-paper,#0a0a0a); --ta-ink:var(--notes-ink,#e8e8e8); --ta-muted:var(--notes-muted,#909090); --ta-red:var(--notes-accent,#cc1515); --ta-line:rgba(var(--notes-accent-rgb,204,21,21),.3); --ta-control:rgba(var(--notes-accent-rgb,204,21,21),.55); --ta-body-size:16px; width:100%; padding:8px; color:var(--ta-ink); color-scheme:dark; font-family:Inter,sans-serif; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) * { box-sizing:border-box; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) button,#ts-notes-a[data-palette]:not([data-palette="Bone"]) input,#ts-notes-a[data-palette]:not([data-palette="Bone"]) textarea { font:inherit; color:inherit; border-radius:0; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-panel { position:relative; max-width:420px; margin:auto; padding:20px; background:var(--ta-bg); border:1px solid var(--ta-red); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-panel::before { content:''; position:absolute; inset:4px; border:1px solid var(--ta-line); pointer-events:none; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"])[data-inner='false'] .ta-panel::before { display:none; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-panel::after { content:''; position:absolute; top:16px; left:-1px; width:4px; height:40px; background:var(--ta-red); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-corner { position:absolute; width:8px; height:8px; border-color:rgba(var(--notes-ink-rgb,232,232,232),.55); border-style:solid; pointer-events:none; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-tl { top:-2px; left:6px; border-width:2px 0 0 2px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-tr { top:-2px; right:0; border-width:2px 2px 0 0; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-bl { bottom:-2px; left:6px; border-width:0 0 2px 2px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-br { bottom:-2px; right:0; border-width:0 2px 2px 0; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-header { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-caption { flex:1; min-width:0; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-caption h2 { margin:0; font-size:12px; line-height:1.4; font-weight:500; letter-spacing:4px; color:var(--ta-ink); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-short-rule { width:36px; height:1px; background:var(--ta-control); margin-top:8px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-close { padding:7px 10px; min-width:34px; background:transparent; border:1px solid var(--ta-control); cursor:pointer; font-size:11px; line-height:1.3; letter-spacing:1px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-close:hover { background:var(--ta-red); color:var(--ta-bg); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-index { display:grid; gap:7px; margin-bottom:20px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-note { position:relative; text-align:left; padding:10px 12px 10px 24px; background:transparent; border:1px solid var(--ta-control); cursor:pointer; font-size:11px; line-height:1.5; font-weight:500; letter-spacing:1.6px; text-transform:uppercase; overflow-wrap:anywhere; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-note[aria-pressed='true'] { background:var(--ta-red); border-color:var(--ta-red); color:var(--ta-bg); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-note[aria-pressed='true']::before { content:''; position:absolute; width:6px; height:6px; background:var(--ta-bg); left:9px; top:calc(50% - 3px); transform:rotate(45deg); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-note:not([aria-pressed='true']):hover { border-color:var(--ta-red); background:rgba(var(--notes-accent-rgb,204,21,21),.14); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-meta { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color:var(--ta-muted); font-family:'Share Tech Mono',monospace; font-size:11px; line-height:1.5; letter-spacing:1px; margin-bottom:8px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-title { display:block; width:100%; padding:0 0 10px; background:transparent; border:0; border-bottom:1px solid var(--ta-line); font-size:17px; line-height:1.5; font-weight:500; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-body { display:block; width:100%; height:130px; min-height:100px; resize:vertical; padding:12px 0; background:transparent; border:0; color:var(--notes-ink,#d4d4d4); font-size:var(--ta-body-size); line-height:1.75; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-title::selection,#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-body::selection { background:var(--ta-red); color:var(--ta-bg); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--ta-line); padding-top:14px; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-add { position:relative; isolation:isolate; padding:9px 13px; font-size:11px; line-height:1.4; letter-spacing:1.5px; background:transparent; border:1px solid var(--ta-control); cursor:pointer; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-add::before { content:''; position:absolute; inset:0; transform:scaleX(0); transform-origin:left; background:var(--ta-red); transition:transform 220ms ease; z-index:-1; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-add:hover::before { transform:scaleX(1); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-add:hover { color:var(--ta-bg); }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-preview { color:var(--ta-muted); font:11px/1.5 'Share Tech Mono',monospace; letter-spacing:.5px; text-align:right; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"]) [hidden] { display:none!important; }
+#ts-notes-a[data-palette]:not([data-palette="Bone"])[data-open='false'] .ta-header { margin-bottom:0; }
+@media(max-width:360px) { #ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-panel { padding:17px; } #ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-caption h2 { letter-spacing:2.5px; } }
+@media(pointer:coarse) { #ts-notes-a[data-palette]:not([data-palette="Bone"]) button { min-height:44px; } }
+@media(prefers-reduced-motion:reduce) { #ts-notes-a[data-palette]:not([data-palette="Bone"]) .ta-add::before { transition:none; } }
+</style><style>
+/* Palette controls for the notes preview. */
+#ts-notes-a[data-custom-palette="true"] :is(input,textarea) { caret-color:var(--notes-ink); }
+#ts-notes-a[data-custom-palette="true"] :is(button,input,textarea):focus-visible { outline-color:var(--notes-ink); }
+#ts-notes-a[data-custom-palette="true"] :is(input,textarea)::selection { background:var(--notes-accent); color:var(--notes-on-accent); }
+#ts-notes-a[data-custom-palette="true"] .ta-note[aria-pressed="true"],#ts-notes-a[data-custom-palette="true"] :is(.ta-close,.ta-add):hover { color:var(--notes-on-accent); }
+#ts-notes-a[data-custom-palette="true"] .ta-note[aria-pressed="true"]::before { background:var(--notes-on-accent); }
+</style><style>
+/* Reading and writing controls. */
+#ts-notes-a [data-text-count] { display:block; color:var(--notes-muted,#909090); font:11px/1.5 monospace; margin-bottom:8px; }
+#ts-notes-a textarea { height:var(--notes-editor-height); min-height:100px; overflow:auto; flex:none; }
+#ts-notes-a .ta-title { font-size:var(--notes-title-size); }
+#ts-notes-a .ta-index { position:relative; max-height:var(--notes-list-height); overflow-y:auto; gap:var(--notes-row-gap); scrollbar-width:thin; }
+#ts-notes-a .ta-note { min-height:var(--notes-row-height); flex-shrink:0; }
+#ts-notes-a[data-palette] .ta-index { gap:var(--notes-row-gap); }
+#ts-notes-a[data-palette] .ta-title { font-size:var(--notes-title-size); }
+#ts-notes-a[data-palette] .ta-body { height:var(--notes-editor-height); }
+#ts-notes-a .ta-note { height:var(--notes-row-height); overflow:hidden; padding-top:4px; padding-bottom:4px; }
+</style><script src="../preview-runtime.js"></script><script src="options.js"></script><script src="appearance.js"></script><script src="demo.js"></script></body></html>

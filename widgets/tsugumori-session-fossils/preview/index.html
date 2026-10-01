@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<title>Tsugumori / Session fossils</title><style>html{color-scheme:dark}body{margin:0;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}body>*{box-sizing:border-box}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true]{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px;padding:0 12px}[hidden]{display:none!important}</style></head><body>
+<style>
+#ts-play-lab{--ts-red:#cc1515;--ts-ink:#e8e8e8;--ts-muted:#a0a0a0;--ts-black:#0a0a0a;--ts-line:#492020;font-family:'Share Tech Mono',monospace;color:var(--ts-ink);color-scheme:dark;width:100%;background:transparent;font-size:14px;line-height:1.4}
+#ts-play-lab *{box-sizing:border-box}
+#ts-play-lab .ts-console{background:var(--ts-black);border:1px solid var(--ts-red);padding:5px;position:relative}
+#ts-play-lab .ts-inner{border:1px solid var(--ts-line)}
+#ts-play-lab .ts-mast{padding:14px 16px;display:flex;gap:8px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--ts-line);flex-wrap:wrap}
+#ts-play-lab .ts-brand{letter-spacing:.13em;color:var(--ts-ink)}
+#ts-play-lab .ts-kicker{font-size:11px;letter-spacing:.08em;color:var(--ts-muted)}
+#ts-play-lab .ts-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--ts-line);border-bottom:1px solid var(--ts-line)}
+#ts-play-lab button{position:relative;isolation:isolate;overflow:hidden;font:inherit;color:var(--ts-ink);border:1px solid var(--ts-line);border-radius:0;background:var(--ts-black);padding:9px 12px;cursor:pointer;min-height:38px;transition:color 220ms ease,border-color 220ms ease;text-align:center}
+#ts-play-lab button:before{content:'';position:absolute;z-index:-1;inset:0;background:var(--ts-red);transform:scaleX(0);transform-origin:left;transition:transform 220ms cubic-bezier(.76,0,.24,1)}
+#ts-play-lab button:hover:enabled:before,#ts-play-lab button[aria-pressed="true"]:before{transform:scaleX(1)}
+#ts-play-lab button:hover:enabled,#ts-play-lab button[aria-pressed="true"]{color:#fff;border-color:var(--ts-red)}
+#ts-play-lab button:disabled{opacity:.4;cursor:default}
+#ts-play-lab .ts-mode{border:0;text-align:left;padding:12px 14px;min-height:60px;font-size:13px}
+#ts-play-lab .ts-mode span{display:block;color:var(--ts-muted);font-size:11px;margin-bottom:3px;letter-spacing:.1em}
+#ts-play-lab .ts-mode[aria-pressed="true"] span{color:#fff}
+#ts-play-lab .ts-scene-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px 8px;flex-wrap:wrap}
+#ts-play-lab .ts-title{font-size:18px;margin:0;font-weight:400;letter-spacing:.02em}
+#ts-play-lab .ts-scene-heading button{padding:5px 9px;min-height:32px;font-size:11px}
+#ts-play-lab .ts-field{position:relative;overflow:hidden}
+#ts-play-lab canvas{display:block;width:100%;height:clamp(300px,52vw,380px);touch-action:none;cursor:crosshair}
+#ts-play-lab .ts-gesture{position:absolute;top:4px;left:16px;right:16px;font-size:12px;color:var(--ts-muted);pointer-events:none}
+#ts-play-lab .ts-shutter{position:absolute;inset:0;background:var(--ts-ink);transform:scaleX(0);transform-origin:right;pointer-events:none}
+#ts-play-lab .ts-controls{padding:14px 16px;border-top:1px solid var(--ts-line);background:var(--ts-black)}
+#ts-play-lab .ts-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#ts-play-lab .ts-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:12px}
+#ts-play-lab .ts-fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+#ts-play-lab label{display:flex;flex-direction:column;gap:6px;font-size:12px;min-width:0;color:var(--ts-muted)}
+#ts-play-lab label span{display:flex;justify-content:space-between;gap:5px;flex-wrap:wrap}
+#ts-play-lab output{color:var(--ts-ink);font-variant-numeric:tabular-nums}
+#ts-play-lab select,#ts-play-lab input[type="text"]{font:inherit;font-size:14px;color:var(--ts-ink);background:var(--ts-black);border:1px solid var(--ts-line);border-radius:0;padding:8px 9px;min-height:38px;width:100%;min-width:0}
+#ts-play-lab input[type="range"]{width:100%;margin:4px 0;accent-color:var(--ts-red);min-height:22px;cursor:pointer}
+#ts-play-lab .ts-quality{height:2px;background:#292020;overflow:hidden}
+#ts-play-lab .ts-quality i{display:block;height:100%;background:var(--ts-red);width:0;transition:width 180ms ease}
+#ts-play-lab .ts-archive{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+#ts-play-lab .ts-archive:empty{display:none}
+#ts-play-lab .ts-archive button{font-size:12px;padding:5px 9px;min-height:32px;max-width:100%;overflow-wrap:anywhere}
+#ts-play-lab .ts-status{border-top:1px solid var(--ts-line);display:flex;gap:10px;padding:10px 16px;align-items:flex-start;font-size:12px;min-height:39px;color:var(--ts-muted)}
+#ts-play-lab .ts-status:before{content:'';width:5px;height:5px;background:var(--ts-red);flex-shrink:0;margin-top:5px}
+#ts-play-lab .ts-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 2px 0;color:var(--ts-muted);font-size:11px;letter-spacing:.035em}
+#ts-play-lab [hidden]{display:none!important}
+@media(max-width:480px){#ts-play-lab .ts-modes{grid-template-columns:repeat(2,minmax(0,1fr))}#ts-play-lab .ts-mast{padding:12px}#ts-play-lab .ts-controls{padding:12px}#ts-play-lab .ts-scene-heading{padding:12px 12px 8px}#ts-play-lab .ts-title{font-size:16px}#ts-play-lab .ts-fields.three{grid-template-columns:1fr;gap:9px}#ts-play-lab .ts-fields{gap:10px}#ts-play-lab .ts-mode{padding:10px 12px;min-height:56px}#ts-play-lab .ts-gesture{left:12px;right:12px}#ts-play-lab select,#ts-play-lab input[type="text"]{font-size:16px}}
+@media(pointer:coarse){#ts-play-lab button,#ts-play-lab .ts-archive button,#ts-play-lab .ts-scene-heading button,#ts-play-lab select,#ts-play-lab input[type="text"]{min-height:44px}#ts-play-lab input[type="range"]{min-height:32px}}
+@media(prefers-reduced-motion:reduce){#ts-play-lab *,#ts-play-lab *:before{transition:none!important}}
+</style>
+<section aria-label="Session fossils" id="ts-play-lab">
+<div class="ts-console"><div class="ts-inner">
+<header class="ts-mast"><span class="ts-brand">TSUGUMORI // PLAY</span><span class="ts-kicker">INTERACTIVE PREVIEW</span></header>
+
+<div class="ts-scene-heading"><h2 class="ts-title" data-title="">Session fossils</h2><button aria-pressed="false" data-action="motion" type="button">Pause motion</button></div>
+<div class="ts-field">
+<canvas aria-label="A living ribbed specimen. Use Send ripple and the motion controls to interact.">Interactive specimen preview. Use the controls below to change it.</canvas>
+<div class="ts-gesture" data-gesture="">Move to attract · Click to send a ripple</div>
+<div aria-hidden="true" class="ts-shutter"></div>
+</div>
+
+
+
+
+
+<div class="ts-controls" data-controls="5">
+<div class="ts-fields"><label>Sample session<select data-input="session"><option value="0">Sep 06 · long focus</option><option value="1">Sep 05 · many detours</option><option value="2">Sep 04 · late-night drift</option></select></label><label><span>Rotation <output data-output="rotation">25°</output></span><input data-input="rotation" max="360" min="0" type="range" value="25"/></label></div>
+<div class="ts-fields"><label>Specimen name<input autocomplete="off" data-input="fossil-name" maxlength="32" type="text" value="Quiet engine"/></label><div class="ts-row" style="align-self:end"><button data-action="archive-fossil" type="button">Archive fossil</button></div></div>
+<div aria-label="Archived session fossils" class="ts-archive" data-archive="fossils"></div>
+</div>
+<div aria-live="polite" class="ts-status" role="status"><span data-status="">Specimen awake. Kept forms stay in this preview only.</span></div>
+</div></div>
+<footer class="ts-foot"><span>BLACK / BONE / SIGNAL RED</span><span>SIMULATED DATA · NO DESKTOP CHANGES</span></footer>
+</section>
+<script src="../preview-runtime.js"></script>
+<script src="demo.js"></script>
+</body></html>

@@ -1,0 +1,49 @@
+{
+  "id": "tsugumori-orbital-playground",
+  "title": "Tsugumori / Orbital playground",
+  "summary": "Select a sample workspace, drag its orbital body, adjust the radius, push it, or reverse its direction. State resets when you leave this widget.",
+  "category": "Interactive art",
+  "tags": [
+    "interactive-art",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "grid",
+      "label": "Red coordinate grid",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "accent",
+      "label": "Signal accent",
+      "type": "color",
+      "default": "#cc1515"
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

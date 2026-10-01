@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: 0BSD
+import QtQuick
+
+NotesDrawer {
+    property bool s0InnerFrame: {{s0InnerFrame}}
+    property int s1BodySize: {{s1BodySize}}
+    property string s2NoteFont: {{s2NoteFont}}
+    property int s3GridStrength: {{s3GridStrength}}
+
+    doubleFrame: s0InnerFrame
+    writingSize: s1BodySize
+    writingFont: s2NoteFont === "Inter" ? sansFont : monoFont
+    gridStrength: s3GridStrength
+    property int editorHeight: {{editorHeight}}
+    property int titleSize: {{titleSize}}
+    property string listDensity: {{listDensity}}
+    property int visibleNotes: {{visibleNotes}}
+    property string newNotePosition: {{newNotePosition}}
+    property string textCount: {{textCount}}
+    property bool showNumbers: {{showNumbers}}
+
+    writingHeight: editorHeight
+    headingSize: titleSize
+    density: listDensity
+    listRows: visibleNotes
+    prependNewNotes: newNotePosition === "Top"
+    counterMode: textCount
+    numbered: showNumbers
+    redPalette: true
+    allowDelete: true
+    property string palette: {{palette}}
+    property color backgroundColor: {{backgroundColor}}
+    property color textColor: {{textColor}}
+    property color accentColor: {{accentColor}}
+
+    paletteName: palette
+    customBackground: backgroundColor
+    customText: textColor
+    customAccent: accentColor
+}

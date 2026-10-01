@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Clipboard c refined</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden],[data-archive-omitted]{display:none!important}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn,.nav-link{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true],.nav-link.active{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px}.text-muted{color:#999}.form-control,.form-select{background:#151515;color:#eee;border:1px solid #666;padding:7px}.form-range{accent-color:#cc1515}.nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}figure{margin:0}svg{flex-shrink:0}.archive-settings{border-top:1px solid #383434;margin:18px 0 0;padding:12px 0;font-size:11px}.archive-settings summary{cursor:pointer;color:#aaa;letter-spacing:1px}.archive-settings label{display:flex;align-items:center;gap:12px;padding-top:10px;flex-wrap:wrap}.archive-settings label span{min-width:145px}.archive-settings input[type=range]{width:150px;max-width:100%;accent-color:#cc1515}.archive-settings select{max-width:100%;background:#151515;color:#ddd;border:1px solid #555;padding:5px}.archive-settings output{color:#aaa}.archive-settings input[type=checkbox]{accent-color:#cc1515}
+</style></head><body>
+<div aria-label="Refined equipment-label clipboard design" data-grid="on" data-paper="bone" id="tsugu-clipboard-c">
+<style>
+    #tsugu-clipboard-c { --cr-paper:#ded8ca; --cr-well:#ece6da; --cr-ink:#28231f; --cr-muted:#6a5b50; --cr-line:#aa9b88; --cr-faint:#c6baaa; --cr-red:#b22229; --cr-red-ink:#fff0df; --cr-mono:"IBM Plex Mono","DejaVu Sans Mono",monospace; --cr-sans:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif; color:var(--cr-ink); font-family:var(--cr-sans); max-width:690px; margin:0 auto; }
+    #tsugu-clipboard-c * { box-sizing:border-box; }
+    #tsugu-clipboard-c button,#tsugu-clipboard-c input { font:inherit; border-radius:0; }
+    #tsugu-clipboard-c button { cursor:pointer; }
+    #tsugu-clipboard-c button:disabled { opacity:.35; cursor:default; }
+    #tsugu-clipboard-c [hidden] { display:none!important; }
+    #tsugu-clipboard-c[data-paper="ivory"] { --cr-paper:#e8e4da; --cr-well:#f1eee6; --cr-faint:#d0c8ba; }
+    #tsugu-clipboard-c[data-paper="warm"] { --cr-paper:#d7cbb7; --cr-well:#e7dccb; --cr-faint:#beae98; }
+    #tsugu-clipboard-c .cr-shell { background:var(--cr-paper); border:1px solid #53483e; border-top:3px solid var(--cr-red); position:relative; isolation:isolate; }
+    #tsugu-clipboard-c .cr-shell::before { position:absolute; content:""; inset:0; z-index:-1; pointer-events:none; background-image:linear-gradient(#4e3b250a 1px,transparent 1px),linear-gradient(90deg,#4e3b250a 1px,transparent 1px); background-size:21px 21px; }
+    #tsugu-clipboard-c[data-grid="off"] .cr-shell::before { display:none; }
+    #tsugu-clipboard-c .cr-header { padding:22px 22px 20px; display:flex; gap:17px; align-items:center; border-bottom:1px solid #54483b; }
+    #tsugu-clipboard-c .cr-stamp { background:var(--cr-red); color:var(--cr-red-ink); width:45px; height:49px; display:grid; place-items:center; flex-shrink:0; font-size:13px; letter-spacing:4px; padding-left:4px; }
+    #tsugu-clipboard-c .cr-heading-group { flex:1; min-width:0; }
+    #tsugu-clipboard-c .cr-heading { font-size:27px; letter-spacing:2.7px; font-weight:500; line-height:1.1; margin:0; }
+    #tsugu-clipboard-c .cr-subheading { display:block; margin-top:7px; font:11px var(--cr-mono); letter-spacing:1.2px; color:var(--cr-muted); }
+    #tsugu-clipboard-c .cr-quiet { position:relative; isolation:isolate; border:1px solid #897663; color:var(--cr-ink); background:transparent; padding:8px 11px; min-height:34px; font:11px var(--cr-mono); letter-spacing:.4px; transition:color .25s,border-color .25s; }
+    #tsugu-clipboard-c .cr-quiet::before { content:""; position:absolute; inset:0; background:var(--cr-red); z-index:-1; transform:scaleX(0); transform-origin:left; transition:transform .28s cubic-bezier(.2,.7,.2,1); }
+    #tsugu-clipboard-c .cr-quiet:hover:not(:disabled) { color:var(--cr-red-ink); border-color:var(--cr-red); }
+    #tsugu-clipboard-c .cr-quiet:hover:not(:disabled)::before { transform:scaleX(1); }
+    #tsugu-clipboard-c .cr-close { align-self:flex-start; }
+    #tsugu-clipboard-c .cr-searchbar { padding:13px 22px; display:flex; gap:12px; align-items:center; border-bottom:1px solid var(--cr-line); }
+    #tsugu-clipboard-c .cr-searchbar > i,#tsugu-clipboard-c .cr-searchbar > svg { width:15px; height:15px; color:var(--cr-red); flex-shrink:0; }
+    #tsugu-clipboard-c .cr-search { flex:1; min-width:0; border:0; color:var(--cr-ink); background:transparent; font-size:15px; letter-spacing:.2px; padding:7px 0; }
+    #tsugu-clipboard-c .cr-search::placeholder { color:#827464; }
+    #tsugu-clipboard-c .cr-filter { border:0; background:transparent; color:var(--cr-muted); display:flex; align-items:center; gap:7px; padding:7px 0; font:11px var(--cr-mono); }
+    #tsugu-clipboard-c .cr-filter::before { content:""; display:block; width:9px; height:9px; border:1px solid currentColor; }
+    #tsugu-clipboard-c .cr-filter[aria-pressed="true"] { color:var(--cr-red); }
+    #tsugu-clipboard-c .cr-filter[aria-pressed="true"]::before { background:var(--cr-red); }
+    #tsugu-clipboard-c .cr-main { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,1fr); }
+    #tsugu-clipboard-c .cr-history { border-right:1px solid #887969; padding:0 0 12px; }
+    #tsugu-clipboard-c .cr-section { min-height:47px; padding:15px 21px 13px; display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--cr-faint); font:11px var(--cr-mono); letter-spacing:1px; color:var(--cr-muted); }
+    #tsugu-clipboard-c .cr-section > span:first-child { flex:1; }
+    #tsugu-clipboard-c .cr-total { color:var(--cr-red); }
+    #tsugu-clipboard-c .cr-row { position:relative; isolation:isolate; border-bottom:1px solid var(--cr-faint); color:var(--cr-ink); transition:color .32s; }
+    #tsugu-clipboard-c .cr-row::before { content:""; position:absolute; inset:0; z-index:-1; transform:scaleX(0); transform-origin:left; background:var(--cr-red); transition:transform .34s cubic-bezier(.2,.7,.2,1); }
+    #tsugu-clipboard-c .cr-row:hover::before,#tsugu-clipboard-c .cr-row.is-selected::before { transform:scaleX(1); }
+    #tsugu-clipboard-c .cr-row:hover,#tsugu-clipboard-c .cr-row.is-selected { color:var(--cr-red-ink); }
+    #tsugu-clipboard-c .cr-row.is-selected:hover::before { transform:scaleX(1); }
+    #tsugu-clipboard-c .cr-entry { width:100%; min-height:71px; border:0; padding:13px 16px 13px 21px; display:grid; grid-template-columns:32px minmax(0,1fr) 13px; gap:12px; align-items:center; background:transparent; color:inherit; text-align:left; }
+    #tsugu-clipboard-c .cr-number { font:11px var(--cr-mono); opacity:.75; align-self:start; padding-top:2px; }
+    #tsugu-clipboard-c .cr-title { display:block; font-size:15px; letter-spacing:.1px; font-weight:500; line-height:1.3; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+    #tsugu-clipboard-c .cr-meta { display:flex; gap:7px; align-items:center; font:11px var(--cr-mono); margin-top:7px; opacity:.75; white-space:nowrap; }
+    #tsugu-clipboard-c .cr-meta > span:first-child { min-width:31px; }
+    #tsugu-clipboard-c .cr-row-pin { width:10px; height:10px; }
+    #tsugu-clipboard-c .cr-row-pin i,#tsugu-clipboard-c .cr-row-pin svg { display:block; width:10px; height:10px; }
+    #tsugu-clipboard-c .cr-indicator { opacity:0; font-size:13px; transition:opacity .25s; }
+    #tsugu-clipboard-c .is-selected .cr-indicator { opacity:1; }
+    #tsugu-clipboard-c .cr-detail { min-width:0; display:flex; flex-direction:column; }
+    #tsugu-clipboard-c .cr-detail .cr-section { padding-left:20px; padding-right:20px; }
+    #tsugu-clipboard-c .cr-detail-type { letter-spacing:.4px; color:var(--cr-red); }
+    #tsugu-clipboard-c .cr-detail-body { padding:18px 20px 16px; display:flex; flex-direction:column; flex:1; gap:13px; min-width:0; }
+    #tsugu-clipboard-c .cr-preview { flex:1; min-height:171px; border:1px solid #a69885; background:var(--cr-well); padding:12px; display:grid; place-items:center; overflow-wrap:anywhere; }
+    #tsugu-clipboard-c .cr-grid-sample { width:100%; aspect-ratio:1.55; background-color:#0d0d0e; background-image:linear-gradient(#a7203030 1px,transparent 1px),linear-gradient(90deg,#a7203030 1px,transparent 1px); background-size:21px 21px; border:1px solid #6f3537; }
+    #tsugu-clipboard-c .cr-palette { width:100%; aspect-ratio:1.55; display:flex; border:1px solid #60554b; }
+    #tsugu-clipboard-c .cr-palette > span:nth-child(1) { flex:1; background:#0d0d0f; }
+    #tsugu-clipboard-c .cr-palette > span:nth-child(2) { flex:1.35; background:#b22229; }
+    #tsugu-clipboard-c .cr-palette > span:nth-child(3) { flex:1; background:#ded8ca; }
+    #tsugu-clipboard-c .cr-text { margin:0; font:12px/1.9 var(--cr-mono); white-space:pre-wrap; overflow-wrap:anywhere; color:#3b2e25; width:100%; }
+    #tsugu-clipboard-c .cr-caption { display:flex; flex-wrap:wrap; align-items:baseline; gap:5px 10px; }
+    #tsugu-clipboard-c .cr-caption-name { font-size:14px; font-weight:500; flex:1; min-width:0; overflow-wrap:anywhere; }
+    #tsugu-clipboard-c .cr-caption-kind { font:11px var(--cr-mono); color:var(--cr-muted); }
+    #tsugu-clipboard-c .cr-detail-actions { display:flex; align-items:center; gap:7px; padding-top:2px; }
+    #tsugu-clipboard-c .cr-pin { display:flex; gap:8px; align-items:center; }
+    #tsugu-clipboard-c .cr-pin > i,#tsugu-clipboard-c .cr-pin > svg { width:13px; height:13px; }
+    #tsugu-clipboard-c .cr-pin[aria-pressed="true"] { border-color:var(--cr-red); color:var(--cr-red); }
+    #tsugu-clipboard-c .cr-pin[aria-pressed="true"]:hover { color:var(--cr-red-ink); }
+    #tsugu-clipboard-c .cr-delete { margin-left:auto; font-family:var(--cr-sans); font-size:21px; padding:2px 12px; }
+    #tsugu-clipboard-c .cr-footer { min-height:75px; display:flex; align-items:center; gap:12px; padding:16px 22px; border-top:1px solid #6b5c4a; }
+    #tsugu-clipboard-c .cr-foot-copy { flex:1; min-width:0; }
+    #tsugu-clipboard-c .cr-state { display:block; font:11px var(--cr-mono); color:var(--cr-muted); line-height:1.6; }
+    #tsugu-clipboard-c .cr-foot-note { display:block; font:11px var(--cr-mono); color:#887561; margin-top:3px; }
+    #tsugu-clipboard-c .cr-use { color:var(--cr-red-ink); background:var(--cr-red); border:1px solid #85161d; padding:12px 16px; display:flex; gap:15px; justify-content:space-between; align-items:center; font:500 13px var(--cr-sans); letter-spacing:1.4px; min-width:153px; }
+    #tsugu-clipboard-c .cr-use:hover:not(:disabled) { background:#921c23; }
+    #tsugu-clipboard-c .cr-use > span { font:15px var(--cr-mono); }
+    #tsugu-clipboard-c .cr-undo { border:0; padding:8px 0; background:transparent; color:var(--cr-red); font:11px var(--cr-mono); }
+    #tsugu-clipboard-c .cr-empty { color:var(--cr-muted); font:12px var(--cr-mono); line-height:1.7; padding:35px 21px; }
+    #tsugu-clipboard-c .cr-closed { padding:60px 22px; display:grid; justify-content:center; }
+    @media(max-width:550px) { #tsugu-clipboard-c .cr-main { grid-template-columns:1fr; } #tsugu-clipboard-c .cr-history { border-right:0; border-bottom:1px solid #887969; } #tsugu-clipboard-c .cr-header { padding:18px; gap:12px; } #tsugu-clipboard-c .cr-heading { font-size:24px; letter-spacing:1.8px; } #tsugu-clipboard-c .cr-subheading { font-size:11px; letter-spacing:.3px; } #tsugu-clipboard-c .cr-stamp { width:39px; height:45px; } #tsugu-clipboard-c .cr-searchbar { padding:12px 18px; } #tsugu-clipboard-c .cr-preview { min-height:160px; } #tsugu-clipboard-c .cr-grid-sample,#tsugu-clipboard-c .cr-palette { max-width:240px; aspect-ratio:1.6; } #tsugu-clipboard-c .cr-footer { padding:15px 18px; flex-wrap:wrap; } #tsugu-clipboard-c .cr-foot-copy { flex-basis:100%; } #tsugu-clipboard-c .cr-use { margin-left:auto; } }
+    @media(pointer:coarse) { #tsugu-clipboard-c .cr-quiet { min-height:44px; min-width:44px; } #tsugu-clipboard-c .cr-search { font-size:16px; } #tsugu-clipboard-c .cr-filter { padding:12px 0; } }
+    @media(prefers-reduced-motion:reduce) { #tsugu-clipboard-c *,#tsugu-clipboard-c *::before { transition:none!important; } }
+  </style>
+<section aria-label="Clipboard" class="cr-shell">
+<header class="cr-header"><span class="cr-stamp">履歴</span><div class="cr-heading-group"><h2 class="cr-heading">CLIPBOARD</h2><span class="cr-subheading">TSUGUMORI // 保存</span></div><button aria-label="Close preview" class="cr-quiet cr-close" data-action="close">ESC</button></header>
+<div class="cr-open">
+<div class="cr-searchbar"><i aria-hidden="true" data-lucide="search"></i><input aria-label="Search sample clipboard" class="cr-search" placeholder="Search copied items…" type="search"/><button aria-pressed="false" class="cr-filter" data-action="filter">PINNED</button></div>
+<div class="cr-main">
+<section aria-label="Clipboard history" class="cr-history">
+<div class="cr-section"><span class="cr-list-label">RECENT COPIES</span><span class="cr-total">04</span></div>
+<article class="cr-row is-selected" data-row="1"><button aria-pressed="true" class="cr-entry" data-entry="1"><span class="cr-number">01//</span><span><span class="cr-title">Grid texture</span><span class="cr-meta"><span>IMG</span><span>JUST NOW</span><span class="cr-row-pin" hidden=""><i aria-hidden="true" data-lucide="pin"></i></span></span></span><span aria-hidden="true" class="cr-indicator">◈</span></button></article>
+<article class="cr-row" data-row="2"><button aria-pressed="false" class="cr-entry" data-entry="2"><span class="cr-number">02//</span><span><span class="cr-title">Player design notes</span><span class="cr-meta"><span>TXT</span><span>2 MIN AGO</span><span class="cr-row-pin" hidden=""><i aria-hidden="true" data-lucide="pin"></i></span></span></span><span aria-hidden="true" class="cr-indicator">◈</span></button></article>
+<article class="cr-row" data-row="3"><button aria-pressed="false" class="cr-entry" data-entry="3"><span class="cr-number">03//</span><span><span class="cr-title">Tsugumori repository</span><span class="cr-meta"><span>URL</span><span>5 MIN AGO</span><span class="cr-row-pin"><i aria-hidden="true" data-lucide="pin"></i></span></span></span><span aria-hidden="true" class="cr-indicator">◈</span></button></article>
+<article class="cr-row" data-row="4"><button aria-pressed="false" class="cr-entry" data-entry="4"><span class="cr-number">04//</span><span><span class="cr-title">Theme palette</span><span class="cr-meta"><span>IMG</span><span>8 MIN AGO</span><span class="cr-row-pin" hidden=""><i aria-hidden="true" data-lucide="pin"></i></span></span></span><span aria-hidden="true" class="cr-indicator">◈</span></button></article>
+<div class="cr-empty" hidden="">No matching entries.</div>
+</section>
+<section aria-label="Selected clip preview" class="cr-detail">
+<div class="cr-section"><span>PREVIEW</span><span class="cr-detail-type">01 / IMAGE</span></div>
+<div class="cr-detail-body">
+<div class="cr-preview"><div aria-label="Sample black and red grid texture" class="cr-grid-sample" role="img"></div><div aria-label="Sample black, red and bone palette" class="cr-palette" hidden="" role="img"><span></span><span></span><span></span></div><pre class="cr-text" hidden=""></pre></div>
+<div class="cr-caption"><span class="cr-caption-name">Grid texture</span><span class="cr-caption-kind">SAMPLE IMAGE</span></div>
+<div class="cr-detail-actions"><button aria-label="Pin selected entry" aria-pressed="false" class="cr-quiet cr-pin" data-action="pin"><i aria-hidden="true" data-lucide="pin"></i><span class="cr-pin-label">PIN</span></button><button aria-label="Delete selected entry" class="cr-quiet cr-delete" data-action="delete">×</button></div>
+</div>
+</section>
+</div>
+<footer class="cr-footer"><div class="cr-foot-copy"><span aria-live="polite" class="cr-state">04 ENTRIES // PREVIEW</span><span class="cr-foot-note">Sample content only</span></div><button class="cr-undo" data-action="undo" hidden="">UNDO</button><button class="cr-use" data-action="use">USE ENTRY <span aria-hidden="true">↵</span></button></footer>
+</div>
+<div class="cr-closed" hidden=""><button class="cr-quiet" data-action="reopen">REOPEN PREVIEW</button></div>
+</section>
+
+</div>
+<style></style><script src="../preview-runtime.js"></script><script src="support.js"></script><script src="demo.js"></script></body></html>

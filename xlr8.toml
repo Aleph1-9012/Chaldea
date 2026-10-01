@@ -1,0 +1,14 @@
+format_version = 1
+settings_schema_version = 1
+widgets = "widgets"
+license = "0BSD"
+native_baseline = "Quickshell 0.3.0, Qt 6.11.2"
+preview_runtime = "frontend/src/preview/runtime.js"
+shared_inputs = [
+  "schemas/widget.schema.json",
+  "schemas/catalog.schema.json",
+  "schemas/bundle.schema.json",
+  "frontend/src/generator/index.ts",
+  "frontend/src/customizer/settings.ts",
+  "frontend/src/catalog/contracts.ts",
+]

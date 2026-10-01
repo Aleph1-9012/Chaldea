@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Notes b index</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden]{display:none!important}
+</style></head><body>
+<style>
+  #ts-notes-b { --tnb-index: 150px; --tnb-row: 58px; width: 100%; max-width: 560px; margin: 0 auto; color: var(--notes-ink,#e8e8e8); font-family: "Share Tech Mono", monospace; color-scheme: dark; }
+  #ts-notes-b, #ts-notes-b * { box-sizing: border-box; }
+  #ts-notes-b .tnb-window { position: relative; border:1px solid var(--notes-accent,#cc1515); background-color: var(--notes-paper,#0a0a0a); background-image: linear-gradient(rgba(var(--notes-accent-rgb,204,21,21),.06) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--notes-accent-rgb,204,21,21),.06) 1px, transparent 1px); background-size: 20px 20px; }
+  #ts-notes-b .tnb-header { min-height: 52px; padding: 10px 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.3); }
+  #ts-notes-b .tnb-heading { margin: 0; font-size: 13px; font-weight: 400; line-height: 1.2; letter-spacing: 2px; }
+  #ts-notes-b .tnb-jp { color: var(--notes-muted,#909090); font-size: 11px; padding-left: 13px; border-left: 18px solid rgba(var(--notes-ink-rgb,232,232,232),.24); line-height: 1px; }
+  #ts-notes-b .tnb-new { margin-left: auto; flex-shrink: 0; background: var(--notes-paper,#0a0a0a); color: var(--notes-ink,#e8e8e8); border:1px solid rgba(var(--notes-accent-rgb,204,21,21),.55); padding: 7px 10px; font: 11px "Share Tech Mono", monospace; letter-spacing: 1px; cursor: pointer; transition: background-color 150ms, color 150ms; }
+  #ts-notes-b .tnb-new:hover { background: var(--notes-accent,#cc1515); color: var(--notes-paper,#0a0a0a); }
+  #ts-notes-b .tnb-main { display: grid; grid-template-columns: min(34%, var(--tnb-index)) minmax(0, 1fr); min-height: 316px; }
+  #ts-notes-b .tnb-index { padding-top: 15px; border-right: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.3); min-width: 0; }
+  #ts-notes-b .tnb-index-label { margin: 0 12px 12px; color: var(--notes-muted,#909090); font-size: 11px; line-height: 1.4; letter-spacing: 1.5px; }
+  #ts-notes-b .tnb-note-list { display: flex; flex-direction: column; }
+  #ts-notes-b .tnb-note { position: relative; width: 100%; min-height: var(--tnb-row); padding: 10px 10px 10px 12px; display: grid; grid-template-columns: 18px minmax(0,1fr); gap: 6px; align-items: center; text-align: left; border: 0; border-bottom: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.16); background: transparent; color: var(--notes-ink,#e8e8e8); cursor: pointer; transition: color 120ms, background-color 120ms, padding-left 180ms; }
+  #ts-notes-b .tnb-note:hover { background-color: rgba(var(--notes-accent-rgb,204,21,21),.14); }
+  #ts-notes-b .tnb-note[aria-pressed="true"] { padding-left: 17px; background-color: var(--notes-accent,#cc1515); color: var(--notes-paper,#0a0a0a); border-left: 2px solid var(--notes-accent,#9e1010); }
+  #ts-notes-b .tnb-note-number { color: var(--notes-muted,#909090); font: 11px "Share Tech Mono", monospace; }
+  #ts-notes-b .tnb-note[aria-pressed="true"] .tnb-note-number { color: var(--notes-paper,#0a0a0a); }
+  #ts-notes-b .tnb-note-title { min-width: 0; overflow-wrap: anywhere; font: 12px/1.4 "Share Tech Mono", monospace; }
+  #ts-notes-b .tnb-editor { min-width: 0; padding: 18px 20px 16px; display: flex; flex-direction: column; }
+  #ts-notes-b .tnb-editor-label { margin-bottom: 12px; color: var(--notes-muted,#909090); font-size: 11px; line-height: 1.3; letter-spacing: 1.5px; }
+  #ts-notes-b .tnb-title { width: 100%; min-width: 0; padding: 0 0 12px; border: 0; border-bottom: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.3); border-radius:0; background-color: var(--notes-paper,#0a0a0a); color: var(--notes-ink,#e8e8e8); font: 16px/1.45 "Share Tech Mono", monospace; }
+  #ts-notes-b .tnb-body { width: 100%; min-width: 0; min-height: 100px; height:var(--notes-editor-height); flex:none; margin-top: 14px; padding: 0; border: 0; border-radius:0; resize: vertical; background-color: var(--notes-paper,#0a0a0a); color: var(--notes-ink,#d4d4d4); font: 16px/1.85 "Inter", sans-serif; }
+  #ts-notes-b .tnb-title::placeholder, #ts-notes-b .tnb-body::placeholder { color: var(--notes-muted,#909090); opacity: 1; }
+  #ts-notes-b .tnb-footer { min-height: 42px; padding: 10px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; border-top: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.3); font-size: 11px; line-height: 1.3; letter-spacing: 1px; color: var(--notes-muted,#909090); }
+  #ts-notes-b .tnb-preview { color: var(--notes-ink,#e8e8e8); }
+  #ts-notes-b .tnb-reg { position: absolute; width: 18px; height: 18px; pointer-events: none; color: rgba(var(--notes-ink-rgb,232,232,232),.55); }
+  #ts-notes-b .tnb-reg::before { position: absolute; content: ""; left: 0; top: 6px; width: 5px; height: 1px; background: currentColor; }
+  #ts-notes-b .tnb-reg::after { position: absolute; content: ""; left: 6px; top: 0; width: 1px; height: 5px; background: currentColor; }
+  #ts-notes-b .tnb-reg i { position: absolute; left: 5px; top: 5px; width: 2px; height: 2px; background: currentColor; }
+  #ts-notes-b .tnb-tl { top: 3px; left: 3px; }
+  #ts-notes-b .tnb-tr { top: 3px; right: 3px; transform: scaleX(-1); }
+  #ts-notes-b .tnb-bl { bottom: 3px; left: 3px; transform: scaleY(-1); }
+  #ts-notes-b .tnb-br { bottom: 3px; right: 3px; transform: scale(-1); }
+  #ts-notes-b .tnb-announcement { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  @media (max-width: 400px) {
+    #ts-notes-b .tnb-header { gap: 8px; padding: 12px; }
+    #ts-notes-b .tnb-heading { font-size: 12px; letter-spacing: 1px; }
+    #ts-notes-b .tnb-jp { display: none; }
+    #ts-notes-b .tnb-editor { padding: 18px 12px 16px; }
+    #ts-notes-b .tnb-note { padding-left: 8px; padding-right: 7px; gap: 3px; }
+    #ts-notes-b .tnb-note[aria-pressed="true"] { padding-left: 10px; }
+    #ts-notes-b .tnb-index-label { margin-left: 8px; letter-spacing: 1px; }
+    #ts-notes-b .tnb-footer { padding: 10px 12px; }
+  }
+  @media (pointer: coarse) { #ts-notes-b .tnb-new { min-height: 44px; } }
+  @media (prefers-reduced-motion: reduce) { #ts-notes-b * { transition: none !important; } }
+</style>
+<section aria-label="Indexed quick-notes drawer design" id="ts-notes-b">
+<div class="tnb-window">
+<header class="tnb-header">
+<h2 class="tnb-heading">QUICK NOTES</h2>
+<span class="tnb-jp" lang="ja">メモ</span>
+<button class="tnb-new" type="button">+ NEW</button>
+</header>
+<div class="tnb-main">
+<nav aria-label="Notes" class="tnb-index">
+<p class="tnb-index-label">INDEX / <span class="tnb-count">02</span></p>
+<div class="tnb-note-list"></div>
+</nav>
+<div class="tnb-editor">
+<div class="tnb-editor-label">NOTE <span class="tnb-current">01</span></div>
+<span data-text-count="" hidden=""></span>
+<input aria-label="Note title" class="tnb-title" placeholder="Untitled note" type="text" value="Before I leave"/>
+<textarea aria-label="Note content" class="tnb-body" placeholder="Write a note…" spellcheck="false">Pick up groceries
+Charge the headphones
+Back up the dotfiles</textarea>
+</div>
+</div>
+<footer class="tnb-footer"><span class="tnb-preview">PREVIEW</span><span>NOTES KEPT IN THIS PREVIEW ONLY</span></footer>
+<span aria-hidden="true" class="tnb-reg tnb-tl"><i></i></span>
+<span aria-hidden="true" class="tnb-reg tnb-tr"><i></i></span>
+<span aria-hidden="true" class="tnb-reg tnb-bl"><i></i></span>
+<span aria-hidden="true" class="tnb-reg tnb-br"><i></i></span>
+<span aria-live="polite" class="tnb-announcement"></span>
+</div>
+</section>
+
+<style>
+/* Palette controls for the notes preview. */
+#ts-notes-b[data-custom-palette="true"] :is(input,textarea) { caret-color:var(--notes-ink); }
+#ts-notes-b[data-custom-palette="true"] :is(button,input,textarea):focus-visible { outline-color:var(--notes-ink); }
+#ts-notes-b[data-custom-palette="true"] :is(input,textarea)::selection { background:var(--notes-accent); color:var(--notes-on-accent); }
+#ts-notes-b[data-custom-palette="true"] .tnb-note[aria-pressed="true"],#ts-notes-b[data-custom-palette="true"] .tnb-note[aria-pressed="true"] .tnb-note-number,#ts-notes-b[data-custom-palette="true"] .tnb-new:hover { color:var(--notes-on-accent); }
+</style><style>
+/* Reading and writing controls. */
+#ts-notes-b [data-text-count] { display:block; color:var(--notes-muted,#909090); font:11px/1.5 monospace; margin-bottom:8px; }
+#ts-notes-b textarea { height:var(--notes-editor-height); min-height:100px; overflow:auto; flex:none; }
+#ts-notes-b .tnb-title { font-size:var(--notes-title-size); }
+#ts-notes-b .tnb-note-list { position:relative; max-height:var(--notes-list-height); overflow-y:auto; gap:var(--notes-row-gap); scrollbar-width:thin; }
+#ts-notes-b .tnb-note { min-height:var(--notes-row-height); flex-shrink:0; }
+#ts-notes-b .tnb-note { height:var(--notes-row-height); overflow:hidden; padding-top:4px; padding-bottom:4px; }
+#ts-notes-b[data-numbers="false"] .tnb-note-number { display:none; }
+#ts-notes-b[data-numbers="false"] .tnb-note { grid-template-columns:minmax(0,1fr); }
+</style><script src="../preview-runtime.js"></script><script src="options.js"></script><script src="appearance.js"></script><script src="demo.js"></script></body></html>

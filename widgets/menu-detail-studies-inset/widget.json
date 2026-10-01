@@ -1,0 +1,59 @@
+{
+  "id": "menu-detail-studies-inset",
+  "title": "Tsugumori / Menu detail studies / Inset",
+  "summary": "Search and select sample applications, then use the launcher controls. Launch actions are simulated.",
+  "category": "Menu",
+  "tags": [
+    "menu",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Grid",
+      "label": "Red grid opacity",
+      "type": "number",
+      "default": 9,
+      "min": 5,
+      "max": 16,
+      "step": 1
+    },
+    {
+      "key": "s1Row",
+      "label": "App row height",
+      "type": "number",
+      "default": 48,
+      "min": 46,
+      "max": 58,
+      "step": 1
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

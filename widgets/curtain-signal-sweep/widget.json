@@ -1,0 +1,43 @@
+{
+  "id": "curtain-signal-sweep",
+  "title": "Signal sweep curtain",
+  "summary": "Replay or pause the curtain animation, scrub the reveal, and try it over the Menu and Player samples.",
+  "category": "Curtains and buttons",
+  "tags": [
+    "curtains-and-buttons",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "accent",
+      "label": "Curtain red",
+      "type": "color",
+      "default": "#cc1515"
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

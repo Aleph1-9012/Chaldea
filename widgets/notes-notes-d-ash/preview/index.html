@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Notes d ash</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden]{display:none!important}
+</style></head><body>
+<style>
+  #ts-notes-d { --ts-ash: var(--notes-paper,#c8c8c4); --ts-red: var(--notes-accent,#cc1515); --ts-ink: var(--notes-ink,#2e2a1f); max-width: 410px; width: 100%; margin: 0 auto; color: var(--ts-ink); font: 400 14px/1.5 Inter, sans-serif; }
+  #ts-notes-d, #ts-notes-d * { box-sizing: border-box; }
+  #ts-notes-d button, #ts-notes-d input, #ts-notes-d textarea { font: inherit; border-radius:0; }
+  #ts-notes-d button { cursor: pointer; }
+  #ts-notes-d .ts-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: var(--ts-ash); border:1px solid var(--ts-red); border-left-width: 3px; }
+  #ts-notes-d .ts-label { font: 400 13px/1.2 "Share Tech Mono", Iosevka, monospace; letter-spacing: 2px; color: var(--ts-red); }
+  #ts-notes-d .ts-new { padding: 6px 10px; border:1px solid var(--ts-red); background: var(--ts-ash); color: var(--ts-red); font: 400 12px/1.2 "Share Tech Mono", Iosevka, monospace; letter-spacing: 1px; }
+  #ts-notes-d .ts-new:hover { color: var(--ts-ash); background: var(--ts-red); }
+  #ts-notes-d .ts-stack { display: grid; gap: 10px; padding-top: 10px; }
+  #ts-notes-d .ts-memo { border:1px solid var(--ts-red); border-left-width: 3px; background-color: var(--ts-ash); background-image: linear-gradient(rgba(var(--notes-ink-rgb,70,63,46),.045) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--notes-ink-rgb,70,63,46),.045) 1px, transparent 1px); background-size: 16px 16px; }
+  #ts-notes-d.ts-no-grid .ts-memo { background-image: none; }
+  #ts-notes-d .ts-memo-top { display: flex; align-items: center; width: calc(100% - 26px); margin: 0 12px 0 14px; padding: 11px 0 9px; gap: 9px; border: 0; border-bottom: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.2); background: transparent; color: var(--notes-muted,#514a37); text-align: left; font: 400 11px/1.2 "Share Tech Mono", Iosevka, monospace; letter-spacing: 1.3px; }
+  #ts-notes-d .ts-number { display: inline-block; padding: 2px 5px; background: var(--ts-red); color: var(--ts-ash); font-size: 11px; }
+  #ts-notes-d .ts-note-kind { flex: 1; }
+  #ts-notes-d .ts-expand { display: grid; place-items: center; width: 18px; height: 18px; border:1px solid var(--ts-red); color: var(--ts-red); font-size: 14px; letter-spacing: 0; }
+  #ts-notes-d .ts-editor { padding: 11px 14px 12px; }
+  #ts-notes-d .ts-title { display: block; width: 100%; padding: 0 0 8px; border: 0; border-bottom: 1px solid transparent; background: transparent; color: var(--ts-ink); font-size:var(--notes-title-size); font-weight: 500; letter-spacing: .3px; }
+  #ts-notes-d .ts-body { display: block; width: 100%; min-height: 100px; height:var(--notes-editor-height); resize: none; overflow: auto; padding: 3px 0 0; border: 0; background: transparent; color: var(--ts-ink); font-size: 16px; line-height: 1.8; }
+  #ts-notes-d .ts-body::placeholder, #ts-notes-d .ts-title::placeholder { color: var(--notes-muted,#645c48); opacity: 1; }
+  #ts-notes-d .ts-note-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding-top: 7px; border-top: 1px solid rgba(var(--notes-accent-rgb,204,21,21),.2); color: var(--notes-muted,#514a37); font: 400 11px/1.2 "Share Tech Mono", Iosevka, monospace; letter-spacing: 1px; }
+  #ts-notes-d .ts-summary { display: block; width: 100%; padding: 11px 14px 13px; border: 0; background: transparent; color: var(--ts-ink); text-align: left; }
+  #ts-notes-d .ts-summary-title { display: block; font-size: 16px; font-weight: 500; overflow-wrap: anywhere; }
+  #ts-notes-d .ts-summary-body { display: block; padding-top: 3px; font: 400 12px/1.5 "Share Tech Mono", Iosevka, monospace; color: var(--notes-muted,#514a37); overflow-wrap: anywhere; }
+  #ts-notes-d .ts-status { margin-top: 10px; padding: 7px 10px; color: var(--notes-muted,#514a37); background: var(--ts-ash); font: 400 11px/1.3 "Share Tech Mono", Iosevka, monospace; letter-spacing: 1px; }
+  @media (pointer: coarse) { #ts-notes-d .ts-new { min-height: 44px; } #ts-notes-d .ts-memo-top { min-height: 44px; } }
+</style>
+<section aria-label="Ash memo stack quick notes design" id="ts-notes-d">
+<header class="ts-heading">
+<span class="ts-label">QUICK NOTES</span>
+<button class="ts-new" type="button">+ NEW</button>
+</header>
+<div class="ts-stack"></div>
+<div aria-live="polite" class="ts-status">PREVIEW · NOT SAVED TO DISK</div>
+</section>
+
+<style>
+/* Palette controls for the notes preview. */
+#ts-notes-d[data-custom-palette="true"] :is(input,textarea) { caret-color:var(--notes-ink); }
+#ts-notes-d[data-custom-palette="true"] :is(button,input,textarea):focus-visible { outline-color:var(--notes-ink); }
+#ts-notes-d[data-custom-palette="true"] :is(input,textarea)::selection { background:var(--notes-accent); color:var(--notes-on-accent); }
+#ts-notes-d[data-custom-palette="true"] .ts-number,#ts-notes-d[data-custom-palette="true"] .ts-new:hover { color:var(--notes-on-accent); }
+</style><style>
+/* Reading and writing controls. */
+#ts-notes-d [data-text-count] { display:block; color:var(--notes-muted,#514a37); font:11px/1.5 monospace; margin-bottom:8px; }
+#ts-notes-d textarea { height:var(--notes-editor-height); min-height:100px; overflow:auto; flex:none; }
+#ts-notes-d .ts-title { font-size:var(--notes-title-size); }
+#ts-notes-d .ts-stack { position:relative; max-height:var(--notes-list-height); overflow-y:auto; gap:var(--notes-row-gap); scrollbar-width:thin; }
+#ts-notes-d .ts-memo { min-height:var(--notes-row-height); flex-shrink:0; }
+#ts-notes-d[data-numbers="false"] .ts-number { display:none; }
+#ts-notes-d .ts-stack { max-height:calc(var(--notes-list-height) + var(--notes-editor-height) + var(--notes-title-size) + 18px); }
+#ts-notes-d .ts-memo:has([aria-expanded="false"]) { height:var(--notes-row-height); overflow:hidden; }
+</style><script src="../preview-runtime.js"></script><script src="options.js"></script><script src="appearance.js"></script><script src="demo.js"></script></body></html>

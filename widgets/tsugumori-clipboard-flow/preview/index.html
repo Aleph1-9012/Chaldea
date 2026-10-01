@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<title>Tsugumori / Clipboard flow</title>
+<style>html{color-scheme:dark}body{margin:0;padding:24px 16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}body>*{box-sizing:border-box}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid currentColor;outline-offset:3px}[hidden]{display:none!important}@media(max-width:480px){body{padding:16px 12px}}</style>
+</head><body>
+<div id="tsugu-clipboard-demo" aria-label="Tsugumori clipboard concept">
+  <style>
+    #tsugu-clipboard-demo { --tc-red:#d71920; --tc-ink:#c5c2bf; --tc-muted:#85827f; --tc-line:#35302e; font-family: "JetBrains Mono", "DejaVu Sans Mono", monospace; color:var(--tc-ink); max-width:650px; margin:0 auto; font-size:12px; }
+    #tsugu-clipboard-demo * { box-sizing:border-box; }
+    #tsugu-clipboard-demo button,#tsugu-clipboard-demo input { font:inherit; border-radius:0; }
+    #tsugu-clipboard-demo button { cursor:pointer; }
+    #tsugu-clipboard-demo button:focus-visible,#tsugu-clipboard-demo input:focus-visible { outline:2px solid #eee; outline-offset:2px; }
+    #tsugu-clipboard-demo .tc-drawer { border:1px solid var(--tc-line); border-top:2px solid var(--tc-red); background-color:#111112; background-image:linear-gradient(#b5171712 1px,transparent 1px),linear-gradient(90deg,#b5171712 1px,transparent 1px); background-size:24px 24px; }
+    #tsugu-clipboard-demo header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 20px; border-bottom:1px solid var(--tc-line); letter-spacing:2px; }
+    #tsugu-clipboard-demo header small { color:var(--tc-muted); font-size:10px; letter-spacing:1px; }
+    #tsugu-clipboard-demo .tc-tools { display:flex; gap:8px; padding:12px 16px; border-bottom:1px solid var(--tc-line); }
+    #tsugu-clipboard-demo input { min-width:0; flex:1; background:#101011; color:var(--tc-ink); border:1px solid var(--tc-line); padding:9px; }
+    #tsugu-clipboard-demo .tc-quiet { border:1px solid var(--tc-line); color:var(--tc-muted); background:#111112; padding:8px 10px; transition:background .2s,color .2s; }
+    #tsugu-clipboard-demo .tc-quiet:hover { background:var(--tc-red); color:#0b0b0b; }
+    #tsugu-clipboard-demo .tc-content { display:grid; grid-template-columns:1.1fr 1fr; min-height:270px; }
+    #tsugu-clipboard-demo .tc-list { border-right:1px solid var(--tc-line); padding:12px 0; }
+    #tsugu-clipboard-demo .tc-row { display:flex; width:100%; gap:10px; align-items:center; text-align:left; background:transparent; border:0; color:var(--tc-ink); padding:14px 16px; position:relative; transition:background .22s,color .22s; }
+    #tsugu-clipboard-demo .tc-row:hover { background:#941418; color:#f1eeee; }
+    #tsugu-clipboard-demo .tc-row[aria-pressed="true"] { background:var(--tc-red); color:#0b0b0b; }
+    #tsugu-clipboard-demo .tc-num { font-size:10px; opacity:.75; }
+    #tsugu-clipboard-demo .tc-rowtext { flex:1; min-width:0; }
+    #tsugu-clipboard-demo .tc-rowtext strong { display:block; font-size:12px; font-weight:400; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    #tsugu-clipboard-demo .tc-rowtext small { display:block; font-size:9px; margin-top:7px; opacity:.68; letter-spacing:.6px; }
+    #tsugu-clipboard-demo .tc-preview { padding:18px; display:flex; flex-direction:column; gap:14px; min-width:0; }
+    #tsugu-clipboard-demo .tc-preview-title { font-size:10px; letter-spacing:1.2px; color:var(--tc-muted); }
+    #tsugu-clipboard-demo .tc-preview-body { flex:1; white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.8; font-size:12px; }
+    #tsugu-clipboard-demo .tc-preview-body svg { display:block; width:100%; height:auto; }
+    #tsugu-clipboard-demo .tc-preview-actions { display:flex; gap:6px; }
+    #tsugu-clipboard-demo .tc-use { flex:1; background:var(--tc-red); color:#0a0a0a; border:1px solid var(--tc-red); padding:10px; font-size:10px; letter-spacing:1px; }
+    #tsugu-clipboard-demo .tc-use:hover { background:#f02b31; }
+    #tsugu-clipboard-demo .tc-status { padding:12px 16px; border-top:1px solid var(--tc-line); font-size:9px; letter-spacing:1px; color:var(--tc-muted); display:flex; justify-content:space-between; gap:10px; }
+    #tsugu-clipboard-demo .tc-target { margin-top:14px; border:1px solid var(--tc-line); background:#0d0d0e; padding:14px 16px; }
+    #tsugu-clipboard-demo .tc-target-bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    #tsugu-clipboard-demo .tc-target-bar span { flex:1; font-size:10px; letter-spacing:1px; color:var(--tc-muted); }
+    #tsugu-clipboard-demo .tc-pasted { margin-top:12px; border-left:2px solid var(--tc-red); padding:8px 12px; min-height:44px; color:var(--tc-muted); overflow-wrap:anywhere; white-space:pre-wrap; line-height:1.7; }
+    #tsugu-clipboard-demo .tc-pasted svg { width:180px; max-width:100%; height:auto; display:block; }
+    #tsugu-clipboard-demo .tc-empty { color:var(--tc-muted); padding:24px 16px; font-size:11px; }
+    #tsugu-clipboard-demo [hidden] { display:none!important; }
+    @media(max-width:460px) { #tsugu-clipboard-demo header { padding:14px; letter-spacing:1px; } #tsugu-clipboard-demo .tc-content { grid-template-columns:1fr; } #tsugu-clipboard-demo .tc-list { border-right:0; border-bottom:1px solid var(--tc-line); padding:4px 0; } #tsugu-clipboard-demo .tc-row { padding:11px 14px; } #tsugu-clipboard-demo .tc-preview { min-height:190px; } #tsugu-clipboard-demo .tc-preview-body svg { max-width:220px; } }
+    @media(prefers-reduced-motion:reduce) { #tsugu-clipboard-demo * { transition:none!important; } }
+  </style>
+  <section class="tc-drawer" aria-label="Clipboard history">
+    <header><span>CLIPBOARD // 履歴</span><small>SAMPLE HISTORY</small></header>
+    <div class="tc-tools"><input type="search" aria-label="Search sample clipboard history" placeholder="Search copied text…"><button class="tc-quiet tc-pinned" aria-pressed="false">PINNED</button></div>
+    <div class="tc-content">
+      <div class="tc-list" aria-label="History entries"></div>
+      <div class="tc-preview">
+        <div class="tc-preview-title"></div>
+        <div class="tc-preview-body"></div>
+        <div class="tc-preview-actions"><button class="tc-use">USE ENTRY ↵</button><button class="tc-quiet tc-pin" aria-label="Pin selected entry">PIN</button><button class="tc-quiet tc-delete" aria-label="Delete selected entry">×</button></div>
+      </div>
+    </div>
+    <div class="tc-status"><span class="tc-count"></span><span>LOCAL // SAMPLE DATA ONLY</span></div>
+  </section>
+  <section class="tc-target" aria-label="Simulated destination application">
+    <div class="tc-target-bar"><span>SAMPLE APP // PASTE TARGET</span><button class="tc-quiet tc-open">OPEN HISTORY</button><button class="tc-quiet tc-paste">PASTE</button></div>
+    <div class="tc-pasted" aria-live="polite">Choose a history entry, then paste here.</div>
+  </section>
+</div>
+<script src="../preview-runtime.js"></script>
+<script src="demo.js"></script>
+</body></html>

@@ -1,0 +1,5161 @@
+{
+  "sources": [
+    {
+      "source": "clipboard/tsugumori-clipboard-c-refined.html",
+      "disposition": "imported",
+      "widgets": [
+        "clipboard-c-refined"
+      ],
+      "sha256": "418c295626b367a6e10a42a1aaf85dd307945551dd6ab4c38880801249341226"
+    },
+    {
+      "source": "clipboard/tsugumori-clipboard-control-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "clipboard-control-studies-current",
+        "clipboard-control-studies-black-bands",
+        "clipboard-control-studies-raised-keys",
+        "clipboard-control-studies-red-plates",
+        "clipboard-control-studies-dark-docks"
+      ],
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa"
+    },
+    {
+      "source": "clipboard/tsugumori-clipboard-flow.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-clipboard-flow"
+      ],
+      "sha256": "cd5095c0b8ee81c7a8a09623449ce25939ba6a33421817203f9b4c486dc1dcf0"
+    },
+    {
+      "source": "clipboard/tsugumori-clipboard-rice-fit.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-clipboard-rice-fit"
+      ],
+      "sha256": "31354ac9d18ab77624b27f0fda643faba3b6c79aec10ab6eef4f4e170d583924"
+    },
+    {
+      "source": "clipboard/tsugumori-clipboard-styles.html",
+      "disposition": "imported",
+      "widgets": [
+        "clipboard-styles-a-index",
+        "clipboard-styles-b-strip",
+        "clipboard-styles-c-grid",
+        "clipboard-styles-d-foldout"
+      ],
+      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e"
+    },
+    {
+      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
+      "disposition": "imported",
+      "widgets": [
+        "clipboard-visual-treatments-a-stencil",
+        "clipboard-visual-treatments-b-terminal",
+        "clipboard-visual-treatments-c-label",
+        "clipboard-visual-treatments-d-glass"
+      ],
+      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613"
+    },
+    {
+      "source": "control-center/control-center-arrow-redesign.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-arrow-redesign-relay",
+        "control-arrow-redesign-dart",
+        "control-arrow-redesign-gate",
+        "control-arrow-redesign-stepped"
+      ],
+      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204"
+    },
+    {
+      "source": "control-center/control-center-arrows.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-arrows-reinforced",
+        "control-arrows-filled-wings",
+        "control-arrows-split-crest"
+      ],
+      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040"
+    },
+    {
+      "source": "control-center/control-center-b2-controls.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-controls"
+      ],
+      "sha256": "e1119d75a7f00d32f421dffbd034c31627f568b3db9754e27b01c69c5d13c693"
+    },
+    {
+      "source": "control-center/control-center-b2-detailed.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-detailed"
+      ],
+      "sha256": "46f1ef7d0b2cbc8ef4cecd5d8891ce95fa090adb0306b2b8d6ee53fed9a09aae"
+    },
+    {
+      "source": "control-center/control-center-b2-player-hover.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-player-hover"
+      ],
+      "sha256": "ce66a8f7cacea9f50deef32f260b19fed89f214cf27fb9a495447555a7373577"
+    },
+    {
+      "source": "control-center/control-center-b2-reference-rows.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-reference-rows"
+      ],
+      "sha256": "3286c883cf66fb89b68b123942959e066d0f605caba3a459d138edddd575bc78"
+    },
+    {
+      "source": "control-center/control-center-b2-rolling-text.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-rolling-text"
+      ],
+      "sha256": "77211feb936cd5f8da2850bfee2eed37b5cf1bdda2a0dd3f764540ecb3559c86"
+    },
+    {
+      "source": "control-center/control-center-b2-spacious.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-spacious"
+      ],
+      "sha256": "faac3dfd9699acb2846c5c34e4dc49be6f27675fd82074ecf7e335e388770e98"
+    },
+    {
+      "source": "control-center/control-center-b2-unified.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-b2-unified"
+      ],
+      "sha256": "d6f480355c8adcf9aae9e5025e5882df48a444ba0bae09902168de6055b2e63c"
+    },
+    {
+      "source": "control-center/control-center-dropdown-overview.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-dropdown-overview"
+      ],
+      "sha256": "ae1af70fad742702d1d0edf01d9c82ce542571410b1f0614cbb687733b54d307"
+    },
+    {
+      "source": "control-center/control-center-integrated-overview.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-integrated-overview"
+      ],
+      "sha256": "74a77bdafe6ec9ac76320e0ba11807adefe9b7891698be5838bd40aaf3749d57"
+    },
+    {
+      "source": "control-center/control-center-mono-refinements.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-mono-refinements-refined-band",
+        "control-mono-refinements-indexed-header",
+        "control-mono-refinements-title-tab"
+      ],
+      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063"
+    },
+    {
+      "source": "control-center/control-center-refinement.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-refinement-current",
+        "control-refinement-refined"
+      ],
+      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9"
+    },
+    {
+      "source": "control-center/control-center-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-studies-redline",
+        "control-studies-numbered-panels",
+        "control-studies-open-corners"
+      ],
+      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6"
+    },
+    {
+      "source": "control-center/control-center-text-iterations.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-text-motion-rolling-type",
+        "control-text-motion-scan-decode",
+        "control-text-motion-split-register"
+      ],
+      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
+      "excluded": [
+        "Live decode"
+      ]
+    },
+    {
+      "source": "control-center/control-center-type-styles.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-type-styles-clear-labels",
+        "control-type-styles-system-mono",
+        "control-type-styles-condensed"
+      ],
+      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531"
+    },
+    {
+      "source": "control-center/control-center-ui-upgrades.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-ui-upgrades"
+      ],
+      "sha256": "1ea9c705f2b971e139df32ea505831ea29611610d50b21e2d4bf97280c9ecd57"
+    },
+    {
+      "source": "control-center/tsugumori-level-preview.html",
+      "disposition": "imported",
+      "widgets": [
+        "control-volume-osd-segmented",
+        "control-volume-osd-continuous",
+        "control-brightness-osd-segmented",
+        "control-brightness-osd-continuous"
+      ],
+      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e"
+    },
+    {
+      "source": "curtains-and-buttons/curtain-a-refinements.html",
+      "disposition": "existing",
+      "widgets": [
+        "curtain-ghost-mark",
+        "curtain-service-rail",
+        "curtain-registration",
+        "curtain-original-red-field"
+      ],
+      "sha256": "104dc8ab991de6d2519a49a0f06eac1160bf8aac5a452bbfa3246072e81cc070"
+    },
+    {
+      "source": "curtains-and-buttons/curtain-design-studies.html",
+      "disposition": "existing",
+      "widgets": [
+        "curtain-signal-sweep",
+        "curtain-panel-bands",
+        "curtain-hull-stencil",
+        "curtain-red-field"
+      ],
+      "sha256": "db2da944fd72b8a76d460c81428e0223fba32b1312cc4705df4c3c2ae6f90fed"
+    },
+    {
+      "source": "curtains-and-buttons/tsugumori-button-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "7273894f11de09fdd3212a7fa47048a636781713e0e74e3cf9340d7d1223075e",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-feature-previews.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "f7065033b0c4c20ad48979c667b9a1dd634691c1a782b080faf2537207256d6a",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-job-tickets.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "86633647be4939dca16edc091fedce0ce4794b57af253547711f7ce58b921216",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-preview-bar-tools.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "5aefacf1d1cdf0da698fd5bd72c1f2e62522fe9d49ba938539c21ae485ca860e",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-preview-desktop.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "45db29103cd3c607bff7e8319fc0f2c2f9571009c1445f4158596aa135d763fc",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-preview-drives.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "d23c9c1d6ffa2fe0a6177ecc241123343c2cafbb3072792ecfc9d7d11ca25a57",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-sidonia-widgets.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "ad305c276ad07f3bea14cdeb7b476c2864e1143ee680b02de8f753d0d0e45c57",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/tsugumori-tools-second-pass.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "f1a85e3e2d2c18f4f4e8cf6cc687beb17a2b8f65b1f6afc681d935aab61493b5",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "desktop-and-waybar/waybar-directions.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "c722d68fc7462f6649b9d6c25c177e6b57710395b4db4275b03559f45cc51036",
+      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+    },
+    {
+      "source": "fastfetch-btop/fastfetch-btop-directions.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "20147c8a4063c0678ce40a5d985482b9246aca16052d3b3642a0d3cf15b33f27",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "glyphs/tsugumori-five-glyph-studies.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-radical-exchange",
+        "tsugumori-oblique-ligatures",
+        "tsugumori-shifted-script",
+        "tsugumori-branch-grammar",
+        "tsugumori-recursive-relays"
+      ],
+      "sha256": "01224cfd169df19cff0b715b913acd964c391ba73fc02de68e9f2fb3ceff1ba0"
+    },
+    {
+      "source": "glyphs/tsugumori-glyph-bay-typing.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-glyph-bay-typing"
+      ],
+      "sha256": "33923000189a6e3c49a82a8b2fca03dee7907f10db51d1248435d55461a7dc58"
+    },
+    {
+      "source": "interactive-art/tsugumori-drift-and-tsumugi.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-fish-in-space"
+      ],
+      "sha256": "7948dc2f2a16ee848de4592d1d9c58dcbf8d756b7ebdfb0594e077880cb95875",
+      "excluded": [
+        "Tsumugi"
+      ]
+    },
+    {
+      "source": "interactive-art/tsugumori-eight-play-studies.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-kirigami-panel",
+        "tsugumori-pachinko-gutter",
+        "tsugumori-mechanical-rhythm",
+        "tsugumori-kinetic-typography",
+        "tsugumori-magnetic-powder",
+        "tsugumori-anamorphic-704"
+      ],
+      "sha256": "32346a91f1ca8662f70729f4684fc8bd49ef8958f4b1aa66ad85f31835aaca90",
+      "excluded": [
+        "Exploded-view Garde",
+        "Thread loom"
+      ]
+    },
+    {
+      "source": "interactive-art/tsugumori-play-lab.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori-session-fossils",
+        "tsugumori-gravity-sandbox",
+        "tsugumori-signal-hunting",
+        "tsugumori-resonance-sculpture",
+        "tsugumori-orbital-playground",
+        "tsugumori-specimen-chamber"
+      ],
+      "sha256": "7602b97ddbef589470b84531394c4302b5b684a4c96737fad5a933f110520529"
+    },
+    {
+      "source": "lockscreen/animations/d-series-backup/tsugumori-d3-relay-expansion.html",
+      "disposition": "duplicate",
+      "reason": "Backup copy",
+      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5"
+    },
+    {
+      "source": "lockscreen/animations/d-series-backup/tsugumori-flat-background-iterations.html",
+      "disposition": "duplicate",
+      "reason": "Backup copy",
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414"
+    },
+    {
+      "source": "lockscreen/animations/d-series-backup/tsugumori-shoi-d-motion-studies.html",
+      "disposition": "duplicate",
+      "reason": "Backup copy",
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2"
+    },
+    {
+      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-d3-relay-expansion-relay-banks",
+        "lockscreen-d3-relay-expansion-formation-gantry",
+        "lockscreen-d3-relay-expansion-section-drawing"
+      ],
+      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5"
+    },
+    {
+      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-flat-background-iterations-reg-6a0cb7",
+        "lockscreen-flat-background-iterations-relay-etch",
+        "lockscreen-flat-background-iterations-ste-d0086b",
+        "lockscreen-flat-background-iterations-sho-adb6cc",
+        "lockscreen-flat-background-iterations-cel-308c14"
+      ],
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414"
+    },
+    {
+      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-fresh-motion-iterations-ink-exposure",
+        "lockscreen-fresh-motion-iterations-sector-77adf1",
+        "lockscreen-fresh-motion-iterations-phase-comb",
+        "lockscreen-fresh-motion-iterations-glyph-86b7ac",
+        "lockscreen-fresh-motion-iterations-fault-seam"
+      ],
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f"
+    },
+    {
+      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-procedural-motion-phase-lock",
+        "lockscreen-procedural-motion-interference",
+        "lockscreen-procedural-motion-ena-strain"
+      ],
+      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f"
+    },
+    {
+      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-shoi-d-motion-studies-corner-docking",
+        "lockscreen-shoi-d-motion-studies-vector-corridor",
+        "lockscreen-shoi-d-motion-studies-relay-gantry",
+        "lockscreen-shoi-d-motion-studies-tension-gate",
+        "lockscreen-shoi-d-motion-studies-command-spine"
+      ],
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2"
+    },
+    {
+      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-wave-background-redesigns-rela-6154ba",
+        "lockscreen-wave-background-redesigns-inte-87860b",
+        "lockscreen-wave-background-redesigns-shoi-dbed54"
+      ],
+      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
+      "excluded": [
+        "Contour front",
+        "Ena weave"
+      ]
+    },
+    {
+      "source": "lockscreen/corners/tsugumori-phase-corner-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "41a43244c40af02e1972c7c7d9010d205a438564c0855e4489ec6549bc9ddbfd",
+      "excluded": [
+        "Registration",
+        "Maker plates",
+        "Edge rails",
+        "Formation terminals"
+      ],
+      "reason": "The owner removed all designs from this study page from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-afk-layout-previews-relay-inde-bee7ea",
+        "lockscreen-afk-layout-previews-relay-inde-208dab",
+        "lockscreen-afk-layout-previews-relay-inde-14b210",
+        "lockscreen-afk-layout-previews-type-folio-44fc03",
+        "lockscreen-afk-layout-previews-type-folio-62241a",
+        "lockscreen-afk-layout-previews-type-folio-f3d185",
+        "lockscreen-afk-layout-previews-cross-regi-07a642",
+        "lockscreen-afk-layout-previews-cross-regi-6cb930",
+        "lockscreen-afk-layout-previews-cross-regi-c7b1bb",
+        "lockscreen-afk-layout-previews-red-regist-db98ff",
+        "lockscreen-afk-layout-previews-red-regist-c43205",
+        "lockscreen-afk-layout-previews-red-regist-77e230",
+        "lockscreen-afk-layout-previews-glyph-colo-301eb1",
+        "lockscreen-afk-layout-previews-glyph-colo-b2946d",
+        "lockscreen-afk-layout-previews-glyph-colo-b86933"
+      ],
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142"
+    },
+    {
+      "source": "lockscreen/tsugumori-current-layout-afk.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-current-layout-afk-relay-tiles",
+        "lockscreen-current-layout-afk-typesetter",
+        "lockscreen-current-layout-afk-compound-glyph"
+      ],
+      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341"
+    },
+    {
+      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-folio-center-seam",
+        "lockscreen-folio-rail-dock",
+        "lockscreen-folio-scan-gate"
+      ],
+      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9"
+    },
+    {
+      "source": "lockscreen/tsugumori-folio-k-centered.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-folio-k-centered"
+      ],
+      "sha256": "0e3041b3220340e5243a453dcd73233b9ba0c07ea4c9755c2b0a4acc4475c727"
+    },
+    {
+      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-folio-folio-sweep",
+        "lockscreen-folio-split-shutters",
+        "lockscreen-folio-register-bands"
+      ],
+      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a"
+    },
+    {
+      "source": "lockscreen/tsugumori-folio-k-time-header.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-folio-k-time-header"
+      ],
+      "sha256": "886b7e629f80eec4ad9814da73d357f92f9ab57baaaab897cf32ff58e1c0435e"
+    },
+    {
+      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-generative-lockscreen-studies-366808",
+        "lockscreen-generative-lockscreen-studies-800023",
+        "lockscreen-generative-lockscreen-studies-46963f"
+      ],
+      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901"
+    },
+    {
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-editorial-studies-assembly-mar-2cfd2d",
+        "lockscreen-editorial-studies-assembly-mar-e21ce3",
+        "lockscreen-editorial-studies-assembly-mar-4068d0",
+        "lockscreen-editorial-studies-foundry-post-c91290",
+        "lockscreen-editorial-studies-foundry-post-5154b5",
+        "lockscreen-editorial-studies-foundry-post-598bff",
+        "lockscreen-editorial-studies-reverse-prin-48eddd",
+        "lockscreen-editorial-studies-reverse-prin-3efaac",
+        "lockscreen-editorial-studies-reverse-prin-7a2bf3",
+        "lockscreen-editorial-studies-glyph-wall-r-64977c",
+        "lockscreen-editorial-studies-glyph-wall-t-333d6b",
+        "lockscreen-editorial-studies-glyph-wall-c-7f654d"
+      ],
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1"
+    },
+    {
+      "source": "lockscreen/tsugumori-lockscreen-folio-k-base.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-folio-k-base"
+      ],
+      "sha256": "544da36b1ce54e7ecf5d287860c632ec55c0f5f169f6c1e50a15a3ddc7edee97"
+    },
+    {
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-layout-redesigns-split-console-870277",
+        "lockscreen-layout-redesigns-split-console-7fd428",
+        "lockscreen-layout-redesigns-split-console-bbf520",
+        "lockscreen-layout-redesigns-sidewall-relay-tiles",
+        "lockscreen-layout-redesigns-sidewall-typesetter",
+        "lockscreen-layout-redesigns-sidewall-comp-7bc7a2",
+        "lockscreen-layout-redesigns-lower-deck-re-a793db",
+        "lockscreen-layout-redesigns-lower-deck-ty-40906d",
+        "lockscreen-layout-redesigns-lower-deck-co-5ddd06",
+        "lockscreen-layout-redesigns-crimson-bay-r-c2a392",
+        "lockscreen-layout-redesigns-crimson-bay-t-76c876",
+        "lockscreen-layout-redesigns-crimson-bay-c-e67047",
+        "lockscreen-layout-redesigns-aperture-relay-tiles",
+        "lockscreen-layout-redesigns-aperture-typesetter",
+        "lockscreen-layout-redesigns-aperture-comp-a20d72"
+      ],
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766"
+    },
+    {
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-print-iterations-index-spine-r-bd9d41",
+        "lockscreen-print-iterations-index-spine-t-90bb62",
+        "lockscreen-print-iterations-index-spine-c-26d6e1",
+        "lockscreen-print-iterations-equipment-lab-55cc31",
+        "lockscreen-print-iterations-equipment-lab-681e2f",
+        "lockscreen-print-iterations-equipment-lab-f663ed",
+        "lockscreen-print-iterations-red-folio-rel-ca20d5",
+        "lockscreen-print-iterations-red-folio-typesetter",
+        "lockscreen-print-iterations-red-folio-com-9ff4ad",
+        "lockscreen-print-iterations-open-masthead-0c1d6b",
+        "lockscreen-print-iterations-open-masthead-708582",
+        "lockscreen-print-iterations-open-masthead-08f5cf"
+      ],
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637"
+    },
+    {
+      "source": "lockscreen/tsugumori-lockscreen-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-studies-access-frame",
+        "lockscreen-studies-split-console",
+        "lockscreen-studies-red-band",
+        "lockscreen-studies-glyph-bay"
+      ],
+      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774"
+    },
+    {
+      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-mechanical-lockscreen-studies-5d848e",
+        "lockscreen-mechanical-lockscreen-studies-a8391a",
+        "lockscreen-mechanical-lockscreen-studies-e940db",
+        "lockscreen-mechanical-lockscreen-studies-d0ee44"
+      ],
+      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d"
+    },
+    {
+      "source": "lockscreen/tsugumori-new-lockscreen-directions.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "1a9c41929f7cc0a09623cd2d1034bfba43ba6f222d623247064389443cc9655a",
+      "excluded": [
+        "Suspended volume",
+        "Spine cutaway",
+        "Torsion band",
+        "Time relief",
+        "Tension field"
+      ],
+      "reason": "The owner removed all designs from this study page from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "lockscreen/tsugumori-phase-formation-glyph-soft-backup.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-phase-formation-glyph-soft-backup"
+      ],
+      "sha256": "035922967f4a4753ed74d7a27f49ffd091d8edd942fac2d0a80e40c33f571325"
+    },
+    {
+      "source": "lockscreen/tsugumori-phase-formation-lock.html",
+      "disposition": "existing",
+      "widgets": [
+        "tsugumori"
+      ],
+      "sha256": "13240d9bfc998cec22c0fdda1ba7d8c0eafac58f7dd1c509dd04b34834be2362"
+    },
+    {
+      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-phase-lock-sharp-phase-lock",
+        "lockscreen-phase-lock-sharp-interference",
+        "lockscreen-phase-lock-sharp-ena-strain"
+      ],
+      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003"
+    },
+    {
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "lockscreen-reactive-lockscreen-studies-re-a37a9d",
+        "lockscreen-reactive-lockscreen-studies-sh-6c6cb4",
+        "lockscreen-reactive-lockscreen-studies-ph-f75474",
+        "lockscreen-reactive-lockscreen-studies-fo-efe52f",
+        "lockscreen-reactive-lockscreen-studies-st-69ba9c",
+        "lockscreen-reactive-lockscreen-studies-ty-e2b460"
+      ],
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13"
+    },
+    {
+      "source": "menu/menu-detail-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "menu-detail-studies-inset",
+        "menu-detail-studies-index",
+        "menu-detail-studies-open-frame"
+      ],
+      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27"
+    },
+    {
+      "source": "menu/menu-refinement-preview.html",
+      "disposition": "imported",
+      "widgets": [
+        "menu-refinement-preview"
+      ],
+      "sha256": "a87f951c1c03362d06f576f52698dc373b77aa867db36f2ff8fb03202c65daf4"
+    },
+    {
+      "source": "menu/menu-researched-styles.html",
+      "disposition": "imported",
+      "widgets": [
+        "menu-researched-styles-current",
+        "menu-researched-styles-contrast",
+        "menu-researched-styles-technical",
+        "menu-researched-styles-typographic"
+      ],
+      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad"
+    },
+    {
+      "source": "menu/menu-row-iterations.html",
+      "disposition": "imported",
+      "widgets": [
+        "menu-row-iterations-current",
+        "menu-row-iterations-mono",
+        "menu-row-iterations-condensed",
+        "menu-row-iterations-open-frame"
+      ],
+      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99"
+    },
+    {
+      "source": "menu/menu-structural-redesigns.html",
+      "disposition": "imported",
+      "widgets": [
+        "menu-structural-redesigns-expanding-index",
+        "menu-structural-redesigns-split-catalog",
+        "menu-structural-redesigns-launch-tiles"
+      ],
+      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb"
+    },
+    {
+      "source": "menu/menu-style-lab.html",
+      "disposition": "imported",
+      "widgets": [
+        "menu-style-lab-engraved",
+        "menu-style-lab-signal-strip",
+        "menu-style-lab-label-plates"
+      ],
+      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54"
+    },
+    {
+      "source": "player/tsugumori-glyph-behaviours.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-glyph-behaviours"
+      ],
+      "sha256": "928d8ea17d9678c98ce1f938d297874f7b670ef13028b788fa43237fda192ab1"
+    },
+    {
+      "source": "player/tsugumori-metadata-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-metadata-studies-fingerprint",
+        "player-metadata-studies-formation",
+        "player-metadata-studies-inscription",
+        "player-metadata-studies-seal",
+        "player-metadata-studies-circuit"
+      ],
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14"
+    },
+    {
+      "source": "player/tsugumori-player-a-refined.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-a-refined-refined-matrix",
+        "player-a-refined-original-matrix"
+      ],
+      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166"
+    },
+    {
+      "source": "player/tsugumori-player-button-studies.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-button-studies-corner-keys",
+        "player-button-studies-console-strip",
+        "player-button-studies-type-keys",
+        "player-button-studies-inset-keys"
+      ],
+      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e"
+    },
+    {
+      "source": "player/tsugumori-player-c-japanese.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-c-japanese"
+      ],
+      "sha256": "ca71517508247c7d072df4a7ebd5aaa90b75c02b27e764d26e3447088b6a67cb"
+    },
+    {
+      "source": "player/tsugumori-player-directions.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-directions-matrix",
+        "player-directions-sleeve",
+        "player-directions-rail",
+        "player-directions-ledger",
+        "player-directions-title"
+      ],
+      "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be"
+    },
+    {
+      "source": "player/tsugumori-player-live-details.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-live-details"
+      ],
+      "sha256": "74353bd6fecba9cd26ab73f4174828932ff14f1874917f75839c2f665184d108"
+    },
+    {
+      "source": "player/tsugumori-player-panel-refinement.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-panel-refinement"
+      ],
+      "sha256": "cfb1ff4459d28a17250035ed3766e29f2336930d9edda53e105e0017a4593e0c"
+    },
+    {
+      "source": "player/tsugumori-player-round-two.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-round-two-panoramic",
+        "player-round-two-split-chassis",
+        "player-round-two-aperture",
+        "player-round-two-redline"
+      ],
+      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590"
+    },
+    {
+      "source": "player/tsugumori-sidonia-elements.html",
+      "disposition": "imported",
+      "widgets": [
+        "player-sidonia-elements-shoi-formation",
+        "player-sidonia-elements-704-armour-stripe",
+        "player-sidonia-elements-toa-engraving",
+        "player-sidonia-elements-sidonia-profile",
+        "player-sidonia-elements-kabizashi-divider",
+        "player-sidonia-elements-gauna-specimen"
+      ],
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-a-cassette.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-a-cassette"
+      ],
+      "sha256": "9b3949697080a750f2a928f3a7b316e5f42d64fc10d878004965157624976291"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-a-red.html",
+      "disposition": "palette",
+      "reason": "Red palette for Cassette notes, included as a setting",
+      "sha256": "02a5068c175284a36de8d1798f36d69451c12ddaa484a4e20291f6ef1064328d",
+      "widgets": [
+        "notes-notes-a-cassette"
+      ]
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-b-index.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-b-index"
+      ],
+      "sha256": "a0c77f0101eb486c73a4f0617575d9e6b57b8d3f25cecef8dfd54fb1a6bba71a"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-c-console.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-c-console"
+      ],
+      "sha256": "8adf176cab3dfd1c751d2b1e4f7f82a560a9089838c9f2462c7c5cf1b2eb7431"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-d-ash.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-d-ash"
+      ],
+      "sha256": "31632c30e437af5594d17a5174120ceece371d8000df7989da1b073c5a98da0f"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-numbered.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-numbered"
+      ],
+      "sha256": "7fbc7355fa63c38cacf165e233ddeb2203bcaea45d47669a310c186850aa7c88"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-preview.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-preview"
+      ],
+      "sha256": "df3f53c11eecfa4b71678625d8b053f507006f53389cad41b0ec1611f8683584"
+    },
+    {
+      "source": "quick-notes/tsugumori-notes-refined.html",
+      "disposition": "imported",
+      "widgets": [
+        "notes-notes-refined"
+      ],
+      "sha256": "048d8c6954fb62e64d132844c8e34cdd96775fb419513f32c5d9d0c475b309a5"
+    },
+    {
+      "source": "quickshare/quickshare-glyph-inverted.html",
+      "disposition": "excluded",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "sha256": "7993353c78162bb4e4fe423a817838038426660f934155951cace7044b8b4ef5",
+      "widgets": []
+    },
+    {
+      "source": "quickshare/quickshare-glyph-qr.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "155c6258b3b7b7e66773d8686e44ca5c02eaef3b645bef4b14e23041363d7aff",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "quickshare/quickshare-qr-treatments.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "647c898a4aebdc3649793ee96cad4aad70ce656c8dcc45a116fda52d0bd0120d",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/p4-new-layouts-qa.html",
+      "disposition": "excluded",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "sha256": "a49aac14ec4653b485973006a786f96cf6ddbe5b7271475ebb55483f1d28323f",
+      "widgets": []
+    },
+    {
+      "source": "terminal/p4-new-layouts.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "8bfa9827c8f0f638d401f0001a30454e026447a331d91f09fe6718d49ab3c132",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/p4-prompt-refinements-qa.html",
+      "disposition": "excluded",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "sha256": "3acdab3ca7bf3abd4ea8470afa63c46e89dd7ef70e5e5dfe1f218f78ef4e4fa1",
+      "widgets": []
+    },
+    {
+      "source": "terminal/p4-prompt-refinements.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "a4f5c62bfefbec40d85a5eda6f3d2aeaec8f94d20b56bb3133e4b20de38a008f",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/terminal-ab-prompt-qa.html",
+      "disposition": "excluded",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "sha256": "06ad929f88afb8f5db2760bb8f645c85967b973a7d73865c4e01e0273ae5c4c1",
+      "widgets": []
+    },
+    {
+      "source": "terminal/terminal-ab-prompt-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "e5b079ffd847484f02178335db42a99a3e655ab6901a36f0e59075a8bdd3211f",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/terminal-prompt-new-directions-qa.html",
+      "disposition": "excluded",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "sha256": "0d37a03707fc4bc5a7f6d6a9d9e24e65efd72555b927126f5ff0f96f13f7738c",
+      "widgets": []
+    },
+    {
+      "source": "terminal/terminal-prompt-new-directions.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "16f8860faf7c2e9b81a0661e7d92a23623250a3a0ad03bc82241dfe8bf14a0e1",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/terminal-text-iterations-qa.html",
+      "disposition": "excluded",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "sha256": "16947cacd74b810ff645871516a52452d4c4e3985e1b08dfe5c7b9e52aa01e9a",
+      "widgets": []
+    },
+    {
+      "source": "terminal/terminal-text-iterations-restored.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "79665adc6b75dfc66afb6acf82cfb3a833f02fd41d7be764c4318ea483d368ae",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-band-illustrations-iii.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "c5a9c614ca291fd119264906e6ec1970c6190a0ba55a21dfff145e582068337a",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-bold-unit-badge.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "85ed365fd26566c79d54a1702f0a8135a4c5b85350c5a595610713a6d7ff8d18",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-formation-symbol-studies-ii.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "070460c2eb177609adb967fdfd2d42f9df741385a5e295198f5308231e9549c4",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-formation-symbol-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "58eaef580705bbb9b538da2589ec3fcce239f1fe7cf813293fbdc02a3da73adc",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-header-c-d-refinement.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "5f63898f0f598073988e22d84f4d8f35a1d781457191113bdeba2e352782c8a7",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-header-right-panel-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "cf65cc0ed10cd19a10bc5b2bea2be9eda6f0483f3769e2a0d9626cd86b572a5a",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-minimal-mechanical-bands.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "ef91a004e8f7afcc5fb2ca1588ea72caa1a74e801a6d6303b468104800ca68f8",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-prompt-gap-studies-ii.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "8f824ef3a181f4c40804a692c7ef687489627551c50dfcfa11264b024748d8cf",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-prompt-gap-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "1f00bb5bc826e05062913b643f0f68d1395fd3de4054900f5ad3a28a06a76a40",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-q-sidonia-badge.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "2f9a232924063323240dceb7092b7597ee193b8c27eaff285afc13069b750441",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-r2-glyph-refinements.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "e3d8177862bfd0f5e60ab16f8285a4d4cac92e16ba3c8e244a8cfbb6a0baa143",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-c-headers.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "c47e7d720df5a878d6b4fccacceacb0962069192e05fadf67f087baf5d59f6e7",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-formation-refinement.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "9c233b324c7f057b6e1b71ed6f79f251861a16613174f2943a2b81cf84954343",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-industrial-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "a1399358bf4bd982f5a28f8d4a93780ccdec52d1f0bf9dbb61e306dfcd15a870",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-motif-expansion.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "1d1cf9969d21c1499dd80d562263da07263b728437fb79b5566f8189286bcb6d",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-shoi-panel-v2.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "6d861e1430c5c415fdfb964e6c7a80d1fe705939f2f64426d92c3b221f4a6b2f",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-sidonia-headers.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "b924de7fbe4242689bd5ab87d924a5452aac17c8deff0c94c43afe0fe742aa71",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-terminal-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "c8a9d3f75d9b8e18b7f32e048b9757f8a8ab859313977ed35569c300d19945fb",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    },
+    {
+      "source": "terminal/tsugumori-text-band-studies.html",
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "413bc784a41fe6f631fa1ac77d99339feb828ae40be0db77eaa3bf0cad39a9f9",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+    }
+  ],
+  "entries": [
+    {
+      "id": "clipboard-c-refined",
+      "source": "clipboard/tsugumori-clipboard-c-refined.html",
+      "name": "Clipboard c refined",
+      "sha256": "418c295626b367a6e10a42a1aaf85dd307945551dd6ab4c38880801249341226",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-control-studies-current",
+      "source": "clipboard/tsugumori-clipboard-control-studies.html",
+      "name": "Clipboard control studies / Current",
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"current\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-control-studies-black-bands",
+      "source": "clipboard/tsugumori-clipboard-control-studies.html",
+      "name": "Clipboard control studies / Black bands",
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-control-studies-raised-keys",
+      "source": "clipboard/tsugumori-clipboard-control-studies.html",
+      "name": "Clipboard control studies / Raised keys",
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-control-studies-red-plates",
+      "source": "clipboard/tsugumori-clipboard-control-studies.html",
+      "name": "Clipboard control studies / Red plates",
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-control-studies-dark-docks",
+      "source": "clipboard/tsugumori-clipboard-control-studies.html",
+      "name": "Clipboard control studies / Dark docks",
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"d\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-styles-a-index",
+      "source": "clipboard/tsugumori-clipboard-styles.html",
+      "name": "Clipboard styles / A index",
+      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout-choice=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-layout-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-styles-b-strip",
+      "source": "clipboard/tsugumori-clipboard-styles.html",
+      "name": "Clipboard styles / B strip",
+      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout-choice=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-layout-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-styles-c-grid",
+      "source": "clipboard/tsugumori-clipboard-styles.html",
+      "name": "Clipboard styles / C grid",
+      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout-choice=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-layout-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-styles-d-foldout",
+      "source": "clipboard/tsugumori-clipboard-styles.html",
+      "name": "Clipboard styles / D foldout",
+      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout-choice=\"d\"]"
+          }
+        ],
+        "remove": [
+          "button[data-layout-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-visual-treatments-a-stencil",
+      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
+      "name": "Clipboard visual treatments / A stencil",
+      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-style=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-style]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-visual-treatments-b-terminal",
+      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
+      "name": "Clipboard visual treatments / B terminal",
+      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-style=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-style]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-visual-treatments-c-label",
+      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
+      "name": "Clipboard visual treatments / C label",
+      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-style=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-style]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "clipboard-visual-treatments-d-glass",
+      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
+      "name": "Clipboard visual treatments / D Glass",
+      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-style=\"d\"]"
+          }
+        ],
+        "remove": [
+          "button[data-style]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrow-redesign-relay",
+      "source": "control-center/control-center-arrow-redesign.html",
+      "name": "Control center arrow redesign / Relay",
+      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"relay\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrow-redesign-dart",
+      "source": "control-center/control-center-arrow-redesign.html",
+      "name": "Control center arrow redesign / Dart",
+      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"dart\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrow-redesign-gate",
+      "source": "control-center/control-center-arrow-redesign.html",
+      "name": "Control center arrow redesign / Gate",
+      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"gate\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrow-redesign-stepped",
+      "source": "control-center/control-center-arrow-redesign.html",
+      "name": "Control center arrow redesign / Stepped",
+      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"step\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrows-reinforced",
+      "source": "control-center/control-center-arrows.html",
+      "name": "Control center arrows / Reinforced",
+      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"outline\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrows-filled-wings",
+      "source": "control-center/control-center-arrows.html",
+      "name": "Control center arrows / Filled wings",
+      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"armored\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-arrows-split-crest",
+      "source": "control-center/control-center-arrows.html",
+      "name": "Control center arrows / Split crest",
+      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"split\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-controls",
+      "source": "control-center/control-center-b2-controls.html",
+      "name": "Control center b2 controls",
+      "sha256": "e1119d75a7f00d32f421dffbd034c31627f568b3db9754e27b01c69c5d13c693",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-detailed",
+      "source": "control-center/control-center-b2-detailed.html",
+      "name": "Control center b2 detailed",
+      "sha256": "46f1ef7d0b2cbc8ef4cecd5d8891ce95fa090adb0306b2b8d6ee53fed9a09aae",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-player-hover",
+      "source": "control-center/control-center-b2-player-hover.html",
+      "name": "Control center b2 player hover",
+      "sha256": "ce66a8f7cacea9f50deef32f260b19fed89f214cf27fb9a495447555a7373577",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-reference-rows",
+      "source": "control-center/control-center-b2-reference-rows.html",
+      "name": "Control center b2 reference rows",
+      "sha256": "3286c883cf66fb89b68b123942959e066d0f605caba3a459d138edddd575bc78",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-rolling-text",
+      "source": "control-center/control-center-b2-rolling-text.html",
+      "name": "Control center b2 rolling text",
+      "sha256": "77211feb936cd5f8da2850bfee2eed37b5cf1bdda2a0dd3f764540ecb3559c86",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-spacious",
+      "source": "control-center/control-center-b2-spacious.html",
+      "name": "Control center b2 spacious",
+      "sha256": "faac3dfd9699acb2846c5c34e4dc49be6f27675fd82074ecf7e335e388770e98",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-b2-unified",
+      "source": "control-center/control-center-b2-unified.html",
+      "name": "Control center b2 unified",
+      "sha256": "d6f480355c8adcf9aae9e5025e5882df48a444ba0bae09902168de6055b2e63c",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-dropdown-overview",
+      "source": "control-center/control-center-dropdown-overview.html",
+      "name": "Control center dropdown overview",
+      "sha256": "ae1af70fad742702d1d0edf01d9c82ce542571410b1f0614cbb687733b54d307",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-integrated-overview",
+      "source": "control-center/control-center-integrated-overview.html",
+      "name": "Control center integrated overview",
+      "sha256": "74a77bdafe6ec9ac76320e0ba11807adefe9b7891698be5838bd40aaf3749d57",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-mono-refinements-refined-band",
+      "source": "control-center/control-center-mono-refinements.html",
+      "name": "Control center mono refinements / Refined band",
+      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"refined\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-mono-refinements-indexed-header",
+      "source": "control-center/control-center-mono-refinements.html",
+      "name": "Control center mono refinements / Indexed header",
+      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"indexed\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-mono-refinements-title-tab",
+      "source": "control-center/control-center-mono-refinements.html",
+      "name": "Control center mono refinements / Title tab",
+      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"tabbed\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-refinement-current",
+      "source": "control-center/control-center-refinement.html",
+      "name": "Control center refinement / Current",
+      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-mode=\"current\"]"
+          }
+        ],
+        "remove": [
+          "button[data-mode]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-refinement-refined",
+      "source": "control-center/control-center-refinement.html",
+      "name": "Control center refinement / Refined",
+      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-mode=\"refined\"]"
+          }
+        ],
+        "remove": [
+          "button[data-mode]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-studies-redline",
+      "source": "control-center/control-center-studies.html",
+      "name": "Control center studies / Redline",
+      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-studies-numbered-panels",
+      "source": "control-center/control-center-studies.html",
+      "name": "Control center studies / Numbered panels",
+      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-studies-open-corners",
+      "source": "control-center/control-center-studies.html",
+      "name": "Control center studies / Open corners",
+      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-text-motion-rolling-type",
+      "source": "control-center/control-center-text-iterations.html",
+      "name": "Text motion / Rolling type",
+      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-text-motion-scan-decode",
+      "source": "control-center/control-center-text-iterations.html",
+      "name": "Text motion / Scan decode",
+      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-text-motion-split-register",
+      "source": "control-center/control-center-text-iterations.html",
+      "name": "Text motion / Split register",
+      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-type-styles-clear-labels",
+      "source": "control-center/control-center-type-styles.html",
+      "name": "Control center type styles / Clear labels",
+      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"clear\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-type-styles-system-mono",
+      "source": "control-center/control-center-type-styles.html",
+      "name": "Control center type styles / System mono",
+      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"mono\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-type-styles-condensed",
+      "source": "control-center/control-center-type-styles.html",
+      "name": "Control center type styles / Condensed",
+      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"condensed\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "control-ui-upgrades",
+      "source": "control-center/control-center-ui-upgrades.html",
+      "name": "Control center ui upgrades",
+      "sha256": "1ea9c705f2b971e139df32ea505831ea29611610d50b21e2d4bf97280c9ecd57",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "control-volume-osd-segmented",
+      "source": "control-center/tsugumori-level-preview.html",
+      "name": "Volume OSD / Segmented",
+      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
+      "selection": {
+        "fixed": {
+          "Meter style": "Segmented"
+        },
+        "hide": [
+          ".ts-osd:nth-of-type(2)"
+        ],
+        "controls": true,
+        "omit": [
+          "Preview brightness"
+        ]
+      }
+    },
+    {
+      "id": "control-volume-osd-continuous",
+      "source": "control-center/tsugumori-level-preview.html",
+      "name": "Volume OSD / Continuous",
+      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
+      "selection": {
+        "fixed": {
+          "Meter style": "Continuous"
+        },
+        "hide": [
+          ".ts-osd:nth-of-type(2)"
+        ],
+        "controls": true,
+        "omit": [
+          "Preview brightness"
+        ]
+      }
+    },
+    {
+      "id": "control-brightness-osd-segmented",
+      "source": "control-center/tsugumori-level-preview.html",
+      "name": "Brightness OSD / Segmented",
+      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
+      "selection": {
+        "fixed": {
+          "Meter style": "Segmented"
+        },
+        "hide": [
+          ".ts-osd:nth-of-type(1)"
+        ],
+        "controls": true,
+        "omit": [
+          "Preview volume"
+        ]
+      }
+    },
+    {
+      "id": "control-brightness-osd-continuous",
+      "source": "control-center/tsugumori-level-preview.html",
+      "name": "Brightness OSD / Continuous",
+      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
+      "selection": {
+        "fixed": {
+          "Meter style": "Continuous"
+        },
+        "hide": [
+          ".ts-osd:nth-of-type(1)"
+        ],
+        "controls": true,
+        "omit": [
+          "Preview volume"
+        ]
+      }
+    },
+    {
+      "id": "lockscreen-d3-relay-expansion-relay-banks",
+      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
+      "name": "D3 relay expansion / Relay banks",
+      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"banks\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-d3-relay-expansion-formation-gantry",
+      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
+      "name": "D3 relay expansion / Formation gantry",
+      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"formation\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-d3-relay-expansion-section-drawing",
+      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
+      "name": "D3 relay expansion / Section drawing",
+      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"section\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-flat-background-iterations-reg-6a0cb7",
+      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
+      "name": "Flat background iterations / Register print",
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"contour\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-flat-background-iterations-relay-etch",
+      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
+      "name": "Flat background iterations / Relay etch",
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"relay\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-flat-background-iterations-ste-d0086b",
+      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
+      "name": "Flat background iterations / Stencil press",
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"plates\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-flat-background-iterations-sho-adb6cc",
+      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
+      "name": "Flat background iterations / Shōi linkage",
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"formation\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-flat-background-iterations-cel-308c14",
+      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
+      "name": "Flat background iterations / Cellular ink",
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"membrane\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-fresh-motion-iterations-ink-exposure",
+      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
+      "name": "Fresh motion iterations / Ink exposure",
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"burn\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-fresh-motion-iterations-sector-77adf1",
+      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
+      "name": "Fresh motion iterations / Sector aperture",
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"aperture\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-fresh-motion-iterations-phase-comb",
+      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
+      "name": "Fresh motion iterations / Phase comb",
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"comb\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-fresh-motion-iterations-glyph-86b7ac",
+      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
+      "name": "Fresh motion iterations / Glyph overprint",
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"overprint\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-fresh-motion-iterations-fault-seam",
+      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
+      "name": "Fresh motion iterations / Fault seam",
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"fault\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-procedural-motion-phase-lock",
+      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
+      "name": "Procedural motion / Phase lock",
+      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"phase\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-procedural-motion-interference",
+      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
+      "name": "Procedural motion / Interference",
+      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"interference\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-procedural-motion-ena-strain",
+      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
+      "name": "Procedural motion / Ena strain",
+      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"tissue\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-shoi-d-motion-studies-corner-docking",
+      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
+      "name": "Shoi d motion studies / Corner docking",
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"docking\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-shoi-d-motion-studies-vector-corridor",
+      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
+      "name": "Shoi d motion studies / Vector corridor",
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"vector\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-shoi-d-motion-studies-relay-gantry",
+      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
+      "name": "Shoi d motion studies / Relay gantry",
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"relay\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-shoi-d-motion-studies-tension-gate",
+      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
+      "name": "Shoi d motion studies / Tension gate",
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"tension\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-shoi-d-motion-studies-command-spine",
+      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
+      "name": "Shoi d motion studies / Command spine",
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"spine\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-wave-background-redesigns-rela-6154ba",
+      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
+      "name": "Wave background redesigns / Relay lattice",
+      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"relay\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-wave-background-redesigns-inte-87860b",
+      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
+      "name": "Wave background redesigns / Interlock plates",
+      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"plates\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-wave-background-redesigns-shoi-dbed54",
+      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
+      "name": "Wave background redesigns / Shōi linkage",
+      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"formation\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-relay-inde-bee7ea",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Relay index / Relay tiles",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"counterform\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-relay-inde-208dab",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Relay index / Typesetter",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"counterform\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-relay-inde-14b210",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Relay index / Compound glyph",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"counterform\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-type-folio-44fc03",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Type folio / Relay tiles",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"folio\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-type-folio-62241a",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Type folio / Typesetter",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"folio\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-type-folio-f3d185",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Type folio / Compound glyph",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"folio\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-cross-regi-07a642",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Cross register / Relay tiles",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"confluence\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-cross-regi-6cb930",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Cross register / Typesetter",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"confluence\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-cross-regi-c7b1bb",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Cross register / Compound glyph",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"confluence\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-red-regist-db98ff",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Red register / Relay tiles",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"incision\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-red-regist-c43205",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Red register / Typesetter",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"incision\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-red-regist-77e230",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Red register / Compound glyph",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"incision\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-glyph-colo-301eb1",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Glyph colon / Relay tiles",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"colon\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-glyph-colo-b2946d",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Glyph colon / Typesetter",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"colon\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-afk-layout-previews-glyph-colo-b86933",
+      "source": "lockscreen/tsugumori-afk-layout-previews.html",
+      "name": "Afk layout previews / Glyph colon / Compound glyph",
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"colon\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-current-layout-afk-relay-tiles",
+      "source": "lockscreen/tsugumori-current-layout-afk.html",
+      "name": "Current layout afk / Relay tiles",
+      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-current-layout-afk-typesetter",
+      "source": "lockscreen/tsugumori-current-layout-afk.html",
+      "name": "Current layout afk / Typesetter",
+      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"f\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-current-layout-afk-compound-glyph",
+      "source": "lockscreen/tsugumori-current-layout-afk.html",
+      "name": "Current layout afk / Compound glyph",
+      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"k\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-center-seam",
+      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
+      "name": "Folio / Center seam",
+      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
+      "selection": {
+        "fixed": {
+          "Appear/disappear animation": "Center seam"
+        },
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-rail-dock",
+      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
+      "name": "Folio / Rail dock",
+      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
+      "selection": {
+        "fixed": {
+          "Appear/disappear animation": "Rail dock"
+        },
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-scan-gate",
+      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
+      "name": "Folio / Scan gate",
+      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
+      "selection": {
+        "fixed": {
+          "Appear/disappear animation": "Scan gate"
+        },
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-k-centered",
+      "source": "lockscreen/tsugumori-folio-k-centered.html",
+      "name": "Folio k centered",
+      "sha256": "0e3041b3220340e5243a453dcd73233b9ba0c07ea4c9755c2b0a4acc4475c727",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-folio-sweep",
+      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
+      "name": "Folio / Folio sweep",
+      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
+      "selection": {
+        "fixed": {
+          "Lock/unlock animation": "Folio sweep"
+        },
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-split-shutters",
+      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
+      "name": "Folio / Split shutters",
+      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
+      "selection": {
+        "fixed": {
+          "Lock/unlock animation": "Split shutters"
+        },
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-register-bands",
+      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
+      "name": "Folio / Register bands",
+      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
+      "selection": {
+        "fixed": {
+          "Lock/unlock animation": "Register bands"
+        },
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-k-time-header",
+      "source": "lockscreen/tsugumori-folio-k-time-header.html",
+      "name": "Folio k time header",
+      "sha256": "886b7e629f80eec4ad9814da73d357f92f9ab57baaaab897cf32ff58e1c0435e",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-generative-lockscreen-studies-366808",
+      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
+      "name": "Generative lockscreen studies / Compound glyph",
+      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"k\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-generative-lockscreen-studies-800023",
+      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
+      "name": "Generative lockscreen studies / Crossweave",
+      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"l\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-generative-lockscreen-studies-46963f",
+      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
+      "name": "Generative lockscreen studies / Folded lattice",
+      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"m\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-assembly-mar-2cfd2d",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Assembly mark / Relay tiles",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"seal\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-assembly-mar-e21ce3",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Assembly mark / Typesetter",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"seal\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-assembly-mar-4068d0",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Assembly mark / Compound glyph",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"seal\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-foundry-post-c91290",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Foundry poster / Relay tiles",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"poster\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-foundry-post-5154b5",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Foundry poster / Typesetter",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"poster\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-foundry-post-598bff",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Foundry poster / Compound glyph",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"poster\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-reverse-prin-48eddd",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Reverse print / Relay tiles",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"reverse\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-reverse-prin-3efaac",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Reverse print / Typesetter",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"reverse\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-reverse-prin-7a2bf3",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Reverse print / Compound glyph",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"reverse\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-glyph-wall-r-64977c",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Glyph wall / Relay tiles",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"wall\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-glyph-wall-t-333d6b",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Glyph wall / Typesetter",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"wall\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-editorial-studies-glyph-wall-c-7f654d",
+      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
+      "name": "Lockscreen editorial studies / Glyph wall / Compound glyph",
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"wall\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-folio-k-base",
+      "source": "lockscreen/tsugumori-lockscreen-folio-k-base.html",
+      "name": "Lockscreen folio k base",
+      "sha256": "544da36b1ce54e7ecf5d287860c632ec55c0f5f169f6c1e50a15a3ddc7edee97",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-split-console-870277",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Split console / Relay tiles",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"console\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-split-console-7fd428",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Split console / Typesetter",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"console\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-split-console-bbf520",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Split console / Compound glyph",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"console\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-sidewall-relay-tiles",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Sidewall / Relay tiles",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"sidewall\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-sidewall-typesetter",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Sidewall / Typesetter",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"sidewall\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-sidewall-comp-7bc7a2",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Sidewall / Compound glyph",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"sidewall\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-lower-deck-re-a793db",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Lower deck / Relay tiles",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"deck\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-lower-deck-ty-40906d",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Lower deck / Typesetter",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"deck\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-lower-deck-co-5ddd06",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Lower deck / Compound glyph",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"deck\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-crimson-bay-r-c2a392",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Crimson bay / Relay tiles",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"crimson\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-crimson-bay-t-76c876",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Crimson bay / Typesetter",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"crimson\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-crimson-bay-c-e67047",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Crimson bay / Compound glyph",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"crimson\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-aperture-relay-tiles",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Aperture / Relay tiles",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"aperture\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-aperture-typesetter",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Aperture / Typesetter",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"aperture\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-layout-redesigns-aperture-comp-a20d72",
+      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
+      "name": "Lockscreen layout redesigns / Aperture / Compound glyph",
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"aperture\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-index-spine-r-bd9d41",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Index spine / Relay tiles",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"spine\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-index-spine-t-90bb62",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Index spine / Typesetter",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"spine\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-index-spine-c-26d6e1",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Index spine / Compound glyph",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"spine\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-equipment-lab-55cc31",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Equipment label / Relay tiles",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"label\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-equipment-lab-681e2f",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Equipment label / Typesetter",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"label\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-equipment-lab-f663ed",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Equipment label / Compound glyph",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"label\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-red-folio-rel-ca20d5",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Red folio / Relay tiles",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"folio\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-red-folio-typesetter",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Red folio / Typesetter",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"folio\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-red-folio-com-9ff4ad",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Red folio / Compound glyph",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"folio\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-open-masthead-0c1d6b",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Open masthead / Relay tiles",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"masthead\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "a"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-open-masthead-708582",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Open masthead / Typesetter",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"masthead\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "f"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-print-iterations-open-masthead-08f5cf",
+      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
+      "name": "Lockscreen print iterations / Open masthead / Compound glyph",
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-layout=\"masthead\"]"
+          },
+          {
+            "selector": "select[data-glyph]",
+            "value": "k"
+          }
+        ],
+        "remove": [
+          "button[data-layout]",
+          "select[data-glyph]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-studies-access-frame",
+      "source": "lockscreen/tsugumori-lockscreen-studies.html",
+      "name": "Lockscreen studies / Access frame",
+      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-studies-split-console",
+      "source": "lockscreen/tsugumori-lockscreen-studies.html",
+      "name": "Lockscreen studies / Split console",
+      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-studies-red-band",
+      "source": "lockscreen/tsugumori-lockscreen-studies.html",
+      "name": "Lockscreen studies / Red band",
+      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-studies-glyph-bay",
+      "source": "lockscreen/tsugumori-lockscreen-studies.html",
+      "name": "Lockscreen studies / Glyph bay",
+      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"d\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-mechanical-lockscreen-studies-5d848e",
+      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
+      "name": "Mechanical lockscreen studies / Die-cut assembly",
+      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"g\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-mechanical-lockscreen-studies-a8391a",
+      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
+      "name": "Mechanical lockscreen studies / Registration proof",
+      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"h\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-mechanical-lockscreen-studies-e940db",
+      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
+      "name": "Mechanical lockscreen studies / Punch record",
+      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"i\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-mechanical-lockscreen-studies-d0ee44",
+      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
+      "name": "Mechanical lockscreen studies / Pressure print",
+      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"j\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-phase-formation-glyph-soft-backup",
+      "source": "lockscreen/tsugumori-phase-formation-glyph-soft-backup.html",
+      "name": "Phase lock / Soft glyph",
+      "sha256": "035922967f4a4753ed74d7a27f49ffd091d8edd942fac2d0a80e40c33f571325",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-phase-lock-sharp-phase-lock",
+      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
+      "name": "Phase lock sharp / Phase lock",
+      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"phase\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-phase-lock-sharp-interference",
+      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
+      "name": "Phase lock sharp / Interference",
+      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"interference\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-phase-lock-sharp-ena-strain",
+      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
+      "name": "Phase lock sharp / Ena strain",
+      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"tissue\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-reactive-lockscreen-studies-re-a37a9d",
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "name": "Reactive lockscreen studies / Relay tiles",
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-reactive-lockscreen-studies-sh-6c6cb4",
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "name": "Reactive lockscreen studies / Shutter bank",
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-reactive-lockscreen-studies-ph-f75474",
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "name": "Reactive lockscreen studies / Phase screens",
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-reactive-lockscreen-studies-fo-efe52f",
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "name": "Reactive lockscreen studies / Formation field",
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"d\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-reactive-lockscreen-studies-st-69ba9c",
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "name": "Reactive lockscreen studies / Stencil assembly",
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"e\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "lockscreen-reactive-lockscreen-studies-ty-e2b460",
+      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
+      "name": "Reactive lockscreen studies / Typesetter",
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-design=\"f\"]"
+          }
+        ],
+        "remove": [
+          "button[data-design]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-detail-studies-inset",
+      "source": "menu/menu-detail-studies.html",
+      "name": "Menu detail studies / Inset",
+      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-detail-studies-index",
+      "source": "menu/menu-detail-studies.html",
+      "name": "Menu detail studies / Index",
+      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-detail-studies-open-frame",
+      "source": "menu/menu-detail-studies.html",
+      "name": "Menu detail studies / Open frame",
+      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-refinement-preview",
+      "source": "menu/menu-refinement-preview.html",
+      "name": "Menu refinement preview",
+      "sha256": "a87f951c1c03362d06f576f52698dc373b77aa867db36f2ff8fb03202c65daf4",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-researched-styles-current",
+      "source": "menu/menu-researched-styles.html",
+      "name": "Menu researched styles / Current",
+      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"current\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-researched-styles-contrast",
+      "source": "menu/menu-researched-styles.html",
+      "name": "Menu researched styles / Contrast",
+      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-researched-styles-technical",
+      "source": "menu/menu-researched-styles.html",
+      "name": "Menu researched styles / Technical",
+      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-researched-styles-typographic",
+      "source": "menu/menu-researched-styles.html",
+      "name": "Menu researched styles / Typographic",
+      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-row-iterations-current",
+      "source": "menu/menu-row-iterations.html",
+      "name": "Menu row iterations / Current",
+      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"current\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-row-iterations-mono",
+      "source": "menu/menu-row-iterations.html",
+      "name": "Menu row iterations / Mono",
+      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-row-iterations-condensed",
+      "source": "menu/menu-row-iterations.html",
+      "name": "Menu row iterations / Condensed",
+      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-row-iterations-open-frame",
+      "source": "menu/menu-row-iterations.html",
+      "name": "Menu row iterations / Open frame",
+      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-structural-redesigns-expanding-index",
+      "source": "menu/menu-structural-redesigns.html",
+      "name": "Menu structural redesigns / Expanding index",
+      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"a\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-structural-redesigns-split-catalog",
+      "source": "menu/menu-structural-redesigns.html",
+      "name": "Menu structural redesigns / Split catalog",
+      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"b\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-structural-redesigns-launch-tiles",
+      "source": "menu/menu-structural-redesigns.html",
+      "name": "Menu structural redesigns / Launch tiles",
+      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-choice=\"c\"]"
+          }
+        ],
+        "remove": [
+          "button[data-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-style-lab-engraved",
+      "source": "menu/menu-style-lab.html",
+      "name": "Menu style lab / Engraved",
+      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-look-choice=\"etched\"]"
+          }
+        ],
+        "remove": [
+          "button[data-look-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-style-lab-signal-strip",
+      "source": "menu/menu-style-lab.html",
+      "name": "Menu style lab / Signal strip",
+      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-look-choice=\"signal\"]"
+          }
+        ],
+        "remove": [
+          "button[data-look-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "menu-style-lab-label-plates",
+      "source": "menu/menu-style-lab.html",
+      "name": "Menu style lab / Label plates",
+      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-look-choice=\"plates\"]"
+          }
+        ],
+        "remove": [
+          "button[data-look-choice]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-glyph-behaviours",
+      "source": "player/tsugumori-glyph-behaviours.html",
+      "name": "Glyph behaviours",
+      "sha256": "928d8ea17d9678c98ce1f938d297874f7b670ef13028b788fa43237fda192ab1",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "player-metadata-studies-fingerprint",
+      "source": "player/tsugumori-metadata-studies.html",
+      "name": "Metadata studies / Fingerprint",
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"1\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-metadata-studies-formation",
+      "source": "player/tsugumori-metadata-studies.html",
+      "name": "Metadata studies / Formation",
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"2\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-metadata-studies-inscription",
+      "source": "player/tsugumori-metadata-studies.html",
+      "name": "Metadata studies / Inscription",
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"3\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-metadata-studies-seal",
+      "source": "player/tsugumori-metadata-studies.html",
+      "name": "Metadata studies / Seal",
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"4\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-metadata-studies-circuit",
+      "source": "player/tsugumori-metadata-studies.html",
+      "name": "Metadata studies / Circuit",
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"5\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-a-refined-refined-matrix",
+      "source": "player/tsugumori-player-a-refined.html",
+      "name": "Player a refined / Refined matrix",
+      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"R\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"R\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-a-refined-original-matrix",
+      "source": "player/tsugumori-player-a-refined.html",
+      "name": "Player a refined / Original matrix",
+      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"O\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"O\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-button-studies-corner-keys",
+      "source": "player/tsugumori-player-button-studies.html",
+      "name": "Player button studies / Corner keys",
+      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"brackets\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-button-studies-console-strip",
+      "source": "player/tsugumori-player-button-studies.html",
+      "name": "Player button studies / Console strip",
+      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"console\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-button-studies-type-keys",
+      "source": "player/tsugumori-player-button-studies.html",
+      "name": "Player button studies / Type keys",
+      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"type\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-button-studies-inset-keys",
+      "source": "player/tsugumori-player-button-studies.html",
+      "name": "Player button studies / Inset keys",
+      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"inset\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-c-japanese",
+      "source": "player/tsugumori-player-c-japanese.html",
+      "name": "Player c japanese",
+      "sha256": "ca71517508247c7d072df4a7ebd5aaa90b75c02b27e764d26e3447088b6a67cb",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "player-directions-matrix",
+      "source": "player/tsugumori-player-directions.html",
+      "name": "Player directions / Matrix",
+      "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"A\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"A\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-directions-sleeve",
+      "source": "player/tsugumori-player-directions.html",
+      "name": "Player directions / Sleeve",
+      "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"B\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"B\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-directions-rail",
+      "source": "player/tsugumori-player-directions.html",
+      "name": "Player directions / Rail",
+      "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"C\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"C\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-directions-ledger",
+      "source": "player/tsugumori-player-directions.html",
+      "name": "Player directions / Ledger",
+      "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"D\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"D\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-directions-title",
+      "source": "player/tsugumori-player-directions.html",
+      "name": "Player directions / Title",
+      "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"E\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"E\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-live-details",
+      "source": "player/tsugumori-player-live-details.html",
+      "name": "Player live details",
+      "sha256": "74353bd6fecba9cd26ab73f4174828932ff14f1874917f75839c2f665184d108",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "player-panel-refinement",
+      "source": "player/tsugumori-player-panel-refinement.html",
+      "name": "Player panel refinement",
+      "sha256": "cfb1ff4459d28a17250035ed3766e29f2336930d9edda53e105e0017a4593e0c",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "player-round-two-panoramic",
+      "source": "player/tsugumori-player-round-two.html",
+      "name": "Player round two / Panoramic",
+      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"F\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"F\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-round-two-split-chassis",
+      "source": "player/tsugumori-player-round-two.html",
+      "name": "Player round two / Split chassis",
+      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"G\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"G\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-round-two-aperture",
+      "source": "player/tsugumori-player-round-two.html",
+      "name": "Player round two / Aperture",
+      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"H\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"H\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-round-two-redline",
+      "source": "player/tsugumori-player-round-two.html",
+      "name": "Player round two / Redline",
+      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-select=\"I\"]"
+          }
+        ],
+        "remove": [
+          "button[data-select]"
+        ],
+        "hide": [
+          "section[data-design]:not([data-design=\"I\"])"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-sidonia-elements-shoi-formation",
+      "source": "player/tsugumori-sidonia-elements.html",
+      "name": "Sidonia elements / Shōi formation",
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"1\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-sidonia-elements-704-armour-stripe",
+      "source": "player/tsugumori-sidonia-elements.html",
+      "name": "Sidonia elements / 704 armour stripe",
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"2\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-sidonia-elements-toa-engraving",
+      "source": "player/tsugumori-sidonia-elements.html",
+      "name": "Sidonia elements / Toa engraving",
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"3\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-sidonia-elements-sidonia-profile",
+      "source": "player/tsugumori-sidonia-elements.html",
+      "name": "Sidonia elements / Sidonia profile",
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"4\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-sidonia-elements-kabizashi-divider",
+      "source": "player/tsugumori-sidonia-elements.html",
+      "name": "Sidonia elements / Kabizashi divider",
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"5\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "player-sidonia-elements-gauna-specimen",
+      "source": "player/tsugumori-sidonia-elements.html",
+      "name": "Sidonia elements / Gauna specimen",
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "selection": {
+        "select": [
+          {
+            "selector": "button[data-detail=\"6\"]"
+          }
+        ],
+        "remove": [
+          "button[data-detail]"
+        ],
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-a-cassette",
+      "source": "quick-notes/tsugumori-notes-a-cassette.html",
+      "name": "Notes a cassette",
+      "sha256": "9b3949697080a750f2a928f3a7b316e5f42d64fc10d878004965157624976291",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-b-index",
+      "source": "quick-notes/tsugumori-notes-b-index.html",
+      "name": "Notes b index",
+      "sha256": "a0c77f0101eb486c73a4f0617575d9e6b57b8d3f25cecef8dfd54fb1a6bba71a",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-c-console",
+      "source": "quick-notes/tsugumori-notes-c-console.html",
+      "name": "Notes c console",
+      "sha256": "8adf176cab3dfd1c751d2b1e4f7f82a560a9089838c9f2462c7c5cf1b2eb7431",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-d-ash",
+      "source": "quick-notes/tsugumori-notes-d-ash.html",
+      "name": "Notes d ash",
+      "sha256": "31632c30e437af5594d17a5174120ceece371d8000df7989da1b073c5a98da0f",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-numbered",
+      "source": "quick-notes/tsugumori-notes-numbered.html",
+      "name": "Notes numbered",
+      "sha256": "7fbc7355fa63c38cacf165e233ddeb2203bcaea45d47669a310c186850aa7c88",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-preview",
+      "source": "quick-notes/tsugumori-notes-preview.html",
+      "name": "Notes preview",
+      "sha256": "df3f53c11eecfa4b71678625d8b053f507006f53389cad41b0ec1611f8683584",
+      "selection": {
+        "controls": false
+      }
+    },
+    {
+      "id": "notes-notes-refined",
+      "source": "quick-notes/tsugumori-notes-refined.html",
+      "name": "Notes refined",
+      "sha256": "048d8c6954fb62e64d132844c8e34cdd96775fb419513f32c5d9d0c475b309a5",
+      "selection": {
+        "controls": false
+      }
+    }
+  ],
+  "auxiliaryFiles": [
+    {
+      "path": "README.md",
+      "sha256": "82363281f74a97e2b8ec2b32b23e7b3776b917a33c14cfdd71510e851bf91c8a",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "fastfetch-btop/fastfetch-btop-a-preview.png",
+      "sha256": "7aaa3e52b1f9f9c70433ea1333103ae713ff8e2b25767a6a76429257b9e5e581",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "fastfetch-btop/fastfetch-btop-b-preview.png",
+      "sha256": "767dbe84d28c61320f70cdc01e72319c8186feb90ba2b8c2b4a46c8e9c39b033",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "fastfetch-btop/fastfetch-btop-c-preview.png",
+      "sha256": "c85f0ade722aac19ca7e6d4e3c3bfba996dc2f76a41af4d0485264aebf4ae603",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/animations/d-series-backup/README.md",
+      "sha256": "a04caf6509261aa31d692f5472383f03b7bd88d98a980d0d69c2a9bb43539c55",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/animations/shoi-d-motion-research.md",
+      "sha256": "928942ef8542a002e7631a1544df49d83e5f1c13da9b8fecbf7eb0d84ba3d197",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/animations/wave-background-research.md",
+      "sha256": "e760a75f8e9dcb86e9571d32af9279cafbf06110f242c38770cd28bf95d453e9",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/lockscreen-design-selection.md",
+      "sha256": "ff880efcd71f6762fea46c4f0673584a78f999278bb5b60a813e817ee9d6d0ff",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/compact-right-confirm.png",
+      "sha256": "716df9a47ddd224fa23b154b9aea8919807f68f5df7ad6ee9e97a8e0687fe391",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/compact-right-hover.png",
+      "sha256": "2d1c82d57cd946159d5a56b7365de0f5f91b6376f033a739265c39146f4f2024",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/compact-right-idle.png",
+      "sha256": "fee7995c2ff1e5862c8585415409f4e33838e1a8dd74bb93af18cd1f2456cc10",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/confirm-shutdown.png",
+      "sha256": "2b90863271980a4f57dda2eabfaba46dda6984181914ac12d865a4899c2f7e2a",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/enlarged-footer-confirm.png",
+      "sha256": "7368b63ffc6b129f14a47dc567f7e2cf1a6cbc4fb3cf6db057030c67f6e5462d",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/enlarged-footer-hover.png",
+      "sha256": "7553e32f5f134ce84276e191bfd309f4eafcc3dba900de6aa36e5fdd1fdf935a",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/enlarged-footer-idle.png",
+      "sha256": "6711b7296d7d21e42b4ec698de5baa275de30746a50a3547fb86f682b761b769",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/menu-style-confirm.png",
+      "sha256": "ad383b4ebcbdefa52ba5a53c5a6814ec26e8879ecf07a0da5b53e38910cf2b6f",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/menu-style-hover.png",
+      "sha256": "07f2af51ac66cdcb407e347ed42609c431d01bba170dd2739bfeaa7b5dd914f0",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/menu-style-idle.png",
+      "sha256": "2124764dadaab60353b727d6a4fc734c29a9b402c5abee33afefac7c7ef28dc6",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/power-controls.png",
+      "sha256": "e79bbafc8ccebafe7cdc8814ac182f21bf00db32a9ddbc349568f916925d9a26",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/power-controls/tst_Preview.qml",
+      "sha256": "5d7a647612e5a961ff253e6d88fe7b1f0adde27a0635c4e38f80217df09ace7c",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-live-lock-2026-09-13.png",
+      "sha256": "b362e091c0f5ddae2448cc8fcb2fbc1c0b2a69964190c1ecaa842733fda55897",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-live-lock-panel-2026-09-13.png",
+      "sha256": "678392e866bd93e5e36762712ed4802ba950177a86bd46b2bfc7fcecc78f5829",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-lock-a-integrated.png",
+      "sha256": "abac0d81986000d5db68aab81c19231bbe0e0609d58c4ba09619d85bb20ea6a9",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-lock-a-panel.png",
+      "sha256": "9652026dd371d8551e86af80123fb55d6913fbcc5633d62bdc15aad30894cfb1",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-lock-f-integrated.png",
+      "sha256": "d94b909b2d25385157a44120bd32de58788301d689049e2a40d511ac47eef176",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-lock-f-panel.png",
+      "sha256": "687e9f1b4011bf5e1f2f211a3a5fecdbcc807ef274e4658852c82d9c37f21b9c",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-lock-k-integrated.png",
+      "sha256": "bb6150a6b5b703b5ae4f95303436807d56adb955f3899271fd5e3af32c11300d",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "lockscreen/tsugumori-lock-k-panel.png",
+      "sha256": "933b7a4f1f88e4dd41d78847eed78b63242c0f844bd680147ca2e04efa9ca8a4",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "quick-notes/notes_preview_server.py",
+      "sha256": "05304f4c4edafcd6330e4c735f9e3b0405515b0303a79704e7a2bbf1695d7e59",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "quickshare/qr-glyph-generator.py",
+      "sha256": "82c291d15bdced4c38f6f71922898aed39c9b6ac8f51bdb007d3abf883b957be",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "references/Sidonia_Organic_Studies_05-08.pdf",
+      "sha256": "f64563d11f2044e7892a094d769cf0220249cdd7ec9026e16f923bc1fea0982b",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/p4-new-layouts-320.png",
+      "sha256": "395535fbe310da88753316d288f233746efcdf02add11d0ea979dc325454bb84",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/p4-new-layouts-768.png",
+      "sha256": "5d5ecb931d5321e867cc6c6b5d743058afe07e33ed0084cc4a9b013afa6a3958",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/p4-refinements-768.png",
+      "sha256": "a495de3f456116728efacf51dd750d86291c7461fc1f237c0d7c482d32f3fced",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-bands-571.png",
+      "sha256": "ca8c02d5745f1af72a0517df2153cc75ed221cf9d124de206765eb77f25d95ce",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-bands-571.svg",
+      "sha256": "6f4e2a12d312343c79cebd99eb894d716282e923155843966d214d21046a3002",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-bands-736.png",
+      "sha256": "752035b525454d7c61d7cc67e33fe560f5729f465eea9486aeecce0ac2b0830e",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-bands-736.svg",
+      "sha256": "51dc3e0f82cda633d118cabc4b7a866aafad7044c795039638e6e0698469c820",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-seam-360.png",
+      "sha256": "6f4003101af53b94e8c6a1f3ba6849cee03d35020778ef024f2aa85569b6d5b4",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-seam-360.svg",
+      "sha256": "bf6a5d07e17cccd9b4d292cb5a322963dc9666d3fe870eb9a560ff03df8ef9c2",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-seam-736.png",
+      "sha256": "ea841e2aec02462649fddb1f2b7650b89e294496b8b400c65e6457b7cfe3f71e",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/r2-qa-seam-736.svg",
+      "sha256": "a1c364e3aa575b38a8905fa6a4ff17410e341340833f01f6886a0056233d2f89",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/terminal-ab-qa-392.png",
+      "sha256": "62d0e6d1bbc3b3f2ee08ddf8f9ad8011b7039b58326e384fdc0e758e79324544",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/terminal-ab-qa-768.png",
+      "sha256": "bfe0927466f49167e730148f0d328cb4972e4c0c68a0f9f53b0c91746a964e20",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/terminal-prompt-new-directions-768.png",
+      "sha256": "43e5c9d13bee133df1a52a568330454067e3e938807351d7b4a60b648ca7453c",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/terminal-prompt-new-directions-long-320.png",
+      "sha256": "5f32cd0613bf9c418fb8d8ca640033aed117f90e3b07631fd95d360d07cced1c",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/terminal-text-iterations-qa.png",
+      "sha256": "72d10d2ae6989ec4f14d2becbf438e611f127973fe40ff3e0405aef2ac0f47b7",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-band-iii-check.png",
+      "sha256": "9e07d9de3f85d8f5194e873282d65a51b66d5beba01897990c7192a262753ce8",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-band-iii-check.svg",
+      "sha256": "4aade557a291b49b2d52c69a654da2fe20d7cbaceefe1913e56453124019c57b",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-band-iv-check.png",
+      "sha256": "269b2d8505bb2da0bbb28f9689acd5422b516ded6c4ee8bb417bb3f373f4cc58",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-band-iv-check.svg",
+      "sha256": "d93a1d0010ba6cc12450a0a78b01e9ea9ec288ebab4296652761ac0bf07e91e4",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-gap-ii-glyph-check.png",
+      "sha256": "bdc9586ad0a22f61a9ac00b00bddeb728dca2cbf7413cd131c288fddcaf89610",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-gap-ii-glyph-check.svg",
+      "sha256": "6f0336222894022722407a5b88786e3bf93b167aa79bb2492324fb9748c38cb6",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-header-c-refinement.png",
+      "sha256": "517d299cd93d4ab118c1cce71e239750c240824e427c51477b6009445be66c52",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-header-d-refinement.png",
+      "sha256": "03187a7e09f1bd3aeb4000e046441268ad601db7b9ce9727527a739ab695c255",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-industrial-p.png",
+      "sha256": "ddd9f9bee18dc9be713901369b674473dd2cca742abe7c8d6ad6da5d338f81e8",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-industrial-q.png",
+      "sha256": "1122d37898822982d42ebb768482079da43b213aea573bef4bbe84b89adb994f",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-industrial-r.png",
+      "sha256": "4fa2e5d29d23b6450644c7ab029de6f7dc37c1aaed3b0812c4ad1aafbb3794f0",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-right-entries.png",
+      "sha256": "ba454440b8986e6aac377ec79a077e87cb239acd993bba97c817ccc9d09f7040",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-right-glyphs.png",
+      "sha256": "5939b9f6d7e879f536752bf7c951d9ecf7b6f8df3fe25c08b168df6aa1960376",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-right-register.png",
+      "sha256": "1c2e89e63facc9dfa1cd483a02f0f74b2f2f14b60734fb75c8df0f75da3c0d5d",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-text-band-check.png",
+      "sha256": "77daa24359f20751ec49486cc0412db834903b61156273bf907c8fd926f08a2f",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    },
+    {
+      "path": "terminal/tsugumori-text-band-check.svg",
+      "sha256": "f0a949e27befc69fe3138bcd2a2510e27af3f249a3248d625640f0582a37cbfa",
+      "purpose": "Source reference or preview helper; not a separate interactive design"
+    }
+  ]
+}

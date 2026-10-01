@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Player directions / Ledger</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden],[data-archive-omitted]{display:none!important}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn,.nav-link{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true],.nav-link.active{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px}.text-muted{color:#999}.form-control,.form-select{background:#151515;color:#eee;border:1px solid #666;padding:7px}.form-range{accent-color:#cc1515}.nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}figure{margin:0}svg{flex-shrink:0}.archive-settings{border-top:1px solid #383434;margin:18px 0 0;padding:12px 0;font-size:11px}.archive-settings summary{cursor:pointer;color:#aaa;letter-spacing:1px}.archive-settings label{display:flex;align-items:center;gap:12px;padding-top:10px;flex-wrap:wrap}.archive-settings label span{min-width:145px}.archive-settings input[type=range]{width:150px;max-width:100%;accent-color:#cc1515}.archive-settings select{max-width:100%;background:#151515;color:#ddd;border:1px solid #555;padding:5px}.archive-settings output{color:#aaa}.archive-settings input[type=checkbox]{accent-color:#cc1515}
+</style></head><body>
+<style>
+#tsugumori-player-studies { --ps-black:#0a0a0a; --ps-paper:#e8e8e8; --ps-red:#cc1515; --ps-muted:#a09b96; --ps-line:#34302f; color:var(--ps-paper); font-family:'JetBrains Mono','DejaVu Sans Mono',monospace; width:100%; background:transparent; font-size:12px; line-height:1.5; }
+#tsugumori-player-studies * { box-sizing:border-box; }
+#tsugumori-player-studies [hidden] { display:none !important; }
+#tsugumori-player-studies .ps-header { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 14px; padding:13px 16px; color:var(--ps-paper); background:var(--ps-black); border-bottom:1px solid var(--ps-line); font-size:11px; letter-spacing:1.4px; }
+#tsugumori-player-studies .ps-header span:last-child { color:var(--ps-muted); }
+#tsugumori-player-studies .ps-nav { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:5px; margin:8px 0 18px; }
+#tsugumori-player-studies .ps-nav button { appearance:none; font:inherit; text-align:left; background:var(--ps-black); border:1px solid var(--ps-line); color:var(--ps-muted); padding:10px 12px; min-height:55px; cursor:pointer; transition:border-color .2s,color .2s; }
+#tsugumori-player-studies .ps-nav button span { display:block; font-size:11px; letter-spacing:.5px; margin-top:3px; }
+#tsugumori-player-studies .ps-nav button b { font-size:15px; font-weight:500; }
+#tsugumori-player-studies .ps-nav button:hover { color:var(--ps-paper); border-color:#77706a; }
+#tsugumori-player-studies .ps-nav button[aria-pressed="true"] { border-color:var(--ps-red); color:var(--ps-paper); box-shadow:inset 3px 0 var(--ps-red); }
+#tsugumori-player-studies .ps-design { width:100%; }
+#tsugumori-player-studies .ps-surface { background:var(--ps-black); color:var(--ps-paper); border:1px solid var(--ps-line); position:relative; max-width:100%; }
+#tsugumori-player-studies.ps-strong-frames .ps-surface { border-color:#716863; }
+#tsugumori-player-studies .ps-surface::before, #tsugumori-player-studies .ps-surface::after { content:''; position:absolute; pointer-events:none; width:7px; height:7px; border-color:var(--ps-red); border-style:solid; z-index:2; }
+#tsugumori-player-studies .ps-surface::before { top:-1px; left:-1px; border-width:1px 0 0 1px; }
+#tsugumori-player-studies .ps-surface::after { bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+#tsugumori-player-studies .ps-meta, #tsugumori-player-studies .ps-micro { font-size:11px; letter-spacing:1px; color:var(--ps-muted); }
+#tsugumori-player-studies .ps-title { font-size:28px; font-weight:500; letter-spacing:-1px; line-height:1.16; margin:0; overflow-wrap:anywhere; }
+#tsugumori-player-studies .ps-artist { color:var(--ps-muted); margin:7px 0 0; font-size:13px; }
+#tsugumori-player-studies .ps-button { appearance:none; position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center; font:inherit; font-size:11px; font-weight:500; letter-spacing:1px; padding:10px 13px; min-height:39px; color:var(--ps-paper); background:transparent; border:1px solid #4a403c; cursor:pointer; overflow:hidden; white-space:nowrap; transition:border-color .2s,color .2s; }
+#tsugumori-player-studies .ps-button::before { content:''; position:absolute; z-index:-1; inset:0; background:var(--ps-red); transform:translateX(-102%); transition:transform .24s cubic-bezier(.65,0,.35,1); }
+#tsugumori-player-studies .ps-button:hover::before { transform:translateX(0); }
+#tsugumori-player-studies .ps-button:hover { border-color:var(--ps-red); }
+#tsugumori-player-studies .ps-button:active { color:#fff; }
+#tsugumori-player-studies .ps-play { border-color:var(--ps-red); color:var(--ps-paper); min-width:84px; }
+#tsugumori-player-studies .ps-playing .ps-play { background:var(--ps-red); }
+#tsugumori-player-studies .ps-seek { appearance:none; display:block; width:100%; height:24px; margin:0; cursor:pointer; background:transparent; accent-color:var(--ps-red); }
+#tsugumori-player-studies .ps-seek::-webkit-slider-runnable-track { height:3px; background:linear-gradient(to right,var(--ps-red) 0 var(--ps-progress,32%),#403a36 var(--ps-progress,32%) 100%); }
+#tsugumori-player-studies .ps-seek::-webkit-slider-thumb { appearance:none; width:9px; height:13px; margin-top:-5px; border:0; border-radius:0; background:var(--ps-paper); }
+#tsugumori-player-studies .ps-seek::-moz-range-track { height:3px; background:#403a36; }
+#tsugumori-player-studies .ps-seek::-moz-range-progress { height:3px; background:var(--ps-red); }
+#tsugumori-player-studies .ps-seek::-moz-range-thumb { width:9px; height:13px; border:0; border-radius:0; background:var(--ps-paper); }
+#tsugumori-player-studies .ps-time { display:flex; align-items:center; justify-content:space-between; gap:8px; color:var(--ps-muted); font-size:11px; font-variant-numeric:tabular-nums; }
+#tsugumori-player-studies canvas[data-art] { display:block; width:100%; height:auto; aspect-ratio:1; filter:grayscale(1); }
+#tsugumori-player-studies .ps-foot { display:flex; gap:8px; justify-content:space-between; padding:12px 2px 0; color:#938e8a; font-size:11px; letter-spacing:.5px; }
+#tsugumori-player-studies .ps-foot span:last-child { color:#b0aaa4; }
+#tsugumori-player-studies .ps-sr { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+#tsugumori-player-studies .ps-a-header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px; border-bottom:1px solid var(--ps-line); }
+#tsugumori-player-studies .ps-a-header .ps-a-unit { color:var(--ps-red); letter-spacing:2px; }
+#tsugumori-player-studies .ps-a-main { display:grid; grid-template-columns:46% minmax(0,1fr); }
+#tsugumori-player-studies .ps-a-matrix { padding:15px; border-right:1px solid var(--ps-line); min-width:0; }
+#tsugumori-player-studies .ps-a-matrix canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080808; }
+#tsugumori-player-studies .ps-a-matrix-caption { display:flex; justify-content:space-between; gap:8px; padding:12px 0 0; letter-spacing:.7px; }
+#tsugumori-player-studies .ps-a-copy { min-width:0; padding:28px 22px 20px; display:flex; flex-direction:column; justify-content:space-between; gap:25px; }
+#tsugumori-player-studies .ps-a-label { display:flex; align-items:center; gap:8px; font-size:11px; letter-spacing:1px; color:var(--ps-muted); }
+#tsugumori-player-studies .ps-a-lamp { width:5px; height:5px; background:var(--ps-red); }
+#tsugumori-player-studies .ps-a-title { font-size:clamp(26px,5.4vw,40px); margin:16px 0 0; font-weight:500; }
+#tsugumori-player-studies .ps-a-number { font-size:47px; font-weight:400; letter-spacing:-4px; line-height:1; color:#665b55; }
+#tsugumori-player-studies .ps-a-album { margin:10px 0 0; font-size:11px; color:var(--ps-muted); letter-spacing:1.4px; }
+#tsugumori-player-studies .ps-a-lower { border-top:1px solid var(--ps-line); padding:15px 18px 17px; }
+#tsugumori-player-studies .ps-a-ruler { display:flex; justify-content:space-between; height:8px; border-bottom:1px solid #282423; }
+#tsugumori-player-studies .ps-a-ruler i { width:1px; height:5px; background:#62564f; }
+#tsugumori-player-studies .ps-a-ruler i:nth-child(5n+1) { height:8px; background:#a3978c; }
+#tsugumori-player-studies .ps-a-actions { display:grid; grid-template-columns:1fr 1.8fr 1fr auto; gap:8px; margin-top:16px; }
+#tsugumori-player-studies .ps-a-library { margin:0 18px 17px; border-top:1px solid var(--ps-line); }
+@media(max-width:470px) {
+ #tsugumori-player-studies .ps-nav { grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+ #tsugumori-player-studies .ps-nav button { padding:8px 10px; min-height:52px; }
+ #tsugumori-player-studies .ps-a-main { grid-template-columns:43% minmax(0,1fr); }
+ #tsugumori-player-studies .ps-a-matrix { padding:9px; }
+ #tsugumori-player-studies .ps-a-matrix-caption { flex-wrap:wrap; padding-top:8px; }
+ #tsugumori-player-studies .ps-a-copy { padding:16px 12px; gap:20px; }
+ #tsugumori-player-studies .ps-a-title { font-size:25px; letter-spacing:-.8px; }
+ #tsugumori-player-studies .ps-a-number { font-size:34px; }
+ #tsugumori-player-studies .ps-a-actions { grid-template-columns:1fr 1.3fr 1fr; }
+ #tsugumori-player-studies .ps-a-actions [data-action="library"] { grid-column:1/-1; }
+ #tsugumori-player-studies .ps-foot { flex-wrap:wrap; }
+}
+@media(pointer:coarse) {
+ #tsugumori-player-studies .ps-button { min-height:44px; }
+ #tsugumori-player-studies .ps-seek { height:44px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ #tsugumori-player-studies *, #tsugumori-player-studies *::before, #tsugumori-player-studies *::after { transition:none !important; animation:none !important; }
+}
+</style>
+<div aria-label="Tsugumori music player design studies" id="tsugumori-player-studies">
+<div class="ps-header"><span>TSUGUMORI // AUDIO</span><span>PLAYER STUDIES / 05</span></div>
+<div aria-label="Player design" class="ps-nav" role="group">
+<button aria-pressed="true" data-select="A" type="button"><b>A</b><span>MATRIX</span></button>
+<button aria-pressed="false" data-select="B" type="button"><b>B</b><span>SLEEVE</span></button>
+<button aria-pressed="false" data-select="C" type="button"><b>C</b><span>RAIL</span></button>
+<button aria-pressed="false" data-select="D" type="button"><b>D</b><span>LEDGER</span></button>
+<button aria-pressed="false" data-select="E" type="button"><b>E</b><span>TITLE</span></button>
+</div>
+<section aria-label="A Matrix console" class="ps-design ps-design-a" data-design="A">
+<div class="ps-surface">
+<div class="ps-a-header ps-micro"><span class="ps-a-unit">NR-2B // AUDIO</span><span>TYPE 17</span></div>
+<div class="ps-a-main">
+<div class="ps-a-matrix">
+<canvas aria-label="Glyph matrix interpreting the sample cover artwork" data-matrix="" height="640" role="img" width="640"></canvas>
+<div class="ps-a-matrix-caption ps-micro"><span>GLYPH / <span data-field="index">01</span></span><span>32 × 32</span></div>
+</div>
+<div class="ps-a-copy">
+<div><div class="ps-a-label"><span class="ps-a-lamp"></span><span data-field="status">PAUSED</span><span>//</span><span data-field="source">LOCAL</span></div><h2 class="ps-title ps-a-title" data-field="title">SIDONIA</h2><p class="ps-artist" data-field="artist">angela</p></div>
+<div><div class="ps-a-number" data-field="index">01</div><div class="ps-a-album" data-field="album">KNIGHTS OF SIDONIA</div></div>
+</div>
+</div>
+<div class="ps-a-lower">
+<div aria-hidden="true" class="ps-a-ruler"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<input aria-label="Seek track" class="ps-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/>
+<div class="ps-time"><span data-field="elapsed">01:24</span><span>POSITION // <span data-field="duration">04:23</span></span></div>
+<div class="ps-a-actions"><button class="ps-button" data-action="prev" type="button">PREV</button><button class="ps-button ps-play" data-action="play" type="button">PLAY</button><button class="ps-button" data-action="next" type="button">NEXT</button><button aria-expanded="false" class="ps-button" data-action="library" type="button">TRACKS</button></div>
+</div>
+<div class="ps-a-library" data-library="" hidden=""></div>
+</div>
+</section>
+<style>
+#tsugumori-player-studies .ps-b-player{width:min(100%,360px);margin-inline:auto;display:grid;grid-template-columns:28px minmax(0,1fr);position:relative}
+#tsugumori-player-studies .ps-b-spine{border-right:1px solid #3c3735;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:22px;padding:16px 0;color:#a09b96;min-width:0}
+#tsugumori-player-studies .ps-b-spine-word{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;letter-spacing:.19em;white-space:nowrap}
+#tsugumori-player-studies .ps-b-spine-index{font-size:11px;color:#e8e8e8;padding-top:10px;border-top:1px solid #cc1515}
+#tsugumori-player-studies .ps-b-content{min-width:0;padding:16px}
+#tsugumori-player-studies .ps-b-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;color:#a09b96;letter-spacing:.1em}
+#tsugumori-player-studies .ps-b-topline span:first-child{color:#e8e8e8}
+#tsugumori-player-studies .ps-b-cover{position:relative;padding:7px;border:1px solid #69605b;background:#101010}
+#tsugumori-player-studies .ps-b-cover::after{content:"";position:absolute;top:-1px;right:-1px;width:25px;height:3px;background:#cc1515;pointer-events:none}
+#tsugumori-player-studies .ps-b-cover canvas{display:block;width:100%;height:auto;aspect-ratio:1;filter:grayscale(1);transition:filter .45s ease}
+#tsugumori-player-studies .ps-b-cover:hover canvas{filter:grayscale(0)}
+#tsugumori-player-studies .ps-b-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;color:#a09b96}
+#tsugumori-player-studies .ps-b-caption [data-field="status"]::before{content:"";display:inline-block;width:5px;height:5px;margin-right:7px;background:#cc1515;vertical-align:2px}
+#tsugumori-player-studies .ps-b-info{padding:23px 0 17px}
+#tsugumori-player-studies .ps-b-info .ps-title{font-size:27px;line-height:1.2;letter-spacing:.015em;margin:0 0 9px;overflow-wrap:anywhere;font-weight:500}
+#tsugumori-player-studies .ps-b-info .ps-artist{font-size:13px;line-height:1.5;margin:0;color:#a09b96}
+#tsugumori-player-studies .ps-b-album{margin-top:15px;padding-top:12px;border-top:1px solid #393331;color:#a09b96;line-height:1.55;overflow-wrap:anywhere}
+#tsugumori-player-studies .ps-b-album-label{display:block;font-size:11px;letter-spacing:.11em;color:#e8e8e8;margin-bottom:5px}
+#tsugumori-player-studies .ps-b-bottom{border-top:1px solid #393331;padding-top:11px}
+#tsugumori-player-studies .ps-b-transport{display:grid;grid-template-columns:1fr 1.22fr 1fr;gap:6px;margin-top:13px}
+#tsugumori-player-studies .ps-b-transport .ps-button{min-height:44px;padding-inline:6px;min-width:0;font-size:11px}
+#tsugumori-player-studies .ps-b-tail{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;color:#a09b96;min-height:33px}
+#tsugumori-player-studies .ps-b-tail .ps-button{font-size:11px;min-height:33px;padding:6px 10px}
+#tsugumori-player-studies .ps-b-library{grid-column:1/-1;min-width:0;border-top:1px solid #3c3735;padding:8px}
+#tsugumori-player-studies .ps-e-player{width:100%;max-width:660px;margin-inline:auto;padding:21px;position:relative}
+#tsugumori-player-studies .ps-e-player::before{content:"";position:absolute;top:-1px;left:21px;width:66px;height:3px;background:#cc1515;pointer-events:none}
+#tsugumori-player-studies .ps-e-topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #393331;color:#a09b96;letter-spacing:.09em}
+#tsugumori-player-studies .ps-e-topline span:first-child{color:#e8e8e8}
+#tsugumori-player-studies .ps-e-body{display:grid;grid-template-columns:minmax(0,1fr) 67px;gap:22px;padding-top:21px;padding-bottom:22px}
+#tsugumori-player-studies .ps-e-copy{min-width:0}
+#tsugumori-player-studies .ps-e-labels{display:grid;grid-template-columns:minmax(0,1fr) 72px;align-items:start;gap:16px;margin-bottom:22px}
+#tsugumori-player-studies .ps-e-record{padding-top:4px;min-width:0;line-height:1.6}
+#tsugumori-player-studies .ps-e-record-number{display:block;color:#cc1515;font-size:12px;letter-spacing:.12em;margin-bottom:11px}
+#tsugumori-player-studies .ps-e-album{display:block;color:#a09b96;line-height:1.6;overflow-wrap:anywhere;max-width:240px}
+#tsugumori-player-studies .ps-e-stamp{margin:0;width:72px;border:1px solid #635b56;padding:4px;background:#101010}
+#tsugumori-player-studies .ps-e-stamp canvas{display:block;width:100%;height:auto;aspect-ratio:1;filter:grayscale(1)}
+#tsugumori-player-studies .ps-e-stamp figcaption{font-size:11px;line-height:1.25;letter-spacing:.08em;text-align:center;color:#a09b96;border-top:1px solid #3c3735;padding-top:4px;margin-top:4px}
+#tsugumori-player-studies .ps-e-title{font-size:clamp(34px,8vw,66px);line-height:1.02;font-weight:500;letter-spacing:-.065em;margin:0 0 18px;overflow-wrap:anywhere;color:#e8e8e8}
+#tsugumori-player-studies .ps-e-artist{margin:0;color:#a09b96;font-size:14px;line-height:1.5}
+#tsugumori-player-studies .ps-e-transport{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;gap:7px;padding-left:11px;border-left:1px solid #393331}
+#tsugumori-player-studies .ps-e-transport .ps-button{min-width:0;min-height:48px;padding:5px 2px;font-size:11px}
+#tsugumori-player-studies .ps-e-transport .ps-play{min-height:67px}
+#tsugumori-player-studies .ps-e-progress{padding-top:9px;border-top:1px solid #68605a}
+#tsugumori-player-studies .ps-e-ruler{height:8px;background:repeating-linear-gradient(to right,#68605a 0 1px,transparent 1px calc(100% / 32));margin:0 1px 3px;pointer-events:none}
+#tsugumori-player-studies .ps-e-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px;padding-top:13px;border-top:1px solid #393331;color:#a09b96}
+#tsugumori-player-studies .ps-e-footer-state{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#tsugumori-player-studies .ps-e-footer [data-field="status"]{color:#e8e8e8}
+#tsugumori-player-studies .ps-e-footer .ps-button{min-height:34px;padding:6px 11px;font-size:11px}
+#tsugumori-player-studies .ps-e-library{padding-top:12px}
+@media(max-width:430px){
+  #tsugumori-player-studies .ps-b-content{padding:12px}
+  #tsugumori-player-studies .ps-b-info .ps-title{font-size:25px}
+  #tsugumori-player-studies .ps-e-player{padding:15px}
+  #tsugumori-player-studies .ps-e-player::before{left:15px}
+  #tsugumori-player-studies .ps-e-body{grid-template-columns:minmax(0,1fr) 53px;gap:12px;padding-top:17px}
+  #tsugumori-player-studies .ps-e-labels{grid-template-columns:minmax(0,1fr) 57px;gap:10px;margin-bottom:22px}
+  #tsugumori-player-studies .ps-e-stamp{width:57px;padding:3px}
+  #tsugumori-player-studies .ps-e-stamp figcaption{font-size:11px}
+  #tsugumori-player-studies .ps-e-record-number{margin-bottom:7px}
+  #tsugumori-player-studies .ps-e-transport{padding-left:7px}
+  #tsugumori-player-studies .ps-e-title{font-size:36px;line-height:1.08;letter-spacing:-.06em}
+  #tsugumori-player-studies .ps-e-album{font-size:11px;letter-spacing:0}
+  #tsugumori-player-studies .ps-e-footer-state{gap:6px}
+}
+@media(pointer:coarse){
+  #tsugumori-player-studies .ps-b-tail .ps-button,#tsugumori-player-studies .ps-e-footer .ps-button{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){#tsugumori-player-studies .ps-b-cover canvas{transition:none}}
+</style>
+<section aria-label="B Archive sleeve" class="ps-design ps-design-b" data-design="B" hidden="">
+<div class="ps-surface ps-b-player">
+<aside aria-label="Recording spine" class="ps-b-spine">
+<span class="ps-b-spine-word">TSUGUMORI // AUDIO</span>
+<span class="ps-b-spine-word" data-field="source">LOCAL</span>
+<span class="ps-b-spine-index" data-field="index">01</span>
+</aside>
+<div class="ps-b-content">
+<div class="ps-b-topline ps-micro"><span>ARCHIVE</span><span>音楽</span></div>
+<div class="ps-b-cover"><canvas aria-label="Sample cover artwork" data-art="" role="img">Sample cover artwork</canvas></div>
+<div class="ps-b-caption ps-micro"><span>AUDIO // <span data-field="index">01</span></span><span data-field="status">PAUSED</span></div>
+<div class="ps-b-info">
+<h3 class="ps-title" data-field="title">SIDONIA</h3>
+<p class="ps-artist" data-field="artist">angela</p>
+<div class="ps-b-album ps-meta"><span class="ps-b-album-label">ALBUM</span><span data-field="album">KNIGHTS OF SIDONIA</span></div>
+</div>
+<div class="ps-b-bottom">
+<input aria-label="Seek track" class="ps-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/>
+<div class="ps-time"><span data-field="elapsed">01:24</span><span data-field="duration">04:23</span></div>
+<div aria-label="Playback controls" class="ps-b-transport">
+<button aria-label="Previous track" class="ps-button" data-action="prev" type="button">PREV</button>
+<button class="ps-button ps-play" data-action="play" type="button">PLAY</button>
+<button aria-label="Next track" class="ps-button" data-action="next" type="button">NEXT</button>
+</div>
+<div class="ps-b-tail ps-micro"><span data-field="source">LOCAL</span><button aria-expanded="false" class="ps-button" data-action="library" type="button">TRACKS</button></div>
+</div>
+</div>
+<div aria-label="Local tracks" class="ps-b-library" data-library="" hidden=""></div>
+</div>
+</section>
+<section aria-label="E Title plate" class="ps-design ps-design-e" data-design="E" hidden="">
+<div class="ps-surface ps-e-player">
+<div class="ps-e-topline ps-micro"><span>TSUGUMORI // AUDIO</span><span data-field="source">LOCAL</span></div>
+<div class="ps-e-body">
+<div class="ps-e-copy">
+<div class="ps-e-labels">
+<div class="ps-e-record"><span class="ps-e-record-number">TRACK / <span data-field="index">01</span></span><span class="ps-e-album ps-meta" data-field="album">KNIGHTS OF SIDONIA</span></div>
+<figure class="ps-e-stamp"><canvas aria-label="Sample cover artwork" data-art="" role="img">Sample cover artwork</canvas><figcaption>音楽 / <span data-field="index">01</span></figcaption></figure>
+</div>
+<h3 class="ps-title ps-e-title" data-field="title">SIDONIA</h3>
+<p class="ps-artist ps-e-artist" data-field="artist">angela</p>
+</div>
+<div aria-label="Playback controls" class="ps-e-transport">
+<button aria-label="Previous track" class="ps-button" data-action="prev" type="button">PREV</button>
+<button class="ps-button ps-play" data-action="play" type="button">PLAY</button>
+<button aria-label="Next track" class="ps-button" data-action="next" type="button">NEXT</button>
+</div>
+</div>
+<div class="ps-e-progress">
+<div aria-hidden="true" class="ps-e-ruler"></div>
+<input aria-label="Seek track" class="ps-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/>
+<div class="ps-time"><span data-field="elapsed">01:24</span><span data-field="duration">04:23</span></div>
+</div>
+<div class="ps-e-footer ps-micro"><div class="ps-e-footer-state"><span data-field="status">PAUSED</span><span>//</span><span data-field="source">LOCAL</span></div><button aria-expanded="false" class="ps-button" data-action="library" type="button">TRACKS</button></div>
+<div aria-label="Local tracks" class="ps-e-library" data-library="" hidden=""></div>
+</div>
+</section>
+<style>
+#tsugumori-player-studies .ps-rail {max-width:700px;margin:0 auto;}
+#tsugumori-player-studies .ps-rail-caption {display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid #363230;}
+#tsugumori-player-studies .ps-rail-caption .ps-micro {letter-spacing:.12em;}
+#tsugumori-player-studies .ps-rail-main {display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 18px;}
+#tsugumori-player-studies .ps-rail-art {width:96px;height:96px;display:block;border:1px solid #4a4540;object-fit:cover;}
+#tsugumori-player-studies .ps-rail-info {min-width:0;}
+#tsugumori-player-studies .ps-rail-info .ps-title {font-size:23px;line-height:1.17;letter-spacing:-.035em;overflow-wrap:anywhere;margin:5px 0 8px;}
+#tsugumori-player-studies .ps-rail-info .ps-artist {font-size:12px;line-height:1.4;}
+#tsugumori-player-studies .ps-rail-track-index {display:flex;align-items:center;gap:10px;}
+#tsugumori-player-studies .ps-rail-track-index::before {content:"";width:15px;height:2px;background:#cc1515;}
+#tsugumori-player-studies .ps-rail-transport {display:grid;grid-template-columns:42px 64px 42px;gap:5px;}
+#tsugumori-player-studies .ps-rail-transport .ps-button {height:43px;padding:0 5px;font-size:11px;min-width:0;}
+#tsugumori-player-studies .ps-rail-footer {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 18px 12px;}
+#tsugumori-player-studies .ps-rail-footer .ps-button {font-size:11px;min-height:30px;padding:5px 10px;}
+#tsugumori-player-studies .ps-rail-time {display:flex;gap:8px;font-size:11px;color:#a09b96;font-variant-numeric:tabular-nums;}
+#tsugumori-player-studies .ps-rail-time [data-field="elapsed"] {color:#e8e8e8;}
+#tsugumori-player-studies .ps-rail .ps-rail-seek {display:block;width:calc(100% - 36px);margin:0 18px 12px;}
+#tsugumori-player-studies .ps-rail-library {border-top:1px solid #363230;padding:12px;}
+#tsugumori-player-studies .ps-library-label {padding:2px 8px 12px;letter-spacing:.14em;}
+#tsugumori-player-studies .ps-track {position:relative;isolation:isolate;display:grid;grid-template-columns:45px minmax(0,1fr) auto;align-items:center;gap:9px;width:100%;margin:0;padding:12px 10px;border:0;border-bottom:1px solid #312e2b;border-radius:0;background:#0a0a0a;color:#e8e8e8;font:inherit;text-align:left;cursor:pointer;min-height:61px;overflow:hidden;}
+#tsugumori-player-studies .ps-track::before {content:"";position:absolute;z-index:-1;inset:0;background:#cc1515;transform:scaleX(0);transform-origin:left center;transition:transform 220ms cubic-bezier(.2,.75,.2,1);}
+#tsugumori-player-studies .ps-track:hover::before,
+#tsugumori-player-studies .ps-track[aria-pressed="true"]::before {transform:scaleX(1);}
+#tsugumori-player-studies .ps-track-number {font-size:12px;letter-spacing:-.025em;color:#a09b96;transition:color 160ms;}
+#tsugumori-player-studies .ps-track-copy {display:flex;flex-direction:column;gap:5px;min-width:0;}
+#tsugumori-player-studies .ps-track-title {font-size:13px;font-weight:500;line-height:1.3;overflow-wrap:anywhere;}
+#tsugumori-player-studies .ps-track-artist {font-size:11px;line-height:1.3;color:#a09b96;transition:color 160ms;}
+#tsugumori-player-studies .ps-track-length {font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap;color:#a09b96;transition:color 160ms;}
+#tsugumori-player-studies .ps-track:hover .ps-track-number,
+#tsugumori-player-studies .ps-track:hover .ps-track-artist,
+#tsugumori-player-studies .ps-track:hover .ps-track-length,
+#tsugumori-player-studies .ps-track[aria-pressed="true"] .ps-track-number,
+#tsugumori-player-studies .ps-track[aria-pressed="true"] .ps-track-artist,
+#tsugumori-player-studies .ps-track[aria-pressed="true"] .ps-track-length {color:#e8e8e8;}
+#tsugumori-player-studies .ps-ledger {max-width:630px;margin:0 auto;}
+#tsugumori-player-studies .ps-ledger-caption {display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;padding:17px 18px;border-bottom:1px solid #363230;}
+#tsugumori-player-studies .ps-ledger-heading {margin:0;font-size:19px;font-weight:500;letter-spacing:-.04em;}
+#tsugumori-player-studies .ps-ledger-columns {display:grid;grid-template-columns:154px minmax(0,1fr);}
+#tsugumori-player-studies .ps-ledger-album {padding:18px 15px;border-right:1px solid #363230;min-width:0;}
+#tsugumori-player-studies .ps-ledger-art {display:block;width:100%;aspect-ratio:1;border:1px solid #4a4540;}
+#tsugumori-player-studies .ps-ledger-album .ps-micro {display:block;color:#a09b96;letter-spacing:.08em;margin:17px 0 7px;}
+#tsugumori-player-studies .ps-ledger-album-name {font-size:12px;line-height:1.55;color:#e8e8e8;overflow-wrap:anywhere;}
+#tsugumori-player-studies .ps-ledger-album .ps-artist {font-size:11px;line-height:1.5;margin-top:7px;}
+#tsugumori-player-studies .ps-ledger-source {display:flex;align-items:center;gap:6px;margin-top:21px;}
+#tsugumori-player-studies .ps-ledger-source::before {content:"";display:block;width:5px;height:5px;background:#cc1515;}
+#tsugumori-player-studies .ps-ledger-right {min-width:0;}
+#tsugumori-player-studies .ps-ledger-library-head {display:flex;justify-content:space-between;gap:12px;padding:16px 14px 12px;font-size:11px;letter-spacing:.10em;color:#a09b96;}
+#tsugumori-player-studies .ps-ledger-right [data-library] {padding:0 10px 10px;}
+#tsugumori-player-studies .ps-ledger-controls {border-top:1px solid #363230;padding:14px 14px 12px;}
+#tsugumori-player-studies .ps-ledger-control-row {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px;}
+#tsugumori-player-studies .ps-ledger-transport {display:flex;gap:5px;}
+#tsugumori-player-studies .ps-ledger-transport .ps-button {min-width:43px;height:36px;padding:0 8px;font-size:11px;}
+#tsugumori-player-studies .ps-ledger-transport .ps-play {min-width:70px;}
+#tsugumori-player-studies .ps-ledger-controls .ps-seek {display:block;width:100%;margin:0;}
+#tsugumori-player-studies .ps-ledger-controls .ps-time {display:flex;justify-content:space-between;gap:12px;margin-top:8px;color:#a09b96;font-size:11px;font-variant-numeric:tabular-nums;}
+#tsugumori-player-studies .ps-ledger-controls .ps-time [data-field="elapsed"] {color:#e8e8e8;}
+@media(max-width:560px) {
+  #tsugumori-player-studies .ps-rail-main {grid-template-columns:80px minmax(0,1fr);gap:15px;padding:18px;}
+  #tsugumori-player-studies .ps-rail-art {width:80px;height:80px;}
+  #tsugumori-player-studies .ps-rail-info .ps-title {font-size:22px;}
+  #tsugumori-player-studies .ps-rail-transport {grid-column:1/-1;grid-template-columns:1fr 1.6fr 1fr;gap:8px;}
+  #tsugumori-player-studies .ps-ledger-columns {grid-template-columns:125px minmax(0,1fr);}
+  #tsugumori-player-studies .ps-ledger-album {padding:15px 12px;}
+  #tsugumori-player-studies .ps-ledger-controls {padding:12px 10px;}
+  #tsugumori-player-studies .ps-ledger-control-row {flex-wrap:wrap;gap:10px;}
+  #tsugumori-player-studies .ps-ledger-transport {flex:1;}
+  #tsugumori-player-studies .ps-ledger-transport .ps-button {flex:1;}
+  #tsugumori-player-studies .ps-track {grid-template-columns:38px minmax(0,1fr) auto;gap:6px;padding:11px 7px;}
+}
+@media(max-width:420px) {
+  #tsugumori-player-studies .ps-ledger-caption {padding:15px 13px;}
+  #tsugumori-player-studies .ps-ledger-columns {display:block;}
+  #tsugumori-player-studies .ps-ledger-album {display:grid;grid-template-columns:80px minmax(0,1fr);align-items:center;gap:14px;padding:15px 13px;border-right:0;border-bottom:1px solid #363230;}
+  #tsugumori-player-studies .ps-ledger-art {width:80px;height:80px;}
+  #tsugumori-player-studies .ps-ledger-album .ps-micro {margin:0 0 5px;}
+  #tsugumori-player-studies .ps-ledger-source {margin-top:9px;}
+  #tsugumori-player-studies .ps-ledger-right [data-library] {padding:0 8px 10px;}
+  #tsugumori-player-studies .ps-ledger-controls {padding:13px;}
+  #tsugumori-player-studies .ps-ledger-control-row {flex-wrap:nowrap;}
+  #tsugumori-player-studies .ps-ledger-transport {flex:initial;}
+  #tsugumori-player-studies .ps-ledger-transport .ps-button {min-width:42px;height:40px;}
+  #tsugumori-player-studies .ps-ledger-transport .ps-play {min-width:66px;}
+}
+@media(pointer:coarse) {
+  #tsugumori-player-studies .ps-rail-transport .ps-button,
+  #tsugumori-player-studies .ps-rail-footer .ps-button,
+  #tsugumori-player-studies .ps-ledger-transport .ps-button {min-height:44px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  #tsugumori-player-studies .ps-track::before,
+  #tsugumori-player-studies .ps-track-number,
+  #tsugumori-player-studies .ps-track-artist,
+  #tsugumori-player-studies .ps-track-length {transition:none;}
+}
+</style>
+<section aria-label="C Transport rail" class="ps-design ps-design-c" data-design="C" hidden="">
+<div class="ps-surface ps-rail">
+<div class="ps-rail-caption">
+<span class="ps-micro">AUDIO // <span data-field="source">LOCAL</span></span>
+<span class="ps-micro" data-field="status">PAUSED</span>
+</div>
+<div class="ps-rail-main">
+<canvas aria-label="Sample cover artwork" class="ps-rail-art" data-art="" height="384" role="img" width="384"></canvas>
+<div class="ps-rail-info">
+<div class="ps-rail-track-index ps-micro"><span><span data-field="index">01</span> // TRACK</span></div>
+<h3 class="ps-title" data-field="title">SIDONIA</h3>
+<div class="ps-artist" data-field="artist">angela</div>
+</div>
+<div aria-label="Playback controls" class="ps-rail-transport">
+<button aria-label="Previous track" class="ps-button" data-action="prev" type="button">PREV</button>
+<button aria-label="Play track" class="ps-button ps-play" data-action="play" type="button">PLAY</button>
+<button aria-label="Next track" class="ps-button" data-action="next" type="button">NEXT</button>
+</div>
+</div>
+<div class="ps-rail-footer">
+<button aria-expanded="false" class="ps-button" data-action="library" type="button">LOCAL TRACKS +</button>
+<div class="ps-rail-time"><span data-field="elapsed">01:24</span><span>/</span><span data-field="duration">04:23</span></div>
+</div>
+<input aria-label="Seek track" class="ps-seek ps-rail-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/>
+<div class="ps-rail-library" data-library-panel="" hidden="">
+<div class="ps-library-label ps-micro">LOCAL COLLECTION</div>
+<div data-library=""></div>
+</div>
+</div>
+</section>
+<section aria-label="D Track ledger" class="ps-design ps-design-d" data-design="D" hidden="">
+<div class="ps-surface ps-ledger">
+<div class="ps-ledger-caption">
+<h3 class="ps-ledger-heading">Track ledger</h3>
+<span class="ps-micro">TSUGUMORI // AUDIO</span>
+</div>
+<div class="ps-ledger-columns">
+<div class="ps-ledger-album">
+<canvas aria-label="Sample cover artwork" class="ps-ledger-art" data-art="" height="384" role="img" width="384"></canvas>
+<div>
+<span class="ps-micro">NOW SELECTED</span>
+<div class="ps-ledger-album-name" data-field="album">KNIGHTS OF SIDONIA</div>
+<div class="ps-artist" data-field="artist">angela</div>
+<div class="ps-ledger-source ps-meta"><span data-field="source">LOCAL</span></div>
+</div>
+</div>
+<div class="ps-ledger-right">
+<div class="ps-ledger-library-head"><span>LOCAL COLLECTION</span><span>04 TRACKS</span></div>
+<div data-always-open="" data-library=""></div>
+<div class="ps-ledger-controls">
+<div class="ps-ledger-control-row">
+<div aria-label="Playback controls" class="ps-ledger-transport">
+<button aria-label="Previous track" class="ps-button" data-action="prev" type="button">PREV</button>
+<button aria-label="Play track" class="ps-button ps-play" data-action="play" type="button">PLAY</button>
+<button aria-label="Next track" class="ps-button" data-action="next" type="button">NEXT</button>
+</div>
+<span class="ps-micro" data-field="status">PAUSED</span>
+</div>
+<input aria-label="Seek track" class="ps-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/>
+<div class="ps-time"><span data-field="elapsed">01:24</span><span data-field="duration">04:23</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="ps-foot"><span data-design-name="">A // MATRIX CONSOLE</span><span>DEMO CONTROLS / NO AUDIO</span></div>
+<div aria-live="polite" class="ps-sr" data-announcement=""></div>
+</div>
+
+<style></style><script src="../preview-runtime.js"></script><script src="support.js"></script><script src="demo.js"></script></body></html>

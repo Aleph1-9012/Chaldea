@@ -1,0 +1,203 @@
+// SPDX-License-Identifier: 0BSD
+pragma ComponentBehavior: Bound
+import QtQuick
+import QtTest
+
+Item {
+    id: testRoot
+    width: 800; height: 800
+    Component { id: notesComponent; Widget { } }
+    TestCase {
+        id: suite
+        name: "QuickNotesBehavior"
+        when: windowShown
+        property var widget
+        function init() { widget = createTemporaryObject(notesComponent, testRoot); verify(widget !== null); waitForRendering(widget); }
+        function visibleChild(item, name) {
+            if (item.objectName === name && item.visible) return item;
+            for (let i = 0; i < item.children.length; i++) {
+                const child = visibleChild(item.children[i], name);
+                if (child) return child;
+            }
+            return null;
+        }
+        function select(index) {
+            const toggle = findChild(widget, "toggleNotes");
+            if (toggle && !widget.listExpanded) { mouseClick(toggle); waitForRendering(widget); }
+            const button = visibleChild(widget, "selectNote-" + index);
+            verify(button !== null);
+            mouseClick(button);
+        }
+        function test_palette_preserves_editor() {
+            const title = visibleChild(widget, "noteTitle");
+            mouseClick(title); keyClick(Qt.Key_A, Qt.ControlModifier); keyClick(Qt.Key_Q);
+            const paletteKey = "s2Palette" in widget ? "s2Palette" : "palette";
+            const surface = findChild(widget, "notesSurface");
+            const add = findChild(widget, "addNote");
+            verify(surface !== null);
+            widget[paletteKey] = "Cobalt";
+            compare(String(surface.color), "#101827");
+            compare(String(widget.accentInk), "#0a0a0a");
+            compare(String(visibleChild(widget, "noteBody").color), "#e5edfa");
+            widget[paletteKey] = "Forest";
+            compare(String(surface.color), "#121e19");
+            widget[paletteKey] = "Paper";
+            compare(String(surface.color), "#f4ecdd");
+            compare(String(widget.accentInk), "#f5f5f0");
+            compare(String(visibleChild(widget, "noteBody").selectedTextColor), "#f5f5f0");
+            const selected = visibleChild(widget, "selectNote-0");
+            if (selected && selected.selected && !selected.flat) compare(String(selected.contentItem.color), "#f5f5f0");
+            compare(String(visibleChild(widget, "noteBody").color), "#2d2923");
+            widget.backgroundColor = "#172132";
+            widget.textColor = "#e2e8f0";
+            widget.accentColor = "#79b8ef";
+            widget[paletteKey] = "Custom";
+
+
+            compare(String(surface.color), "#172132");
+            compare(String(visibleChild(widget, "noteBody").color), "#e2e8f0");
+            compare(String(add.accent), "#79b8ef");
+            compare(String(visibleChild(widget, "noteBody").selectionColor), "#79b8ef");
+            compare(surface.radius, 0);
+            compare(surface.border.width, 1);
+            compare(add.background.radius, 0);
+            compare(add.background.border.width, 1);
+            compare(widget.snapshot()[0].title, "q");
+            verify(title.activeFocus);
+
+            keyClick(Qt.Key_W);
+            compare(widget.snapshot()[0].title, "qw");
+            widget.width = 300;
+            waitForRendering(widget);
+            verify(title.width > 80);
+        }
+        function test_reading_and_insertion_preserve_notes() {
+            const body = visibleChild(widget, "noteBody");
+            body.text = "one two\n継衛🙂";
+            body.forceActiveFocus(); body.cursorPosition = 3;
+            widget.editorHeight = 280; widget.titleSize = 24;
+            widget.listDensity = "Compact"; widget.showNumbers = false;
+            widget.textCount = "Words";
+            compare(visibleChild(widget, "writingArea").height, 280);
+            compare(visibleChild(widget, "noteTitle").font.pixelSize, 24);
+            compare(visibleChild(widget, "textCount").text, "3 words");
+            compare(body.cursorPosition, 3); verify(body.activeFocus);
+            widget.textCount = "Characters";
+            compare(visibleChild(widget, "textCount").text, "11 characters");
+            widget.newNotePosition = "Top";
+            mouseClick(findChild(widget, "addNote")); waitForRendering(widget);
+            compare(widget.selectedIndex, 0);
+            tryVerify(function() { const title = visibleChild(widget, "noteTitle"); return title !== null && title.activeFocus; });
+            keyClick(Qt.Key_F);
+            compare(widget.snapshot()[0].title, "f");
+            compare(widget.snapshot()[1].body, "one two\n継衛🙂");
+            widget.newNotePosition = "Bottom";
+            mouseClick(findChild(widget, "addNote")); waitForRendering(widget);
+            compare(widget.selectedIndex, 3);
+            tryVerify(function() { const title = visibleChild(widget, "noteTitle"); return title !== null && title.activeFocus; });
+            keyClick(Qt.Key_L);
+            compare(widget.snapshot().map(function(note) { return note.title; }).join("|"), "f|Before I leave|Useful commands|l");
+            widget.textCount = "Off";
+        }
+        function test_list_controls_keep_selection_visible() {
+            if ("listExpanded" in widget) widget.listExpanded = true;
+            for (let i = 0; i < 10; i++) widget.noteStore.add(false);
+            const list = findChild(widget, "noteList");
+            for (const density of ["Compact", "Comfortable", "Spacious"]) {
+                widget.listDensity = density;
+                let shortHeight = 0;
+                for (const rows of [2, 8]) {
+                    widget.visibleNotes = rows;
+                    waitForRendering(widget);
+                    tryVerify(function() {
+                        const row = list.itemAtIndex(11);
+                        if (!row) return false;
+                        const point = row.mapToItem(list, 0, 0);
+                        return point.y >= -1 && point.y + row.height <= list.height + 1;
+                    });
+                    if (rows === 2) shortHeight = list.height; else verify(list.height > shortHeight);
+                }
+            }
+        }
+        function test_typing_switching_and_add() {
+            compare(widget.noteCount, 2);
+            let title = visibleChild(widget, "noteTitle");
+            verify(title !== null);
+            mouseClick(title); keyClick(Qt.Key_A, Qt.ControlModifier); keyClick(Qt.Key_Q);
+            compare(widget.snapshot()[0].title, "q");
+            let body = visibleChild(widget, "noteBody");
+            mouseClick(body); keyClick(Qt.Key_A, Qt.ControlModifier); keyClick(Qt.Key_X); keyClick(Qt.Key_Return); keyClick(Qt.Key_Y);
+            compare(widget.snapshot()[0].body, "x\ny");
+            select(1);
+            compare(visibleChild(widget, "noteTitle").text, "Useful commands");
+            select(0);
+            compare(visibleChild(widget, "noteTitle").text, "q");
+            compare(visibleChild(widget, "noteBody").text, "x\ny");
+            mouseClick(findChild(widget, "addNote"));
+            compare(widget.noteCount, 3);
+            tryVerify(function() { const title = visibleChild(widget, "noteTitle"); return title !== null && title.activeFocus; });
+            keyClick(Qt.Key_N);
+            compare(widget.snapshot()[widget.selectedIndex].title, "n");
+        }
+        function test_plain_text_and_long_notes() {
+            const literal = "<b>継衛</b> & {{example}}";
+            widget.noteStore.edit(0, "title", literal);
+            widget.noteStore.edit(0, "body", Array(100).fill(literal).join("\n"));
+            widget.selectNote(0);
+            compare(visibleChild(widget, "noteTitle").text, literal);
+            const body = visibleChild(widget, "noteBody");
+            compare(body.textFormat, TextEdit.PlainText);
+            compare(body.text, Array(100).fill(literal).join("\n"));
+            verify(body.contentHeight > 130);
+            widget.width = 300;
+            waitForRendering(widget);
+            verify(visibleChild(widget, "noteTitle").width > 80);
+        }
+        function test_many_notes() {
+            for (let i = 0; i < 30; i++) widget.noteStore.add(false);
+            compare(widget.noteCount, 32);
+            widget.noteStore.edit(widget.selectedIndex, "body", "last note");
+            widget.selectNote(0);
+            compare(widget.snapshot()[31].body, "last note");
+            waitForRendering(widget);
+            const height = widget.height;
+            for (let i = 0; i < 30; i++) widget.noteStore.add(false);
+            waitForRendering(widget);
+            compare(widget.height, height);
+        }
+        function test_drawer_or_stack_collapse() {
+            const close = findChild(widget, "closeNotes");
+            if (close) {
+                visibleChild(widget, "noteTitle").forceActiveFocus(); keyClick(Qt.Key_Escape);
+                compare(widget.opened, false);
+                verify(visibleChild(widget, "noteBody") === null);
+                mouseClick(close); compare(widget.opened, true);
+                compare(visibleChild(widget, "noteTitle").text, "Before I leave");
+            } else if ("showGrid" in widget) {
+                mouseClick(visibleChild(widget, "selectNote-0"));
+                compare(widget.selectedIndex, -1);
+                verify(visibleChild(widget, "noteBody") === null);
+                mouseClick(visibleChild(widget, "summaryNote-0"));
+                compare(widget.selectedIndex, 0);
+            }
+        }
+        function test_delete_all_and_undo() {
+            if (!("allowDelete" in widget) || !widget.allowDelete) return;
+            const original = JSON.stringify(widget.snapshot());
+            mouseClick(findChild(widget, "deleteNote-0")); compare(widget.noteCount, 1); waitForRendering(widget);
+            mouseClick(findChild(widget, "deleteNote-0")); compare(widget.noteCount, 0); waitForRendering(widget);
+            verify(findChild(widget, "emptyNotes").visible);
+            mouseClick(findChild(widget, "undoDelete")); compare(widget.noteCount, 1); waitForRendering(widget);
+            mouseClick(findChild(widget, "undoDelete")); compare(widget.noteCount, 2);
+            compare(JSON.stringify(widget.snapshot()), original);
+            verify(!findChild(widget, "undoDelete").visible);
+        }
+        function test_instances_are_independent() {
+            const other = createTemporaryObject(notesComponent, testRoot);
+            widget.noteStore.edit(0, "title", "private session");
+            widget.noteStore.add(false);
+            compare(other.noteCount, 2);
+            compare(other.snapshot()[0].title, "Before I leave");
+        }
+    }
+}

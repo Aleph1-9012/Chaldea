@@ -1,0 +1,98 @@
+{
+  "id": "lockscreen-folio-split-shutters",
+  "title": "Tsugumori / Folio / Split shutters",
+  "summary": "Type a demo password and try the lock, unlock, or power animations. This preview does not authenticate or control the computer.",
+  "category": "Lockscreens",
+  "tags": [
+    "lockscreen",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Duration",
+      "label": "Input transition",
+      "type": "number",
+      "default": 100,
+      "min": 80,
+      "max": 350,
+      "step": 10
+    },
+    {
+      "key": "s1Motion",
+      "label": "Animations",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "s3Duration",
+      "label": "Lock/unlock time",
+      "type": "number",
+      "default": 1100,
+      "min": 600,
+      "max": 1800,
+      "step": 50
+    },
+    {
+      "key": "s4Treatment",
+      "label": "Username style",
+      "type": "enum",
+      "default": "Register header",
+      "choices": [
+        "Register header",
+        "Red rail",
+        "Stamped plate"
+      ]
+    },
+    {
+      "key": "s5Treatment",
+      "label": "Clock style",
+      "type": "enum",
+      "default": "Split register",
+      "choices": [
+        "Split register",
+        "Red date tab",
+        "Centered stack"
+      ]
+    },
+    {
+      "key": "s6Treatment",
+      "label": "Password field",
+      "type": "enum",
+      "default": "Inset bay",
+      "choices": [
+        "Inset bay",
+        "Open bracket",
+        "Red plate"
+      ]
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

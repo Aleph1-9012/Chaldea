@@ -1,0 +1,35 @@
+{
+  "id": "tsugumori",
+  "title": "Tsugumori / Phase lock",
+  "summary": "The original formation-corner lockscreen study. An interactive HTML draft; native authentication is not implemented.",
+  "category": "Lockscreens",
+  "tags": [
+    "lockscreen",
+    "tsugumori",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/adapter.js",
+      "path": "preview/adapter.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    }
+  ],
+  "exports": []
+}

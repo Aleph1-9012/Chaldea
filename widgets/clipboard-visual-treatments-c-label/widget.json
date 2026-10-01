@@ -1,0 +1,47 @@
+{
+  "id": "clipboard-visual-treatments-c-label",
+  "title": "Tsugumori / Clipboard visual treatments / C label",
+  "summary": "Search the sample history, select entries, and try the clipboard controls. Changes stay in this preview.",
+  "category": "Clipboard",
+  "tags": [
+    "clipboard",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Texture",
+      "label": "Surface texture",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

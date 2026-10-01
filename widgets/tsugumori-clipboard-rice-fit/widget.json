@@ -1,0 +1,53 @@
+{
+  "id": "tsugumori-clipboard-rice-fit",
+  "title": "Tsugumori / Clipboard rice fit",
+  "summary": "The original Tsugumori clipboard layout with Bone and Charcoal palettes, searchable sample history, pinning, deletion, undo, and close/reopen controls.",
+  "category": "Clipboard",
+  "tags": [
+    "clipboard",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "paper",
+      "label": "Palette",
+      "type": "enum",
+      "default": "Bone",
+      "choices": [
+        "Bone",
+        "Charcoal"
+      ]
+    },
+    {
+      "key": "grid",
+      "label": "Fine grid",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

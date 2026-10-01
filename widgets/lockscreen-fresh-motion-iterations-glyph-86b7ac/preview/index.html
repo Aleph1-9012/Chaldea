@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Fresh motion iterations / Glyph overprint</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden],[data-archive-omitted]{display:none!important}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn,.nav-link{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true],.nav-link.active{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px}.text-muted{color:#999}.form-control,.form-select{background:#151515;color:#eee;border:1px solid #666;padding:7px}.form-range{accent-color:#cc1515}.nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}figure{margin:0}svg{flex-shrink:0}.archive-settings{border-top:1px solid #383434;margin:18px 0 0;padding:12px 0;font-size:11px}.archive-settings summary{cursor:pointer;color:#aaa;letter-spacing:1px}.archive-settings label{display:flex;align-items:center;gap:12px;padding-top:10px;flex-wrap:wrap}.archive-settings label span{min-width:145px}.archive-settings input[type=range]{width:150px;max-width:100%;accent-color:#cc1515}.archive-settings select{max-width:100%;background:#151515;color:#ddd;border:1px solid #555;padding:5px}.archive-settings output{color:#aaa}.archive-settings input[type=checkbox]{accent-color:#cc1515}
+</style></head><body>
+<div id="ts-fresh-motion-studies">
+<div aria-label="New lockscreen motion directions" class="nav nav-pills" role="tablist">
+<button aria-controls="fm-background-panel" aria-selected="true" class="nav-link active" data-design="burn" id="fm-tab-burn" role="tab" type="button">01 · Ink exposure</button>
+<button aria-controls="fm-background-panel" aria-selected="false" class="nav-link" data-design="aperture" id="fm-tab-aperture" role="tab" type="button">02 · Sector aperture</button>
+<button aria-controls="fm-background-panel" aria-selected="false" class="nav-link" data-design="comb" id="fm-tab-comb" role="tab" type="button">03 · Phase comb</button>
+<button aria-controls="fm-background-panel" aria-selected="false" class="nav-link" data-design="overprint" id="fm-tab-overprint" role="tab" type="button">04 · Glyph overprint</button>
+<button aria-controls="fm-background-panel" aria-selected="false" class="nav-link" data-design="fault" id="fm-tab-fault" role="tab" type="button">05 · Fault seam</button>
+</div>
+<div aria-label="Full-screen background sequence previews" class="viz-row" role="group">
+<button class="btn" data-action="enter" type="button">Play lock</button>
+<button class="btn" data-action="exit" type="button">Play unlock</button>
+<span aria-live="polite" class="text-small" data-sequence-status="" role="status">Ink exposure · locked frame</span>
+</div>
+<svg aria-hidden="true" class="fm-defs" height="0" width="0"><defs><clippath clippathunits="objectBoundingBox" id="fm-box-mask"><path d="M0 0L1 0L1 1L0 1Z" data-panel-mask=""></path></clippath></defs></svg>
+<section aria-label="Flat full-screen motion with the centered Red folio and K reference panel" aria-labelledby="fm-tab-burn" class="wb-stage" id="fm-background-panel" role="tabpanel">
+<canvas aria-label="An irregular ink boundary develops across the screen and reveals the center panel" class="wb-field" role="img">Full-screen lock and unlock animation preview.</canvas>
+<div class="wb-corner wb-top-left">TSUGUMORI <span>//</span> TYPE-17</div>
+<div class="wb-corner wb-top-right">SID0NIA <span>//</span> 704</div>
+<div class="fm-shell">
+<section aria-label="Centered Red folio and K reference panel" class="wb-panel">
+<aside aria-label="Tsugumori" class="wb-folio">
+<span class="wb-folio-top">TYPE-17</span>
+<div class="wb-title" lang="ja"><span>継</span><span>衛</span></div>
+<span class="wb-folio-bottom">SID0NIA</span>
+</aside>
+<div class="wb-login">
+<header class="wb-user-head">
+<div class="wb-register"><span>USER <b>//</b></span><span class="wb-unit">◆ 704</span></div>
+<div class="wb-user">SILVERHAND9012</div>
+</header>
+<div class="wb-clock-strip">
+<time aria-label="00:14" datetime="2026-09-14T00:14:00">00<span>:</span>14</time>
+<div class="wb-date"><span>14 SEP</span><span>MON <b>//</b> 2026</span></div>
+</div>
+<canvas aria-label="K compound glyph, unchanged by the background animation" class="wb-glyph" height="324" role="img" width="324">K compound glyph.</canvas>
+<div class="wb-auth">
+<label for="fm-dummy-input"><span>PASSWORD <b>//</b></span><span lang="ja">認証</span></label>
+<div class="wb-input-row"><input aria-label="Demo password. Use dummy text only. No authentication takes place." autocapitalize="off" autocomplete="off" id="fm-dummy-input" maxlength="64" placeholder="Dummy text only…" spellcheck="false" type="password"/><button aria-label="Preview unlock animation" class="wb-unlock" type="button"><i aria-hidden="true" data-lucide="arrow-up-right"></i></button></div>
+<span aria-live="polite" class="wb-auth-status" role="status">PREVIEW ONLY</span>
+</div>
+</div>
+</section>
+<svg aria-hidden="true" class="fm-trace" preserveaspectratio="none" viewbox="0 0 1 1"><path aperture-effect="non-scaling-stroke" data-panel-trace="" fill="none" stroke="#d1252d" stroke-width="1"></path></svg>
+</div>
+<div class="wb-corner wb-bottom-left">MOTION <span>//</span> <span data-field-name="">INK EXPOSURE</span></div>
+<div class="wb-corner wb-bottom-right" data-lock-state="">LOCKED</div>
+</section>
+</div>
+<style>
+  #ts-fresh-motion-studies { width:100%; container-type:inline-size; }
+  #ts-fresh-motion-studies .wb-stage { --wb-red:#d1161c; --wb-white:#e4e2dc; --wb-grey:#99958c; position:relative; isolation:isolate; display:grid; place-items:center; box-sizing:border-box; width:100%; min-height:640px; aspect-ratio:8/5; margin-top:16px; padding:68px 28px; overflow:hidden; background:#080808; color:var(--wb-white); font:400 11px/1.4 "JetBrains Mono",monospace; }
+  #ts-fresh-motion-studies .wb-stage *, #ts-fresh-motion-studies .wb-stage *::before, #ts-fresh-motion-studies .wb-stage *::after { box-sizing:border-box; }
+  #ts-fresh-motion-studies .wb-stage [hidden] { display:none !important; }
+  #ts-fresh-motion-studies .wb-field { position:absolute; inset:0; width:100%; height:100%; z-index:-1; }
+  #ts-fresh-motion-studies .wb-corner { position:absolute; display:flex; flex-wrap:wrap; gap:7px; max-width:calc(50% - 32px); font-size:11px; letter-spacing:.8px; color:#aaa59b; }
+  #ts-fresh-motion-studies .wb-corner span:first-child { color:#c63134; }
+  #ts-fresh-motion-studies .wb-top-left { top:22px; left:24px; }
+  #ts-fresh-motion-studies .wb-top-right { top:22px; right:24px; justify-content:flex-end; }
+  #ts-fresh-motion-studies .wb-bottom-left { bottom:20px; left:24px; }
+  #ts-fresh-motion-studies .wb-bottom-right { bottom:20px; right:24px; justify-content:flex-end; }
+  #ts-fresh-motion-studies .fm-shell { position:relative; width:min(100%,408px); min-width:0; }
+  #ts-fresh-motion-studies .fm-defs { position:absolute; width:0; height:0; overflow:hidden; }
+  #ts-fresh-motion-studies .fm-trace { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+  #ts-fresh-motion-studies .wb-panel { clip-path:url("#fm-box-mask"); position:relative; display:grid; grid-template-columns:106px minmax(0,1fr); width:100%; min-width:0; border:1px solid #49423a; background:#090909; }
+  #ts-fresh-motion-studies .wb-folio { display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:20px 9px; color:#170b0a; background:var(--wb-red); }
+  #ts-fresh-motion-studies .wb-folio-top, #ts-fresh-motion-studies .wb-folio-bottom { font-size:11px; font-weight:500; letter-spacing:1px; }
+  #ts-fresh-motion-studies .wb-folio-bottom { background:#190a09; color:var(--wb-red); padding:4px 7px; }
+  #ts-fresh-motion-studies .wb-title { display:flex; flex-direction:column; font:500 68px/1.08 "Noto Sans JP",sans-serif; }
+  #ts-fresh-motion-studies .wb-login { display:grid; gap:18px; padding:20px; min-width:0; }
+  #ts-fresh-motion-studies .wb-register { display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--wb-grey); font-size:11px; letter-spacing:1px; }
+  #ts-fresh-motion-studies .wb-stage b { color:var(--wb-red); font-weight:400; }
+  #ts-fresh-motion-studies .wb-unit { background:var(--wb-red); color:#090909; padding:3px 7px; font-weight:500; }
+  #ts-fresh-motion-studies .wb-user { margin-top:9px; font-size:17px; font-weight:500; letter-spacing:.7px; overflow-wrap:anywhere; }
+  #ts-fresh-motion-studies .wb-clock-strip { display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid #3b3631; padding:0 0 14px; }
+  #ts-fresh-motion-studies .wb-clock-strip time { font-size:32px; line-height:1.1; white-space:nowrap; letter-spacing:-1px; }
+  #ts-fresh-motion-studies .wb-clock-strip time span { color:var(--wb-red); }
+  #ts-fresh-motion-studies .wb-date { display:grid; gap:3px; color:var(--wb-grey); border-left:1px solid #3b3631; padding-left:12px; font-size:11px; }
+  #ts-fresh-motion-studies .wb-date > span:first-child { color:var(--wb-white); }
+  #ts-fresh-motion-studies .wb-glyph { width:min(100%,162px); aspect-ratio:1; height:auto; display:block; justify-self:center; }
+  #ts-fresh-motion-studies .wb-auth { display:grid; gap:9px; min-width:0; }
+  #ts-fresh-motion-studies .wb-auth label { display:flex; justify-content:space-between; gap:12px; font-size:11px; letter-spacing:.7px; color:var(--wb-grey); }
+  #ts-fresh-motion-studies .wb-input-row { display:grid; grid-template-columns:minmax(0,1fr) 42px; border:1px solid #55504a; border-left:2px solid var(--wb-red); background:#111; }
+  #ts-fresh-motion-studies #fm-dummy-input { width:100%; min-width:0; border:0; border-radius:0; padding:10px; background:transparent; color:var(--wb-white); font:400 16px/1.3 "JetBrains Mono",monospace; letter-spacing:2px; caret-color:var(--wb-red); }
+  #ts-fresh-motion-studies #fm-dummy-input::placeholder { font-size:11px; letter-spacing:0; color:var(--wb-grey); opacity:1; }
+  #ts-fresh-motion-studies .wb-unlock { min-width:42px; min-height:42px; padding:8px; display:flex; align-items:center; justify-content:center; border:0; border-radius:0; background:var(--wb-red); color:#090909; cursor:pointer; }
+  #ts-fresh-motion-studies .wb-unlock:hover { background:#e7282e; }
+  #ts-fresh-motion-studies .wb-unlock svg { width:16px; height:16px; }
+  #ts-fresh-motion-studies .wb-auth-status { font-size:11px; color:var(--wb-grey); min-height:15px; }
+  @container(max-width:540px) {
+    #ts-fresh-motion-studies .wb-stage { min-height:650px; aspect-ratio:auto; padding:66px 16px; }
+    #ts-fresh-motion-studies .wb-panel { grid-template-columns:64px minmax(0,1fr); }
+    #ts-fresh-motion-studies .wb-title { font-size:43px; }
+    #ts-fresh-motion-studies .wb-folio-top { writing-mode:vertical-rl; }
+    #ts-fresh-motion-studies .wb-folio-bottom { writing-mode:vertical-rl; padding:7px 4px; }
+    #ts-fresh-motion-studies .wb-login { padding:14px; gap:16px; }
+    #ts-fresh-motion-studies .wb-user { font-size:14px; letter-spacing:.1px; }
+    #ts-fresh-motion-studies .wb-clock-strip { align-items:flex-start; flex-wrap:wrap; gap:8px; }
+    #ts-fresh-motion-studies .wb-clock-strip time { font-size:30px; }
+    #ts-fresh-motion-studies .wb-date { border-left:0; padding:0; }
+    #ts-fresh-motion-studies .wb-top-left, #ts-fresh-motion-studies .wb-bottom-left { left:16px; }
+    #ts-fresh-motion-studies .wb-top-right, #ts-fresh-motion-studies .wb-bottom-right { right:16px; }
+    #ts-fresh-motion-studies .wb-corner { max-width:calc(50% - 24px); font-size:11px; letter-spacing:0; gap:4px; }
+  }
+  @media(pointer:coarse) { #ts-fresh-motion-studies .wb-unlock { min-height:44px; } }
+</style>
+
+<style></style><script src="../preview-runtime.js"></script><script src="support.js"></script><script src="demo.js"></script></body></html>

@@ -1,0 +1,59 @@
+{
+  "id": "tsugumori-signal-hunting",
+  "title": "Tsugumori / Signal hunting",
+  "summary": "Tune the three dials or use Assist to find hidden shapes. Collect discoveries and move to the next signal. State resets when you leave this widget.",
+  "category": "Interactive art",
+  "tags": [
+    "interactive-art",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "grid",
+      "label": "Red coordinate grid",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "density",
+      "label": "Point detail",
+      "type": "enum",
+      "default": "Fine",
+      "choices": [
+        "Fine",
+        "Sparse"
+      ]
+    },
+    {
+      "key": "accent",
+      "label": "Signal accent",
+      "type": "color",
+      "default": "#cc1515"
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

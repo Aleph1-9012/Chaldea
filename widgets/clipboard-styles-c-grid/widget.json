@@ -1,0 +1,50 @@
+{
+  "id": "clipboard-styles-c-grid",
+  "title": "Tsugumori / Clipboard styles / C grid",
+  "summary": "Search the sample history, select entries, and try the clipboard controls. Changes stay in this preview.",
+  "category": "Clipboard",
+  "tags": [
+    "clipboard",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0GridStrength",
+      "label": "Grid contrast",
+      "type": "number",
+      "default": 9.5,
+      "min": 0,
+      "max": 18,
+      "step": 0.5
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

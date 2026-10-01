@@ -1,0 +1,15 @@
+[package]
+name = "xlr8"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+description = "Validate and package XLR8 widgets"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.9"
+sha2 = "0.10"
+jsonschema = { version = "0.33", default-features = false }
+regex = "1"
+tempfile = "3"

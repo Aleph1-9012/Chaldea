@@ -1,0 +1,59 @@
+{
+  "id": "menu-row-iterations-condensed",
+  "title": "Tsugumori / Menu row iterations / Condensed",
+  "summary": "Search and select sample applications, then use the launcher controls. Launch actions are simulated.",
+  "category": "Menu",
+  "tags": [
+    "menu",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Height",
+      "label": "Row spacing",
+      "type": "number",
+      "default": 54,
+      "min": 48,
+      "max": 64,
+      "step": 2
+    },
+    {
+      "key": "s1Grid",
+      "label": "Red grid opacity",
+      "type": "number",
+      "default": 9,
+      "min": 5,
+      "max": 15,
+      "step": 1
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

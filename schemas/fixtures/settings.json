@@ -1,0 +1,194 @@
+[
+  {
+    "name": "bounded default",
+    "valid": true,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  },
+  {
+    "name": "default above max",
+    "valid": false,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 101,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  },
+  {
+    "name": "inverted bounds",
+    "valid": false,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 5,
+      "min": 10,
+      "max": 0,
+      "step": 1
+    }
+  },
+  {
+    "name": "default off step",
+    "valid": false,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 3,
+      "min": 0,
+      "max": 10,
+      "step": 2
+    }
+  },
+  {
+    "name": "fractional step",
+    "valid": true,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 0.3,
+      "min": 0,
+      "max": 1,
+      "step": 0.1
+    }
+  },
+  {
+    "name": "zero step",
+    "valid": false,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0
+    }
+  },
+  {
+    "name": "declared enum",
+    "valid": true,
+    "setting": {
+      "key": "style",
+      "label": "Style",
+      "type": "enum",
+      "default": "Solid",
+      "choices": [
+        "Solid",
+        "Outline"
+      ]
+    }
+  },
+  {
+    "name": "undeclared enum",
+    "valid": false,
+    "setting": {
+      "key": "style",
+      "label": "Style",
+      "type": "enum",
+      "default": "Ghost",
+      "choices": [
+        "Solid",
+        "Outline"
+      ]
+    }
+  },
+  {
+    "name": "unicode codepoints",
+    "valid": true,
+    "setting": {
+      "key": "label",
+      "label": "Label",
+      "type": "string",
+      "default": "\u7d99\ud83c\udf1f",
+      "maxLength": 2
+    }
+  },
+  {
+    "name": "long string",
+    "valid": false,
+    "setting": {
+      "key": "label",
+      "label": "Label",
+      "type": "string",
+      "default": "long",
+      "maxLength": 3
+    }
+  },
+  {
+    "name": "boolean",
+    "valid": true,
+    "setting": {
+      "key": "corners",
+      "label": "Corners",
+      "type": "boolean",
+      "default": true
+    }
+  },
+  {
+    "name": "string boolean",
+    "valid": false,
+    "setting": {
+      "key": "corners",
+      "label": "Corners",
+      "type": "boolean",
+      "default": "true"
+    }
+  },
+  {
+    "name": "hex color",
+    "valid": true,
+    "setting": {
+      "key": "accent",
+      "label": "Accent",
+      "type": "color",
+      "default": "#ABCDEF"
+    }
+  },
+  {
+    "name": "CSS color expression",
+    "valid": false,
+    "setting": {
+      "key": "accent",
+      "label": "Accent",
+      "type": "color",
+      "default": "url(evil)"
+    }
+  },
+  {
+    "name": "reserved key",
+    "valid": false,
+    "setting": {
+      "key": "constructor",
+      "label": "Label",
+      "type": "string",
+      "default": "x",
+      "maxLength": 10
+    }
+  },
+  {
+    "name": "overflowed step count",
+    "valid": false,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "type": "number",
+      "default": 1e+307,
+      "min": 0,
+      "max": 1e+308,
+      "step": 1e-307
+    }
+  }
+]

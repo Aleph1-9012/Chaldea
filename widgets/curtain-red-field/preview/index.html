@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<title>Red field curtain</title><style>html{color-scheme:dark}body{margin:0;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}body>*{box-sizing:border-box}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true]{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px;padding:0 12px}[hidden]{display:none!important}body{padding:16px}</style></head><body>
+<style>
+#ts-curtain-studies { --ts-red:#cc1515; --ts-dark:#0a0a0a; --ts-paper:#c8c8c4; --ts-muted:#96948e; color:var(--ts-paper); font:400 12px/1.5 'JetBrains Mono',monospace; width:100%; }
+#ts-curtain-studies * { box-sizing:border-box; }
+#ts-curtain-studies button,#ts-curtain-studies select { font:inherit; color:var(--ts-paper); border:1px solid #48423e; background:#111111; border-radius:0; min-height:34px; padding:6px 12px; cursor:pointer; }
+#ts-curtain-studies button:hover { border-color:var(--ts-red); }
+#ts-curtain-studies button[aria-pressed="true"] { background:var(--ts-red); color:#080808; border-color:var(--ts-red); }
+#ts-curtain-studies .ts-toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:18px; }
+#ts-curtain-studies .ts-panel-select { display:flex; gap:4px; }
+#ts-curtain-studies .ts-toolbar .ts-replay { margin-left:auto; border-color:var(--ts-red); }
+#ts-curtain-studies .ts-grid { display:grid; grid-template-columns:1fr; gap:22px 20px; }
+#ts-curtain-studies .ts-study { min-width:0; }
+#ts-curtain-studies .ts-caption { display:flex; align-items:center; gap:12px; margin:0 0 8px; font-size:12px; font-weight:400; }
+#ts-curtain-studies .ts-letter { color:var(--ts-red); font-weight:500; font-size:16px; }
+#ts-curtain-studies .ts-caption-name { color:light-dark(#292824,#c8c8c4); }
+#ts-curtain-studies .ts-stage { position:relative; height:256px; overflow:hidden; isolation:isolate; background:#141414; }
+#ts-curtain-studies .ts-stage::before { content:''; position:absolute; inset:0; background:linear-gradient(145deg,transparent 52%,#171717 52.2%,#171717 70%,transparent 70.2%); }
+#ts-curtain-studies .ts-assembly { position:absolute; inset:0; overflow:hidden; }
+#ts-curtain-studies .ts-content { position:absolute; inset:0; }
+#ts-curtain-studies .ts-menu,#ts-curtain-studies .ts-player { position:absolute; inset:0; background-color:var(--ts-dark); border:1px solid #62302d; }
+#ts-curtain-studies .ts-menu { background-image:linear-gradient(#cc15150b 1px,transparent 1px),linear-gradient(90deg,#cc15150b 1px,transparent 1px); background-size:20px 20px; }
+#ts-curtain-studies .ts-menu-head { height:41px; display:flex; gap:18px; padding:12px 16px; border-bottom:1px solid #cc151525; letter-spacing:2px; white-space:nowrap; font-size:11px; }
+#ts-curtain-studies .ts-menu-head span:last-child { color:var(--ts-muted); letter-spacing:1px; }
+#ts-curtain-studies .ts-menu-body { display:flex; height:177px; }
+#ts-curtain-studies .ts-categories { width:86px; flex-shrink:0; padding-top:13px; border-right:1px solid #cc15152c; }
+#ts-curtain-studies .ts-category { padding:7px 9px; letter-spacing:1px; font-size:11px; color:var(--ts-muted); }
+#ts-curtain-studies .ts-category:first-child { background:var(--ts-red); color:#090909; }
+#ts-curtain-studies .ts-apps { flex:1; min-width:0; }
+#ts-curtain-studies .ts-search { height:37px; padding:11px 13px; color:var(--ts-muted); font-size:11px; }
+#ts-curtain-studies .ts-app { display:flex; align-items:center; gap:10px; padding:7px 13px; height:33px; color:var(--ts-red); white-space:nowrap; }
+#ts-curtain-studies .ts-app span { color:var(--ts-muted); font-size:11px; }
+#ts-curtain-studies .ts-app.selected { background:var(--ts-red); color:#080808; }
+#ts-curtain-studies .ts-app.selected span { color:#080808; }
+#ts-curtain-studies .ts-footer { height:36px; display:flex; gap:18px; align-items:center; justify-content:center; border-top:1px solid #cc151533; color:var(--ts-muted); font-size:11px; letter-spacing:1px; }
+#ts-curtain-studies .ts-player-head { height:41px; border-bottom:1px solid #453a34; display:flex; align-items:center; justify-content:space-between; padding:0 14px; color:var(--ts-red); letter-spacing:1px; font-size:11px; }
+#ts-curtain-studies .ts-player-head span:last-child { color:var(--ts-muted); }
+#ts-curtain-studies .ts-player-body { display:flex; height:143px; }
+#ts-curtain-studies .ts-glyph { margin:12px; width:112px; flex-shrink:0; display:flex; justify-content:center; align-items:center; overflow:hidden; color:#827c76; background:#0d0d0d; font:400 8px/9px monospace; white-space:pre; letter-spacing:2px; }
+#ts-curtain-studies .ts-player-meta { min-width:0; padding:14px 8px; }
+#ts-curtain-studies .ts-playing { color:var(--ts-muted); font-size:11px; }
+#ts-curtain-studies .ts-playing::before { content:''; display:inline-block; width:4px; height:4px; margin-right:7px; background:var(--ts-red); }
+#ts-curtain-studies .ts-song { font-size:23px; margin-top:9px; letter-spacing:1px; }
+#ts-curtain-studies .ts-artist { color:var(--ts-muted); margin-top:2px; }
+#ts-curtain-studies .ts-album { color:var(--ts-muted); font-size:11px; margin-top:11px; }
+#ts-curtain-studies .ts-progress { margin:4px 14px 0; height:2px; background:#453a34; }
+#ts-curtain-studies .ts-progress::before { content:''; display:block; width:35%; height:2px; background:var(--ts-red); }
+#ts-curtain-studies .ts-times { display:flex; justify-content:space-between; padding:5px 14px 7px; color:var(--ts-muted); font-size:11px; }
+#ts-curtain-studies .ts-transport { display:flex; gap:8px; padding:0 14px; font-size:11px; letter-spacing:1px; }
+#ts-curtain-studies .ts-transport span { flex:1; border:1px solid #49433d; text-align:center; padding:5px 2px; }
+#ts-curtain-studies .ts-transport span:nth-child(2) { background:var(--ts-red); color:#090909; border-color:var(--ts-red); }
+#ts-curtain-studies [hidden] { display:none !important; }
+#ts-curtain-studies .ts-curtain { position:absolute; top:0; right:0; bottom:0; width:55%; overflow:hidden; pointer-events:none; }
+#ts-curtain-studies .ts-red-field { background:var(--ts-red); color:#130707; }
+#ts-curtain-studies .ts-red-field .ts-stencil { position:absolute; right:16px; top:18px; display:flex; flex-direction:column; gap:3px; font-size:11px; letter-spacing:2px; white-space:nowrap; }
+#ts-curtain-studies .ts-red-field::after { content:''; position:absolute; right:16px; bottom:17px; width:46px; height:3px; background:#160707; }
+#ts-curtain-studies .ts-hull { background:#121212; border-left:1px solid #69635d; }
+#ts-curtain-studies .ts-hull-frame { position:absolute; inset:12px; border:1px solid #353330; }
+#ts-curtain-studies .ts-hull-frame::before,#ts-curtain-studies .ts-hull-frame::after { content:''; position:absolute; width:16px; height:16px; }
+#ts-curtain-studies .ts-hull-frame::before { top:-1px; left:-1px; border-left:2px solid var(--ts-red); border-top:2px solid var(--ts-red); }
+#ts-curtain-studies .ts-hull-frame::after { bottom:-1px; right:-1px; border-right:2px solid var(--ts-red); border-bottom:2px solid var(--ts-red); }
+#ts-curtain-studies .ts-hull .ts-stencil { position:absolute; right:27px; bottom:26px; white-space:nowrap; color:#a49c95; font-size:11px; letter-spacing:2px; }
+#ts-curtain-studies .ts-hull-number { position:absolute; right:27px; top:25px; font-size:48px; line-height:1; color:#34322f; font-weight:400; }
+#ts-curtain-studies .ts-hull-stripe { position:absolute; top:17px; left:0; width:4px; height:38px; background:var(--ts-red); }
+#ts-curtain-studies .ts-band-curtain { position:absolute; inset:0; pointer-events:none; }
+#ts-curtain-studies .ts-band { position:absolute; right:0; width:55%; height:calc(25% + 1px); background:#111111; border-left:3px solid var(--ts-red); border-bottom:1px solid #34302d; overflow:hidden; }
+#ts-curtain-studies .ts-band:nth-child(even) { background:#1e0b0b; }
+#ts-curtain-studies .ts-band:nth-child(1) { top:0; }
+#ts-curtain-studies .ts-band:nth-child(2) { top:25%; }
+#ts-curtain-studies .ts-band:nth-child(3) { top:50%; }
+#ts-curtain-studies .ts-band:nth-child(4) { top:75%; }
+#ts-curtain-studies .ts-band .ts-stencil { position:absolute; right:16px; top:13px; font-size:11px; color:#8e7770; }
+#ts-curtain-studies .ts-sweep { position:absolute; top:0; bottom:0; left:45%; width:12px; background:var(--ts-red); pointer-events:none; }
+#ts-curtain-studies .ts-sweep::after { content:''; position:absolute; left:16px; width:2px; top:0; bottom:0; background:#762520; }
+#ts-curtain-studies .ts-inspector { display:flex; align-items:center; gap:12px; margin-top:20px; color:light-dark(#48423e,#c8c8c4); font-size:11px; }
+#ts-curtain-studies .ts-inspector input { flex:1; min-width:50px; accent-color:var(--ts-red); cursor:pointer; }
+#ts-curtain-studies .ts-state { min-width:95px; text-align:right; font-variant-numeric:tabular-nums; }
+#ts-curtain-studies[data-labels="false"] .ts-stencil,#ts-curtain-studies[data-labels="false"] .ts-hull-number { display:none; }
+@media(max-width:580px) { #ts-curtain-studies .ts-grid { grid-template-columns:1fr; } }
+@media(pointer:coarse) { #ts-curtain-studies button,#ts-curtain-studies select { min-height:44px; } #ts-curtain-studies .ts-inspector input { min-height:44px; } }
+</style>
+<div aria-label="Red field curtain" id="ts-curtain-studies">
+<div class="ts-toolbar">
+<div aria-label="Preview widget" class="ts-panel-select" role="group">
+<button aria-pressed="true" data-panel="menu" type="button">Menu</button>
+<button aria-pressed="false" data-panel="player" type="button">Player</button>
+</div>
+<select aria-label="Playback speed" id="ts-curtain-speed"><option value="1">1× · 780 ms</option><option value="2">½× · slow view</option></select>
+<button class="ts-replay" type="button">Replay</button>
+</div>
+<div class="ts-grid">
+<section aria-label="A, Red field. A solid Tsugumori red curtain with small dark Japanese type." class="ts-study" data-design="a">
+<h3 class="ts-caption"><span class="ts-letter">A</span><span class="ts-caption-name">Red field</span></h3>
+<div class="ts-stage"><div class="ts-assembly"><div class="ts-content"></div><div class="ts-curtain ts-red-field"><div class="ts-stencil"><span>継衛</span><span>TYPE 17</span></div></div></div></div>
+</section>
+
+
+
+</div>
+<div class="ts-inspector">
+<label for="ts-curtain-frame">Inspect reveal</label>
+<input aria-valuetext="45 percent revealed" id="ts-curtain-frame" max="100" min="0" type="range" value="45"/>
+<output aria-live="polite" class="ts-state">45% REVEALED</output>
+</div>
+<template id="ts-curtain-menu-sample">
+<div aria-hidden="true" class="ts-menu">
+<div class="ts-menu-head"><span>SYSTEM</span><span>— システム</span></div>
+<div class="ts-menu-body">
+<div class="ts-categories"><div class="ts-category">— ALL</div><div class="ts-category">DEVELOP</div><div class="ts-category">SYSTEM</div><div class="ts-category">NETWORK</div></div>
+<div class="ts-apps"><div class="ts-search">▸ search application…</div><div class="ts-app"><span>01</span>1Password</div><div class="ts-app"><span>02</span>Aether</div><div class="ts-app selected"><span>03</span>Alacritty</div><div class="ts-app"><span>04</span>Brave</div></div>
+</div>
+<div class="ts-footer"><span>TERMINAL</span><span>FILES</span><span>LOCK</span></div>
+</div>
+</template>
+<template id="ts-curtain-player-sample">
+<div aria-hidden="true" class="ts-player">
+<div class="ts-player-head"><span>継衛 // AUDIO</span><span>TYPE 17</span></div>
+<div class="ts-player-body">
+<pre class="ts-glyph">   .:++:.
+  :xXXXx:
+ .x##XX#+.
+:+##@@#XX+
++X#@@@#XX:
+xX##@#XXx:
+:xX###Xx+.
+ :xXXXx+:
+  :+xx+:
+   .::.</pre>
+<div class="ts-player-meta"><div class="ts-playing">PLAYING // LOCAL</div><div class="ts-song">SIDONIA</div><div class="ts-artist">angela</div><div class="ts-album">KNIGHTS OF SIDONIA</div></div>
+</div>
+<div class="ts-progress"></div><div class="ts-times"><span>01:24</span><span>04:23</span></div>
+<div class="ts-transport"><span>PREV</span><span>PAUSE</span><span>NEXT</span></div>
+</div>
+</template>
+</div>
+<script src="../preview-runtime.js"></script>
+<script src="demo.js"></script>
+</body></html>

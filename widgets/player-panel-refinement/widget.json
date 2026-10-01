@@ -1,0 +1,67 @@
+{
+  "id": "player-panel-refinement",
+  "title": "Tsugumori / Player panel refinement",
+  "summary": "Play or pause the silent sample timeline, seek, switch tracks, and inspect the player artwork.",
+  "category": "Player",
+  "tags": [
+    "player",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0TitleSize",
+      "label": "Title size",
+      "type": "number",
+      "default": 20,
+      "min": 18,
+      "max": 24,
+      "step": 2
+    },
+    {
+      "key": "s1Grid",
+      "label": "Subtle notes grid",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "s2Example",
+      "label": "Example content",
+      "type": "enum",
+      "default": "Song without album",
+      "choices": [
+        "Long video title",
+        "Song with album",
+        "Song without album"
+      ]
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

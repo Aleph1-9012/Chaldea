@@ -1,0 +1,83 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "formatVersion": {
+      "const": 1
+    },
+    "widgets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{1,47}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "tags": {
+            "type": "array",
+            "uniqueItems": true,
+            "maxItems": 10,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "published"
+            ]
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "bundleUrl": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$",
+            "maxLength": 180
+          },
+          "thumbnailUrl": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$",
+            "maxLength": 180
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "summary",
+          "category",
+          "tags",
+          "status",
+          "revision",
+          "bundleUrl",
+          "thumbnailUrl"
+        ]
+      }
+    }
+  },
+  "required": [
+    "formatVersion",
+    "widgets"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

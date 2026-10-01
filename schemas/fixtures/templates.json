@@ -1,0 +1,47 @@
+[
+  {
+    "name": "typed value",
+    "source": "property int level: {{level}}",
+    "valid": true
+  },
+  {
+    "name": "quoted token",
+    "source": "property string label: \"{{label}}\"",
+    "valid": false
+  },
+  {
+    "name": "unknown token",
+    "source": "property int missing: {{missing}}",
+    "valid": false
+  },
+  {
+    "name": "wrong property type",
+    "source": "property bool level: {{level}}",
+    "valid": false
+  },
+  {
+    "name": "expression token",
+    "source": "property real level: {{level}} * 2",
+    "valid": false
+  },
+  {
+    "name": "malformed token",
+    "source": "property int level: {{ level }}",
+    "valid": false
+  },
+  {
+    "name": "string value",
+    "source": "property string label: {{label}}",
+    "valid": true
+  },
+  {
+    "name": "enum value",
+    "source": "property string meter: {{meter}}",
+    "valid": true
+  },
+  {
+    "name": "empty QML",
+    "source": "",
+    "valid": false
+  }
+]

@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: 0BSD
+import QtQuick
+
+NotesStack {
+    property bool s0Grid: {{s0Grid}}
+
+    showGrid: s0Grid
+    property string palette: {{palette}}
+    property int editorHeight: {{editorHeight}}
+    property int titleSize: {{titleSize}}
+    property string listDensity: {{listDensity}}
+    property int visibleNotes: {{visibleNotes}}
+    property string newNotePosition: {{newNotePosition}}
+    property string textCount: {{textCount}}
+    property bool showNumbers: {{showNumbers}}
+
+    writingHeight: editorHeight
+    headingSize: titleSize
+    density: listDensity
+    listRows: visibleNotes
+    prependNewNotes: newNotePosition === "Top"
+    counterMode: textCount
+    numbered: showNumbers
+    property color backgroundColor: {{backgroundColor}}
+    property color textColor: {{textColor}}
+    property color accentColor: {{accentColor}}
+
+    paletteName: palette
+    customBackground: backgroundColor
+    customText: textColor
+    customAccent: accentColor
+}

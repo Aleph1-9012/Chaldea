@@ -1,0 +1,43 @@
+{
+  "id": "tsugumori-anamorphic-704",
+  "title": "Tsugumori / Anamorphic 704",
+  "summary": "Drag to rotate. Find the angle where the marks become 704. Pause or resume with the animation control.",
+  "category": "Interactive art",
+  "tags": [
+    "interactive-art",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "compact",
+      "label": "Compact canvas",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

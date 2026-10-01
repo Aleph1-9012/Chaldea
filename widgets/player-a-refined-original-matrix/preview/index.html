@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Player a refined / Original matrix</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden],[data-archive-omitted]{display:none!important}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn,.nav-link{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true],.nav-link.active{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px}.text-muted{color:#999}.form-control,.form-select{background:#151515;color:#eee;border:1px solid #666;padding:7px}.form-range{accent-color:#cc1515}.nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}figure{margin:0}svg{flex-shrink:0}.archive-settings{border-top:1px solid #383434;margin:18px 0 0;padding:12px 0;font-size:11px}.archive-settings summary{cursor:pointer;color:#aaa;letter-spacing:1px}.archive-settings label{display:flex;align-items:center;gap:12px;padding-top:10px;flex-wrap:wrap}.archive-settings label span{min-width:145px}.archive-settings input[type=range]{width:150px;max-width:100%;accent-color:#cc1515}.archive-settings select{max-width:100%;background:#151515;color:#ddd;border:1px solid #555;padding:5px}.archive-settings output{color:#aaa}.archive-settings input[type=checkbox]{accent-color:#cc1515}
+</style></head><body>
+<style>
+#tsugumori-player-a-refined { --ps-black:#0a0a0a; --ps-paper:#e8e8e8; --ps-red:#cc1515; --ps-muted:#a7a29e; --ps-line:#37312e; width:100%; background:transparent; color:var(--ps-paper); font:12px/1.5 'JetBrains Mono','DejaVu Sans Mono',monospace; container-type:inline-size; }
+#tsugumori-player-a-refined * { box-sizing:border-box; }
+#tsugumori-player-a-refined [hidden] { display:none !important; }
+#tsugumori-player-a-refined .pa-compare { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; font-size:11px; letter-spacing:1px; color:#a7a29e; }
+#tsugumori-player-a-refined .pa-compare-label { color:#c9c4c0; }
+#tsugumori-player-a-refined .pa-compare-controls { display:flex; gap:4px; }
+#tsugumori-player-a-refined .pa-compare button { appearance:none; border:1px solid #393330; color:#a7a29e; background:#0a0a0a; font:inherit; padding:8px 12px; cursor:pointer; min-height:35px; }
+#tsugumori-player-a-refined .pa-compare button[aria-pressed="true"] { border-color:#cc1515; color:#e8e8e8; }
+#tsugumori-player-a-refined .pa-compare button:hover { color:#fff; }
+#tsugumori-player-a-refined .ps-design { width:100%; }
+#tsugumori-player-a-refined .ps-surface { position:relative; background:#0a0a0a; border:1px solid #453a34; max-width:100%; }
+#tsugumori-player-a-refined .ps-surface::before,#tsugumori-player-a-refined .ps-surface::after { content:''; position:absolute; width:11px; height:11px; border-style:solid; border-color:#cc1515; pointer-events:none; z-index:2; }
+#tsugumori-player-a-refined .ps-surface::before { left:-1px; top:-1px; border-width:1px 0 0 1px; }
+#tsugumori-player-a-refined .ps-surface::after { right:-1px; bottom:-1px; border-width:0 1px 1px 0; }
+#tsugumori-player-a-refined .ps-micro { font-size:11px; letter-spacing:1px; color:#a7a29e; }
+#tsugumori-player-a-refined .ps-title { font-size:34px; font-weight:500; line-height:1.13; letter-spacing:-1.3px; overflow-wrap:anywhere; margin:0; }
+#tsugumori-player-a-refined .ps-artist { color:#b8b2ac; font-size:14px; margin:10px 0 0; }
+#tsugumori-player-a-refined .ps-button { appearance:none; position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center; overflow:hidden; min-width:0; min-height:42px; padding:10px 13px; border:1px solid #51443d; background:transparent; color:#e8e8e8; font:500 11px/1.4 'JetBrains Mono','DejaVu Sans Mono',monospace; letter-spacing:1px; white-space:nowrap; cursor:pointer; transition:border-color .22s,color .22s; }
+#tsugumori-player-a-refined .ps-button::before { content:''; position:absolute; inset:0; z-index:-1; background:#cc1515; transform:translateX(-102%); transition:transform .24s cubic-bezier(.65,0,.35,1); }
+#tsugumori-player-a-refined .ps-button:hover::before { transform:translateX(0); }
+#tsugumori-player-a-refined .ps-button:hover { border-color:#cc1515; }
+#tsugumori-player-a-refined .ps-play { border-color:#cc1515; }
+#tsugumori-player-a-refined.ps-playing .ps-play { background:#cc1515; }
+#tsugumori-player-a-refined .ps-seek { appearance:none; display:block; width:100%; height:25px; margin:0; cursor:pointer; background:transparent; accent-color:#cc1515; }
+#tsugumori-player-a-refined .ps-seek::-webkit-slider-runnable-track { height:2px; background:linear-gradient(to right,#cc1515 0 var(--ps-progress,32%),#483b34 var(--ps-progress,32%) 100%); }
+#tsugumori-player-a-refined .ps-seek::-webkit-slider-thumb { appearance:none; width:5px; height:15px; margin-top:-6.5px; border:0; border-radius:0; background:#e8e8e8; }
+#tsugumori-player-a-refined .ps-seek::-moz-range-track { height:2px; background:#483b34; }
+#tsugumori-player-a-refined .ps-seek::-moz-range-progress { height:2px; background:#cc1515; }
+#tsugumori-player-a-refined .ps-seek::-moz-range-thumb { width:5px; height:15px; border:0; border-radius:0; background:#e8e8e8; }
+#tsugumori-player-a-refined .ps-time { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px; font-size:11px; color:#a7a29e; font-variant-numeric:tabular-nums; }
+#tsugumori-player-a-refined .ps-sr { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+#tsugumori-player-a-refined .ps-foot { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-top:12px; font-size:11px; letter-spacing:.4px; color:#a7a29e; }
+#tsugumori-player-a-refined .pa-header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px 16px; padding:15px 20px; border-bottom:1px solid #3b312c; }
+#tsugumori-player-a-refined .pa-brand { display:flex; align-items:center; gap:10px; letter-spacing:1.5px; color:#d8d3cd; font-size:11px; }
+#tsugumori-player-a-refined .pa-brand-mark { width:5px; height:15px; background:#cc1515; }
+#tsugumori-player-a-refined .pa-source { font-size:11px; letter-spacing:.8px; color:#a7a29e; }
+#tsugumori-player-a-refined .pa-source span { color:#e8e8e8; margin-left:7px; }
+#tsugumori-player-a-refined .pa-main { display:grid; grid-template-columns:44% minmax(0,1fr); }
+#tsugumori-player-a-refined .pa-visual { min-width:0; padding:20px; border-right:1px solid #3b312c; }
+#tsugumori-player-a-refined .pa-matrix-frame { position:relative; background:#080808; }
+#tsugumori-player-a-refined .pa-matrix-frame::before,#tsugumori-player-a-refined .pa-matrix-frame::after { content:''; position:absolute; width:15px; height:15px; border-style:solid; border-color:#7d6b5e; pointer-events:none; }
+#tsugumori-player-a-refined .pa-matrix-frame::before { top:0; right:0; border-width:1px 1px 0 0; }
+#tsugumori-player-a-refined .pa-matrix-frame::after { bottom:0; left:0; border-width:0 0 1px 1px; }
+#tsugumori-player-a-refined .pa-visual canvas { width:100%; height:auto; aspect-ratio:1; display:block; }
+#tsugumori-player-a-refined .pa-visual-label { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-top:13px; color:#a7a29e; font-size:11px; letter-spacing:.8px; }
+#tsugumori-player-a-refined .pa-visual-label span:last-child { color:#7f7771; }
+#tsugumori-player-a-refined .pa-copy { min-width:0; display:flex; flex-direction:column; padding:24px 24px 22px; }
+#tsugumori-player-a-refined.pa-grid .pa-copy { background-image:linear-gradient(rgba(204,21,21,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(204,21,21,.035) 1px,transparent 1px); background-size:24px 24px; }
+#tsugumori-player-a-refined .pa-state { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:7px; color:#a7a29e; font-size:11px; letter-spacing:1.3px; }
+#tsugumori-player-a-refined .pa-state-number { color:#d76151; }
+#tsugumori-player-a-refined .pa-state-play { display:flex; align-items:center; gap:7px; }
+#tsugumori-player-a-refined .pa-lamp { width:4px; height:4px; background:#77655a; }
+#tsugumori-player-a-refined.ps-playing .pa-lamp { background:#cc1515; }
+#tsugumori-player-a-refined .pa-song { padding:24px 0 21px; }
+#tsugumori-player-a-refined .pa-song .ps-title { font-size:clamp(30px,5.3cqw,40px); }
+#tsugumori-player-a-refined .pa-song .ps-artist { font-size:15px; }
+#tsugumori-player-a-refined .pa-album { display:flex; flex-direction:column; gap:5px; margin-top:auto; padding-top:14px; border-top:1px solid #342b26; font-size:11px; letter-spacing:.5px; color:#b8b2ac; overflow-wrap:anywhere; }
+#tsugumori-player-a-refined .pa-album-label { color:#8f847c; letter-spacing:1.5px; }
+#tsugumori-player-a-refined .pa-transport { display:grid; grid-template-columns:1fr 1.8fr 1fr; gap:7px; margin-top:21px; }
+#tsugumori-player-a-refined .pa-primary { background:#cc1515; border-color:#cc1515; }
+#tsugumori-player-a-refined .pa-primary::before { background:#e8e8e8; }
+#tsugumori-player-a-refined .pa-primary:hover { color:#0a0a0a; border-color:#e8e8e8; }
+#tsugumori-player-a-refined .pa-progress { padding:17px 20px 15px; border-top:1px solid #3b312c; }
+#tsugumori-player-a-refined .pa-progress-readout { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:8px; }
+#tsugumori-player-a-refined .pa-time-current { font-size:23px; color:#e8e8e8; letter-spacing:-.5px; font-variant-numeric:tabular-nums; line-height:1; }
+#tsugumori-player-a-refined .pa-time-total { font-size:11px; color:#a7a29e; font-variant-numeric:tabular-nums; }
+#tsugumori-player-a-refined .pa-ruler { display:flex; justify-content:space-between; align-items:flex-end; height:6px; padding:0 2px; }
+#tsugumori-player-a-refined .pa-ruler i { display:block; width:1px; height:3px; background:#514239; }
+#tsugumori-player-a-refined .pa-ruler i:nth-child(5n+1) { height:6px; background:#85715f; }
+#tsugumori-player-a-refined .pa-library-toggle { appearance:none; position:relative; isolation:isolate; overflow:hidden; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; background:transparent; color:#bab1a8; font:11px/1.5 'JetBrains Mono','DejaVu Sans Mono',monospace; letter-spacing:1.1px; cursor:pointer; min-height:44px; padding:12px 20px; border:0; border-top:1px solid #3b312c; }
+#tsugumori-player-a-refined .pa-library-toggle::before { content:''; position:absolute; inset:0; background:#cc1515; z-index:-1; transform:translateX(-102%); transition:transform .25s cubic-bezier(.65,0,.35,1); }
+#tsugumori-player-a-refined .pa-library-toggle:hover::before { transform:translateX(0); }
+#tsugumori-player-a-refined .pa-library-toggle:hover { color:#e8e8e8; }
+#tsugumori-player-a-refined .pa-library-symbol { font-size:19px; line-height:1; color:#e8e8e8; }
+#tsugumori-player-a-refined .pa-library { border-top:1px solid #3b312c; padding:7px; }
+#tsugumori-player-a-refined .ps-track { position:relative; isolation:isolate; display:grid; grid-template-columns:42px minmax(0,1fr) auto; gap:9px; align-items:center; width:100%; min-height:58px; padding:10px 12px; border:0; border-bottom:1px solid #2c2622; background:#0a0a0a; color:#e8e8e8; font:inherit; text-align:left; cursor:pointer; overflow:hidden; }
+#tsugumori-player-a-refined .ps-track::before { content:''; position:absolute; inset:0; z-index:-1; background:#cc1515; transform:scaleX(0); transform-origin:left; transition:transform .24s cubic-bezier(.65,0,.35,1); }
+#tsugumori-player-a-refined .ps-track:hover::before,#tsugumori-player-a-refined .ps-track[aria-pressed="true"]::before { transform:scaleX(1); }
+#tsugumori-player-a-refined .ps-track-copy { display:flex; flex-direction:column; gap:4px; min-width:0; }
+#tsugumori-player-a-refined .ps-track-title { font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
+#tsugumori-player-a-refined .ps-track-artist,#tsugumori-player-a-refined .ps-track-number,#tsugumori-player-a-refined .ps-track-length { color:#aaa29c; font-size:11px; }
+#tsugumori-player-a-refined .ps-track-length { white-space:nowrap; font-variant-numeric:tabular-nums; }
+#tsugumori-player-a-refined .ps-track:hover .ps-track-artist,#tsugumori-player-a-refined .ps-track:hover .ps-track-number,#tsugumori-player-a-refined .ps-track:hover .ps-track-length,#tsugumori-player-a-refined .ps-track[aria-pressed="true"] .ps-track-artist,#tsugumori-player-a-refined .ps-track[aria-pressed="true"] .ps-track-number,#tsugumori-player-a-refined .ps-track[aria-pressed="true"] .ps-track-length { color:#e8e8e8; }
+/* Original A is retained only for direct comparison. */
+#tsugumori-player-a-refined .ps-a-header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 18px; border-bottom:1px solid #34302f; }
+#tsugumori-player-a-refined .ps-a-unit { color:#cc1515; letter-spacing:2px; }
+#tsugumori-player-a-refined .ps-a-main { display:grid; grid-template-columns:46% minmax(0,1fr); }
+#tsugumori-player-a-refined .ps-a-matrix { padding:15px; border-right:1px solid #34302f; min-width:0; }
+#tsugumori-player-a-refined .ps-a-matrix canvas { width:100%; height:auto; aspect-ratio:1; display:block; }
+#tsugumori-player-a-refined .ps-a-matrix-caption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; padding-top:12px; }
+#tsugumori-player-a-refined .ps-a-copy { padding:28px 22px 20px; display:flex; flex-direction:column; justify-content:space-between; gap:25px; min-width:0; }
+#tsugumori-player-a-refined .ps-a-label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:11px; color:#a7a29e; letter-spacing:1px; }
+#tsugumori-player-a-refined .ps-a-lamp { width:5px; height:5px; background:#cc1515; }
+#tsugumori-player-a-refined .ps-a-title { font-size:clamp(26px,5.4cqw,40px); margin-top:16px; }
+#tsugumori-player-a-refined .ps-a-number { font-size:47px; font-weight:400; letter-spacing:-4px; line-height:1; color:#665b55; }
+#tsugumori-player-a-refined .ps-a-album { margin-top:10px; font-size:11px; color:#a7a29e; letter-spacing:1.4px; }
+#tsugumori-player-a-refined .ps-a-lower { border-top:1px solid #34302f; padding:15px 18px 17px; }
+#tsugumori-player-a-refined .ps-a-ruler { display:flex; justify-content:space-between; align-items:flex-end; height:8px; border-bottom:1px solid #282423; }
+#tsugumori-player-a-refined .ps-a-ruler i { width:1px; height:5px; background:#62564f; }
+#tsugumori-player-a-refined .ps-a-ruler i:nth-child(5n+1) { height:8px; background:#a3978c; }
+#tsugumori-player-a-refined .ps-a-actions { display:grid; grid-template-columns:1fr 1.8fr 1fr auto; gap:8px; margin-top:16px; }
+#tsugumori-player-a-refined .ps-a-library { margin:0 18px 17px; border-top:1px solid #34302f; }
+@container(max-width:560px) {
+ #tsugumori-player-a-refined .pa-visual { padding:14px; }
+ #tsugumori-player-a-refined .pa-copy { padding:19px 16px 17px; }
+ #tsugumori-player-a-refined .pa-song { padding:20px 0; }
+ #tsugumori-player-a-refined .pa-song .ps-title { font-size:30px; }
+ #tsugumori-player-a-refined .pa-transport { gap:5px; }
+ #tsugumori-player-a-refined .pa-transport .ps-button { padding:10px 5px; letter-spacing:.5px; }
+ #tsugumori-player-a-refined .ps-a-copy { padding:20px 15px; }
+ #tsugumori-player-a-refined .ps-a-actions { grid-template-columns:1fr 1.5fr 1fr; }
+ #tsugumori-player-a-refined .ps-a-actions [data-action="library"] { grid-column:1/-1; }
+}
+@container(max-width:420px) {
+ #tsugumori-player-a-refined .pa-main { grid-template-columns:1fr; }
+ #tsugumori-player-a-refined .pa-visual { width:100%; padding:17px; border-right:0; border-bottom:1px solid #3b312c; }
+ #tsugumori-player-a-refined .pa-matrix-frame,#tsugumori-player-a-refined .pa-visual-label { max-width:230px; margin-left:auto; margin-right:auto; }
+ #tsugumori-player-a-refined .pa-copy { padding:18px 19px; }
+ #tsugumori-player-a-refined .pa-song { padding:18px 0; }
+ #tsugumori-player-a-refined .pa-album { gap:4px; }
+ #tsugumori-player-a-refined .pa-transport { margin-top:18px; }
+ #tsugumori-player-a-refined .pa-header { padding:13px 16px; }
+ #tsugumori-player-a-refined .pa-progress { padding:16px 17px 13px; }
+ #tsugumori-player-a-refined .ps-a-main { grid-template-columns:43% minmax(0,1fr); }
+ #tsugumori-player-a-refined .ps-a-matrix { padding:9px; }
+ #tsugumori-player-a-refined .ps-a-copy { padding:16px 12px; }
+ #tsugumori-player-a-refined .ps-a-title { font-size:25px; }
+ #tsugumori-player-a-refined .ps-a-number { font-size:34px; }
+ #tsugumori-player-a-refined .ps-track { gap:6px; padding:11px 8px; grid-template-columns:36px minmax(0,1fr) auto; }
+}
+@media(pointer:coarse) {
+ #tsugumori-player-a-refined .ps-button,#tsugumori-player-a-refined .pa-compare button { min-height:44px; }
+ #tsugumori-player-a-refined .ps-seek { height:44px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ #tsugumori-player-a-refined *,#tsugumori-player-a-refined *::before,#tsugumori-player-a-refined *::after { transition:none !important; animation:none !important; }
+}
+</style>
+<div aria-label="Matrix console design refinement" id="tsugumori-player-a-refined">
+<div class="pa-compare"><span class="pa-compare-label">A // MATRIX CONSOLE</span><div aria-label="Compare player design" class="pa-compare-controls" role="group"><button aria-pressed="true" data-select="R" type="button">REFINED</button><button aria-pressed="false" data-select="O" type="button">ORIGINAL</button></div></div>
+<section aria-label="Refined matrix console" class="ps-design" data-design="R">
+<div class="ps-surface">
+<div class="pa-header"><div class="pa-brand"><span aria-hidden="true" class="pa-brand-mark"></span>TSUGUMORI // AUDIO</div><div class="pa-source">SOURCE<span data-field="source">LOCAL</span></div></div>
+<div class="pa-main">
+<div class="pa-visual"><div class="pa-matrix-frame"><canvas aria-label="High-contrast glyph matrix derived from sample cover artwork" data-matrix="refined" height="640" role="img" width="640"></canvas></div><div class="pa-visual-label"><span>GLYPH MATRIX</span><span>32 × 32</span></div></div>
+<div class="pa-copy">
+<div class="pa-state"><span class="pa-state-number"><span data-field="index">01</span> //</span><span class="pa-state-play"><span aria-hidden="true" class="pa-lamp"></span><span data-field="status">PAUSED</span></span></div>
+<div class="pa-song"><h2 class="ps-title" data-field="title">SIDONIA</h2><p class="ps-artist" data-field="artist">angela</p></div>
+<div class="pa-album"><span class="pa-album-label">ALBUM</span><span data-field="album">KNIGHTS OF SIDONIA</span></div>
+<div aria-label="Playback controls" class="pa-transport"><button aria-label="Previous track" class="ps-button" data-action="prev" type="button">PREV</button><button class="ps-button ps-play pa-primary" data-action="play" type="button">PLAY</button><button aria-label="Next track" class="ps-button" data-action="next" type="button">NEXT</button></div>
+</div>
+</div>
+<div class="pa-progress"><div class="pa-progress-readout"><span class="pa-time-current" data-field="elapsed">01:24</span><span class="pa-time-total">TOTAL // <span data-field="duration">04:23</span></span></div><div aria-hidden="true" class="pa-ruler"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><input aria-label="Seek track" class="ps-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/></div>
+<button aria-expanded="false" class="pa-library-toggle" data-action="library" type="button"><span data-library-label="">LOCAL TRACKS // 04</span><span aria-hidden="true" class="pa-library-symbol" data-library-symbol="">+</span></button>
+<div aria-label="Local tracks" class="pa-library" data-library="" hidden=""></div>
+</div>
+</section>
+<section aria-label="Original matrix console" class="ps-design ps-design-a" data-design="O" hidden="">
+<div class="ps-surface">
+<div class="ps-a-header ps-micro"><span class="ps-a-unit">NR-2B // AUDIO</span><span>TYPE 17</span></div>
+<div class="ps-a-main">
+<div class="ps-a-matrix">
+<canvas aria-label="Glyph matrix interpreting the sample cover artwork" data-matrix="original" height="640" role="img" width="640"></canvas>
+<div class="ps-a-matrix-caption ps-micro"><span>GLYPH / <span data-field="index">01</span></span><span>32 × 32</span></div>
+</div>
+<div class="ps-a-copy">
+<div><div class="ps-a-label"><span class="ps-a-lamp"></span><span data-field="status">PAUSED</span><span>//</span><span data-field="source">LOCAL</span></div><h2 class="ps-title ps-a-title" data-field="title">SIDONIA</h2><p class="ps-artist" data-field="artist">angela</p></div>
+<div><div class="ps-a-number" data-field="index">01</div><div class="ps-a-album" data-field="album">KNIGHTS OF SIDONIA</div></div>
+</div>
+</div>
+<div class="ps-a-lower">
+<div aria-hidden="true" class="ps-a-ruler"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<input aria-label="Seek track" class="ps-seek" data-seek="" max="263" min="0" step="1" type="range" value="84"/>
+<div class="ps-time"><span data-field="elapsed">01:24</span><span>POSITION // <span data-field="duration">04:23</span></span></div>
+<div class="ps-a-actions"><button class="ps-button" data-action="prev" type="button">PREV</button><button class="ps-button ps-play" data-action="play" type="button">PLAY</button><button class="ps-button" data-action="next" type="button">NEXT</button><button aria-expanded="false" class="ps-button" data-action="library" type="button">TRACKS</button></div>
+</div>
+<div class="ps-a-library" data-library="" hidden=""></div>
+</div>
+</section>
+<div class="ps-foot"><span data-design-name="">A // REFINED</span><span>PREVIEW / NO AUDIO</span></div>
+<div aria-live="polite" class="ps-sr" data-announcement=""></div>
+</div>
+
+<style></style><script src="../preview-runtime.js"></script><script src="support.js"></script><script src="demo.js"></script></body></html>

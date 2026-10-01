@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Notes refined</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden]{display:none!important}
+</style></head><body><style>
+
+#ts-notes-refined { --tn-bg:var(--notes-paper,#0a0a0a); --tn-ink:var(--notes-ink,#e8e8e8); --tn-muted:var(--notes-muted,#909090); --tn-red:var(--notes-accent,#cc1515); --tn-line:rgba(var(--notes-accent-rgb,204,21,21),.3); --tn-control:rgba(var(--notes-accent-rgb,204,21,21),.55); --tn-grid:rgba(var(--notes-accent-rgb,204,21,21),.08); --tn-note-font:'Share Tech Mono',monospace; --tn-body-size:16px; width:100%; padding:8px; color:var(--tn-ink); color-scheme:dark; font-family:'Share Tech Mono',monospace; }
+#ts-notes-refined * { box-sizing:border-box; }
+#ts-notes-refined button,#ts-notes-refined input,#ts-notes-refined textarea { font:inherit; color:inherit; border-radius:0; }
+#ts-notes-refined button { cursor:pointer; }
+#ts-notes-refined .tn-panel { position:relative; max-width:420px; margin:auto; padding:20px; background-color:var(--tn-bg); background-image:linear-gradient(to right,var(--tn-grid) 1px,transparent 1px),linear-gradient(to bottom,var(--tn-grid) 1px,transparent 1px); background-size:20px 20px; background-origin:border-box; border:1px solid var(--tn-red); }
+#ts-notes-refined .tn-panel::before { content:''; position:absolute; inset:4px; border:1px solid var(--tn-line); pointer-events:none; }
+#ts-notes-refined[data-inner='false'] .tn-panel::before { display:none; }
+#ts-notes-refined .tn-panel::after { content:''; position:absolute; top:16px; left:-1px; width:4px; height:40px; background:var(--tn-red); }
+#ts-notes-refined .tn-corner { position:absolute; width:8px; height:8px; border-color:rgba(var(--notes-ink-rgb,232,232,232),.55); border-style:solid; pointer-events:none; }
+#ts-notes-refined .tn-tl { top:-2px; left:6px; border-width:2px 0 0 2px; }
+#ts-notes-refined .tn-tr { top:-2px; right:0; border-width:2px 2px 0 0; }
+#ts-notes-refined .tn-bl { bottom:-2px; left:6px; border-width:0 0 2px 2px; }
+#ts-notes-refined .tn-br { bottom:-2px; right:0; border-width:0 2px 2px 0; }
+#ts-notes-refined .tn-header { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+#ts-notes-refined .tn-caption { flex:1; min-width:0; }
+#ts-notes-refined .tn-caption h2 { margin:0; font-size:14px; line-height:1.4; font-weight:400; letter-spacing:3.5px; }
+#ts-notes-refined .tn-short-rule { width:36px; height:1px; background:var(--tn-control); margin-top:8px; }
+#ts-notes-refined .tn-close { padding:7px 10px; min-width:34px; background:transparent; border:1px solid var(--tn-control); font-size:12px; line-height:1.3; letter-spacing:1px; }
+#ts-notes-refined .tn-index { position:relative; display:grid; gap:var(--tn-row-gap,7px); margin-bottom:16px; max-height:var(--tn-index-height,181px); overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--tn-control) transparent; }
+#ts-notes-refined .tn-row { display:grid; grid-template-columns:minmax(0,1fr) 34px; min-height:var(--tn-row-height,40px); border:1px solid var(--tn-control); background:var(--tn-bg); }
+#ts-notes-refined .tn-row[data-selected='true'] { border-color:var(--tn-red); color:var(--tn-bg); }
+#ts-notes-refined .tn-note { position:relative; min-width:0; width:100%; text-align:left; padding:var(--tn-row-padding,8px) 9px var(--tn-row-padding,8px) 24px; border:0; background:transparent; font-family:var(--tn-note-font); font-size:16px; line-height:1.4; font-weight:400; letter-spacing:.2px; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
+#ts-notes-refined .tn-note[aria-pressed='true']::before { content:''; position:absolute; width:6px; height:6px; background:currentColor; left:9px; top:calc(50% - 3px); transform:rotate(45deg); }
+#ts-notes-refined .tn-delete { display:grid; place-items:center; padding:0; border:0; border-left:1px solid var(--tn-line); background:transparent; color:inherit; opacity:.7; font-family:'Share Tech Mono',monospace; font-size:21px; line-height:1; }
+#ts-notes-refined .tn-row[data-selected='true'] .tn-delete { opacity:1; border-left-color:rgba(10,10,10,.25); }
+#ts-notes-refined .tn-row:not([data-selected='true']) .tn-delete:is(:hover,:focus-visible) { opacity:1; background:rgba(var(--notes-ink-rgb,232,232,232),.12); }
+#ts-notes-refined .tn-meta { display:flex; justify-content:space-between; gap:8px; color:var(--tn-muted); font:11px/1.5 'Share Tech Mono',monospace; letter-spacing:1px; margin-bottom:8px; }
+#ts-notes-refined .tn-meta [data-count] { margin-left:auto; white-space:nowrap; }
+#ts-notes-refined .tn-title { display:block; width:100%; padding:0 0 10px; background:transparent; border:0; border-bottom:1px solid var(--tn-line); font-family:var(--tn-note-font); font-size:var(--tn-title-size,18px); line-height:1.5; font-weight:400; }
+#ts-notes-refined .tn-body { display:block; width:100%; min-height:100px; height:var(--tn-editor-height,130px); resize:vertical; padding:12px 0; background:transparent; border:0; color:var(--notes-ink,#d4d4d4); font-family:var(--tn-note-font); font-size:var(--tn-body-size); line-height:1.75; }
+#ts-notes-refined .tn-title::placeholder,#ts-notes-refined .tn-body::placeholder { font-family:var(--tn-note-font); color:var(--tn-muted); opacity:1; }
+#ts-notes-refined .tn-title::selection,#ts-notes-refined .tn-body::selection { background:var(--tn-red); color:var(--tn-bg); }
+#ts-notes-refined .tn-empty { min-height:174px; display:grid; place-items:center; color:var(--tn-muted); font:16px/1.6 var(--tn-note-font); }
+#ts-notes-refined .tn-footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid var(--tn-line); padding-top:14px; }
+#ts-notes-refined .tn-add { padding:9px 13px; font-size:12px; line-height:1.4; letter-spacing:1.5px; background:transparent; border:1px solid var(--tn-control); }
+#ts-notes-refined .tn-fill { position:relative; isolation:isolate; }
+#ts-notes-refined .tn-fill::after { content:''; position:absolute; inset:0; transform:scaleX(0); transform-origin:left; background:var(--tn-red); transition:transform 220ms cubic-bezier(.76,0,.24,1); z-index:-1; pointer-events:none; }
+#ts-notes-refined .tn-fill:not([data-selected='true']):is(:hover,:focus-visible)::after,#ts-notes-refined .tn-row:not([data-selected='true']):focus-within::after { transform:scaleX(1); }
+#ts-notes-refined .tn-fill:not([data-selected='true']):is(:hover,:focus-visible),#ts-notes-refined .tn-row:not([data-selected='true']):focus-within { color:var(--tn-bg); }
+#ts-notes-refined .tn-row:not([data-selected='true']):is(:hover,:focus-within) .tn-delete { border-left-color:currentColor; }
+#ts-notes-refined .tn-row[data-selected='true']::after { transform:scaleX(1); transition:none; }
+#ts-notes-refined .tn-preview { color:var(--tn-muted); font:11px/1.5 'Share Tech Mono',monospace; letter-spacing:.5px; text-align:right; }
+#ts-notes-refined .tn-recovery { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; padding-top:11px; border-top:1px solid var(--tn-line); }
+#ts-notes-refined .tn-recovery-message { color:var(--tn-ink); font:12px/1.5 var(--tn-note-font); min-width:0; overflow-wrap:anywhere; }
+#ts-notes-refined .tn-undo { flex:none; padding:6px 8px; border:1px solid var(--tn-control); background:transparent; font:11px/1.4 'Share Tech Mono',monospace; letter-spacing:1px; }
+#ts-notes-refined .tn-undo:hover { background:var(--tn-red); color:var(--tn-bg); }
+#ts-notes-refined [hidden] { display:none!important; }
+#ts-notes-refined[data-open='false'] .tn-header { margin-bottom:0; }
+@media(max-width:360px) { #ts-notes-refined .tn-panel { padding:17px; } #ts-notes-refined .tn-caption h2 { letter-spacing:2.5px; } }
+@media(pointer:coarse) { #ts-notes-refined button { min-height:44px; } #ts-notes-refined .tn-row { grid-template-columns:minmax(0,1fr) 44px; } }
+@media(prefers-reduced-motion:reduce) { #ts-notes-refined .tn-fill::after { transition:none; } }
+</style>
+<div aria-label="Standalone Tsugumori quick-notes drawer preview" data-open="true" id="ts-notes-refined">
+<section aria-label="Quick notes" class="tn-panel">
+<span aria-hidden="true" class="tn-corner tn-tl"></span><span aria-hidden="true" class="tn-corner tn-tr"></span><span aria-hidden="true" class="tn-corner tn-bl"></span><span aria-hidden="true" class="tn-corner tn-br"></span>
+<header class="tn-header">
+<div class="tn-caption"><h2>QUICK NOTES</h2><div aria-hidden="true" class="tn-short-rule"></div></div>
+<button aria-controls="tn-content" aria-expanded="true" aria-label="Close drawer" class="tn-close tn-fill" data-close="" type="button">ESC</button>
+</header>
+<div id="tn-content">
+<div aria-label="Choose or delete a note" class="tn-index" data-index="" role="group"></div>
+<div data-editor="">
+<div class="tn-meta"><span data-text-count="" hidden=""></span><span data-count="">01 / 02</span></div>
+<input aria-label="Note title" class="tn-title" data-title="" maxlength="120" placeholder="Untitled note" value="Before I leave"/>
+<textarea aria-label="Note contents" class="tn-body" data-body="" placeholder="Write something to remember..." spellcheck="false">Pick up groceries
+Charge the headphones
+Back up the dotfiles</textarea>
+</div>
+<div class="tn-empty" data-empty="" hidden="">No notes yet</div>
+<footer class="tn-footer"><button class="tn-add tn-fill" data-add="" type="button">+ NEW NOTE</button><span aria-live="polite" class="tn-preview" data-status="" role="status">PREVIEW / SESSION ONLY</span></footer>
+<div class="tn-recovery" data-recovery="" hidden=""><span class="tn-recovery-message" data-deleted-message=""></span><button class="tn-undo" data-undo="" type="button">UNDO</button></div>
+</div>
+</section>
+</div>
+
+<style>
+/* Palette controls for the notes preview. */
+#ts-notes-refined[data-custom-palette="true"] :is(input,textarea) { caret-color:var(--notes-ink); }
+#ts-notes-refined[data-custom-palette="true"] :is(button,input,textarea):focus-visible { outline-color:var(--notes-ink); }
+#ts-notes-refined[data-custom-palette="true"] :is(input,textarea)::selection { background:var(--notes-accent); color:var(--notes-on-accent); }
+#ts-notes-refined[data-custom-palette="true"] .tn-row[data-selected="true"],#ts-notes-refined[data-custom-palette="true"] .tn-undo:hover,#ts-notes-refined[data-custom-palette="true"] .tn-fill:not([data-selected="true"]):is(:hover,:focus-visible),#ts-notes-refined[data-custom-palette="true"] .tn-row:not([data-selected="true"]):focus-within { color:var(--notes-on-accent); }
+</style><script src="../preview-runtime.js"></script><script src="appearance.js"></script><script src="demo.js"></script></body></html>

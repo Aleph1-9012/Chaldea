@@ -1,0 +1,77 @@
+{
+  "id": "control-arrows-split-crest",
+  "title": "Tsugumori / Control center arrows / Split crest",
+  "summary": "Try the panel controls with sample device and service states. All actions stay in this preview.",
+  "category": "Control center",
+  "tags": [
+    "control-center",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Size",
+      "label": "Arrow size",
+      "type": "number",
+      "default": 36,
+      "min": 30,
+      "max": 42,
+      "step": 2
+    },
+    {
+      "key": "s1Rest",
+      "label": "Resting visibility",
+      "type": "number",
+      "default": 60,
+      "min": 35,
+      "max": 85,
+      "step": 5
+    },
+    {
+      "key": "s2Stroke",
+      "label": "Outline weight",
+      "type": "number",
+      "default": 1.2,
+      "min": 0.8,
+      "max": 1.6,
+      "step": 0.1
+    },
+    {
+      "key": "s3Duration",
+      "label": "Turn duration",
+      "type": "number",
+      "default": 320,
+      "min": 240,
+      "max": 520,
+      "step": 20
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

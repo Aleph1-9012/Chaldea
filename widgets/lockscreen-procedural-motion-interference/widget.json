@@ -1,0 +1,71 @@
+{
+  "id": "lockscreen-procedural-motion-interference",
+  "title": "Tsugumori / Procedural motion / Interference",
+  "summary": "Type a demo password and try the lock, unlock, or power animations. This preview does not authenticate or control the computer.",
+  "category": "Lockscreens",
+  "tags": [
+    "lockscreen",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Panel",
+      "label": "Show center box",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "s1Ink",
+      "label": "Field contrast",
+      "type": "number",
+      "default": 100,
+      "min": 55,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "key": "s2Speed",
+      "label": "Replay speed",
+      "type": "number",
+      "default": 1,
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.25
+    },
+    {
+      "key": "s3Motion",
+      "label": "Animations",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/support.js",
+      "path": "preview/support.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

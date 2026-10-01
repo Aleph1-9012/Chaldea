@@ -1,0 +1,215 @@
+{
+  "id": "notes-notes-b-index",
+  "title": "Tsugumori / Notes b index",
+  "summary": "Write, edit, and switch notes in a standalone QML component. Notes stay in memory for the current session.",
+  "category": "Quick notes",
+  "tags": [
+    "quick-notes",
+    "tsugumori",
+    "interactive",
+    "qml"
+  ],
+  "status": "published",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0IndexWidth",
+      "label": "Index width",
+      "type": "number",
+      "default": 150,
+      "min": 112,
+      "max": 180,
+      "step": 2
+    },
+    {
+      "key": "s1RowHeight",
+      "label": "Note row height",
+      "type": "number",
+      "default": 58,
+      "min": 48,
+      "max": 72,
+      "step": 2
+    },
+    {
+      "key": "editorHeight",
+      "label": "Writing area height",
+      "type": "number",
+      "default": 214,
+      "min": 100,
+      "max": 280,
+      "step": 1
+    },
+    {
+      "key": "titleSize",
+      "label": "Title size",
+      "type": "number",
+      "default": 16,
+      "min": 14,
+      "max": 24,
+      "step": 1
+    },
+    {
+      "key": "listDensity",
+      "label": "Note list spacing",
+      "type": "enum",
+      "default": "Comfortable",
+      "choices": [
+        "Compact",
+        "Comfortable",
+        "Spacious"
+      ]
+    },
+    {
+      "key": "visibleNotes",
+      "label": "Visible note rows",
+      "type": "number",
+      "default": 4,
+      "min": 2,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "key": "newNotePosition",
+      "label": "New note position",
+      "type": "enum",
+      "default": "Bottom",
+      "choices": [
+        "Bottom",
+        "Top"
+      ]
+    },
+    {
+      "key": "textCount",
+      "label": "Text count",
+      "type": "enum",
+      "default": "Off",
+      "choices": [
+        "Off",
+        "Words",
+        "Characters"
+      ]
+    },
+    {
+      "key": "showNumbers",
+      "label": "Show note numbers",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "palette",
+      "label": "Palette",
+      "type": "enum",
+      "default": "Original",
+      "choices": [
+        "Original",
+        "Cobalt",
+        "Forest",
+        "Paper",
+        "Custom"
+      ]
+    },
+    {
+      "key": "backgroundColor",
+      "label": "Custom background",
+      "type": "color",
+      "default": "#0a0a0a"
+    },
+    {
+      "key": "textColor",
+      "label": "Custom text",
+      "type": "color",
+      "default": "#e8e8e8"
+    },
+    {
+      "key": "accentColor",
+      "label": "Custom accent",
+      "type": "color",
+      "default": "#cc1515"
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/options.js",
+      "path": "preview/options.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    },
+    {
+      "source": "preview/appearance.js",
+      "path": "preview/appearance.js"
+    }
+  ],
+  "exports": [
+    {
+      "source": "qml/Widget.qml.tmpl",
+      "path": "Widget.qml",
+      "kind": "template"
+    },
+    {
+      "source": "qml/NotesBase.qml",
+      "path": "NotesBase.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/NoteStore.qml",
+      "path": "NoteStore.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/NoteButton.qml",
+      "path": "NoteButton.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/NoteEditor.qml",
+      "path": "NoteEditor.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/NoteGrid.qml",
+      "path": "NoteGrid.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/NotesIndex.qml",
+      "path": "NotesIndex.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/shell.qml",
+      "path": "shell.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/NoteList.qml",
+      "path": "NoteList.qml",
+      "kind": "file"
+    },
+    {
+      "source": "README.md",
+      "path": "README.md",
+      "kind": "file"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE",
+      "kind": "file"
+    }
+  ]
+}
