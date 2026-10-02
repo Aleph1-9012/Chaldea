@@ -4,7 +4,7 @@ The repository builds a static site and has a CI workflow. No public host, domai
 
 ## Release sequence
 
-1. Run `make setup`, `make check SCOPE=all`, the relevant native checks, and `make build`. Smoke-test the actual `dist/` artifact with `bun scripts/check-dist.ts` in `frontend/`. Automatic CI runs browser-free checks and the build; manually run **Check and build** with its browser option enabled for the complete browser and production smoke checks.
+1. Run `make setup` and `make check`. This already builds and validates the production artifact. Inspect changed browser interactions and any native exports manually in an isolated environment; the automatic checks do not establish rendering or desktop behavior.
 2. Retain the previous working website and catalog. Record the source commit, tool versions, and native verification for the candidate.
 3. Upload the candidate's complete `revisions/<id>/<revision>/` trees to persistent storage. Never overwrite an existing revision with different bytes or delete previous published revisions during a sync.
 4. Verify the new revision URLs, MIME types, and export assets before activating the website/catalog artifact. Keep activation as one release operation.
@@ -28,6 +28,4 @@ Use no third-party fonts, analytics, cookies, or error reporting. The applicatio
 
 ## Performance and evidence
 
-The catalog loads summaries and WebP thumbnails. Only the selected widget loads full templates and export assets; only one preview runs. Browser checks write a local control-to-code timing sample using an internal contract fixture to `build/evidence/responsiveness.json`. This fixture is never included in the library.
-
-That automated timing is a development-machine sample, not a representative-device benchmark. Before public launch, measure input-to-preview and input-to-code latency on the intended low-end device, with network throttling and the hosted site. Keep the device, browser, sample count, and percentile measurements with the release notes. Add search services or incremental packaging only when measurements justify them.
+The catalog loads summaries and thumbnails; only the selected widget loads its complete revision. Before public launch, measure loading and interaction on representative devices and the chosen host. Record the source revision, device, browser, and measurements. Automatic checks report structural and export correctness, not visual or performance benchmarks.

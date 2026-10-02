@@ -1,4 +1,4 @@
-import { chromium } from '@playwright/test';
+import { chromium } from 'playwright';
 import { existsSync } from 'node:fs';
 import { writeFile, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';

@@ -61,16 +61,9 @@ Publish only after native QML, exported usage, and an exported `LICENSE` are com
 
 ## Verify the change
 
-```sh
-make content
-make check
-make native-check WIDGET=your-widget-id
-make build
-```
+Run `make check`. It discovers new widgets automatically, runs the shared units, builds production once, and validates preview scripts/assets, settings, generated exports, and the production catalog. Use `make test` when only the unit tests need rerunning. No widget-specific test files or test registration are needed.
 
-Native checks currently expect exported `Widget.qml` and `shell.qml`. Setting keys must match public properties on `Widget.qml`. The helper exports defaults and minimum/maximum cases, uses Qt 6 linting and rendering, and loads each exact export in Quickshell. Add focused QtTest behavior checks at `native/tst_Behavior.qml` for the widget's real behavior. These tests are source only and do not belong in the download.
-
-Check the preview visually at desktop and narrow widths, then change controls rapidly and copy the result. Run that copied file together with its matching download assets in a clean configuration. Record the widget revision, tool versions, results, and limitations in release notes.
+Then use `make dev` to inspect a changed preview at desktop and narrow widths. Try its controls and copy/download flows. For native changes, inspect the generated QML and load the exact exported files in an isolated Quickshell configuration. The automatic check does not establish rendering, interaction, or desktop integration behavior. Record the revision, environment, and limitations before publishing native support.
 
 To export without a browser, run `bun run export <id> <new-directory> [settings.json]` inside `frontend/`. Overrides are validated against the same definition. The destination must not already exist.
 

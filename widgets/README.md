@@ -22,6 +22,6 @@ widgets/
     refined/
 ```
 
-Each widget owns its `widget.json`, `preview/`, thumbnail, README, and license, plus `qml/` and `native/` where implemented. Category and study folders only organize sources. The packager stops descending once it finds `widget.json`.
+Each widget owns its `widget.json`, `preview/`, thumbnail, README, and license, plus `qml/` where implemented. Category and study folders only organize sources. The packager stops descending once it finds `widget.json`.
 
-Use `make check WIDGET=glyphs/branch-grammar` for one design or `make check GROUP=glyphs` for a category. Existing IDs also work. See the [widget inventory](../docs/widget-inventory.md) for all entries and the [authoring guide](../docs/widget-guide.md) for content rules.
+Run `make check` to validate all widget entries automatically. No per-widget test registration or scope flags are needed. Use `make test` for quick unit reruns. See the [widget inventory](../docs/widget-inventory.md) for all entries and the [authoring guide](../docs/widget-guide.md) for content rules.

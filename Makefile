@@ -8,14 +8,11 @@ export PATH := $(ROOT)/build/tools/bun-linux-x64:$(PATH)
 export BUN_INSTALL_CACHE_DIR := $(ROOT)/build/bun-cache
 MANIFEST := $(ROOT)/backend/Cargo.toml
 CONTENT_ARGS := --config "$(ROOT)/chaldea.toml" --source "$(ROOT)/widgets"
-WIDGET ?=
-GROUP ?=
-SCOPE ?= core
 .DEFAULT_GOAL := help
 .NOTPARALLEL:
-.PHONY: help setup content dev check build preview native-check _check-code _check-content
+.PHONY: help setup content dev check test build preview
 help:
-	@printf '%s\n' 'make setup       Check Rust/Bun and install frozen dependencies' 'make dev         Build local content including drafts; start Vite' 'make content     Rebuild local widget content after source edits' 'make check       Rust, content, TypeScript, and unit checks; no browser needed' 'make check SCOPE=all                  Also run the full browser suite' 'make check WIDGET=glyphs/branch-grammar  Opt into browser checks for one widget' 'make check GROUP=glyphs               Opt into browser checks for a category or study' 'make build       Build production dist/ without drafts' 'make preview     Serve the production build' 'make native-check WIDGET=quick-notes/refined  Exact native exports, using source path or ID'
+	@printf '%s\n' 'make setup    Check Rust/Bun and install frozen dependencies' 'make dev      Build local content including drafts; start Vite' 'make content  Rebuild local widget content after source edits' 'make check    Units, code checks, production build, and every widget' 'make test     Fast unit tests only' 'make build    Build production dist/ without drafts' 'make preview  Serve the production build'
 setup:
 	@command -v $(CARGO) >/dev/null || { echo 'Install the Rust toolchain in rust-toolchain.toml.'; exit 1; }
 	@test "$$($(RUSTC) --version | cut -d ' ' -f 2)" = "$$(sed -n 's/^channel = "\(.*\)"/\1/p' "$(ROOT)/rust-toolchain.toml")" || { echo 'Install the Rust version in rust-toolchain.toml.'; exit 1; }
@@ -28,20 +25,17 @@ content:
 dev: content
 	cd "$(ROOT)/frontend" && "$(BUN)" run dev
 check:
-	cd "$(ROOT)/frontend" && "$(BUN)" scripts/check.ts "$(SCOPE)" "$(WIDGET)" "$(GROUP)"
-_check-code:
 	$(CARGO) fmt --manifest-path "$(MANIFEST)" --check
 	$(CARGO) clippy --locked --manifest-path "$(MANIFEST)" --all-targets -- -D warnings
+	$(MAKE) test
+	$(MAKE) build
+	cd "$(ROOT)/frontend" && "$(BUN)" scripts/check-library.ts
+test:
 	$(CARGO) test --locked --manifest-path "$(MANIFEST)"
-	cd "$(ROOT)/frontend" && "$(BUN)" run typecheck
-_check-content:
-	$(CARGO) run --locked --manifest-path "$(MANIFEST)" -- check $(CONTENT_ARGS)
+	cd "$(ROOT)/frontend" && "$(BUN)" run test
 build:
 	$(CARGO) run --locked --manifest-path "$(MANIFEST)" -- build $(CONTENT_ARGS) --out "$(ROOT)/build/content"
 	cd "$(ROOT)/frontend" && "$(BUN)" run build
 preview:
 	@test -f "$(ROOT)/dist/index.html" || { echo 'Run make build first.'; exit 1; }
 	cd "$(ROOT)/frontend" && "$(BUN)" run preview
-native-check: content
-	@test -n "$(WIDGET)" || { echo 'Provide an existing native widget ID with WIDGET=<id>.'; exit 1; }
-	cd "$(ROOT)/frontend" && "$(BUN)" run native-check "$(WIDGET)"

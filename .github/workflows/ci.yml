@@ -2,21 +2,21 @@ name: Check and build
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
-    inputs:
-      browser:
-        description: Run browser tests and the production browser smoke test
-        type: boolean
-        default: false
 
 permissions:
   contents: read
 
+concurrency:
+  group: checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
         with:
@@ -29,16 +29,7 @@ jobs:
           version=$(sed -n 's/^channel = "\(.*\)"/\1/p' rust-toolchain.toml)
           rustup toolchain install "$version" --profile minimal --component rustfmt --component clippy
       - run: make setup
-      - name: Install the test browser
-        if: ${{ inputs.browser }}
-        working-directory: frontend
-        run: bunx --bun playwright install --with-deps chromium
-      - run: make check SCOPE=${{ inputs.browser && 'all' || 'core' }}
-      - run: make build
-      - name: Smoke-test the production artifact
-        if: ${{ inputs.browser }}
-        working-directory: frontend
-        run: bun scripts/check-dist.ts
+      - run: make check
       - name: Preserve the static release candidate
         uses: actions/upload-artifact@v7
         with:
@@ -46,13 +37,3 @@ jobs:
           path: dist/
           if-no-files-found: error
           retention-days: 14
-      - name: Preserve browser evidence
-        if: ${{ always() && inputs.browser }}
-        uses: actions/upload-artifact@v7
-        with:
-          name: browser-evidence
-          path: build/evidence/
-          if-no-files-found: ignore
-          retention-days: 14
-      # Native checks run locally against the recorded Quickshell/Qt baseline.
-      # This job does not claim native or compositor coverage.

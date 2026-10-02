@@ -40,12 +40,3 @@ export function findWidget(sources: WidgetSource[], selector: string): WidgetSou
   if (!widget) throw new Error(`Unknown widget: ${selector}. Use its ID or source path under widgets/.`);
   return widget;
 }
-
-export function selectWidgets(sources: WidgetSource[], widget: string, group: string): WidgetSource[] {
-  if (widget && group) throw new Error('Choose WIDGET or GROUP, not both.');
-  if (widget) return [findWidget(sources, widget)];
-  const prefix = group.replace(/^widgets\//, '').replace(/\/$/, '');
-  const selected = sources.filter(source => source.path.startsWith(`${prefix}/`));
-  if (!prefix || !selected.length) throw new Error(`Unknown widget group: ${group}`);
-  return selected;
-}

@@ -29,9 +29,18 @@ Open [localhost:5175](http://127.0.0.1:5175/) to browse the library.
 
 See the [widget authoring guide](docs/widget-guide.md) for adding widgets and the [development guide](docs/repair.md) for setup, commands, and troubleshooting.
 
-Widget sources use [category and study folders](widgets/README.md), such as `widgets/glyphs/branch-grammar/`. `make check` runs Rust, content, TypeScript, and unit checks without a browser. Automatic CI runs those checks and builds the site.
+Widget sources use [category and study folders](widgets/README.md), such as `widgets/glyphs/branch-grammar/`.
 
-For UI changes, opt into `make check WIDGET=glyphs/branch-grammar` for one widget, `make check GROUP=glyphs` for a category, or `make check SCOPE=all` for the full browser suite. Browser checks can also be selected when manually running the **Check and build** GitHub workflow.
+Use two commands while developing:
+
+```sh
+make check  # Units, code checks, one production build, and every widget
+make test   # Fast unit tests only
+```
+
+New widgets are discovered automatically. The library check validates preview script syntax and declared assets, settings, QML generation, ZIP contents, and the production catalog. It needs no browser or desktop session. Review visible layout and interaction in `make dev`; check native QML in an isolated Quickshell configuration before publishing it.
+
+CI runs the same `make check` command. There are no test scopes, widget-specific test suites, or browser installation steps.
 
 ## License
 
