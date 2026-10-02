@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"/>
+<title>Tsugumori / Glyph Bay typing</title>
+<style>
+  html { color-scheme:dark; }
+  body { margin:0; display:flow-root; background:#090909; color:#e4e2dc; font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace; }
+  *, *::before, *::after { box-sizing:border-box; }
+  button, input { font:inherit; border-radius:0; }
+  button:focus-visible { outline:2px solid #e4e2dc; outline-offset:3px; }
+  [lang="ja"] { font-family:"Noto Sans JP","Noto Sans CJK JP",sans-serif; }
+  .ts-screen {
+    --ts-black:#090909; --ts-paper:#e4e2dc; --ts-muted:#93918b; --ts-red:#d1161c; --ts-line:#343330;
+    position:relative; isolation:isolate; overflow:hidden; width:min(100%,354px); margin-inline:auto; padding:24px 22px 20px;
+  }
+  .ts-composition { display:grid; justify-items:center; gap:22px; }
+  .ts-glyph-bay { width:min(100%,252px); }
+  .ts-auth-panel { width:100%; min-width:0; padding-top:18px; border-top:1px solid var(--ts-line); }
+  .ts-user-block { display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:16px; font-size:12px; }
+  .ts-muted { color:var(--ts-muted); font-size:11px; letter-spacing:1.5px; }
+  .ts-field-label { display:flex; justify-content:space-between; gap:8px; margin-bottom:8px; color:var(--ts-muted); font-size:11px; letter-spacing:1px; }
+  .ts-password-wrap { display:flex; align-items:center; gap:10px; min-height:44px; padding:0 13px; border:1px solid #66635c; }
+  .ts-password-wrap:focus-within { border-color:var(--ts-paper); outline:1px solid var(--ts-paper); outline-offset:2px; }
+  .ts-password-mark { color:#e53136; font-size:21px; }
+  #ts-glyph-demo-pass { min-width:0; width:100%; border:0; outline:0; padding:0; background:transparent; color:var(--ts-paper); font-size:16px; letter-spacing:4px; caret-color:var(--ts-red); }
+  #ts-glyph-demo-pass::placeholder { color:var(--ts-muted); opacity:1; font-size:12px; letter-spacing:0; }
+  .ts-feedback { min-height:35px; padding-top:9px; color:var(--ts-muted); font-size:11px; letter-spacing:.7px; }
+  .ts-unlock { width:100%; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; justify-content:space-between; min-height:40px; padding:0 13px; border:1px solid var(--ts-red); background:var(--ts-black); color:var(--ts-paper); font-size:11px; letter-spacing:2px; cursor:pointer; }
+  .ts-unlock::before { content:""; position:absolute; z-index:-1; inset:0; background:var(--ts-red); transform:translateX(-101%); transition:transform 280ms cubic-bezier(.76,0,.24,1); }
+  .ts-unlock:hover::before, .ts-unlock:focus-visible::before { transform:translateX(0); }
+  .ts-unlock svg { width:16px; height:16px; flex-shrink:0; }
+  .ts-auth-bottom { display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px 10px; margin-top:13px; color:var(--ts-muted); font-size:11px; }
+  .ts-curtain { position:absolute; z-index:10; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px; background:var(--ts-red); color:#130707; letter-spacing:2px; transform:translateY(-101%); pointer-events:none; transition:transform 440ms cubic-bezier(.76,0,.24,1); }
+  .ts-curtain-title { font-size:26px; font-weight:500; letter-spacing:8px; }
+  .ts-screen.ts-previewing .ts-curtain { transform:translateY(0); }
+  .ts-screen[data-motion="off"] *, .ts-screen[data-motion="off"] *::before { transition:none; }
+  @media (pointer:coarse) { .ts-unlock { min-height:44px; } }
+  @media (prefers-reduced-motion:reduce) { *, *::before { transition:none !important; } }
+  .ts-glyphs { position:relative; width:100%; aspect-ratio:1; display:grid; grid-template-columns:repeat(18,minmax(0,1fr)); grid-template-rows:repeat(12,minmax(0,1fr)); color:#6a665e; font-size:22px; line-height:21px; }
+  .ts-glyphs span { display:grid; place-items:center; overflow:hidden; }
+  .ts-red-layer { position:absolute; inset:0; pointer-events:none; }
+  .ts-glyphs .ts-red-glyph { position:absolute; top:0; left:0; width:calc(100% / 18); height:calc(100% / 12); color:var(--ts-red); background:var(--ts-black); }
+  .ts-glyphs .ts-snake-head { color:#f02b32; }
+</style>
+</head>
+<body>
+<div id="ts-glyph-lock-preview">
+<section class="ts-screen" data-auth="empty" aria-label="Glyph Bay typing glyph preview">
+<div class="ts-composition">
+<div class="ts-glyph-bay">
+<div aria-label="Glyph Bay. Red glyphs react to the length of the dummy input." class="ts-glyphs" role="img"></div>
+</div>
+<div class="ts-auth-panel">
+<div class="ts-user-block"><span class="ts-muted">USER</span><span>PREVIEW USER</span></div>
+<label class="ts-field-label" for="ts-glyph-demo-pass">DEMO PASSWORD <span lang="ja">本人確認</span></label>
+<div class="ts-password-wrap"><span aria-hidden="true" class="ts-password-mark">›</span><input aria-label="Demo password. Use dummy text to animate the artwork; Backspace reverses it." autocapitalize="off" autocomplete="off" class="ts-password" id="ts-glyph-demo-pass" maxlength="64" placeholder="Type dummy text…" spellcheck="false" type="password"/></div>
+<div aria-live="polite" class="ts-feedback" role="status">TYPE TO ACTIVATE</div>
+<button class="ts-unlock" type="button" aria-label="Preview unlock animation"><span>UNLOCK</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"></path></svg></button>
+<div class="ts-auth-bottom"><span>SESSION / 01</span><span lang="ja">セッションロック中</span></div>
+</div>
+</div>
+<div aria-hidden="true" class="ts-curtain"><span lang="ja">継衛 / TYPE 17</span><span class="ts-curtain-title">SID0NIA</span><span>UNLOCK PREVIEW</span></div>
+</section>
+</div>
+<script src="../preview-runtime.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>

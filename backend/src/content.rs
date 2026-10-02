@@ -2,7 +2,7 @@ use crate::error::{Result, issue};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::{
-    collections::BTreeMap,
+    collections::{BTreeMap, BTreeSet},
     fs,
     path::{Path, PathBuf},
 };
@@ -105,6 +105,41 @@ pub fn confined(root: &Path, relative: &str) -> Result<PathBuf> {
     }
     Ok(path)
 }
+fn widget_directories(dir: &Path, found: &mut Vec<PathBuf>, allow_empty: bool) -> Result<()> {
+    if dir.join("widget.json").exists() {
+        found.push(dir.to_path_buf());
+        return Ok(());
+    }
+    let start = found.len();
+    let mut entries = fs::read_dir(dir)?.collect::<std::io::Result<Vec<_>>>()?;
+    entries.sort_by_key(|entry| entry.file_name());
+    for entry in entries {
+        let name = entry.file_name();
+        let name = name.to_string_lossy();
+        if name.starts_with('.') {
+            continue;
+        }
+        let kind = entry.file_type()?;
+        if kind.is_symlink() {
+            return Err(issue(
+                &entry.path(),
+                "discovery",
+                "source groups cannot contain symlinks",
+            ));
+        }
+        if kind.is_dir() {
+            widget_directories(&confined(dir, &name)?, found, false)?;
+        }
+    }
+    if found.len() == start && !allow_empty {
+        return Err(issue(
+            dir,
+            "discovery",
+            "no widget.json found in this source group",
+        ));
+    }
+    Ok(())
+}
 pub fn load(config_path: &Path, source: &Path) -> Result<Project> {
     let config_path = config_path.canonicalize()?;
     let root = config_path.parent().unwrap().to_path_buf();
@@ -138,14 +173,11 @@ pub fn load(config_path: &Path, source: &Path) -> Result<Project> {
     }
     let schema: Value = serde_json::from_str(include_str!("../../schemas/widget.schema.json"))?;
     let validator = jsonschema::validator_for(&schema)?;
-    let mut entries = fs::read_dir(&source)?.collect::<std::io::Result<Vec<_>>>()?;
-    entries.sort_by_key(|e| e.file_name());
+    let mut directories = Vec::new();
+    widget_directories(&source, &mut directories, true)?;
     let mut widgets = Vec::new();
-    for entry in entries {
-        if entry.file_name().to_string_lossy().starts_with('.') || !entry.path().is_dir() {
-            continue;
-        }
-        let dir = confined(&source, &entry.file_name().to_string_lossy())?;
+    let mut ids = BTreeSet::new();
+    for dir in directories {
         let file = confined(&dir, "widget.json")?;
         let mut raw: Value =
             serde_json::from_slice(&read(&file)?).map_err(|e| issue(&file, "JSON", e))?;
@@ -165,8 +197,8 @@ pub fn load(config_path: &Path, source: &Path) -> Result<Project> {
             .validate(&raw)
             .map_err(|e| issue(&file, "schema", e))?;
         let definition: Definition = serde_json::from_value(raw)?;
-        if definition.id != entry.file_name().to_string_lossy() {
-            return Err(issue(&file, "id", "ID must match its widget directory"));
+        if !ids.insert(definition.id.clone()) {
+            return Err(issue(&file, "id", "duplicate widget ID"));
         }
         let mut inputs = BTreeMap::new();
         for path in definition
@@ -186,6 +218,7 @@ pub fn load(config_path: &Path, source: &Path) -> Result<Project> {
         crate::validate::widget(&widget)?;
         widgets.push(widget);
     }
+    widgets.sort_by(|a, b| a.definition.id.cmp(&b.definition.id));
     Ok(Project {
         root,
         source,

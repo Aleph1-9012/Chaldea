@@ -100,6 +100,49 @@ fn shared_semantics() {
     }
 }
 #[test]
+fn grouped_source_moves_preserve_ids_and_revisions() {
+    let temp = fixture();
+    let before = load(&temp);
+    let revisions: Vec<_> = before
+        .widgets
+        .iter()
+        .map(|w| build::revision(&before, w).unwrap())
+        .collect();
+    let group = temp.path().join("widgets/notes/study");
+    fs::create_dir_all(&group).unwrap();
+    fs::rename(
+        temp.path().join("widgets/contract-fixture"),
+        group.join("compact"),
+    )
+    .unwrap();
+    let after = load(&temp);
+    assert_eq!(after.widgets.len(), before.widgets.len());
+    for (index, widget) in after.widgets.iter().enumerate() {
+        assert_eq!(widget.definition.id, before.widgets[index].definition.id);
+        assert_eq!(build::revision(&after, widget).unwrap(), revisions[index]);
+    }
+    copy_dir(&group.join("compact"), &group.join("duplicate"));
+    assert!(
+        content::load(&temp.path().join("xlr8.toml"), &temp.path().join("widgets"))
+            .err()
+            .unwrap()
+            .to_string()
+            .contains("duplicate widget ID")
+    );
+}
+
+#[test]
+#[cfg(unix)]
+fn source_groups_reject_symlink_cycles_and_empty_groups() {
+    let temp = fixture();
+    let group = temp.path().join("widgets/loop");
+    std::os::unix::fs::symlink(temp.path().join("widgets"), &group).unwrap();
+    assert!(fails(&temp));
+    fs::remove_file(&group).unwrap();
+    fs::create_dir(&group).unwrap();
+    assert!(fails(&temp));
+}
+#[test]
 fn rejects_bad_defaults_duplicates_and_path_traversal() {
     for modify in [
         |v: &mut Value| v["settings"][0]["default"] = json!(200),
@@ -107,7 +150,7 @@ fn rejects_bad_defaults_duplicates_and_path_traversal() {
         |v: &mut Value| v["publicFiles"][0]["source"] = json!("../../xlr8.toml"),
         |v: &mut Value| v["exports"][0]["path"] = json!("../Widget.qml"),
         |v: &mut Value| v["publicFiles"][0]["path"] = json!("bundle.json"),
-        |v: &mut Value| v["id"] = json!("wrong-id"),
+        |v: &mut Value| v["id"] = json!("Invalid ID"),
     ] {
         let temp = fixture();
         change(&temp, modify);

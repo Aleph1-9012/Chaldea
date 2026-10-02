@@ -8,7 +8,7 @@ import { loadLocal } from '../../scripts/export';
 import { defaults } from '../../src/customizer/settings';
 import { generate } from '../../src/generator';
 
-const ids = ['a-cassette', 'b-index', 'c-console', 'd-ash', 'numbered', 'preview', 'refined'].map(name => `notes-notes-${name}`);
+const ids = ['a-cassette', 'b-index', 'c-console', 'd-ash', 'preview', 'refined'].map(name => `notes-notes-${name}`);
 export function registerQuickNotesTests() {
   test('notes-notes-refined: new-note placement preserves existing order, editing, and Undo', async () => {
     const page = browserPage();

@@ -54,7 +54,7 @@ test('preview failure preserves independently valid QML', async () => {
 test('catalog contains the requested designs and the Phase lock narrow preview is accessible', async () => {
   const page = browserPage();
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto('/');
-  await expect(page.locator('.widget-card')).toHaveCount(30 + archive.entries.length);
+  await expect(page.locator('.widget-card')).toHaveCount(selectedDesigns.length + 1 + archive.entries.length);
   await page.getByRole('searchbox').fill('no-such-widget'); await expect(page.getByText('No matching widgets.', { exact: false })).toBeVisible();
   await page.getByRole('searchbox').fill('phase'); await page.locator('.widget-card[href="?widget=tsugumori"]').click();
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
@@ -65,7 +65,7 @@ test('catalog contains the requested designs and the Phase lock narrow preview i
   await mkdir(evidence, { recursive: true });
   await page.screenshot({ path: resolve(evidence, 'phase-lock-mobile.png'), fullPage: true });
 });
-test('existing widget responds to typing, Escape, Enter, and its own buttons', async () => {
+test('tsugumori: typing, Escape, Enter, and its own buttons', async () => {
   const page = browserPage(); await page.goto('/?widget=tsugumori');
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
   const frame = page.frameLocator('iframe');
@@ -129,7 +129,7 @@ const curtains = ["curtain-red-field", "curtain-hull-stencil", "curtain-panel-ba
 const refinements = ["curtain-original-red-field", "curtain-registration", "curtain-service-rail", "curtain-ghost-mark"];
 const glyphs = ["tsugumori-recursive-relays", "tsugumori-branch-grammar", "tsugumori-shifted-script", "tsugumori-oblique-ligatures", "tsugumori-radical-exchange"];
 const organic = ["tsugumori-fish-in-space"];
-const art = ["tsugumori-anamorphic-704", "tsugumori-magnetic-powder", "tsugumori-kinetic-typography", "tsugumori-mechanical-rhythm", "tsugumori-pachinko-gutter", "tsugumori-kirigami-panel"];
+const art = ["tsugumori-magnetic-powder", "tsugumori-mechanical-rhythm"];
 const lab = ["tsugumori-specimen-chamber", "tsugumori-orbital-playground", "tsugumori-resonance-sculpture", "tsugumori-signal-hunting", "tsugumori-gravity-sandbox", "tsugumori-session-fossils"];
 const selectedDesigns = [...curtains, ...refinements, ...glyphs, ...organic, ...art, ...lab, "tsugumori-glyph-bay-typing", "tsugumori-clipboard-flow", "tsugumori-clipboard-rice-fit"];
 for (const id of selectedDesigns) test(`${id}: desktop and mobile load without clipping or remote assets`, async () => {
@@ -199,78 +199,108 @@ for (const id of [...curtains, ...refinements]) test(`${id}: replay, scrub, swit
   if (refinements.includes(id) && id !== 'curtain-original-red-field') await expect(page.getByLabel('Added element opacity value')).toHaveValue('0.8');
   await expect(page.locator('.generation-error')).toBeHidden();
 });
-for (const id of [...glyphs, 'tsugumori-glyph-bay-typing']) test(`${id}: typing, reversal, and preview dialogs`, async () => {
+for (const id of [...glyphs, 'tsugumori-glyph-bay-typing']) test(`${id}: compact glyph panel, typing, reversal, and unlock`, async () => {
   const page = browserPage(); await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto(`/?widget=${id}`);
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
   const frame = page.frameLocator('iframe'); const input = frame.getByLabel(/Demo password/);
   const glyph = frame.locator(glyphs.includes(id) ? '.tr-art' : '.ts-glyphs');
+  await expect(frame.getByRole('button')).toHaveCount(1);
+  await expect(frame.getByRole('button', { name: /unlock/i })).toBeVisible();
+  await expect(frame.locator('time, header, footer, [role="dialog"]')).toHaveCount(0);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const artwork = (await glyph.boundingBox())!;
+    const entry = (await input.boundingBox())!;
+    expect(artwork.y + artwork.height).toBeLessThan(entry.y);
+  }
   const empty = await glyph.screenshot(); await input.fill('dummy'); await expect(input).toHaveValue('xxxxx');
   await expect.poll(async () => Buffer.compare(empty, await glyph.screenshot())).not.toBe(0);
   await input.press('End'); await input.press('Backspace'); await expect(input).toHaveValue('xxxx');
+  await input.fill('');
+  await expect.poll(async () => Buffer.compare(empty, await glyph.screenshot())).toBe(0);
+  await frame.getByRole('button', { name: /unlock/i }).click();
+  await expect(input).toBeFocused();
+  await expect(frame.getByRole('status')).toContainText('DUMMY TEXT FIRST');
+  await input.fill('test');
   if (glyphs.includes(id)) {
     await input.press('Enter'); await expect(frame.locator('.tr-screen')).toHaveAttribute('data-unlock', 'true');
   } else {
     await input.press('Enter'); await expect(frame.locator('.ts-feedback')).toHaveText('UNLOCK PREVIEW');
   }
-  const restart = frame.getByRole('button', { name: 'RESTART', exact: true });
-  // Scroll the parent page before computing the iframe click point.
-  await restart.scrollIntoViewIfNeeded(); await restart.click();
-  await expect(frame.getByRole('dialog')).toBeVisible();
-  await expect(frame.getByRole('heading', { name: 'Restart?', exact: true })).toBeVisible();
-  await frame.getByRole('button', { name: 'BACK TO LOCKSCREEN' }).press('Escape');
-  await expect(frame.getByRole('dialog')).toBeHidden();
-  await frame.getByRole('button', { name: 'SHUTDOWN', exact: true }).click();
-  await expect(frame.getByRole('heading', { name: 'Shut down?', exact: true })).toBeVisible();
-  await frame.getByRole('button', { name: 'BACK TO LOCKSCREEN' }).click();
-  await expect(frame.getByRole('dialog')).toBeHidden();
+  await expect(frame.getByRole('status')).toHaveText('READY TO UNLOCK');
+  await frame.getByRole('button', { name: /unlock/i }).click();
+  await expect(frame.getByRole('status')).toContainText(/PREVIEW/);
   await expect(input).toBeEnabled();
 });
 
-for (const id of organic) test(`${id}: direct actions, pause, and only its own settings`, async () => {
-  const page = browserPage(); await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto(`/?widget=${id}`);
+for (const id of organic) test(`${id}: click destinations, independent swimming, pause, and settings`, async () => {
+  const page = browserPage(); await page.clock.install(); await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto(`/?widget=${id}`);
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
   const frame = page.frameLocator('iframe');
+  const canvas = frame.locator('canvas');
+  const pixels = () => canvas.evaluate((element: HTMLCanvasElement) => element.toDataURL());
+  const still = await pixels();
+  await canvas.hover({ position: { x: 40, y: 70 } });
+  await page.clock.runFor(500);
+  expect(await pixels()).toBe(still);
+  await canvas.click({ position: { x: 220, y: 110 } });
+  await expect(frame.locator('[data-status]')).toHaveText('Destination set. Press Play to swim there.');
+  const queued = await pixels();
+  await page.clock.runFor(500);
+  expect(await pixels()).toBe(queued);
+  await frame.getByRole('button', { name: 'Play animation' }).click();
+  await canvas.scrollIntoViewIfNeeded();
+  await page.clock.runFor(1200);
+  expect(await pixels()).not.toBe(queued);
+  await canvas.click({ position: { x: 160, y: 260 } });
+  await expect(frame.locator('[data-status]')).toHaveText('A quick dart, then swimming toward the click.');
+  await page.clock.runFor(600);
+  await frame.getByRole('button', { name: 'Pause animation' }).click();
+  const paused = await pixels();
+  await page.clock.runFor(1000);
+  expect(await pixels()).toBe(paused);
+  await page.getByLabel('Fish particle trails', { exact: true }).uncheck();
+  await expect.poll(pixels).not.toBe(paused);
+  await page.getByLabel('Fish particle trails', { exact: true }).check();
+  await expect.poll(pixels).toBe(paused);
   await expect(frame.getByRole('button', { name: 'GREET', exact: true })).toHaveCount(0);
   await frame.getByRole('button', { name: 'GATHER', exact: true }).click();
   await expect(frame.locator('[data-status]')).toHaveText('The pair draw together.');
   await frame.getByRole('button', { name: 'RELEASE', exact: true }).click();
+  await canvas.press('Enter');
+  await expect(frame.locator('[data-status]')).toHaveText('Destination set. Press Play to swim there.');
   await page.getByLabel('Fish detail value').fill('1.4');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await canvas.click({ position: { x: 50, y: 280 } });
   await frame.getByRole('button', { name: 'Play animation' }).click();
+  await canvas.scrollIntoViewIfNeeded();
+  await page.clock.runFor(600);
+  await canvas.click({ position: { x: 240, y: 100 } });
+  await page.clock.runFor(300);
+  await canvas.click({ position: { x: 100, y: 250 } });
+  await frame.getByRole('button', { name: 'GATHER', exact: true }).click();
+  await canvas.scrollIntoViewIfNeeded();
+  await page.clock.runFor(1200);
   await frame.getByRole('button', { name: 'Pause animation' }).click();
   await expect(frame.locator('[data-status]')).toHaveText('Animation paused.');
   await expect(page.locator('.generation-error')).toBeHidden();
+  expect(errors).toEqual([]);
 });
 
 for (const id of art) test(`${id}: individual artwork responds to its own controls`, async () => {
   const page = browserPage(); await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto(`/?widget=${id}`);
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
   const frame = page.frameLocator('iframe'), canvas = frame.locator('canvas');
-  if (id === 'tsugumori-anamorphic-704') {
-    const align = frame.getByRole('button', { name: 'Align 704', exact: true });
-    await align.scrollIntoViewIfNeeded(); await align.click();
-    await expect(frame.getByLabel('Angle', { exact: true })).toHaveValue('24');
-    await canvas.scrollIntoViewIfNeeded(); const bounds = (await canvas.boundingBox())!;
-    await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
-    await page.mouse.down(); await page.mouse.move(bounds.x + bounds.width * .65, bounds.y + bounds.height / 2, { steps: 5 }); await page.mouse.up();
-    await expect(frame.getByLabel('Angle', { exact: true })).not.toHaveValue('24');
-  } else if (id === 'tsugumori-magnetic-powder') {
+  if (id === 'tsugumori-magnetic-powder') {
     await frame.getByRole('button', { name: 'ADD MAGNET', exact: true }).click();
     await expect(frame.getByRole('button', { name: 'REMOVE 03', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await frame.getByRole('button', { name: 'POLE: N', exact: true }).click(); await expect(frame.getByRole('button', { name: 'POLE: S', exact: true })).toBeVisible();
-  } else if (id === 'tsugumori-kinetic-typography') {
-    await frame.getByRole('button', { name: 'Pluck strands', exact: true }).click();
-    await frame.getByLabel('Tension', { exact: true }).press('End'); await expect(frame.getByLabel('Tension', { exact: true })).toHaveValue('8');
   } else if (id === 'tsugumori-mechanical-rhythm') {
     await frame.getByLabel('Pin', { exact: true }).selectOption('1');
     const pin = frame.getByRole('button', { name: /^(Set|Remove) pin$/ }); const prior = await pin.getAttribute('aria-pressed'); await pin.click();
     await expect(pin).toHaveAttribute('aria-pressed', prior === 'true' ? 'false' : 'true');
     await frame.getByRole('button', { name: 'Sound on', exact: true }).click(); await frame.getByRole('button', { name: 'Sound off', exact: true }).click();
-  } else if (id === 'tsugumori-pachinko-gutter') {
-    await frame.getByRole('button', { name: 'Launch ball', exact: true }).click();
-    await expect(frame.locator('[data-status]')).toContainText(/ball|launched/i);
-  } else {
-    await frame.getByLabel('Cut pattern', { exact: true }).selectOption('bridges'); await frame.getByLabel('Fold angle', { exact: true }).press('End');
-    await expect(frame.getByLabel('Fold angle', { exact: true })).toHaveValue('85');
   }
   await page.getByLabel('Compact canvas').check(); await expect(canvas).toHaveCSS('height', '320px');
 });
@@ -326,7 +356,7 @@ test('each design is discoverable by title and a direct URL; grouped entries are
   await expect(page.frameLocator('iframe').getByRole('button', { name: 'ADD MAGNET', exact: true })).toBeVisible();
 });
 
-test('Clipboard flow: keyboard restore, text and image paste, pinning, search, deletion, and settings', async () => {
+test('tsugumori-clipboard-flow: keyboard restore, text and image paste, pinning, search, deletion, and settings', async () => {
   const page = browserPage(); await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/?widget=tsugumori-clipboard-flow');
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
@@ -372,7 +402,7 @@ test('Clipboard flow: keyboard restore, text and image paste, pinning, search, d
   await expect(frame.locator('.tc-pasted')).toHaveText('Choose a history entry, then paste here.');
 });
 
-test('Clipboard rice fit: keyboard selection, restore, delete and undo, empty search, close and palette', async () => {
+test('tsugumori-clipboard-rice-fit: keyboard selection, restore, delete and undo, empty search, close and palette', async () => {
   const page = browserPage(); await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/?widget=tsugumori-clipboard-rice-fit');
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');

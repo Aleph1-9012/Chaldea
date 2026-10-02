@@ -100,7 +100,7 @@ export async function start(root: HTMLElement): Promise<void> {
       customizer.append(customizerHeader, controlHost, error, el('p', 'customizer-note', 'Your settings stay in memory. Reloading restores the defaults.'));
       workbench.append(stage);
       if (d.settings.length) workbench.append(customizer);
-      if (!native || !d.settings.length) workbench.classList.add('preview-only');
+      if ((!native && d.category !== 'Glyphs') || !d.settings.length) workbench.classList.add('preview-only');
       const sectionTitle = el('div', 'output-heading'); sectionTitle.append(el('h2', '', native ? 'Take it with you' : 'Preview status'), el('span', 'fine', native ? `${d.exports.length} FILES / ${d.license}` : 'NATIVE IMPLEMENTATION PENDING'));
       const draftNotice = el('p', 'draft-notice', 'This existing HTML design is interactive. Native QML export is not available yet.');
       const usage = el('details', 'usage'); const summary = el('summary', '', 'Installation & source notes');

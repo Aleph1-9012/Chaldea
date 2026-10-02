@@ -60,167 +60,132 @@
     },
     {
       "source": "control-center/control-center-arrow-redesign.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-arrow-redesign-relay",
-        "control-arrow-redesign-dart",
-        "control-arrow-redesign-gate",
-        "control-arrow-redesign-stepped"
-      ],
-      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-arrows.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-arrows-reinforced",
-        "control-arrows-filled-wings",
-        "control-arrows-split-crest"
-      ],
-      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-controls.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-controls"
-      ],
-      "sha256": "e1119d75a7f00d32f421dffbd034c31627f568b3db9754e27b01c69c5d13c693"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "e1119d75a7f00d32f421dffbd034c31627f568b3db9754e27b01c69c5d13c693",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-detailed.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-detailed"
-      ],
-      "sha256": "46f1ef7d0b2cbc8ef4cecd5d8891ce95fa090adb0306b2b8d6ee53fed9a09aae"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "46f1ef7d0b2cbc8ef4cecd5d8891ce95fa090adb0306b2b8d6ee53fed9a09aae",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-player-hover.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-player-hover"
-      ],
-      "sha256": "ce66a8f7cacea9f50deef32f260b19fed89f214cf27fb9a495447555a7373577"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "ce66a8f7cacea9f50deef32f260b19fed89f214cf27fb9a495447555a7373577",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-reference-rows.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-reference-rows"
-      ],
-      "sha256": "3286c883cf66fb89b68b123942959e066d0f605caba3a459d138edddd575bc78"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "3286c883cf66fb89b68b123942959e066d0f605caba3a459d138edddd575bc78",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-rolling-text.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-rolling-text"
-      ],
-      "sha256": "77211feb936cd5f8da2850bfee2eed37b5cf1bdda2a0dd3f764540ecb3559c86"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "77211feb936cd5f8da2850bfee2eed37b5cf1bdda2a0dd3f764540ecb3559c86",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-spacious.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-spacious"
-      ],
-      "sha256": "faac3dfd9699acb2846c5c34e4dc49be6f27675fd82074ecf7e335e388770e98"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "faac3dfd9699acb2846c5c34e4dc49be6f27675fd82074ecf7e335e388770e98",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-unified.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-b2-unified"
-      ],
-      "sha256": "d6f480355c8adcf9aae9e5025e5882df48a444ba0bae09902168de6055b2e63c"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "d6f480355c8adcf9aae9e5025e5882df48a444ba0bae09902168de6055b2e63c",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-dropdown-overview.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-dropdown-overview"
-      ],
-      "sha256": "ae1af70fad742702d1d0edf01d9c82ce542571410b1f0614cbb687733b54d307"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "ae1af70fad742702d1d0edf01d9c82ce542571410b1f0614cbb687733b54d307",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-integrated-overview.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-integrated-overview"
-      ],
-      "sha256": "74a77bdafe6ec9ac76320e0ba11807adefe9b7891698be5838bd40aaf3749d57"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "74a77bdafe6ec9ac76320e0ba11807adefe9b7891698be5838bd40aaf3749d57",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-mono-refinements.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-mono-refinements-refined-band",
-        "control-mono-refinements-indexed-header",
-        "control-mono-refinements-title-tab"
-      ],
-      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-refinement.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-refinement-current",
-        "control-refinement-refined"
-      ],
-      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-studies-redline",
-        "control-studies-numbered-panels",
-        "control-studies-open-corners"
-      ],
-      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-text-iterations.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-text-motion-rolling-type",
-        "control-text-motion-scan-decode",
-        "control-text-motion-split-register"
-      ],
+      "disposition": "excluded",
+      "widgets": [],
       "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
       "excluded": [
         "Live decode"
-      ]
+      ],
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-type-styles.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-type-styles-clear-labels",
-        "control-type-styles-system-mono",
-        "control-type-styles-condensed"
-      ],
-      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-ui-upgrades.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-ui-upgrades"
-      ],
-      "sha256": "1ea9c705f2b971e139df32ea505831ea29611610d50b21e2d4bf97280c9ecd57"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "1ea9c705f2b971e139df32ea505831ea29611610d50b21e2d4bf97280c9ecd57",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "control-center/tsugumori-level-preview.html",
-      "disposition": "imported",
-      "widgets": [
-        "control-volume-osd-segmented",
-        "control-volume-osd-continuous",
-        "control-brightness-osd-segmented",
-        "control-brightness-osd-continuous"
-      ],
-      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "curtains-and-buttons/curtain-a-refinements.html",
@@ -349,17 +314,17 @@
       "source": "interactive-art/tsugumori-eight-play-studies.html",
       "disposition": "existing",
       "widgets": [
-        "tsugumori-kirigami-panel",
-        "tsugumori-pachinko-gutter",
         "tsugumori-mechanical-rhythm",
-        "tsugumori-kinetic-typography",
-        "tsugumori-magnetic-powder",
-        "tsugumori-anamorphic-704"
+        "tsugumori-magnetic-powder"
       ],
       "sha256": "32346a91f1ca8662f70729f4684fc8bd49ef8958f4b1aa66ad85f31835aaca90",
       "excluded": [
         "Exploded-view Garde",
-        "Thread loom"
+        "Thread loom",
+        "Anamorphic 704",
+        "Kinetic typography",
+        "Kirigami panel",
+        "Pachinko gutter"
       ]
     },
     {
@@ -699,111 +664,80 @@
     },
     {
       "source": "menu/menu-detail-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "menu-detail-studies-inset",
-        "menu-detail-studies-index",
-        "menu-detail-studies-open-frame"
-      ],
-      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "menu/menu-refinement-preview.html",
-      "disposition": "imported",
-      "widgets": [
-        "menu-refinement-preview"
-      ],
-      "sha256": "a87f951c1c03362d06f576f52698dc373b77aa867db36f2ff8fb03202c65daf4"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "a87f951c1c03362d06f576f52698dc373b77aa867db36f2ff8fb03202c65daf4",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "menu/menu-researched-styles.html",
-      "disposition": "imported",
-      "widgets": [
-        "menu-researched-styles-current",
-        "menu-researched-styles-contrast",
-        "menu-researched-styles-technical",
-        "menu-researched-styles-typographic"
-      ],
-      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "menu/menu-row-iterations.html",
-      "disposition": "imported",
-      "widgets": [
-        "menu-row-iterations-current",
-        "menu-row-iterations-mono",
-        "menu-row-iterations-condensed",
-        "menu-row-iterations-open-frame"
-      ],
-      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "menu/menu-structural-redesigns.html",
-      "disposition": "imported",
-      "widgets": [
-        "menu-structural-redesigns-expanding-index",
-        "menu-structural-redesigns-split-catalog",
-        "menu-structural-redesigns-launch-tiles"
-      ],
-      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "menu/menu-style-lab.html",
-      "disposition": "imported",
-      "widgets": [
-        "menu-style-lab-engraved",
-        "menu-style-lab-signal-strip",
-        "menu-style-lab-label-plates"
-      ],
-      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
+      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-glyph-behaviours.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-glyph-behaviours"
-      ],
-      "sha256": "928d8ea17d9678c98ce1f938d297874f7b670ef13028b788fa43237fda192ab1"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "928d8ea17d9678c98ce1f938d297874f7b670ef13028b788fa43237fda192ab1",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-metadata-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-metadata-studies-fingerprint",
-        "player-metadata-studies-formation",
-        "player-metadata-studies-inscription",
-        "player-metadata-studies-seal",
-        "player-metadata-studies-circuit"
-      ],
-      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-player-a-refined.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-a-refined-refined-matrix",
-        "player-a-refined-original-matrix"
-      ],
-      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-player-button-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-button-studies-corner-keys",
-        "player-button-studies-console-strip",
-        "player-button-studies-type-keys",
-        "player-button-studies-inset-keys"
-      ],
-      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-player-c-japanese.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-c-japanese"
-      ],
-      "sha256": "ca71517508247c7d072df4a7ebd5aaa90b75c02b27e764d26e3447088b6a67cb"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "ca71517508247c7d072df4a7ebd5aaa90b75c02b27e764d26e3447088b6a67cb",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-player-directions.html",
@@ -819,43 +753,31 @@
     },
     {
       "source": "player/tsugumori-player-live-details.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-live-details"
-      ],
-      "sha256": "74353bd6fecba9cd26ab73f4174828932ff14f1874917f75839c2f665184d108"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "74353bd6fecba9cd26ab73f4174828932ff14f1874917f75839c2f665184d108",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-player-panel-refinement.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-panel-refinement"
-      ],
-      "sha256": "cfb1ff4459d28a17250035ed3766e29f2336930d9edda53e105e0017a4593e0c"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "cfb1ff4459d28a17250035ed3766e29f2336930d9edda53e105e0017a4593e0c",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-player-round-two.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-round-two-panoramic",
-        "player-round-two-split-chassis",
-        "player-round-two-aperture",
-        "player-round-two-redline"
-      ],
-      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-sidonia-elements.html",
-      "disposition": "imported",
-      "widgets": [
-        "player-sidonia-elements-shoi-formation",
-        "player-sidonia-elements-704-armour-stripe",
-        "player-sidonia-elements-toa-engraving",
-        "player-sidonia-elements-sidonia-profile",
-        "player-sidonia-elements-kabizashi-divider",
-        "player-sidonia-elements-gauna-specimen"
-      ],
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
+      "reason": "The owner kept only Player directions in the Player section. The original source archive is retained."
     },
     {
       "source": "quick-notes/tsugumori-notes-a-cassette.html",
@@ -900,11 +822,10 @@
     },
     {
       "source": "quick-notes/tsugumori-notes-numbered.html",
-      "disposition": "imported",
-      "widgets": [
-        "notes-notes-numbered"
-      ],
-      "sha256": "7fbc7355fa63c38cacf165e233ddeb2203bcaea45d47669a310c186850aa7c88"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "7fbc7355fa63c38cacf165e233ddeb2203bcaea45d47669a310c186850aa7c88",
+      "reason": "Notes numbered was removed at the owner's request. The original source archive is retained."
     },
     {
       "source": "quick-notes/tsugumori-notes-preview.html",
@@ -1376,501 +1297,6 @@
           "button[data-style]"
         ],
         "controls": false
-      }
-    },
-    {
-      "id": "control-arrow-redesign-relay",
-      "source": "control-center/control-center-arrow-redesign.html",
-      "name": "Control center arrow redesign / Relay",
-      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"relay\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-arrow-redesign-dart",
-      "source": "control-center/control-center-arrow-redesign.html",
-      "name": "Control center arrow redesign / Dart",
-      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"dart\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-arrow-redesign-gate",
-      "source": "control-center/control-center-arrow-redesign.html",
-      "name": "Control center arrow redesign / Gate",
-      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"gate\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-arrow-redesign-stepped",
-      "source": "control-center/control-center-arrow-redesign.html",
-      "name": "Control center arrow redesign / Stepped",
-      "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"step\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-arrows-reinforced",
-      "source": "control-center/control-center-arrows.html",
-      "name": "Control center arrows / Reinforced",
-      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"outline\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-arrows-filled-wings",
-      "source": "control-center/control-center-arrows.html",
-      "name": "Control center arrows / Filled wings",
-      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"armored\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-arrows-split-crest",
-      "source": "control-center/control-center-arrows.html",
-      "name": "Control center arrows / Split crest",
-      "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"split\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-controls",
-      "source": "control-center/control-center-b2-controls.html",
-      "name": "Control center b2 controls",
-      "sha256": "e1119d75a7f00d32f421dffbd034c31627f568b3db9754e27b01c69c5d13c693",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-detailed",
-      "source": "control-center/control-center-b2-detailed.html",
-      "name": "Control center b2 detailed",
-      "sha256": "46f1ef7d0b2cbc8ef4cecd5d8891ce95fa090adb0306b2b8d6ee53fed9a09aae",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-player-hover",
-      "source": "control-center/control-center-b2-player-hover.html",
-      "name": "Control center b2 player hover",
-      "sha256": "ce66a8f7cacea9f50deef32f260b19fed89f214cf27fb9a495447555a7373577",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-reference-rows",
-      "source": "control-center/control-center-b2-reference-rows.html",
-      "name": "Control center b2 reference rows",
-      "sha256": "3286c883cf66fb89b68b123942959e066d0f605caba3a459d138edddd575bc78",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-rolling-text",
-      "source": "control-center/control-center-b2-rolling-text.html",
-      "name": "Control center b2 rolling text",
-      "sha256": "77211feb936cd5f8da2850bfee2eed37b5cf1bdda2a0dd3f764540ecb3559c86",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-spacious",
-      "source": "control-center/control-center-b2-spacious.html",
-      "name": "Control center b2 spacious",
-      "sha256": "faac3dfd9699acb2846c5c34e4dc49be6f27675fd82074ecf7e335e388770e98",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-b2-unified",
-      "source": "control-center/control-center-b2-unified.html",
-      "name": "Control center b2 unified",
-      "sha256": "d6f480355c8adcf9aae9e5025e5882df48a444ba0bae09902168de6055b2e63c",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-dropdown-overview",
-      "source": "control-center/control-center-dropdown-overview.html",
-      "name": "Control center dropdown overview",
-      "sha256": "ae1af70fad742702d1d0edf01d9c82ce542571410b1f0614cbb687733b54d307",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-integrated-overview",
-      "source": "control-center/control-center-integrated-overview.html",
-      "name": "Control center integrated overview",
-      "sha256": "74a77bdafe6ec9ac76320e0ba11807adefe9b7891698be5838bd40aaf3749d57",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-mono-refinements-refined-band",
-      "source": "control-center/control-center-mono-refinements.html",
-      "name": "Control center mono refinements / Refined band",
-      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"refined\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-mono-refinements-indexed-header",
-      "source": "control-center/control-center-mono-refinements.html",
-      "name": "Control center mono refinements / Indexed header",
-      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"indexed\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-mono-refinements-title-tab",
-      "source": "control-center/control-center-mono-refinements.html",
-      "name": "Control center mono refinements / Title tab",
-      "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"tabbed\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-refinement-current",
-      "source": "control-center/control-center-refinement.html",
-      "name": "Control center refinement / Current",
-      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-mode=\"current\"]"
-          }
-        ],
-        "remove": [
-          "button[data-mode]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-refinement-refined",
-      "source": "control-center/control-center-refinement.html",
-      "name": "Control center refinement / Refined",
-      "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-mode=\"refined\"]"
-          }
-        ],
-        "remove": [
-          "button[data-mode]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-studies-redline",
-      "source": "control-center/control-center-studies.html",
-      "name": "Control center studies / Redline",
-      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-studies-numbered-panels",
-      "source": "control-center/control-center-studies.html",
-      "name": "Control center studies / Numbered panels",
-      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-studies-open-corners",
-      "source": "control-center/control-center-studies.html",
-      "name": "Control center studies / Open corners",
-      "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-text-motion-rolling-type",
-      "source": "control-center/control-center-text-iterations.html",
-      "name": "Text motion / Rolling type",
-      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-text-motion-scan-decode",
-      "source": "control-center/control-center-text-iterations.html",
-      "name": "Text motion / Scan decode",
-      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-text-motion-split-register",
-      "source": "control-center/control-center-text-iterations.html",
-      "name": "Text motion / Split register",
-      "sha256": "8a5e7d36369367f7b1eaf88116cf2513e18ed7a4adf05f7d9ad0ea1b7e9310a5",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-type-styles-clear-labels",
-      "source": "control-center/control-center-type-styles.html",
-      "name": "Control center type styles / Clear labels",
-      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"clear\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-type-styles-system-mono",
-      "source": "control-center/control-center-type-styles.html",
-      "name": "Control center type styles / System mono",
-      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"mono\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-type-styles-condensed",
-      "source": "control-center/control-center-type-styles.html",
-      "name": "Control center type styles / Condensed",
-      "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"condensed\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "control-ui-upgrades",
-      "source": "control-center/control-center-ui-upgrades.html",
-      "name": "Control center ui upgrades",
-      "sha256": "1ea9c705f2b971e139df32ea505831ea29611610d50b21e2d4bf97280c9ecd57",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "control-volume-osd-segmented",
-      "source": "control-center/tsugumori-level-preview.html",
-      "name": "Volume OSD / Segmented",
-      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
-      "selection": {
-        "fixed": {
-          "Meter style": "Segmented"
-        },
-        "hide": [
-          ".ts-osd:nth-of-type(2)"
-        ],
-        "controls": true,
-        "omit": [
-          "Preview brightness"
-        ]
-      }
-    },
-    {
-      "id": "control-volume-osd-continuous",
-      "source": "control-center/tsugumori-level-preview.html",
-      "name": "Volume OSD / Continuous",
-      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
-      "selection": {
-        "fixed": {
-          "Meter style": "Continuous"
-        },
-        "hide": [
-          ".ts-osd:nth-of-type(2)"
-        ],
-        "controls": true,
-        "omit": [
-          "Preview brightness"
-        ]
-      }
-    },
-    {
-      "id": "control-brightness-osd-segmented",
-      "source": "control-center/tsugumori-level-preview.html",
-      "name": "Brightness OSD / Segmented",
-      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
-      "selection": {
-        "fixed": {
-          "Meter style": "Segmented"
-        },
-        "hide": [
-          ".ts-osd:nth-of-type(1)"
-        ],
-        "controls": true,
-        "omit": [
-          "Preview volume"
-        ]
-      }
-    },
-    {
-      "id": "control-brightness-osd-continuous",
-      "source": "control-center/tsugumori-level-preview.html",
-      "name": "Brightness OSD / Continuous",
-      "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
-      "selection": {
-        "fixed": {
-          "Meter style": "Continuous"
-        },
-        "hide": [
-          ".ts-osd:nth-of-type(1)"
-        ],
-        "controls": true,
-        "omit": [
-          "Preview volume"
-        ]
       }
     },
     {
@@ -3969,515 +3395,6 @@
       }
     },
     {
-      "id": "menu-detail-studies-inset",
-      "source": "menu/menu-detail-studies.html",
-      "name": "Menu detail studies / Inset",
-      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-detail-studies-index",
-      "source": "menu/menu-detail-studies.html",
-      "name": "Menu detail studies / Index",
-      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-detail-studies-open-frame",
-      "source": "menu/menu-detail-studies.html",
-      "name": "Menu detail studies / Open frame",
-      "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-refinement-preview",
-      "source": "menu/menu-refinement-preview.html",
-      "name": "Menu refinement preview",
-      "sha256": "a87f951c1c03362d06f576f52698dc373b77aa867db36f2ff8fb03202c65daf4",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-researched-styles-current",
-      "source": "menu/menu-researched-styles.html",
-      "name": "Menu researched styles / Current",
-      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"current\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-researched-styles-contrast",
-      "source": "menu/menu-researched-styles.html",
-      "name": "Menu researched styles / Contrast",
-      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-researched-styles-technical",
-      "source": "menu/menu-researched-styles.html",
-      "name": "Menu researched styles / Technical",
-      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-researched-styles-typographic",
-      "source": "menu/menu-researched-styles.html",
-      "name": "Menu researched styles / Typographic",
-      "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-row-iterations-current",
-      "source": "menu/menu-row-iterations.html",
-      "name": "Menu row iterations / Current",
-      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"current\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-row-iterations-mono",
-      "source": "menu/menu-row-iterations.html",
-      "name": "Menu row iterations / Mono",
-      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-row-iterations-condensed",
-      "source": "menu/menu-row-iterations.html",
-      "name": "Menu row iterations / Condensed",
-      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-row-iterations-open-frame",
-      "source": "menu/menu-row-iterations.html",
-      "name": "Menu row iterations / Open frame",
-      "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-structural-redesigns-expanding-index",
-      "source": "menu/menu-structural-redesigns.html",
-      "name": "Menu structural redesigns / Expanding index",
-      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-structural-redesigns-split-catalog",
-      "source": "menu/menu-structural-redesigns.html",
-      "name": "Menu structural redesigns / Split catalog",
-      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-structural-redesigns-launch-tiles",
-      "source": "menu/menu-structural-redesigns.html",
-      "name": "Menu structural redesigns / Launch tiles",
-      "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-choice=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-style-lab-engraved",
-      "source": "menu/menu-style-lab.html",
-      "name": "Menu style lab / Engraved",
-      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-look-choice=\"etched\"]"
-          }
-        ],
-        "remove": [
-          "button[data-look-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-style-lab-signal-strip",
-      "source": "menu/menu-style-lab.html",
-      "name": "Menu style lab / Signal strip",
-      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-look-choice=\"signal\"]"
-          }
-        ],
-        "remove": [
-          "button[data-look-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "menu-style-lab-label-plates",
-      "source": "menu/menu-style-lab.html",
-      "name": "Menu style lab / Label plates",
-      "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-look-choice=\"plates\"]"
-          }
-        ],
-        "remove": [
-          "button[data-look-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-glyph-behaviours",
-      "source": "player/tsugumori-glyph-behaviours.html",
-      "name": "Glyph behaviours",
-      "sha256": "928d8ea17d9678c98ce1f938d297874f7b670ef13028b788fa43237fda192ab1",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "player-metadata-studies-fingerprint",
-      "source": "player/tsugumori-metadata-studies.html",
-      "name": "Metadata studies / Fingerprint",
-      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"1\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-metadata-studies-formation",
-      "source": "player/tsugumori-metadata-studies.html",
-      "name": "Metadata studies / Formation",
-      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"2\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-metadata-studies-inscription",
-      "source": "player/tsugumori-metadata-studies.html",
-      "name": "Metadata studies / Inscription",
-      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"3\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-metadata-studies-seal",
-      "source": "player/tsugumori-metadata-studies.html",
-      "name": "Metadata studies / Seal",
-      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"4\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-metadata-studies-circuit",
-      "source": "player/tsugumori-metadata-studies.html",
-      "name": "Metadata studies / Circuit",
-      "sha256": "2b78e67df4677b39f35a592275a8687a72af480e22a81c178697e0dea8e34c14",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"5\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-a-refined-refined-matrix",
-      "source": "player/tsugumori-player-a-refined.html",
-      "name": "Player a refined / Refined matrix",
-      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"R\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "hide": [
-          "section[data-design]:not([data-design=\"R\"])"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-a-refined-original-matrix",
-      "source": "player/tsugumori-player-a-refined.html",
-      "name": "Player a refined / Original matrix",
-      "sha256": "461a820a75469566d8fdb01629a80f7c58858ba54d02a385b0ccc4502a500166",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"O\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "hide": [
-          "section[data-design]:not([data-design=\"O\"])"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-button-studies-corner-keys",
-      "source": "player/tsugumori-player-button-studies.html",
-      "name": "Player button studies / Corner keys",
-      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"brackets\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-button-studies-console-strip",
-      "source": "player/tsugumori-player-button-studies.html",
-      "name": "Player button studies / Console strip",
-      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"console\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-button-studies-type-keys",
-      "source": "player/tsugumori-player-button-studies.html",
-      "name": "Player button studies / Type keys",
-      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"type\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-button-studies-inset-keys",
-      "source": "player/tsugumori-player-button-studies.html",
-      "name": "Player button studies / Inset keys",
-      "sha256": "fde1549b5d68cceb9eef60bdaa8e03b945a24a63b59e2bf1b870d0e9f5974b0e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"inset\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-c-japanese",
-      "source": "player/tsugumori-player-c-japanese.html",
-      "name": "Player c japanese",
-      "sha256": "ca71517508247c7d072df4a7ebd5aaa90b75c02b27e764d26e3447088b6a67cb",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
       "id": "player-directions-matrix",
       "source": "player/tsugumori-player-directions.html",
       "name": "Player directions / Matrix",
@@ -4578,206 +3495,6 @@
       }
     },
     {
-      "id": "player-live-details",
-      "source": "player/tsugumori-player-live-details.html",
-      "name": "Player live details",
-      "sha256": "74353bd6fecba9cd26ab73f4174828932ff14f1874917f75839c2f665184d108",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "player-panel-refinement",
-      "source": "player/tsugumori-player-panel-refinement.html",
-      "name": "Player panel refinement",
-      "sha256": "cfb1ff4459d28a17250035ed3766e29f2336930d9edda53e105e0017a4593e0c",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "player-round-two-panoramic",
-      "source": "player/tsugumori-player-round-two.html",
-      "name": "Player round two / Panoramic",
-      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"F\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "hide": [
-          "section[data-design]:not([data-design=\"F\"])"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-round-two-split-chassis",
-      "source": "player/tsugumori-player-round-two.html",
-      "name": "Player round two / Split chassis",
-      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"G\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "hide": [
-          "section[data-design]:not([data-design=\"G\"])"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-round-two-aperture",
-      "source": "player/tsugumori-player-round-two.html",
-      "name": "Player round two / Aperture",
-      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"H\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "hide": [
-          "section[data-design]:not([data-design=\"H\"])"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-round-two-redline",
-      "source": "player/tsugumori-player-round-two.html",
-      "name": "Player round two / Redline",
-      "sha256": "99c6bcd0571ebb562b5c8a365006cafafca9144dfb94509e2324ca3850f1b590",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-select=\"I\"]"
-          }
-        ],
-        "remove": [
-          "button[data-select]"
-        ],
-        "hide": [
-          "section[data-design]:not([data-design=\"I\"])"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-sidonia-elements-shoi-formation",
-      "source": "player/tsugumori-sidonia-elements.html",
-      "name": "Sidonia elements / Shōi formation",
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"1\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-sidonia-elements-704-armour-stripe",
-      "source": "player/tsugumori-sidonia-elements.html",
-      "name": "Sidonia elements / 704 armour stripe",
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"2\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-sidonia-elements-toa-engraving",
-      "source": "player/tsugumori-sidonia-elements.html",
-      "name": "Sidonia elements / Toa engraving",
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"3\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-sidonia-elements-sidonia-profile",
-      "source": "player/tsugumori-sidonia-elements.html",
-      "name": "Sidonia elements / Sidonia profile",
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"4\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-sidonia-elements-kabizashi-divider",
-      "source": "player/tsugumori-sidonia-elements.html",
-      "name": "Sidonia elements / Kabizashi divider",
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"5\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "player-sidonia-elements-gauna-specimen",
-      "source": "player/tsugumori-sidonia-elements.html",
-      "name": "Sidonia elements / Gauna specimen",
-      "sha256": "803c4494d1ef1fef8f9a3190031c4c47fd3366b0ab181a1cfe094d01b06fc9b6",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-detail=\"6\"]"
-          }
-        ],
-        "remove": [
-          "button[data-detail]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "notes-notes-a-cassette",
       "source": "quick-notes/tsugumori-notes-a-cassette.html",
       "name": "Notes a cassette",
@@ -4809,15 +3526,6 @@
       "source": "quick-notes/tsugumori-notes-d-ash.html",
       "name": "Notes d ash",
       "sha256": "31632c30e437af5594d17a5174120ceece371d8000df7989da1b073c5a98da0f",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "notes-notes-numbered",
-      "source": "quick-notes/tsugumori-notes-numbered.html",
-      "name": "Notes numbered",
-      "sha256": "7fbc7355fa63c38cacf165e233ddeb2203bcaea45d47669a310c186850aa7c88",
       "selection": {
         "controls": false
       }

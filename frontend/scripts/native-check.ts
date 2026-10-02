@@ -4,9 +4,12 @@ import { existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { exportWidget, loadLocal } from './export';
+import { findWidget, widgetSources } from './widget-sources';
 
-const id = process.argv[2];
-if (!id || !/^[a-z][a-z0-9-]+$/.test(id)) throw new Error('Provide a widget ID.');
+const selector = process.argv[2];
+if (!selector) throw new Error('Provide a widget ID or source path.');
+const source = findWidget(await widgetSources(), selector);
+const id = source.id;
 const root = resolve(import.meta.dir, '../..');
 const content = join(root, 'build/content');
 const { bundle } = await loadLocal(content, id);
@@ -63,7 +66,7 @@ try {
     const colors = JSON.stringify(bundle.definition.settings.filter(s => s.type === 'color').map(s => s.key));
     const expected = JSON.stringify(snapshot.settings).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
     await writeFile(join(directory, 'tst_Export.qml'), `import QtQuick\nimport QtTest\nItem { width: 640; height: 400\n Widget { id: widget; anchors.centerIn: parent }\n TestCase { name: "ExportedValues"; when: windowShown\n function test_values() { var expected = (${expected}); for (var key in expected) { if (${colors}.indexOf(key) !== -1) compare(String(widget[key]), expected[key]); else compare(widget[key], expected[key]); } }\n function test_render() { var saved = false; verify(widget.grabToImage(function(result) { saved = result.saveToFile(${JSON.stringify(join(directory, 'render.png'))}); })); tryVerify(function() { return saved; }, 4000); }\n }\n}\n`);
-    const behavioral = join(root, 'widgets', id, 'native/tst_Behavior.qml');
+    const behavioral = join(source.dir, 'native/tst_Behavior.qml');
     if (existsSync(behavioral)) await copyFile(behavioral, join(directory, 'tst_Behavior.qml'));
     logs.push(command(qtTool('qmltestrunner'), ['-input', directory], directory));
     logs.push(await quickshell(directory));

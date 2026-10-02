@@ -2,8 +2,9 @@ import { test } from 'bun:test';
 import { expect, type Page } from '@playwright/test';
 import { browserPage } from './setup';
 import archive from '../../../docs/archive-imports.json';
-import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { loadLocal } from '../../scripts/export';
+import { includesWidget } from './selection';
 
 async function open(page: Page, id: string) {
   await page.goto(`/?widget=${id}`);
@@ -12,9 +13,10 @@ async function open(page: Page, id: string) {
 }
 
 export function registerArchiveTests() {
+  const selected = archive.entries.filter(entry => includesWidget(entry.id));
   // Exercise every independent imported document through the real opaque iframe.
-  for (let offset = 0; offset < archive.entries.length; offset += 8) {
-    const entries = archive.entries.slice(offset, offset + 8);
+  for (let offset = 0; offset < selected.length; offset += 8) {
+    const entries = selected.slice(offset, offset + 8);
     test(`archive ${offset + 1}–${offset + entries.length}: isolated previews, settings, and responsive layout`, async () => {
       const page = browserPage(); const failures: string[] = [];
       page.on('pageerror', error => failures.push(error.message));
@@ -24,7 +26,7 @@ export function registerArchiveTests() {
       for (const entry of entries) {
         await page.setViewportSize({ width: 1440, height: 1000 });
         const frame = await open(page, entry.id);
-        const definition = JSON.parse(await readFile(resolve(import.meta.dirname, '../../../widgets', entry.id, 'widget.json'), 'utf8'));
+        const { bundle: { definition } } = await loadLocal(resolve(import.meta.dirname, '../../../build/content'), entry.id);
         if (definition.status === 'draft') await expect(frame.locator('html')).toHaveAttribute('data-archive-ready', 'true');
         await expect(page.locator('.code-panel')).toHaveCount(definition.exports.some((file: { kind: string }) => file.kind === 'template') ? 1 : 0);
         for (const selector of entry.selection.remove ?? []) await expect(frame.locator(selector)).toHaveCount(0);
@@ -33,7 +35,7 @@ export function registerArchiveTests() {
         if (setting) {
           const control = page.locator(`#setting-${setting.key}`);
           if (setting.type === 'boolean') await control.setChecked(!setting.default);
-          else await control.selectOption(setting.choices.find((choice: string) => choice !== setting.default) ?? setting.default);
+          else if (setting.type === 'enum') await control.selectOption(setting.choices.find(choice => choice !== setting.default) ?? setting.default);
           await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');
           await expect(page.locator('.preview-error')).toHaveCount(0);
           await page.getByRole('button', { name: 'Reset', exact: true }).click();
@@ -45,7 +47,7 @@ export function registerArchiveTests() {
           const next = frame.locator('[data-action="next"]:visible, [data-next]:visible').first();
           const text = await frame.locator('body').innerText(); await next.click();
           await expect.poll(() => frame.locator('body').innerText()).not.toBe(text);
-        } else if (entry.source.startsWith('menu/') || entry.source.startsWith('clipboard/')) {
+        } else if (entry.source.startsWith('clipboard/')) {
           const search = frame.locator('input[type="search"]:visible, input[placeholder*="earch"]:visible').first();
           if (await search.count()) {
             const before = await frame.locator('body').innerText();
@@ -73,16 +75,14 @@ export function registerArchiveTests() {
       }
     });
   }
-  test('archive notes and audio controls change local state', async () => {
+  if (includesWidget('notes-notes-a-cassette')) test('archive notes reset after switching widgets', async () => {
     const page = browserPage(); await page.emulateMedia({ reducedMotion: 'reduce' });
     let frame = await open(page, 'notes-notes-a-cassette');
     const palette = page.getByLabel('Palette', { exact: true }); await palette.selectOption('Red');
     await expect(frame.locator('#ts-notes-a')).toHaveAttribute('data-palette', 'Red');
     await frame.getByRole('button', { name: '+ NEW NOTE', exact: true }).click();
     await frame.locator('textarea').fill('temporary archive note');
-    frame = await open(page, 'control-b2-unified');
-    await frame.locator('[data-route="audio"]').click(); const mute = frame.locator('[data-mute]');
-    const beforeMute = await mute.textContent(); await mute.click(); await expect.poll(() => mute.textContent()).not.toBe(beforeMute);
+    await open(page, 'player-directions-matrix');
     frame = await open(page, 'notes-notes-a-cassette'); await expect(frame.locator('textarea')).not.toHaveValue('temporary archive note');
   });
 }

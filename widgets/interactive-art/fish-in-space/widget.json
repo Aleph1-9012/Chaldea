@@ -1,0 +1,56 @@
+{
+  "id": "tsugumori-fish-in-space",
+  "title": "Tsugumori / Fish in space",
+  "summary": "Two fish swim independently. Click or tap to give them a quick burst toward that point, or gather the pair and pause the scene.",
+  "category": "Interactive art",
+  "tags": [
+    "interactive-art",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "trails",
+      "label": "Fish particle trails",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "detail",
+      "label": "Fish detail",
+      "type": "number",
+      "default": 1,
+      "min": 0.6,
+      "max": 1.4,
+      "step": 0.2
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "preview/motion.js",
+      "path": "preview/motion.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

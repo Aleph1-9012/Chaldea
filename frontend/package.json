@@ -10,7 +10,8 @@
   },
   "scripts": {
     "dev": "bunx --bun vite --host 127.0.0.1",
-    "check": "bunx --bun tsc --noEmit && bun test tests/unit",
+    "typecheck": "bunx --bun tsc --noEmit",
+    "check": "bun run typecheck && bun test tests/unit",
     "test:browser": "bun test --timeout 25000 tests/browser",
     "build": "bunx --bun tsc --noEmit && bunx --bun vite build",
     "preview": "bunx --bun vite preview --host 127.0.0.1",

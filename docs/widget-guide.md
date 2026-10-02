@@ -1,10 +1,12 @@
 # Author a widget
 
-Discuss new designs with the maintainer before adding or porting a widget. Preserve its existing identity and behavior. Give each approved design its own widget entry. Keep palettes and tuning options as settings, and preserve the design's purpose. `widgets/tsugumori/` shows how an existing interactive HTML design is hosted as a draft.
+Discuss new designs with the maintainer before adding or porting a widget. Preserve its existing identity and behavior. Give each approved design its own widget entry. Keep palettes and tuning options as settings, and preserve the design's purpose. `widgets/lockscreens/phase-lock/formation/` shows how an existing interactive HTML design is hosted as a draft.
 
 ## Source files
 
-Create `widgets/<id>/widget.json`. IDs use lowercase letters, digits, and hyphens and must match the folder. Keep HTML in `preview/`, QML templates in `qml/`, shared assets in `assets/`, a `thumbnail.webp`, usage in `README.md`, and the applicable `LICENSE`.
+Create `widgets/<category>/<name>/widget.json`, or use `<category>/<study>/<design>/` for a family of related designs. Use short lowercase folder names, such as `glyphs/branch-grammar` and `quick-notes/refined`. The `id` inside `widget.json` is the stable public identity; it uses lowercase letters, digits, and hyphens and must be unique across the library. Moving or renaming a source folder does not rename that ID or its URLs. Keep HTML in `preview/`, QML templates in `qml/`, shared assets in `assets/`, a `thumbnail.webp`, usage in `README.md`, and the applicable `LICENSE`.
+
+Discovery descends through category and study folders and stops at each `widget.json`. Do not put another widget inside a widget folder. Empty groups and symlinks in group folders are rejected; remove empty groups after deleting their last design. Hidden directories are ignored. Declared assets still must stay inside their own widget folder.
 
 Definitions supply title, summary, category, tags, status, preview and thumbnail paths, settings, public file mappings, and export mappings. Project defaults supply `formatVersion`, `settingsSchemaVersion`, and `license`. Override a version deliberately when a setting's meaning changes.
 
@@ -72,4 +74,4 @@ Check the preview visually at desktop and narrow widths, then change controls ra
 
 To export without a browser, run `bun run export <id> <new-directory> [settings.json]` inside `frontend/`. Overrides are validated against the same definition. The destination must not already exist.
 
-To refresh source thumbnails, keep `make dev` running and run `bun scripts/thumbnails.ts` inside `frontend/`. To update only selected entries, use `bun scripts/thumbnails.ts http://127.0.0.1:5175/ <id> [<id> ...]`. This captures WebP files from the actual previews. Then run `make content` again and review the images. Thumbnail changes produce new revisions.
+To refresh source thumbnails, keep `make dev` running and run `bun scripts/thumbnails.ts` inside `frontend/`. To update only selected entries, use `bun scripts/thumbnails.ts http://127.0.0.1:5175/ <id-or-source-path> [...]`, such as `glyphs/branch-grammar`. This captures WebP files from the actual previews. Then run `make content` again and review the images. Thumbnail changes produce new revisions.
