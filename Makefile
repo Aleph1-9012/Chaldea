@@ -10,12 +10,12 @@ MANIFEST := $(ROOT)/backend/Cargo.toml
 CONTENT_ARGS := --config "$(ROOT)/chaldea.toml" --source "$(ROOT)/widgets"
 WIDGET ?=
 GROUP ?=
-SCOPE ?= all
+SCOPE ?= core
 .DEFAULT_GOAL := help
 .NOTPARALLEL:
 .PHONY: help setup content dev check build preview native-check _check-code _check-content
 help:
-	@printf '%s\n' 'make setup       Check Rust/Bun and install frozen dependencies' 'make dev         Build local content including drafts; start Vite' 'make content     Rebuild local widget content after source edits' 'make check       Full Rust, content, TypeScript, unit, browser checks' 'make check SCOPE=core                 Shared code and content validation, without browsers' 'make check WIDGET=glyphs/branch-grammar  One widget, using its source path or ID' 'make check GROUP=glyphs               A category or study folder' 'make build       Build production dist/ without drafts' 'make preview     Serve the production build' 'make native-check WIDGET=quick-notes/refined  Exact native exports, using source path or ID'
+	@printf '%s\n' 'make setup       Check Rust/Bun and install frozen dependencies' 'make dev         Build local content including drafts; start Vite' 'make content     Rebuild local widget content after source edits' 'make check       Rust, content, TypeScript, and unit checks; no browser needed' 'make check SCOPE=all                  Also run the full browser suite' 'make check WIDGET=glyphs/branch-grammar  Opt into browser checks for one widget' 'make check GROUP=glyphs               Opt into browser checks for a category or study' 'make build       Build production dist/ without drafts' 'make preview     Serve the production build' 'make native-check WIDGET=quick-notes/refined  Exact native exports, using source path or ID'
 setup:
 	@command -v $(CARGO) >/dev/null || { echo 'Install the Rust toolchain in rust-toolchain.toml.'; exit 1; }
 	@test "$$($(RUSTC) --version | cut -d ' ' -f 2)" = "$$(sed -n 's/^channel = "\(.*\)"/\1/p' "$(ROOT)/rust-toolchain.toml")" || { echo 'Install the Rust version in rust-toolchain.toml.'; exit 1; }

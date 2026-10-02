@@ -4,7 +4,7 @@ The repository builds a static site and has a CI workflow. No public host, domai
 
 ## Release sequence
 
-1. Run `make setup`, `make check`, the relevant native checks, and `make build`. Smoke-test the actual `dist/` artifact with `bun scripts/check-dist.ts` in `frontend/`.
+1. Run `make setup`, `make check SCOPE=all`, the relevant native checks, and `make build`. Smoke-test the actual `dist/` artifact with `bun scripts/check-dist.ts` in `frontend/`. Automatic CI runs browser-free checks and the build; manually run **Check and build** with its browser option enabled for the complete browser and production smoke checks.
 2. Retain the previous working website and catalog. Record the source commit, tool versions, and native verification for the candidate.
 3. Upload the candidate's complete `revisions/<id>/<revision>/` trees to persistent storage. Never overwrite an existing revision with different bytes or delete previous published revisions during a sync.
 4. Verify the new revision URLs, MIME types, and export assets before activating the website/catalog artifact. Keep activation as one release operation.

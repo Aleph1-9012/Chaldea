@@ -29,7 +29,9 @@ Open [localhost:5175](http://127.0.0.1:5175/) to browse the library.
 
 See the [widget authoring guide](docs/widget-guide.md) for adding widgets and the [development guide](docs/repair.md) for setup, commands, and troubleshooting.
 
-Widget sources use [category and study folders](widgets/README.md), such as `widgets/glyphs/branch-grammar/`. Run `make check WIDGET=glyphs/branch-grammar` for one widget, `make check GROUP=glyphs` for a category, or `make check SCOPE=core` for shared code. `make check` runs the full suite used by CI.
+Widget sources use [category and study folders](widgets/README.md), such as `widgets/glyphs/branch-grammar/`. `make check` runs Rust, content, TypeScript, and unit checks without a browser. Automatic CI runs those checks and builds the site.
+
+For UI changes, opt into `make check WIDGET=glyphs/branch-grammar` for one widget, `make check GROUP=glyphs` for a category, or `make check SCOPE=all` for the full browser suite. Browser checks can also be selected when manually running the **Check and build** GitHub workflow.
 
 ## License
 

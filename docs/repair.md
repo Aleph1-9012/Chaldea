@@ -21,7 +21,7 @@ The project config is `chaldea.toml`, the Rust package and CLI are `chaldea`, an
 | `make setup` | Check prerequisites and install frozen dependencies |
 | `make content` | Validate and package content, including drafts |
 | `make dev` | Build development content and start Vite on port 5175 |
-| `make check` | Run Rust, content, TypeScript, unit, and Chromium browser checks |
+| `make check` | Run Rust, content, TypeScript, and all unit checks without a browser |
 | `make build` | Build the static site in `dist/`, excluding drafts |
 | `make preview` | Serve the production build on port 4173 |
 | `make native-check WIDGET=<id>` | Export, lint, render, and exercise a native widget in isolation |
@@ -44,20 +44,23 @@ Rust errors report a source path, field, and cause. Check `widget.json` first fo
 
 ## Focused checks
 
-`make check` remains the complete pre-merge suite used by CI. It runs Rust formatting, Clippy and tests, TypeScript, all unit tests, content packaging, and all browser tests. Content packaging validates the catalog once; the full check no longer runs a separate duplicate content validation first.
+`make check` is the browser-free default used on pushes and pull requests. It runs Rust formatting, Clippy and tests, TypeScript, all unit tests, and content validation. It does not download or launch a browser. CI then builds the production site.
 
-Use these narrower commands during edits:
+Browser checks are optional: select a widget or group for a UI change, or use `SCOPE=all` for the complete suite. In GitHub Actions, manually run **Check and build** and enable its browser option to include browser installation, the full suite, the production smoke test, and browser evidence. Normal automatic runs skip all four steps.
+
+Choose the scope needed for the change:
 
 | Command | Scope |
 | --- | --- |
-| `make check SCOPE=core` | Rust, TypeScript, schema/generator and source-lookup tests, and content validation. No browsers, fish simulation, or content rebuild. |
+| `make check` or `make check SCOPE=core` | Rust, TypeScript, all unit tests, and content validation. No browser or content rebuild. |
+| `make check SCOPE=all` | Rebuild content and run every check, including the browser suite. |
 | `make check WIDGET=glyphs/branch-grammar` | Rebuild content, then run only this widget's browser tests. |
 | `make check GROUP=glyphs` | Rebuild content, then run browser tests for all six glyphs. |
 | `make check GROUP=lockscreens/layouts` | Run the browser checks for that study folder. |
 | `make check WIDGET=interactive-art/fish-in-space` | Rebuild content, then run fish motion unit tests and its browser checks. |
 | `make native-check WIDGET=quick-notes/refined` | Export and check native QML in isolation. |
 
-`WIDGET` accepts an existing public ID or a path relative to `widgets/`. `GROUP` accepts a category or study path. Unknown selectors fail before rebuilding; `WIDGET` and `GROUP` cannot be combined. Archive tests filter entries before batching, so a focused run does not open unrelated archive previews. Other widgets still undergo content validation during the rebuild. Use `SCOPE=core` as well when changing shared application code, and the full check before merging. Native checks remain separate and are required when QML or generated output changes.
+`WIDGET` accepts an existing public ID or a path relative to `widgets/`. `GROUP` accepts a category or study path. Unknown selectors fail before rebuilding; `WIDGET` and `GROUP` cannot be combined. Archive tests filter entries before batching, so a focused run does not open unrelated archive previews. Other widgets still undergo content validation during the rebuild. Widget and group selectors explicitly request focused browser checks. Run plain `make check` as well for shared application code, and use `SCOPE=all` plus the production smoke test when verifying a release. Native checks remain separate and are required when QML or generated output changes.
 
 The fish unit suite still simulates every original frame and edge case. It accumulates minimum clearances and maximum movement errors, then asserts those bounds once per scenario rather than asserting at every frame. This reduces assertion overhead without sampling fewer frames.
 
@@ -65,9 +68,9 @@ A template placeholder must be the complete typed property value on its line. Un
 
 ## Browser problems
 
-Browser checks start their own Vite server on an available localhost port and close it after the suite. They never reuse or stop the development server on port 5175. Each test still gets a separate Chromium context. Setup has a 60-second timeout, including Chromium's 30-second launch deadline; individual tests keep their 25-second timeout. Setup logs report server and browser readiness so a startup failure identifies the stalled stage.
+Only explicitly requested browser checks need Chromium. Browser checks start their own Vite server on an available localhost port and close it after the suite. They never reuse or stop the development server on port 5175. Each test still gets a separate Chromium context. Setup has a 60-second timeout, including Chromium's 30-second launch deadline; individual tests keep their 25-second timeout. Setup logs report server and browser readiness so a startup failure identifies the stalled stage.
 
-CI uses the Chromium installed by Playwright. Locally, `/usr/bin/chromium` is used when available; `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` explicitly overrides either choice. Install Playwright Chromium with `bunx --bun playwright install --with-deps chromium` in `frontend/`. On Linux containers, browser/server execution may need a less restricted sandbox.
+When the manual workflow's browser option is enabled, CI uses the Chromium installed by Playwright. Locally, `/usr/bin/chromium` is used when available; `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` explicitly overrides either choice. Install Playwright Chromium with `bunx --bun playwright install --with-deps chromium` in `frontend/`. On Linux containers, browser/server execution may need a less restricted sandbox.
 
 Anamorphic 704, Kinetic typography, Kirigami panel, Pachinko gutter, and Notes numbered have been removed. Their previous widget URLs now show "Widget not found".
 

@@ -3,6 +3,12 @@ name: Check and build
 on:
   push:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: Run browser tests and the production browser smoke test
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -24,11 +30,13 @@ jobs:
           rustup toolchain install "$version" --profile minimal --component rustfmt --component clippy
       - run: make setup
       - name: Install the test browser
+        if: ${{ inputs.browser }}
         working-directory: frontend
         run: bunx --bun playwright install --with-deps chromium
-      - run: make check
+      - run: make check SCOPE=${{ inputs.browser && 'all' || 'core' }}
       - run: make build
       - name: Smoke-test the production artifact
+        if: ${{ inputs.browser }}
         working-directory: frontend
         run: bun scripts/check-dist.ts
       - name: Preserve the static release candidate
@@ -39,7 +47,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
       - name: Preserve browser evidence
-        if: always()
+        if: ${{ always() && inputs.browser }}
         uses: actions/upload-artifact@v7
         with:
           name: browser-evidence
