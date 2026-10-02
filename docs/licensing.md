@@ -10,6 +10,6 @@ The production website includes `LICENSE.txt`, `NOTICE.txt`, and Vite's `THIRD_P
 
 ## Widgets
 
-`widgets/LICENSE` applies to original HTML, adapters, QML, and original visual assets under `widgets/`. Each downloadable widget includes its own license. Generated QML has a 0BSD SPDX header. The application's Apache license does not replace the separate license on original widget code.
+`widgets/LICENSE` applies to original HTML, adapters, QML, and original visual assets under `widgets/`. Each downloadable widget includes its own license, packaged from the identical copy in `widgets/_shared/LICENSE`. Change both files together. Generated QML has a 0BSD SPDX header. The application's Apache license does not replace the separate license on original widget code.
 
 Third-party dependencies and assets retain their own terms. Previews use system fonts and local assets. The Tsugumori studies are fan designs; the software licenses make no claim to third-party names, marks, or characters. Each widget README records source provenance. Widget ZIPs must include any applicable third-party notices.

@@ -4,13 +4,21 @@ Discuss new designs with the maintainer before adding or porting a widget. Prese
 
 ## Source files
 
-Create `widgets/<category>/<name>/widget.json`, or use `<category>/<study>/<design>/` for a family of related designs. Use short lowercase folder names, such as `glyphs/branch-grammar` and `quick-notes/refined`. The `id` inside `widget.json` is the stable public identity; it uses lowercase letters, digits, and hyphens and must be unique across the library. Moving or renaming a source folder does not rename that ID or its URLs. Keep HTML in `preview/`, QML templates in `qml/`, shared assets in `assets/`, a `thumbnail.webp`, usage in `README.md`, and the applicable `LICENSE`.
+Create `widgets/<category>/<name>/widget.json`, or use `<category>/<study>/<design>/` for a family of related designs. Use short lowercase folder names, such as `glyphs/branch-grammar` and `quick-notes/refined`. The `id` inside `widget.json` is the stable public identity; it uses lowercase letters, digits, and hyphens and must be unique across the library. For a new widget, use its folder path with each `/` replaced by `-`, such as `glyphs-branch-grammar`. Moving or renaming a source folder does not rename that ID or its URLs. Keep HTML in `preview/`, QML templates in `qml/`, assets used by both preview and export in `assets/`, a `thumbnail.webp`, and usage in `README.md`. The 0BSD `LICENSE` comes from `widgets/_shared/`; a widget with other terms keeps its own.
 
-Discovery descends through category and study folders and stops at each `widget.json`. Do not put another widget inside a widget folder. Empty groups and symlinks in group folders are rejected; remove empty groups after deleting their last design. Hidden directories are ignored. Declared assets still must stay inside their own widget folder.
+Discovery descends through category and study folders and stops at each `widget.json`. Do not put another widget inside a widget folder. Empty groups and symlinks in group folders are rejected; remove empty groups after deleting their last design. Hidden directories are ignored, and a group's `_shared/` folder is never a widget.
+
+## Shared files
+
+A category or study folder can hold a `_shared/` folder for files that several of its widgets use unchanged. Each declared `source` is looked up in the widget folder first, then in the `_shared/` folder of each parent group, nearest first, ending at `widgets/_shared/`. The mapping is written the same way in both cases. `qml/PlayerBase.qml` resolves to `widgets/player/_shared/qml/PlayerBase.qml` when the widget has no `qml/PlayerBase.qml` of its own. Every download still contains its own copy of each file. A resolved path must stay inside the folder that supplied it.
+
+`widgets/_shared/` holds the 0BSD `LICENSE` and the archive adapter `preview/support.js`. Each native family keeps its common QML helpers and launcher in its category's `_shared/qml/`; see that category's `README.md`. Keep `widget.json`, the preview entry, the thumbnail, and the README in the widget folder.
+
+Editing a shared file changes every widget that uses it and gives each of them a new revision. To change one widget only, copy the file to the same relative path inside that widget folder and edit the copy. The widget's own file takes precedence. Move it back to `_shared/` when the change should apply to the whole group. Share a file only while it is byte-identical for every widget that uses it. Moving an identical file between a widget and `_shared/` does not change any revision.
 
 Definitions supply title, summary, category, tags, status, preview and thumbnail paths, settings, public file mappings, and export mappings. Project defaults supply `formatVersion`, `settingsSchemaVersion`, and `license`. Override a version deliberately when a setting's meaning changes.
 
-`publicFiles` maps `{ "source": "preview/index.html", "path": "preview/index.html" }`. Both paths are relative to the widget or revision respectively. `exports` adds `kind`, either `template` or `file`. A template typically maps `qml/Widget.qml.tmpl` to `Widget.qml`. Include every static QML helper, image, font, README, and license required by the exported widget. `source` is always relative to the widget folder.
+`publicFiles` maps `{ "source": "preview/index.html", "path": "preview/index.html" }`. Both paths are relative to the widget or revision respectively. `exports` adds `kind`, either `template` or `file`. A template typically maps `qml/Widget.qml.tmpl` to `Widget.qml`. Include every static QML helper, image, font, README, and license required by the exported widget. `source` is always written relative to the widget folder, including for files supplied by `_shared/`.
 
 Paths cannot contain traversal, spaces, URL schemes, or escaping symlinks. Mappings must be unique and cannot make one file the parent of another. Public names `bundle.json`, `preview-runtime.js`, and `files/` are reserved for packaging. Files not listed are private source and will not be distributed. A file used both in preview and export needs both mappings.
 
@@ -49,7 +57,7 @@ The adapter registers `window.ChaldeaPreview.connect(settings => { /* update DOM
 
 Controls inside the widget must remain usable with pointer and keyboard input. A customization sidebar is additional UI, not a replacement for those interactions. The shared runtime reports content height so the frame can show the complete interface. The parent authenticates and bounds resize messages.
 
-Import each distinct design from a study page as a separate widget with its own ID, title, thumbnail, preview, and applicable settings. Remove design-switching controls from its preview. Palettes such as Bone/Charcoal remain settings. See [the design inventory](widget-inventory.md). HTML drafts use the full width with settings below. Connect the original design controls directly with `ChaldeaPreview.connect`; the runtime provides no `Tweak` helper or remote icon/font wrapper. Archive imports that need the original helper include their own 0BSD `preview/support.js`, which maps the original controls to this connection and supplies local SVG icons. Native QML export requires complete export mappings.
+Import each distinct design from a study page as a separate widget with its own ID, title, thumbnail, preview, and applicable settings. Remove design-switching controls from its preview. Palettes such as Bone/Charcoal remain settings. See [the design inventory](widget-inventory.md). HTML drafts use the full width with settings below. Connect the original design controls directly with `ChaldeaPreview.connect`; the runtime provides no `Tweak` helper or remote icon/font wrapper. Archive imports that need the original helper declare the 0BSD `preview/support.js` from `widgets/_shared/`, which maps the original controls to this connection and supplies local SVG icons. Native QML export requires complete export mappings.
 
 The callback must apply settings synchronously. The runtime acknowledges successful rendering and reports callback errors. Timers inside a preview stop when its frame is destroyed. Implement and test corresponding behavior in QML separately.
 
@@ -61,7 +69,7 @@ Publish only after native QML, exported usage, and an exported `LICENSE` are com
 
 ## Verify the change
 
-Run `make check`. It discovers new widgets automatically, runs the shared units, builds production once, and validates preview scripts/assets, settings, generated exports, and the production catalog. Use `make test` when only the unit tests need rerunning. No widget-specific test files or test registration are needed.
+Run `make check`. It discovers new widgets automatically, runs the shared units, packages local and production content, and validates the packaged preview scripts/assets, settings, generated exports, and the production catalog. A running `make dev` keeps its drafts. Use `make test` when only the unit tests need rerunning. No widget-specific test files or test registration are needed.
 
 Then use `make dev` to inspect a changed preview at desktop and narrow widths. Try its controls and copy/download flows. For native changes, inspect the generated QML and load the exact exported files in an isolated Quickshell configuration. The automatic check does not establish rendering, interaction, or desktop integration behavior. Record the revision, environment, and limitations before publishing native support.
 

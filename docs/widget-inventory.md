@@ -1,6 +1,6 @@
 # Widget inventory
 
-The library contains 162 designs. 26 have native exports: six Quick notes, five Players, six Glyphs, and nine Interactive art widgets. The remaining 136 are HTML drafts. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
+The library contains 162 designs. 26 have native exports: six Quick notes, five Players, six Glyphs, and nine Interactive art widgets. The remaining 136 are HTML drafts. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
 
 The original red field appears in both curtain source pages. Both supplied versions are preserved, with separate names and source provenance.
 
@@ -22,21 +22,9 @@ The existing entries remain available:
 
 Open a design with `/?widget=<widget-id>`. Each widget has its own in-memory state. Leaving a preview resets it.
 
-## Native Quick notes
+## Native families
 
-Cassette, Index, Console, Ash, Preview, and Refined have independent QML exports. Their source mappings below are unchanged. The exports preserve note creation, editing and selection, each design’s collapse or index controls, and Refined’s deletion and Undo. Settings remain appearance controls. Each exported component owns its in-memory notes; no desktop services or storage are connected.
-
-## Native Players
-
-Matrix, Sleeve, Rail, Ledger, and Title have independent QML exports. Native controls connect to desktop media applications through MPRIS; browser previews use silent sample tracks. Appearance settings preserve the selected track or source.
-
-## Native Glyphs
-
-Branch grammar, Glyph Bay typing, Oblique ligatures, Radical exchange, Recursive relays, and Shifted script have independent QML exports. Each uses the original drawing rules in both HTML and QML. Typing, deletion, motion settings, and the Unlock curtain remain direct interactions. These are visual studies with dummy input, without authentication or desktop locking.
-
-## Native Interactive art
-
-Fish in space, Magnetic powder, Mechanical rhythm, Specimen chamber, Orbital playground, Resonance sculpture, Signal hunting, Gravity sandbox, and Session fossils have independent QML exports. Each preserves its original drawing and direct controls. Collections remain in memory. Mechanical rhythm includes optional native sound; the other designs are silent.
+Quick notes, Player, Glyphs, and Interactive art have native QML exports. Each family's components, shared files, and inspection notes are in its category folder: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), and [Interactive art](../widgets/interactive-art/README.md).
 
 ## Archive import
 

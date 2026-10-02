@@ -9,7 +9,7 @@ Run commands from the repository root. `make -f /absolute/path/to/Chaldea/Makefi
 | `make setup` | Check pinned Rust/Bun versions and install frozen frontend dependencies |
 | `make dev` | Rebuild all local widgets, including drafts, and serve port 5175 |
 | `make content` | Rebuild local content after editing widget sources |
-| `make check` | Run units and code checks, build production once, and validate every widget |
+| `make check` | Run units and code checks, package local and production content, and validate every widget |
 | `make test` | Rerun only the small Rust and Bun unit suites |
 | `make build` | Build production output in `dist/`, excluding drafts |
 | `make preview` | Serve the production output on port 4173 |
@@ -20,12 +20,12 @@ There are no scope flags, per-widget test modes, browser test installations, fis
 
 `make test` exercises shared behavior with small synthetic fixtures: settings and typed QML placeholders, escaping and immutable generated results, complete assets, draft export restrictions, folder discovery, revisions, path confinement, publication ownership, draft omission, and recovery after packaging failure. Shared Rust/TypeScript contract cases live in `schemas/fixtures/`; they verify that both implementations agree.
 
-`make check` runs those units, Rust formatting and Clippy, and one production build. TypeScript checking happens once during that build. Rust validates the entire source library once while packaging production. The frontend library validator then discovers all widget definitions automatically and checks:
+`make check` runs those units, Rust formatting and Clippy, a local content build, and one production build. TypeScript checking happens once during the production build. Rust is the only reader of widget sources and validates the entire library each time it packages. The frontend library validator then inspects the packaged revision of every discovered widget in `build/content/` and checks:
 
 - Classic preview JavaScript syntax without executing it, the shared runtime reference, and literal HTML `src`, `href`, `poster`, and CSS `url(...)` asset references.
 - Valid default and boundary settings for every widget.
 - Generated QML and complete ZIP contents for each widget with native exports, using default, low, and high settings.
-- Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Draft files must not appear in `dist/`.
+- Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Each production revision must equal the one checked locally. Draft files must not appear in `dist/`.
 
 The library validator has no widget-ID list to update. Add a valid `widget.json` in any supported category/study folder and it is checked on the next run. Errors identify the source folder or file. Unit tests remain independent of library size; the library scan grows with the files being checked.
 
@@ -35,7 +35,7 @@ These are static and data checks. They do not claim to verify visible layouts, c
 
 CI runs `make setup` followed by the same `make check`, then saves `dist/` as the release candidate. Pull requests and pushes to `main` are checked; ordinary branch pushes do not launch a second copy of a pull-request run. A newer run cancels a superseded run for the same ref. No browser is downloaded or launched.
 
-The check builds production, so `build/content/` contains only published entries afterward. Run `make content` or `make dev` to restore drafts for local browsing. Do not run `make build` again after a successful check unless sources have changed.
+Local and production content are separate. `build/content/` always holds every widget, drafts included; `build/production/` holds the published set that Vite copies into `dist/`. A running `make dev` keeps its drafts through a check. Do not run `make build` again after a successful check unless sources have changed.
 
 No hosting provider is configured. A passing check creates a local candidate; it does not deploy the site. Follow `docs/publishing.md` for release and rollback requirements.
 
@@ -43,11 +43,11 @@ No hosting provider is configured. A passing check creates a local candidate; it
 
 Use the versions in `rust-toolchain.toml` and `.bun-version`. Make keeps Cargo and Bun caches under ignored `build/`. Dependency changes require an intentional `bun install` and review of `frontend/bun.lock`; normal installs use `bun install --frozen-lockfile`. Keep `backend/Cargo.lock` current too.
 
-Never edit generated files under `build/` or `dist/`. Fix their sources and rebuild. Widget changes need `make content` and a reload; Vite watches application code but does not rebuild Rust content. The config is `chaldea.toml`. The packager recognizes its former ownership marker only to migrate old output and writes `.chaldea-content` for current output. It refuses to overwrite an unowned directory; inspect the path rather than adding a marker to bypass that protection.
+Never edit generated files under `build/` or `dist/`. Fix their sources and rebuild. Widget changes need `make content` and a reload; Vite watches application code but does not rebuild Rust content. The config is `chaldea.toml`. The packager writes a `.chaldea-content` ownership marker into its output. It refuses to overwrite a directory without that exact marker; inspect the path rather than adding a marker to bypass that protection. Output from before the project was renamed carries an older marker: delete that `build/` directory and rebuild.
 
 ## Fix a library error
 
-Check the reported widget's `widget.json` first. IDs must be unique across the library. Each public/export file must exist inside its widget folder, and mappings cannot overlap or use reserved paths. New category and study folders cannot be empty or symlinked. Moving source folders keeps the ID and URL; changing declared source bytes creates a new revision.
+Check the reported widget's `widget.json` first. IDs must be unique across the library. Each public/export file must exist inside its widget folder or the `_shared/` folder of a parent group, and mappings cannot overlap or use reserved paths. A `not found in this widget or a parent _shared folder` error names the widget folder and the declared source. New category and study folders cannot be empty or symlinked; a group holding only `_shared/` counts as empty. Moving source folders keeps the ID and URL; changing declared source bytes creates a new revision. Editing a file under `_shared/` gives every widget that uses it a new revision; a widget's own copy at the same path takes precedence.
 
 A preview must load `../preview-runtime.js` from its HTML entry and register `window.ChaldeaPreview.connect`. Use classic scripts and declared local assets. Do not add `allow-same-origin` to work around a sandbox failure. The static checker resolves literal references; dynamically computed assets and behavior still need a manual preview check.
 
@@ -71,28 +71,6 @@ Thumbnail capture still uses Playwright as an authoring tool through `scripts/th
 
 The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Widget ZIP files include their own applicable licenses.
 
-## Player downloads
+## Family notes
 
-The five Player entries now have native QML exports and are included in production builds. Their browser previews retain silent sample tracks. Downloads use Quickshell.Services.Mpris to control connected desktop media applications, with a source list instead of the preview's sample collection. Each ZIP includes its helper QML, `shell.qml`, usage, and license.
-
-If a native player is idle, start an application that exposes MPRIS on the same session bus. Missing or disabled actions follow the application's reported capabilities; seeking also requires a known duration. A selected source that closes falls back to another available player. Album art loads from the URL supplied by that application. The browser cannot verify these integrations.
-
-For isolated native inspection, export the exact files with the documented Bun export command and use their `shell.qml`. A private `dbus-run-session` prevents test controls from reaching live media apps; populate that bus with a test media service when checking playback behavior. Local offscreen rendering verifies layout and QML loading but does not verify compositor placement or every media application's MPRIS behavior.
-
-## Glyph downloads
-
-All six Glyph entries now include native QML and are included in production builds. Keep each extracted `GlyphArt.js` beside its QML files. That drawing helper is also used by the browser preview, so typing length, deletion, and the artwork's geometry follow the same rules.
-
-These are visual components with a dummy-input field and an Unlock curtain preview. They do not implement authentication or a desktop session lock. Entered characters are replaced after committed edits; only the bounded length drives the drawing. Timing, motion, and emphasis settings preserve that length. The native animation setting can disable transitions, and hiding a component stops pending motion and replay timers.
-
-Use the same generator/export command and isolated `shell.qml` workflow described above. Browser and native inspection should include pasting, selection deletion, reversing input, motion interruption, clearing, and replay cancellation. The generic library checker discovers their JavaScript helpers and export mappings without new test registration.
-
-## Interactive art downloads
-
-All nine Interactive art entries include native QML and appear in production builds. Keep each exported `ArtEngine.js` with its QML helpers. The same engine drives the browser preview. Preserve the original drawing rules and interactions when changing either host; settings must leave scene state and collections intact.
-
-Shared JavaScript must work in Qt’s JavaScript engine as well as the browser. These engines use ES2016-compatible syntax, including `Object.assign` instead of object spread. Browser and Qt Canvas APIs differ; the shared drawing code uses a Bezier ellipse helper to preserve the same geometry in both.
-
-Mechanical rhythm additionally needs Qt Multimedia, `ArtAudio.qml`, and its six original PCM files under `sounds/`. Sound starts off, requires an available output, and stops on pause or hiding. The other eight exports are silent. Orbital workspaces, resonance beats, and fossil sessions are sample data; collections are kept only in memory.
-
-Use the existing export command and an isolated launcher for native inspection. Check pointer gestures, keyboard controls, collection recall, pause/resume, settings, and narrow layouts. A muted audio check establishes sample loading and control behavior, not audible output quality. The generic checker discovers these exports and assets automatically; no new test command or registration is needed.
+Each family with native exports keeps its component, shared-file, and inspection notes beside its sources: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), and [Interactive art](../widgets/interactive-art/README.md). Add a `README.md` to a category folder when its first native export lands.

@@ -27,9 +27,9 @@ Open [localhost:5175](http://127.0.0.1:5175/) to browse the library.
 
 ## Contributing
 
-See the [widget authoring guide](docs/widget-guide.md) for adding widgets and the [development guide](docs/repair.md) for setup, commands, and troubleshooting.
+See the [roadmap](docs/roadmap.md) for what is planned next, the [widget authoring guide](docs/widget-guide.md) for adding widgets, and the [development guide](docs/repair.md) for setup, commands, and troubleshooting.
 
-Widget sources use [category and study folders](widgets/README.md), such as `widgets/glyphs/branch-grammar/`.
+Widget sources use [category and study folders](widgets/README.md), such as `widgets/glyphs/branch-grammar/`. Files that several widgets use unchanged live once in a group's `_shared/` folder.
 
 Use two commands while developing:
 
