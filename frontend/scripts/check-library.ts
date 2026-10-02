@@ -1,12 +1,12 @@
-import { readFile, readdir, realpath } from 'node:fs/promises';
-import { dirname, join, relative } from 'node:path';
+import { readFile, readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 import { Script } from 'node:vm';
 import assert from 'node:assert/strict';
 import { zipSync, unzipSync } from 'fflate';
-import { assertBundle, assertCatalog, assertDefinition, safePath } from '../src/catalog/contracts';
-import type { Definition, Settings } from '../src/catalog/contracts';
+import type { Bundle, Definition, Settings } from '../src/catalog/contracts';
 import { defaults, validateSettings } from '../src/customizer/settings';
 import { generate } from '../src/generator';
+import { loadRevision, readCatalog } from './export';
 import { repository, widgetSources } from './widget-sources';
 
 const decoder = new TextDecoder('utf-8', { fatal: true });
@@ -94,59 +94,55 @@ export function inspectExports(definition: Definition, templates: Record<string,
   return settings.length;
 }
 
-async function confinedFile(root: string, path: string): Promise<Uint8Array> {
-  if (!safePath(path)) throw new Error(`Unsafe source path: ${path}`);
-  const file = await realpath(join(root, path));
-  if (relative(root, file).startsWith('..')) throw new Error(`Source escapes widget: ${path}`);
-  return new Uint8Array(await readFile(file));
-}
-
 async function checkLibrary() {
-  const config = Bun.TOML.parse(await readFile(join(repository, 'chaldea.toml'), 'utf8')) as Record<string, unknown>;
-  const runtime = new Uint8Array(await readFile(join(repository, String(config.preview_runtime))));
-  new Script(decoder.decode(runtime), { filename: 'preview-runtime.js' });
-  const definitions = new Map<string, Definition>();
+  // Rust is the only reader of widget sources. Inspect the revisions it packaged.
+  const local = await readCatalog(join(repository, 'build/content'));
+  const sources = await widgetSources();
+  const packaged = local.catalog.widgets.map(widget => widget.id).sort();
+  assert.deepEqual(packaged, sources.map(source => source.id).sort(), 'Local content must contain exactly the widget sources. Run make content.');
+
+  const bundles = new Map<string, Bundle>();
   let scripts = 0, exports = 0;
-  for (const widget of await widgetSources()) {
+
+  for (const source of sources) {
     try {
-      const raw: unknown = JSON.parse(await readFile(join(widget.dir, 'widget.json'), 'utf8'));
-      const definition = { formatVersion: config.format_version, settingsSchemaVersion: config.settings_schema_version, license: config.license, ...raw as object };
-      assertDefinition(definition);
-      const inputs = new Map<string, Uint8Array>();
-      for (const path of new Set([...definition.publicFiles, ...definition.exports].map(file => file.source))) inputs.set(path, await confinedFile(widget.dir, path));
-      const publicFiles = Object.fromEntries(definition.publicFiles.map(file => [file.path, inputs.get(file.source)!]));
-      publicFiles['preview-runtime.js'] = runtime;
-      scripts += inspectPreview(publicFiles, definition.preview);
-      const templates = Object.fromEntries(definition.exports.filter(file => file.kind === 'template').map(file => [file.path, decoder.decode(inputs.get(file.source)!)]));
-      const assets = Object.fromEntries(definition.exports.filter(file => file.kind === 'file').map(file => [file.path, inputs.get(file.source)!]));
-      exports += inspectExports(definition, templates, assets);
-      definitions.set(definition.id, definition);
-    } catch (cause) { throw new Error(`widgets/${widget.path}: ${cause instanceof Error ? cause.message : cause}`, { cause }); }
+      const item = local.catalog.widgets.find(widget => widget.id === source.id)!;
+      const { bundle, assets, dir } = await loadRevision(local.root, item);
+      const runtime = await readFile(join(dir, 'preview-runtime.js'));
+      new Script(decoder.decode(runtime), { filename: 'preview-runtime.js' });
+
+      const publicFiles: Record<string, Uint8Array> = { 'preview-runtime.js': runtime };
+
+      for (const file of bundle.definition.publicFiles) publicFiles[file.path] = await readFile(join(dir, file.path));
+
+      scripts += inspectPreview(publicFiles, bundle.definition.preview);
+      exports += inspectExports(bundle.definition, bundle.templates, assets);
+      bundles.set(bundle.id, bundle);
+    } catch (cause) { throw new Error(`widgets/${source.path}: ${cause instanceof Error ? cause.message : cause}`, { cause }); }
   }
 
   // Verify the built artifact without serving it or launching a browser.
   const dist = join(repository, 'dist');
   for (const name of ['index.html', 'LICENSE.txt', 'NOTICE.txt', 'THIRD_PARTY_LICENSES.txt']) await readFile(join(dist, name));
-  const catalog: unknown = JSON.parse(await readFile(join(dist, 'catalog.json'), 'utf8'));
-  assertCatalog(catalog);
-  const published = [...definitions.values()].filter(widget => widget.status === 'published').map(widget => widget.id).sort();
-  assert.deepEqual(catalog.widgets.map(widget => widget.id).sort(), published, 'Production catalog must contain exactly the published widgets');
+
+  const production = await readCatalog(dist);
+  const published = [...bundles.values()].filter(bundle => bundle.definition.status === 'published').map(bundle => bundle.id).sort();
+  assert.deepEqual(production.catalog.widgets.map(widget => widget.id).sort(), published, 'Production catalog must contain exactly the published widgets');
+
   const revisionDirs = await readdir(join(dist, 'revisions')).catch((error: NodeJS.ErrnoException) => {
     if (error.code === 'ENOENT' && !published.length) return [];
     throw error;
   });
   assert.deepEqual(revisionDirs.sort(), published, 'Draft files must not enter the production artifact');
-  for (const item of catalog.widgets) {
-    const location = join(dist, item.bundleUrl);
-    const bundle: unknown = JSON.parse(await readFile(location, 'utf8'));
-    assertBundle(bundle);
-    assert.equal(bundle.revision, item.revision);
-    assert.deepEqual(bundle.definition, definitions.get(item.id));
-    for (const asset of bundle.assets) await readFile(join(dirname(location), asset.url));
+
+  for (const item of production.catalog.widgets) {
+    const { bundle, dir } = await loadRevision(production.root, item);
+    assert.deepEqual(bundle, bundles.get(item.id), `${item.id}: production must ship the revision that was checked`);
     await readFile(join(dist, item.thumbnailUrl));
-    await readFile(join(dirname(location), bundle.definition.preview));
+    await readFile(join(dir, bundle.definition.preview));
   }
-  console.log(`Library passed: ${definitions.size} widgets, ${scripts} preview scripts, ${exports} QML/ZIP samples, ${published.length} production entries.`);
+
+  console.log(`Library passed: ${bundles.size} widgets, ${scripts} preview scripts, ${exports} QML/ZIP samples, ${published.length} production entries.`);
 }
 
 if (import.meta.main) await checkLibrary();

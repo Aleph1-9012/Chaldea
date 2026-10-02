@@ -1,27 +1,49 @@
 import { readFile, mkdir, writeFile, realpath } from 'node:fs/promises';
 import { resolve, dirname, join, relative } from 'node:path';
 import { assertBundle, assertCatalog, safePath } from '../src/catalog/contracts';
+import type { Summary } from '../src/catalog/contracts';
 import { defaults } from '../src/customizer/settings';
 import { generate } from '../src/generator';
 
-export async function loadLocal(content: string, id: string) {
+export async function readCatalog(content: string) {
   const root = await realpath(content);
   const catalog: unknown = JSON.parse(await readFile(join(root, 'catalog.json'), 'utf8'));
   assertCatalog(catalog);
-  const item = catalog.widgets.find(w => w.id === id);
-  if (!item) throw new Error(`Unknown widget ${id}. Run make content first.`);
+
+  return { root, catalog };
+}
+
+// Load one packaged revision and its export assets from a content directory.
+export async function loadRevision(root: string, item: Summary) {
   const location = join(root, item.bundleUrl);
   const bundle: unknown = JSON.parse(await readFile(location, 'utf8'));
   assertBundle(bundle);
-  if (bundle.id !== id || bundle.revision !== item.revision) throw new Error('Revision mismatch.');
+
+  if (bundle.id !== item.id || bundle.revision !== item.revision) throw new Error('Revision mismatch.');
+
+  const dir = dirname(location);
   const assets: Record<string, Uint8Array> = {};
+
   for (const asset of bundle.assets) {
-    const file = await realpath(join(dirname(location), asset.url));
+    const file = await realpath(join(dir, asset.url));
+
     if (relative(root, file).startsWith('..')) throw new Error('Asset escapes content directory.');
-    assets[asset.path] = await readFile(file);
+
+    assets[asset.path] = new Uint8Array(await readFile(file));
   }
-  return { bundle, assets };
+
+  return { bundle, assets, dir };
 }
+
+export async function loadLocal(content: string, id: string) {
+  const { root, catalog } = await readCatalog(content);
+  const item = catalog.widgets.find(w => w.id === id);
+
+  if (!item) throw new Error(`Unknown widget ${id}. Run make content first.`);
+
+  return loadRevision(root, item);
+}
+
 export async function exportWidget(content: string, id: string, output: string, overrides: Record<string, unknown> = {}) {
   const { bundle, assets } = await loadLocal(content, id);
   const snapshot = generate(bundle.definition, bundle.templates, { ...defaults(bundle.definition), ...overrides }, assets);

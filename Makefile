@@ -28,13 +28,14 @@ check:
 	$(CARGO) fmt --manifest-path "$(MANIFEST)" --check
 	$(CARGO) clippy --locked --manifest-path "$(MANIFEST)" --all-targets -- -D warnings
 	$(MAKE) test
+	$(MAKE) content
 	$(MAKE) build
 	cd "$(ROOT)/frontend" && "$(BUN)" scripts/check-library.ts
 test:
 	$(CARGO) test --locked --manifest-path "$(MANIFEST)"
 	cd "$(ROOT)/frontend" && "$(BUN)" run test
 build:
-	$(CARGO) run --locked --manifest-path "$(MANIFEST)" -- build $(CONTENT_ARGS) --out "$(ROOT)/build/content"
+	$(CARGO) run --locked --manifest-path "$(MANIFEST)" -- build $(CONTENT_ARGS) --out "$(ROOT)/build/production"
 	cd "$(ROOT)/frontend" && "$(BUN)" run build
 preview:
 	@test -f "$(ROOT)/dist/index.html" || { echo 'Run make build first.'; exit 1; }

@@ -3,7 +3,9 @@ import { fileURLToPath } from 'node:url';
 import { readFile, realpath } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 
+// Development serves every widget, drafts included. Builds copy published revisions only.
 const content = fileURLToPath(new URL('../build/content', import.meta.url));
+const production = fileURLToPath(new URL('../build/production', import.meta.url));
 const mime: Record<string, string> = {
   '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css',
   '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp',
@@ -11,9 +13,9 @@ const mime: Record<string, string> = {
   '.woff': 'font/woff', '.woff2': 'font/woff2', '.qml': 'text/plain', '.md': 'text/plain',
 };
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   base: './',
-  publicDir: content,
+  publicDir: command === 'build' ? production : content,
   plugins: [{
     name: 'generated-content',
     async generateBundle() {
@@ -40,4 +42,4 @@ export default defineConfig({
   build: { outDir: '../dist', emptyOutDir: true, target: 'es2022', license: { fileName: 'THIRD_PARTY_LICENSES.txt' } },
   server: { port: 5175, strictPort: true, fs: { allow: ['..'] } },
   preview: { port: 4173, strictPort: true },
-});
+}));
