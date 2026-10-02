@@ -2,6 +2,8 @@
 
 Fish in space, Magnetic powder, Mechanical rhythm, Specimen chamber, Orbital playground, Resonance sculpture, Signal hunting, Gravity sandbox, and Session fossils each have an independent QML export and are included in production builds. Each preserves its original drawing and direct controls. Collections remain in memory. Mechanical rhythm includes optional native sound; the other eight designs are silent.
 
+Stochastic ink is an original design, not an archive import. It is a draft with a complete native export. It keeps its own paper-and-ink host (`InkWidget.qml`, `InkField.qml`, `InkButton.qml`, `InkText.qml`, and its own `shell.qml`) instead of the shared dark frame, and none of the shared files below apply to it. Publish it after its export is inspected in Quickshell.
+
 ## Shared files
 
 `_shared/qml/` holds `ArtWidget.qml`, `ArtField.qml`, `ArtButton.qml`, `ArtText.qml`, and the `shell.qml` launcher, which all nine designs use unchanged. Each widget folder keeps its own `assets/ArtEngine.js`, `Widget.qml.tmpl`, preview, thumbnail, and README. Mechanical rhythm also keeps `qml/ArtAudio.qml` and its six original PCM files under `assets/sounds/`.

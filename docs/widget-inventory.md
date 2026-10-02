@@ -1,6 +1,6 @@
 # Widget inventory
 
-The library contains 162 designs. 26 have native exports: six Quick notes, five Players, six Glyphs, and nine Interactive art widgets. The remaining 136 are HTML drafts. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
+The library contains 163 designs. 26 published designs have native exports: six Quick notes, five Players, six Glyphs, and nine Interactive art widgets. [Stochastic ink](../widgets/interactive-art/stochastic-ink/README.md), an original Interactive art design, is a draft with a complete native export that awaits a native inspection. The remaining 136 are HTML drafts. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
 
 The original red field appears in both curtain source pages. Both supplied versions are preserved, with separate names and source provenance.
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
+<title>Stochastic ink</title>
+<style>
+html { color-scheme: light; }
+body { margin: 0; display: flow-root; background: var(--paper, #f6f5f2); }
+#stochastic-ink { --paper:#f6f5f2; --ink:#16151a; --dim:rgba(22,21,26,.6); --line:rgba(22,21,26,.16); --wash:rgba(22,21,26,.04); width:100%; color:var(--ink); background:var(--paper); font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",ui-monospace,monospace; }
+#stochastic-ink * { box-sizing:border-box; }
+#stochastic-ink .ink-shell { padding:20px 22px 18px; }
+#stochastic-ink .ink-head { display:flex; justify-content:space-between; gap:12px; font-size:11px; letter-spacing:2px; color:var(--dim); }
+#stochastic-ink .ink-title { margin:14px 0 4px; font:italic 400 26px/1.15 "Iowan Old Style","Palatino Linotype",Palatino,"URW Palladio L",Georgia,serif; letter-spacing:.2px; }
+#stochastic-ink .ink-sub { margin:0 0 12px; color:var(--dim); font-size:11px; letter-spacing:.4px; }
+#stochastic-ink canvas { display:block; width:100%; height:460px; touch-action:none; cursor:crosshair; outline:none; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+#stochastic-ink canvas:focus-visible { box-shadow:inset 0 0 0 2px var(--ink); }
+#stochastic-ink .ink-controls { display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:12px 16px; padding-top:16px; }
+#stochastic-ink label { display:flex; flex-direction:column; gap:6px; color:var(--dim); font-size:11px; letter-spacing:1px; }
+#stochastic-ink label span { display:flex; justify-content:space-between; gap:10px; }
+#stochastic-ink output { color:var(--ink); font-size:11px; }
+#stochastic-ink select { height:36px; border:1px solid var(--line); background:var(--wash); color:var(--ink); border-radius:0; padding:6px 8px; font:inherit; letter-spacing:1px; }
+#stochastic-ink input[type="range"] { accent-color:var(--ink); width:100%; margin:0; height:24px; cursor:pointer; }
+#stochastic-ink .ink-actions { display:flex; flex-wrap:wrap; gap:8px; padding-top:14px; }
+#stochastic-ink button { font:inherit; letter-spacing:1.5px; color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:0; min-height:36px; padding:8px 14px; cursor:pointer; transition:background-color 160ms ease, color 160ms ease; }
+#stochastic-ink button:hover, #stochastic-ink button[aria-pressed="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+#stochastic-ink button:focus-visible, #stochastic-ink select:focus-visible, #stochastic-ink input:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }
+#stochastic-ink .ink-footer { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line); }
+#stochastic-ink .ink-status { font-size:11px; overflow-wrap:anywhere; }
+#stochastic-ink .ink-pause { flex:none; min-width:76px; }
+#stochastic-ink .ink-hint { margin:6px 0 0; color:var(--dim); font-size:11px; }
+@media (max-width:520px) {
+  #stochastic-ink .ink-shell { padding:16px 14px; }
+  #stochastic-ink .ink-head { letter-spacing:1px; }
+  #stochastic-ink canvas { height:400px; }
+}
+@media (pointer:coarse) {
+  #stochastic-ink button, #stochastic-ink select { min-height:44px; }
+  #stochastic-ink select { font-size:16px; }
+  #stochastic-ink input[type="range"] { height:36px; }
+}
+@media (prefers-reduced-motion:reduce) { #stochastic-ink button { transition:none; } }
+</style></head><body>
+<div aria-label="Stochastic ink" id="stochastic-ink">
+<section class="ink-shell">
+<div class="ink-head"><span>CHALDEA // INK STUDY</span><span>RULE × CHAOS</span></div>
+<h2 class="ink-title">Stochastic ink</h2>
+<p class="ink-sub">Threads obey a strict attractor. Chaos frays them loose.</p>
+<canvas aria-label="Stochastic ink. Drag through the ink to draw threads out. Tap to release a burst. Arrow keys turn the view, Enter releases a burst. Controls are below." data-stage="" role="application" aria-roledescription="ink canvas" tabindex="0">Interactive art. All main actions have controls below.</canvas>
+<div aria-label="Ink controls" class="ink-controls" data-controls=""></div>
+<div class="ink-actions" data-actions=""></div>
+<div class="ink-footer"><output aria-live="polite" class="ink-status" data-status=""></output><button class="ink-pause" data-pause="" type="button">PAUSE</button></div>
+<p class="ink-hint" data-hint=""></p>
+</section>
+</div>
+<script src="../preview-runtime.js"></script>
+<script src="ArtEngine.js"></script>
+<script src="demo.js"></script>
+</body></html>
