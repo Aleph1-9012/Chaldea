@@ -52,4 +52,4 @@
     })();
 
 
-window.XLR8Archive.finish({"select": [{"selector": "button[data-style=\"c\"]"}], "remove": ["button[data-style]"], "controls": false});
+window.ChaldeaArchive.finish({"select": [{"selector": "button[data-style=\"c\"]"}], "remove": ["button[data-style]"], "controls": false});

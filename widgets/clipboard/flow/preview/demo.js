@@ -56,5 +56,5 @@
       $('.tc-paste').addEventListener('click',()=>{if(!clipboard){$('.tc-pasted').textContent='Choose USE ENTRY in the history first.';return;}if(clipboard.image)$('.tc-pasted').innerHTML=artwork;else $('.tc-pasted').textContent=clipboard.body;});
       $('.tc-list').addEventListener('keydown',event=>{if(event.key==='Enter'){const row=event.target.closest('[data-entry]');if(row){event.preventDefault();selected=Number(row.dataset.entry);useEntry();}}});
       render();
-      window.XLR8Preview.connect(settings => { Object.assign(design, settings); render(); });
+      window.ChaldeaPreview.connect(settings => { Object.assign(design, settings); render(); });
     })();

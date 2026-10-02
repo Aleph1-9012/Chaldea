@@ -282,5 +282,5 @@
   preference?.addEventListener?.('change',render);
   render();
   // First render does not depend on the optional design-control helper.
-  window.XLR8Preview.connect(settings => { Object.assign(state, settings); render(); });
+  window.ChaldeaPreview.connect(settings => { Object.assign(state, settings); render(); });
 })();

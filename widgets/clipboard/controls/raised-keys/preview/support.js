@@ -1,4 +1,4 @@
-/* XLR8 archive preview adapter. Original code, 0BSD. */
+/* Chaldea archive preview adapter. Original code, 0BSD. */
 (() => {
   'use strict';
   const bindings = [];
@@ -25,7 +25,7 @@
     changes.add(binding.change);
   }
   function flush() { for (const change of changes) change(); changes.clear(); }
-  window.XLR8Archive = {
+  window.ChaldeaArchive = {
     finish(config) {
       for (const selection of config.select || []) {
         const element = document.querySelector(selection.selector);
@@ -43,7 +43,7 @@
       for (const selector of config.hide || []) document.querySelectorAll(selector).forEach(element => { element.dataset.archiveOmitted = ''; element.inert = true; });
       for (const selector of config.single || []) document.querySelectorAll(selector).forEach(element => { element.style.setProperty('grid-template-columns','minmax(0,1fr)'); });
       const visible = bindings.filter(binding => !binding.fixed && !binding.container?.closest('[data-archive-omitted]'));
-      window.XLR8Archive.settings = visible.map(binding => binding.definition);
+      window.ChaldeaArchive.settings = visible.map(binding => binding.definition);
       // Static graphic studies expose their original tuning controls within the widget.
       if (config.controls && visible.length) {
         const panel = document.createElement('details'); panel.className='archive-settings'; panel.open=true;
@@ -61,7 +61,7 @@
         }
         document.body.append(panel);
       }
-      window.XLR8Preview.connect(settings => {
+      window.ChaldeaPreview.connect(settings => {
         for (const binding of visible) {
           if (!(binding.definition.key in settings)) continue;
           const value=settings[binding.definition.key];set(binding,value);
@@ -73,7 +73,7 @@
     }
   };
 })();
-/* Local SVG marks for archive controls, drawn for XLR8 under 0BSD. */
+/* Local SVG marks for archive controls, drawn for Chaldea under 0BSD. */
 (() => {
   const paths = {
     'x':'M6 6l12 12M18 6L6 18','plus':'M12 4v16M4 12h16','minus':'M4 12h16',

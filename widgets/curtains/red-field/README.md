@@ -1,6 +1,6 @@
 # Red field curtain
 
-The Red field curtain design from the owner-supplied `Lib-assests/curtains-and-buttons/curtain-design-studies.html`, available as its own widget in XLR8.
+The Red field curtain design from the owner-supplied `Lib-assests/curtains-and-buttons/curtain-design-studies.html`, available as its own widget in Chaldea.
 
 ## Try it
 

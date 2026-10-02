@@ -9,7 +9,7 @@ import { mountPreview } from './preview/frame';
 import type { Preview } from './preview/frame';
 
 export async function start(root: HTMLElement): Promise<void> {
-  root.innerHTML = `<header class="topbar"><a class="brand" href="?" aria-label="XLR8 home"><span class="brand-mark" aria-hidden="true">✳</span>XLR8<span class="brand-divider">/</span><span class="brand-sub">WIDGET LIBRARY</span></a><div class="topbar-right"><span class="status-dot"></span> Built for Quickshell <span class="version">v0.1</span></div></header><div class="layout"><aside class="sidebar"><div><p class="eyebrow">YOUR NEXT SHELL STARTS HERE</p><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a widget…" aria-label="Search widgets"><kbd>/</kbd></label><p class="nav-label">COLLECTION</p><nav id="categories" aria-label="Widget categories"></nav></div><div class="sidebar-bottom"><span class="tiny-mark" aria-hidden="true">＋</span><p>A few good pieces.<br>A shell of your own.</p><p class="fine">Original widgets · 0BSD<br>Application · Apache 2.0</p><p class="fine muted">Settings stay in this tab.<br>No account needed.</p></div></aside><main id="main" tabindex="-1"></main></div>`;
+  root.innerHTML = `<header class="topbar"><a class="brand" href="?" aria-label="Chaldea home"><span class="brand-mark" aria-hidden="true">✳</span>Chaldea<span class="brand-divider">/</span><span class="brand-sub">WIDGET LIBRARY</span></a><div class="topbar-right"><span class="status-dot"></span> Built for Quickshell <span class="version">v0.1</span></div></header><div class="layout"><aside class="sidebar"><div><p class="eyebrow">YOUR NEXT SHELL STARTS HERE</p><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a widget…" aria-label="Search widgets"><kbd>/</kbd></label><p class="nav-label">COLLECTION</p><nav id="categories" aria-label="Widget categories"></nav></div><div class="sidebar-bottom"><span class="tiny-mark" aria-hidden="true">＋</span><p>A few good pieces.<br>A shell of your own.</p><p class="fine">Original widgets · 0BSD<br>Application · Apache 2.0</p><p class="fine muted">Settings stay in this tab.<br>No account needed.</p></div></aside><main id="main" tabindex="-1"></main></div>`;
   const main = root.querySelector<HTMLElement>('main')!;
   const categories = root.querySelector<HTMLElement>('#categories')!;
   const search = root.querySelector<HTMLInputElement>('#search')!;
@@ -25,7 +25,7 @@ export async function start(root: HTMLElement): Promise<void> {
   };
   root.querySelector('.brand')!.addEventListener('click', event => { event.preventDefault(); search.value = ''; category = 'All widgets'; navigate(); });
   const notice = (title: string, message: string, retry: () => void) => {
-    main.replaceChildren(el('p', 'eyebrow', 'XLR8 / LIBRARY'), el('h1', '', title), el('p', 'notice', message), button('Try again', retry));
+    main.replaceChildren(el('p', 'eyebrow', 'CHALDEA / LIBRARY'), el('h1', '', title), el('p', 'notice', message), button('Try again', retry));
   };
   const renderNavigation = () => {
     categories.replaceChildren();
@@ -47,10 +47,10 @@ export async function start(root: HTMLElement): Promise<void> {
     body.append(title, el('p', '', widget.summary), meta); link.append(stage, body); return link;
   };
   const browse = () => {
-    dispose(); renderNavigation(); document.title = 'XLR8 · Quickshell widget library';
+    dispose(); renderNavigation(); document.title = 'Chaldea · Quickshell widget library';
     const intro = el('section', 'intro');
     const introCopy = el('div'); introCopy.append(el('p', 'eyebrow', 'INDEPENDENT COMPONENTS. PERSONAL DESKTOPS.'), el('h1', '', 'Your widget\ndesigns, together.'), el('p', 'intro-description', 'Open an existing design and try its controls.\nCustomize and export when native QML is available.'));
-    const stamp = el('div', 'collection-stamp'); stamp.innerHTML = '<span class="stamp-symbol" aria-hidden="true">✳</span><span>THE XLR8<br>COLLECTION</span><span class="stamp-line"></span><span class="fine">OPEN SOURCE<br>MADE TO BE YOURS</span>';
+    const stamp = el('div', 'collection-stamp'); stamp.innerHTML = '<span class="stamp-symbol" aria-hidden="true">✳</span><span>THE CHALDEA<br>COLLECTION</span><span class="stamp-line"></span><span class="fine">OPEN SOURCE<br>MADE TO BE YOURS</span>';
     intro.append(introCopy, stamp);
     const matches = catalog.widgets.filter(w => (category === 'All widgets' || w.category === category) && [w.title, w.summary, w.category, ...w.tags].join(' ').toLowerCase().includes(search.value.toLowerCase()));
     const heading = el('div', 'collection-heading'); heading.append(el('h2', '', search.value ? 'Search results' : category), el('span', 'fine', `${matches.length} ${matches.length === 1 ? 'widget' : 'widgets'}`));
@@ -67,7 +67,7 @@ export async function start(root: HTMLElement): Promise<void> {
       const widget = await loadWidget(item, activeRequest.signal);
       if (ticket !== request) return;
       const d = widget.bundle.definition;
-      document.title = `${d.title} · XLR8`;
+      document.title = `${d.title} · Chaldea`;
       const back = button('← All widgets', () => navigate(), 'back-button');
       const heading = el('header', 'detail-heading');
       const copy = el('div'); copy.append(el('p', 'eyebrow', `${d.category.toUpperCase()} / ${d.license}`), el('h1', '', d.title), el('p', '', d.summary));

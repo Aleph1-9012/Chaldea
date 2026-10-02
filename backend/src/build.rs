@@ -14,7 +14,7 @@ fn hash_input(hash: &mut Sha256, path: &str, bytes: &[u8]) {
 }
 pub fn revision(project: &Project, widget: &Widget) -> Result<String> {
     let mut hash = Sha256::new();
-    hash_input(&mut hash, "packager", b"xlr8-bundle-v1");
+    hash_input(&mut hash, "packager", b"chaldea-bundle-v1");
     hash_input(
         &mut hash,
         "definition",
@@ -34,12 +34,12 @@ fn write(path: &Path, bytes: &[u8]) -> Result<()> {
 }
 fn owns_output(output: &Path) -> bool {
     [
-        (".xlr8-content", b"XLR8 generated content v1\n".as_slice()),
-        // Accept generated output from before the project rename on rebuild.
         (
             ".chaldea-content",
             b"Chaldea generated content v1\n".as_slice(),
         ),
+        // Read the former ownership marker only to migrate existing output.
+        (".xlr8-content", b"XLR8 generated content v1\n".as_slice()),
     ]
     .into_iter()
     .any(|(name, expected)| {
@@ -106,11 +106,11 @@ pub fn build(project: &Project, output: &Path, include_drafts: bool) -> Result<u
         return Err(issue(
             &output,
             "output",
-            "refusing to replace a directory not owned by XLR8",
+            "refusing to replace a directory not owned by Chaldea",
         ));
     }
     let stage = tempfile::Builder::new()
-        .prefix(".xlr8-stage-")
+        .prefix(".chaldea-stage-")
         .tempdir_in(&parent)?;
     let mut entries = Vec::new();
     for widget in &project.widgets {
@@ -136,11 +136,11 @@ pub fn build(project: &Project, output: &Path, include_drafts: bool) -> Result<u
         &serde_json::to_vec_pretty(&catalog::catalog(entries)?)?,
     )?;
     write(
-        &stage.path().join(".xlr8-content"),
-        b"XLR8 generated content v1\n",
+        &stage.path().join(".chaldea-content"),
+        b"Chaldea generated content v1\n",
     )?;
     let previous = tempfile::Builder::new()
-        .prefix(".xlr8-previous-")
+        .prefix(".chaldea-previous-")
         .tempdir_in(&parent)?;
     let saved = previous.path().join("content");
     if output.exists() {

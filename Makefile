@@ -7,7 +7,7 @@ export CARGO_HOME
 export PATH := $(ROOT)/build/tools/bun-linux-x64:$(PATH)
 export BUN_INSTALL_CACHE_DIR := $(ROOT)/build/bun-cache
 MANIFEST := $(ROOT)/backend/Cargo.toml
-CONTENT_ARGS := --config "$(ROOT)/xlr8.toml" --source "$(ROOT)/widgets"
+CONTENT_ARGS := --config "$(ROOT)/chaldea.toml" --source "$(ROOT)/widgets"
 WIDGET ?=
 GROUP ?=
 SCOPE ?= all

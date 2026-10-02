@@ -63,98 +63,98 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "72d09758d3da5cc5450a083dd01e0e4b92c38a38efc7fdaf1aa6ee6d06f01204",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-arrows.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "c9039b8b7ff68eea0e0ef8b6fcb76013efc440e616debaf916a11caa0e6d3040",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-controls.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "e1119d75a7f00d32f421dffbd034c31627f568b3db9754e27b01c69c5d13c693",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-detailed.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "46f1ef7d0b2cbc8ef4cecd5d8891ce95fa090adb0306b2b8d6ee53fed9a09aae",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-player-hover.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "ce66a8f7cacea9f50deef32f260b19fed89f214cf27fb9a495447555a7373577",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-reference-rows.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "3286c883cf66fb89b68b123942959e066d0f605caba3a459d138edddd575bc78",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-rolling-text.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "77211feb936cd5f8da2850bfee2eed37b5cf1bdda2a0dd3f764540ecb3559c86",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-spacious.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "faac3dfd9699acb2846c5c34e4dc49be6f27675fd82074ecf7e335e388770e98",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-b2-unified.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "d6f480355c8adcf9aae9e5025e5882df48a444ba0bae09902168de6055b2e63c",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-dropdown-overview.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "ae1af70fad742702d1d0edf01d9c82ce542571410b1f0614cbb687733b54d307",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-integrated-overview.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "74a77bdafe6ec9ac76320e0ba11807adefe9b7891698be5838bd40aaf3749d57",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-mono-refinements.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "2ee2e0676143f364924592717a5135cbeee8fb4dbb8a982e85d8db5a572b9063",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-refinement.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "4d97b28b217e429b7d4329d51a68382be5c1dc1b42be319a1aeb6972e8fc42d9",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "cb75d0d2610ee8452fa2ae3a046d1160f50528b6f8b3cfa38a8ab270bf0fedc6",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-text-iterations.html",
@@ -164,28 +164,28 @@
       "excluded": [
         "Live decode"
       ],
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-type-styles.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "2c75d2695fdfadbf28aa6f082123acda27bd4c6744c21133e957203d19ba9531",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-ui-upgrades.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "1ea9c705f2b971e139df32ea505831ea29611610d50b21e2d4bf97280c9ecd57",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/tsugumori-level-preview.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "946f4cafaa1a9c1a07b98e77a87e8dfd5a625289ce9641a4cd57a0f46ced8a1e",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "curtains-and-buttons/curtain-a-refinements.html",
@@ -214,70 +214,70 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "7273894f11de09fdd3212a7fa47048a636781713e0e74e3cf9340d7d1223075e",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-feature-previews.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "f7065033b0c4c20ad48979c667b9a1dd634691c1a782b080faf2537207256d6a",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-job-tickets.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "86633647be4939dca16edc091fedce0ce4794b57af253547711f7ce58b921216",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-preview-bar-tools.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "5aefacf1d1cdf0da698fd5bd72c1f2e62522fe9d49ba938539c21ae485ca860e",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-preview-desktop.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "45db29103cd3c607bff7e8319fc0f2c2f9571009c1445f4158596aa135d763fc",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-preview-drives.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "d23c9c1d6ffa2fe0a6177ecc241123343c2cafbb3072792ecfc9d7d11ca25a57",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-sidonia-widgets.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "ad305c276ad07f3bea14cdeb7b476c2864e1143ee680b02de8f753d0d0e45c57",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/tsugumori-tools-second-pass.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "f1a85e3e2d2c18f4f4e8cf6cc687beb17a2b8f65b1f6afc681d935aab61493b5",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "desktop-and-waybar/waybar-directions.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "c722d68fc7462f6649b9d6c25c177e6b57710395b4db4275b03559f45cc51036",
-      "reason": "Removed from XLR8 at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
+      "reason": "Removed from Chaldea at the owner's request: the Desktop and Waybar section and all four button studies. The original source archive is retained."
     },
     {
       "source": "fastfetch-btop/fastfetch-btop-directions.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "20147c8a4063c0678ce40a5d985482b9246aca16052d3b3642a0d3cf15b33f27",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "glyphs/tsugumori-five-glyph-studies.html",
@@ -439,7 +439,7 @@
         "Edge rails",
         "Formation terminals"
       ],
-      "reason": "The owner removed all designs from this study page from XLR8. The original source archive is retained."
+      "reason": "The owner removed all designs from this study page from Chaldea. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-afk-layout-previews.html",
@@ -621,7 +621,7 @@
         "Time relief",
         "Tension field"
       ],
-      "reason": "The owner removed all designs from this study page from XLR8. The original source archive is retained."
+      "reason": "The owner removed all designs from this study page from Chaldea. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-phase-formation-glyph-soft-backup.html",
@@ -667,42 +667,42 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "b73d297f2a6543799b8066a637813d31bd9eeffecc53cc51a098f95e137a2c27",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "menu/menu-refinement-preview.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "a87f951c1c03362d06f576f52698dc373b77aa867db36f2ff8fb03202c65daf4",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "menu/menu-researched-styles.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "4d394a699344ef48b069c7be55468475b5891913766fc8c309f5d4aa8fa8fbad",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "menu/menu-row-iterations.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "77f320e56a208427106dea6df48b0b33a9e64a137a446e19bd51661adce7bc99",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "menu/menu-structural-redesigns.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "a6dbdd1cc16608097c67331ad1b89b86433f461065ddfa85af16a258851d79cb",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "menu/menu-style-lab.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "945eb877b153f9dc7460734a83d5977ade6b00b0ce21195505089472b9c5cf54",
-      "reason": "The owner removed the Control center and Menu sections from XLR8. The original source archive is retained."
+      "reason": "The owner removed the Control center and Menu sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "player/tsugumori-glyph-behaviours.html",
@@ -846,7 +846,7 @@
     {
       "source": "quickshare/quickshare-glyph-inverted.html",
       "disposition": "excluded",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained.",
       "sha256": "7993353c78162bb4e4fe423a817838038426660f934155951cace7044b8b4ef5",
       "widgets": []
     },
@@ -855,19 +855,19 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "155c6258b3b7b7e66773d8686e44ca5c02eaef3b645bef4b14e23041363d7aff",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "quickshare/quickshare-qr-treatments.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "647c898a4aebdc3649793ee96cad4aad70ce656c8dcc45a116fda52d0bd0120d",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/p4-new-layouts-qa.html",
       "disposition": "excluded",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained.",
       "sha256": "a49aac14ec4653b485973006a786f96cf6ddbe5b7271475ebb55483f1d28323f",
       "widgets": []
     },
@@ -876,12 +876,12 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "8bfa9827c8f0f638d401f0001a30454e026447a331d91f09fe6718d49ab3c132",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/p4-prompt-refinements-qa.html",
       "disposition": "excluded",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained.",
       "sha256": "3acdab3ca7bf3abd4ea8470afa63c46e89dd7ef70e5e5dfe1f218f78ef4e4fa1",
       "widgets": []
     },
@@ -890,12 +890,12 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "a4f5c62bfefbec40d85a5eda6f3d2aeaec8f94d20b56bb3133e4b20de38a008f",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/terminal-ab-prompt-qa.html",
       "disposition": "excluded",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained.",
       "sha256": "06ad929f88afb8f5db2760bb8f645c85967b973a7d73865c4e01e0273ae5c4c1",
       "widgets": []
     },
@@ -904,12 +904,12 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "e5b079ffd847484f02178335db42a99a3e655ab6901a36f0e59075a8bdd3211f",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/terminal-prompt-new-directions-qa.html",
       "disposition": "excluded",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained.",
       "sha256": "0d37a03707fc4bc5a7f6d6a9d9e24e65efd72555b927126f5ff0f96f13f7738c",
       "widgets": []
     },
@@ -918,12 +918,12 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "16f8860faf7c2e9b81a0661e7d92a23623250a3a0ad03bc82241dfe8bf14a0e1",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/terminal-text-iterations-qa.html",
       "disposition": "excluded",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained.",
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained.",
       "sha256": "16947cacd74b810ff645871516a52452d4c4e3985e1b08dfe5c7b9e52aa01e9a",
       "widgets": []
     },
@@ -932,140 +932,140 @@
       "disposition": "excluded",
       "widgets": [],
       "sha256": "79665adc6b75dfc66afb6acf82cfb3a833f02fd41d7be764c4318ea483d368ae",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-band-illustrations-iii.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "c5a9c614ca291fd119264906e6ec1970c6190a0ba55a21dfff145e582068337a",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-bold-unit-badge.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "85ed365fd26566c79d54a1702f0a8135a4c5b85350c5a595610713a6d7ff8d18",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-formation-symbol-studies-ii.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "070460c2eb177609adb967fdfd2d42f9df741385a5e295198f5308231e9549c4",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-formation-symbol-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "58eaef580705bbb9b538da2589ec3fcce239f1fe7cf813293fbdc02a3da73adc",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-header-c-d-refinement.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "5f63898f0f598073988e22d84f4d8f35a1d781457191113bdeba2e352782c8a7",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-header-right-panel-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "cf65cc0ed10cd19a10bc5b2bea2be9eda6f0483f3769e2a0d9626cd86b572a5a",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-minimal-mechanical-bands.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "ef91a004e8f7afcc5fb2ca1588ea72caa1a74e801a6d6303b468104800ca68f8",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-prompt-gap-studies-ii.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "8f824ef3a181f4c40804a692c7ef687489627551c50dfcfa11264b024748d8cf",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-prompt-gap-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "1f00bb5bc826e05062913b643f0f68d1395fd3de4054900f5ad3a28a06a76a40",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-q-sidonia-badge.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "2f9a232924063323240dceb7092b7597ee193b8c27eaff285afc13069b750441",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-r2-glyph-refinements.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "e3d8177862bfd0f5e60ab16f8285a4d4cac92e16ba3c8e244a8cfbb6a0baa143",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-c-headers.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "c47e7d720df5a878d6b4fccacceacb0962069192e05fadf67f087baf5d59f6e7",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-formation-refinement.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "9c233b324c7f057b6e1b71ed6f79f251861a16613174f2943a2b81cf84954343",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-industrial-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "a1399358bf4bd982f5a28f8d4a93780ccdec52d1f0bf9dbb61e306dfcd15a870",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-motif-expansion.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "1d1cf9969d21c1499dd80d562263da07263b728437fb79b5566f8189286bcb6d",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-shoi-panel-v2.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "6d861e1430c5c415fdfb964e6c7a80d1fe705939f2f64426d92c3b221f4a6b2f",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-sidonia-headers.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "b924de7fbe4242689bd5ab87d924a5452aac17c8deff0c94c43afe0fe742aa71",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-terminal-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "c8a9d3f75d9b8e18b7f32e048b9757f8a8ab859313977ed35569c300d19945fb",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     },
     {
       "source": "terminal/tsugumori-text-band-studies.html",
       "disposition": "excluded",
       "widgets": [],
       "sha256": "413bc784a41fe6f631fa1ac77d99339feb828ae40be0db77eaa3bf0cad39a9f9",
-      "reason": "The owner removed Terminal, Quickshare, and System monitors from XLR8. The original source archive is retained."
+      "reason": "The owner removed Terminal, Quickshare, and System monitors from Chaldea. The original source archive is retained."
     }
   ],
   "entries": [

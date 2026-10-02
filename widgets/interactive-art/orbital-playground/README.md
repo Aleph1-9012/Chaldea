@@ -1,6 +1,6 @@
 # Tsugumori / Orbital playground
 
-The Orbital playground design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in XLR8.
+The Orbital playground design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in Chaldea.
 
 ## Try it
 

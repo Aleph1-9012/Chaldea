@@ -278,4 +278,4 @@
 
 
 
-window.XLR8Archive.finish({"fixed": {"Appear/disappear animation": "Center seam"}, "controls": false});
+window.ChaldeaArchive.finish({"fixed": {"Appear/disappear animation": "Center seam"}, "controls": false});

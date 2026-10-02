@@ -49,5 +49,5 @@
         if(event.target.closest('[data-entry]')&&['ArrowUp','ArrowDown'].includes(event.key)){const entries=visible(),index=entries.findIndex(e=>e.id===state.selected);if(entries.length){event.preventDefault();state.selected=entries[(index+(event.key==='ArrowDown'?1:-1)+entries.length)%entries.length].id;render();$('[data-entry="'+state.selected+'"]').focus();}}
       });
       render();
-      window.XLR8Preview.connect(settings => { design.paper = settings.paper.toLowerCase(); design.grid = settings.grid; render(); });
+      window.ChaldeaPreview.connect(settings => { design.paper = settings.paper.toLowerCase(); design.grid = settings.grid; render(); });
     })();

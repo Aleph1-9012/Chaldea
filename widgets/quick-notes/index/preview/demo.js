@@ -47,7 +47,7 @@ wpctl status` }
     title.value = notes[selected].title;
     body.value = notes[selected].body;
     renderList();
-    XLR8Notes.updateCount();XLR8Notes.reveal(list,'[aria-pressed="true"]');
+    ChaldeaNotes.updateCount();ChaldeaNotes.reveal(list,'[aria-pressed="true"]');
   }
   title.addEventListener('input', () => {
     notes[selected].title = title.value;
@@ -57,7 +57,7 @@ wpctl status` }
   });
   body.addEventListener('input', () => { notes[selected].body = body.value; });
   root.querySelector('.tnb-new').addEventListener('click', () => {
-    selected = XLR8Notes.add(notes, { title: '', body: '' });
+    selected = ChaldeaNotes.add(notes, { title: '', body: '' });
     showNote();
     title.focus();
     announcement.textContent = 'New note created in this preview';
@@ -69,9 +69,9 @@ wpctl status` }
   }
   showNote();
   renderDesign();
-  window.XLR8Preview.connect(settings => {
+  window.ChaldeaPreview.connect(settings => {
     design.indexWidth=settings.s0IndexWidth;design.rowHeight=settings.s1RowHeight;renderDesign();
-    XLR8Notes.apply(settings,design.rowHeight,0);
-    XLR8Notes.reveal(list,'[aria-pressed="true"]');
+    ChaldeaNotes.apply(settings,design.rowHeight,0);
+    ChaldeaNotes.reveal(list,'[aria-pressed="true"]');
   });
 })();

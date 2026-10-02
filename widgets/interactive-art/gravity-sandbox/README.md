@@ -1,6 +1,6 @@
 # Tsugumori / Gravity sandbox
 
-The Gravity sandbox design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in XLR8.
+The Gravity sandbox design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in Chaldea.
 
 ## Try it
 

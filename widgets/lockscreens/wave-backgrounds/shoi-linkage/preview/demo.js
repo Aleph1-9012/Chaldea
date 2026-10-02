@@ -386,4 +386,4 @@
 })();
 
 
-window.XLR8Archive.finish({"select": [{"selector": "button[data-design=\"formation\"]"}], "remove": ["button[data-design]"], "controls": false});
+window.ChaldeaArchive.finish({"select": [{"selector": "button[data-design=\"formation\"]"}], "remove": ["button[data-design]"], "controls": false});

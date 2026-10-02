@@ -1,6 +1,6 @@
 # Tsugumori / Mechanical rhythm
 
-The Mechanical rhythm design from the owner-supplied `Lib-assests/interactive-art/tsugumori-eight-play-studies.html`, available as its own widget in XLR8.
+The Mechanical rhythm design from the owner-supplied `Lib-assests/interactive-art/tsugumori-eight-play-studies.html`, available as its own widget in Chaldea.
 
 ## Try it
 

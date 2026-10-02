@@ -1,6 +1,6 @@
 # Tsugumori / Magnetic powder
 
-The Magnetic powder design from the owner-supplied `Lib-assests/interactive-art/tsugumori-eight-play-studies.html`, available as its own widget in XLR8.
+The Magnetic powder design from the owner-supplied `Lib-assests/interactive-art/tsugumori-eight-play-studies.html`, available as its own widget in Chaldea.
 
 ## Try it
 

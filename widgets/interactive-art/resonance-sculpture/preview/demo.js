@@ -113,5 +113,5 @@
  document.addEventListener('visibilitychange',()=>{last=0;dirty()});new ResizeObserver(resize).observe(canvas);new IntersectionObserver(entries=>{state.visible=entries[0].isIntersecting;last=0;dirty()}).observe(root);
  function applyDesign(){root.style.setProperty('--ts-red',design.accent);dirty()}
  updateMotion();resize();initializeScene();applyDesign();requestAnimationFrame(tick);
- window.XLR8Preview.connect(settings => { Object.assign(design, settings); applyDesign(); });
+ window.ChaldeaPreview.connect(settings => { Object.assign(design, settings); applyDesign(); });
 })();

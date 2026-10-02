@@ -10,7 +10,7 @@
   const channels = hex => [1, 3, 5].map(start => parseInt(hex.slice(start, start + 2), 16));
   const blend = (a, b, amount) => '#' + channels(a).map((c, i) => Math.round(c + (channels(b)[i] - c) * amount).toString(16).padStart(2, '0')).join('');
   const luminance = hex => channels(hex).map(c => { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; }).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
-  window.XLR8NotesAppearance = {
+  window.ChaldeaNotesAppearance = {
     apply(settings) {
       const palette = settings.s2Palette || settings.palette || 'Original';
       const custom = !['Original', 'Bone', 'Red'].includes(palette);

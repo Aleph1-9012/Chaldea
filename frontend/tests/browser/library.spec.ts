@@ -97,7 +97,7 @@ test('HTML-only draft stays preview-only and rejects forged messages', async () 
   await expect(page.getByText('This existing HTML design is interactive.', { exact: false })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Copy file', exact: true })).toHaveCount(0);
   await expect(page.locator('.customizer')).toHaveCount(0);
-  await page.evaluate(() => window.postMessage({ channel: 'xlr8:preview', type: 'error', token: crypto.randomUUID() }, '*'));
+  await page.evaluate(() => window.postMessage({ channel: 'chaldea:preview', type: 'error', token: crypto.randomUUID() }, '*'));
   await expect(page.locator('iframe')).toHaveCount(1);
   expect(await page.locator('iframe').getAttribute('sandbox')).toBe('allow-scripts allow-downloads');
 });
@@ -105,7 +105,7 @@ test('stale requests cannot replace the existing design', async () => {
   const page = browserPage(); await withContractFixture(page);
   await page.route('**/revisions/contract-fixture/**/bundle.json', async route => { await new Promise(resolve => setTimeout(resolve, 700)); await route.fallback().catch(() => {}); });
   await page.goto('/?widget=contract-fixture');
-  await page.getByRole('link', { name: 'XLR8 home' }).click();
+  await page.getByRole('link', { name: 'Chaldea home' }).click();
   await page.locator('.widget-card[href="?widget=tsugumori"]').click();
   await expect(page.getByRole('heading', { name: 'Tsugumori / Phase lock', exact: true })).toBeVisible();
   await expect(page.locator('.preview-host')).toHaveAttribute('data-ready', 'true');

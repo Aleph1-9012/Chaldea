@@ -134,11 +134,11 @@
     render();status.textContent='NEW / SESSION ONLY';title.focus();
   });
   render();renderDesign();
-  window.XLR8Preview.connect(settings => {
+  window.ChaldeaPreview.connect(settings => {
     design.innerFrame=settings.s0InnerFrame;
     design.bodySize=settings.s1BodySize;
     design.noteFont=settings.s2NoteFont==='Inter'?'sans':'mono';
     design.gridStrength=settings.s3GridStrength;
-    renderDesign();applySettings(settings);window.XLR8NotesAppearance.apply(settings);
+    renderDesign();applySettings(settings);window.ChaldeaNotesAppearance.apply(settings);
   });
 })();

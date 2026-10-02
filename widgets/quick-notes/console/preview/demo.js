@@ -41,20 +41,20 @@
     index.hidden = !expanded;
     toggle.setAttribute('aria-expanded', String(expanded));
     toggle.textContent = (expanded ? '↑ NOTES' : '↓ NOTES') + ' · ' + serial(notes.length);
-    XLR8Notes.reveal(index,'[aria-current="true"]');
+    ChaldeaNotes.reveal(index,'[aria-current="true"]');
     count.textContent = 'NOTE ' + serial(selected + 1) + ' / ' + serial(notes.length);
   }
   function renderSelected() {
     title.value = notes[selected].title;
     body.value = notes[selected].body;
     renderIndex();
-    XLR8Notes.updateCount();
+    ChaldeaNotes.updateCount();
   }
   title.addEventListener('input', () => { notes[selected].title = title.value; });
   body.addEventListener('input', () => { notes[selected].body = body.value; });
   toggle.addEventListener('click', () => { expanded = !expanded; renderIndex(); });
   root.querySelector('.tnc-new').addEventListener('click', () => {
-    selected = XLR8Notes.add(notes, { title:'', body:'' });
+    selected = ChaldeaNotes.add(notes, { title:'', body:'' });
     expanded = false;
     renderSelected();
     title.focus();
@@ -63,13 +63,13 @@
   function renderDesign() {
     root.dataset.spacing = design.spacing;
     root.dataset.heading = design.heading;
-    XLR8Notes.updateCount();
+    ChaldeaNotes.updateCount();
   }
   renderSelected();
   root.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded){event.preventDefault();expanded=false;renderIndex();toggle.focus();}});
-  window.XLR8Preview.connect(settings => {
+  window.ChaldeaPreview.connect(settings => {
     design.spacing=settings.s0Spacing.toLowerCase();design.heading=settings.s1Heading==='Accent'?'red':'white';renderDesign();
-    XLR8Notes.apply(settings,40,3);
-    XLR8Notes.reveal(index,'[aria-current="true"]');
+    ChaldeaNotes.apply(settings,40,3);
+    ChaldeaNotes.reveal(index,'[aria-current="true"]');
   });
 })();

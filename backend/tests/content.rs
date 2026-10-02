@@ -1,9 +1,9 @@
+use chaldea::{build, content, validate};
 use serde_json::{Value, json};
 use std::{
     fs,
     path::{Path, PathBuf},
 };
-use xlr8::{build, content, validate};
 fn root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
@@ -27,7 +27,11 @@ fn copy_dir(source: &Path, target: &Path) {
 }
 fn fixture() -> tempfile::TempDir {
     let temp = tempfile::tempdir().unwrap();
-    fs::copy(root().join("xlr8.toml"), temp.path().join("xlr8.toml")).unwrap();
+    fs::copy(
+        root().join("chaldea.toml"),
+        temp.path().join("chaldea.toml"),
+    )
+    .unwrap();
     for path in ["schemas", "frontend/src"] {
         copy_dir(&root().join(path), &temp.path().join(path));
     }
@@ -63,10 +67,18 @@ fn change(temp: &tempfile::TempDir, modify: impl FnOnce(&mut Value)) {
     fs::write(path, serde_json::to_vec(&value).unwrap()).unwrap();
 }
 fn load(temp: &tempfile::TempDir) -> content::Project {
-    content::load(&temp.path().join("xlr8.toml"), &temp.path().join("widgets")).unwrap()
+    content::load(
+        &temp.path().join("chaldea.toml"),
+        &temp.path().join("widgets"),
+    )
+    .unwrap()
 }
 fn fails(temp: &tempfile::TempDir) -> bool {
-    content::load(&temp.path().join("xlr8.toml"), &temp.path().join("widgets")).is_err()
+    content::load(
+        &temp.path().join("chaldea.toml"),
+        &temp.path().join("widgets"),
+    )
+    .is_err()
 }
 #[test]
 fn shared_semantics() {
@@ -123,11 +135,14 @@ fn grouped_source_moves_preserve_ids_and_revisions() {
     }
     copy_dir(&group.join("compact"), &group.join("duplicate"));
     assert!(
-        content::load(&temp.path().join("xlr8.toml"), &temp.path().join("widgets"))
-            .err()
-            .unwrap()
-            .to_string()
-            .contains("duplicate widget ID")
+        content::load(
+            &temp.path().join("chaldea.toml"),
+            &temp.path().join("widgets")
+        )
+        .err()
+        .unwrap()
+        .to_string()
+        .contains("duplicate widget ID")
     );
 }
 
@@ -147,7 +162,7 @@ fn rejects_bad_defaults_duplicates_and_path_traversal() {
     for modify in [
         |v: &mut Value| v["settings"][0]["default"] = json!(200),
         |v: &mut Value| v["settings"][1]["key"] = json!("level"),
-        |v: &mut Value| v["publicFiles"][0]["source"] = json!("../../xlr8.toml"),
+        |v: &mut Value| v["publicFiles"][0]["source"] = json!("../../chaldea.toml"),
         |v: &mut Value| v["exports"][0]["path"] = json!("../Widget.qml"),
         |v: &mut Value| v["publicFiles"][0]["path"] = json!("bundle.json"),
         |v: &mut Value| v["id"] = json!("Invalid ID"),
@@ -176,7 +191,7 @@ fn confined_symlink() {
         .join("widgets/contract-fixture/assets/sample.txt");
     fs::remove_file(&file).unwrap();
     #[cfg(unix)]
-    std::os::unix::fs::symlink(temp.path().join("xlr8.toml"), file).unwrap();
+    std::os::unix::fs::symlink(temp.path().join("chaldea.toml"), file).unwrap();
     assert!(fails(&temp));
 }
 #[test]
@@ -256,23 +271,19 @@ fn migrates_legacy_output_and_rejects_invalid_ownership_markers() {
     let temp = tempfile::tempdir().unwrap();
     let output = temp.path().join("content");
     fs::create_dir(&output).unwrap();
-    fs::write(
-        output.join(".chaldea-content"),
-        "Chaldea generated content v1\n",
-    )
-    .unwrap();
+    fs::write(output.join(".xlr8-content"), "XLR8 generated content v1\n").unwrap();
     fs::write(output.join("stale.txt"), "old generated content").unwrap();
     build::build(&p, &output, true).unwrap();
     assert_eq!(
-        fs::read_to_string(output.join(".xlr8-content")).unwrap(),
-        "XLR8 generated content v1\n"
+        fs::read_to_string(output.join(".chaldea-content")).unwrap(),
+        "Chaldea generated content v1\n"
     );
     assert!(output.join("catalog.json").is_file());
-    assert!(!output.join(".chaldea-content").exists());
+    assert!(!output.join(".xlr8-content").exists());
     assert!(!output.join("stale.txt").exists());
     build::build(&p, &output, false).unwrap();
 
-    for name in [".xlr8-content", ".chaldea-content"] {
+    for name in [".chaldea-content", ".xlr8-content"] {
         let unowned = temp.path().join(name);
         fs::create_dir(&unowned).unwrap();
         fs::write(unowned.join(name), "unrecognized marker").unwrap();

@@ -1,6 +1,6 @@
 # Registration curtain
 
-The Registration curtain design from the owner-supplied `Lib-assests/curtains-and-buttons/curtain-a-refinements.html`, available as its own widget in XLR8.
+The Registration curtain design from the owner-supplied `Lib-assests/curtains-and-buttons/curtain-a-refinements.html`, available as its own widget in Chaldea.
 
 ## Try it
 

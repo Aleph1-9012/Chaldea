@@ -284,4 +284,4 @@ if(globalThis.Tweak) {
 })();
 
 
-window.XLR8Archive.finish({"select": [{"selector": "button[data-design=\"fault\"]"}], "remove": ["button[data-design]"], "controls": false});
+window.ChaldeaArchive.finish({"select": [{"selector": "button[data-design=\"fault\"]"}], "remove": ["button[data-design]"], "controls": false});

@@ -34,7 +34,7 @@ jobs:
       - name: Preserve the static release candidate
         uses: actions/upload-artifact@v7
         with:
-          name: xlr8-site
+          name: chaldea-site
           path: dist/
           if-no-files-found: error
           retention-days: 14

@@ -89,5 +89,5 @@
     root.dataset.details = String(state.details);
   }
   loadPanel(); renderDesign(); paint(state.covered);
-  window.XLR8Preview.connect(settings => { Object.assign(state, settings); renderDesign(); });
+  window.ChaldeaPreview.connect(settings => { Object.assign(state, settings); renderDesign(); });
 })();

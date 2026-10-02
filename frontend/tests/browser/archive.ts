@@ -51,14 +51,14 @@ export function registerArchiveTests() {
           const search = frame.locator('input[type="search"]:visible, input[placeholder*="earch"]:visible').first();
           if (await search.count()) {
             const before = await frame.locator('body').innerText();
-            await search.fill('xlr8-no-matching-entry');
+            await search.fill('chaldea-no-matching-entry');
             await expect.poll(() => frame.locator('body').innerText()).not.toBe(before);
             await search.fill('');
           }
         } else if (entry.source.startsWith('quick-notes/')) {
           const add = frame.getByRole('button', { name: /NEW/ }).first(); await add.click();
-          const editor = frame.locator('textarea:visible').first(); await editor.fill('XLR8 session note');
-          await expect(editor).toHaveValue('XLR8 session note');
+          const editor = frame.locator('textarea:visible').first(); await editor.fill('Chaldea session note');
+          await expect(editor).toHaveValue('Chaldea session note');
         } else if (entry.source.startsWith('lockscreen/')) {
           const input = frame.locator('input[type="password"]:visible').first();
           if (await input.count()) { await input.fill('demo'); await expect.poll(() => input.inputValue()).not.toBe(''); await input.press('Escape'); }

@@ -28,7 +28,7 @@
     });
     root.querySelector('[data-note-position]').textContent=`ENTRY ${String(active+1).padStart(2,'0')} / ${String(notes.length).padStart(2,'0')}`;
   }
-  function renderEditor() { title.value=notes[active].title; body.value=notes[active].body; renderList(); XLR8Notes.updateCount();XLR8Notes.reveal(list,'[aria-pressed="true"]'); }
+  function renderEditor() { title.value=notes[active].title; body.value=notes[active].body; renderList(); ChaldeaNotes.updateCount();ChaldeaNotes.reveal(list,'[aria-pressed="true"]'); }
   function updateNote() {
     notes[active].title=title.value; notes[active].body=body.value;
     const activeLabel=list.children[active]?.querySelector('.ts-note-title');
@@ -45,14 +45,14 @@
   collapse.addEventListener('click',() => setOpen(!open));
   root.addEventListener('keydown',event => { if(event.key==='Escape' && open) { event.preventDefault(); setOpen(false); } });
   root.querySelector('[data-add]').addEventListener('click',() => {
-    active=XLR8Notes.add(notes,{title:'',body:''}); renderEditor();
+    active=ChaldeaNotes.add(notes,{title:'',body:''}); renderEditor();
     title.placeholder='Untitled note'; body.placeholder='Write something to remember...';
     status.textContent='NEW PREVIEW NOTE'; title.focus();
   });
   renderEditor(); renderDesign();
-  window.XLR8Preview.connect(settings => {
+  window.ChaldeaPreview.connect(settings => {
     design.width=settings.s0Width;design.rule=settings.s1Rule;renderDesign();
-    XLR8Notes.apply(settings,40,3);
-    XLR8Notes.reveal(list,'[aria-pressed="true"]');
+    ChaldeaNotes.apply(settings,40,3);
+    ChaldeaNotes.reveal(list,'[aria-pressed="true"]');
   });
 })();

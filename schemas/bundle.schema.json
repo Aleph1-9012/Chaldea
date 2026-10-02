@@ -23,7 +23,7 @@
       "maxLength": 160
     },
     "definition": {
-      "$ref": "https://xlr8.local/schemas/widget.schema.json"
+      "$ref": "https://chaldea.local/schemas/widget.schema.json"
     },
     "templates": {
       "type": "object",

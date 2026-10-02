@@ -12,4 +12,4 @@ Settings map to the original design controls. State stays in memory and resets w
 
 Interactive HTML draft. No native QML, clipboard service, desktop integration, or widget export is implemented. `make dev` includes this preview; production builds omit it. Original widget code and local icon markup use 0BSD.
 
-Source SHA-256: `31354ac9d18ab77624b27f0fda643faba3b6c79aec10ab6eef4f4e170d583924`. The archive is unchanged. Adaptation adds the sandbox document, local icons where needed, the XLR8 preview settings connection, and responsive host integration.
+Source SHA-256: `31354ac9d18ab77624b27f0fda643faba3b6c79aec10ab6eef4f4e170d583924`. The archive is unchanged. Adaptation adds the sandbox document, local icons where needed, the Chaldea preview settings connection, and responsive host integration.

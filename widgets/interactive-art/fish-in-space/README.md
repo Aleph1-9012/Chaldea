@@ -1,6 +1,6 @@
 # Tsugumori / Fish in space
 
-The Fish in space design from the owner-supplied `Lib-assests/interactive-art/tsugumori-drift-and-tsumugi.html`, available as its own widget in XLR8.
+The Fish in space design from the owner-supplied `Lib-assests/interactive-art/tsugumori-drift-and-tsumugi.html`, available as its own widget in Chaldea.
 
 ## Try it
 

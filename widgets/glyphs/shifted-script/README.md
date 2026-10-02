@@ -1,6 +1,6 @@
 # Tsugumori / Shifted script
 
-The Shifted script design from the owner-supplied `Lib-assests/glyphs/tsugumori-five-glyph-studies.html`, available as its own widget in XLR8.
+The Shifted script design from the owner-supplied `Lib-assests/glyphs/tsugumori-five-glyph-studies.html`, available as its own widget in Chaldea.
 
 ## Try it
 

@@ -28,13 +28,13 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
   const send = () => {
     if (!ready || disposed) return;
     clearTimeout(timeout); timeout = setTimeout(fail, 6000);
-    frame.contentWindow?.postMessage({ channel: 'xlr8:preview', type: 'settings', token, sequence: ++sequence, settings }, '*');
+    frame.contentWindow?.postMessage({ channel: 'chaldea:preview', type: 'settings', token, sequence: ++sequence, settings }, '*');
   };
   const receive = (event: MessageEvent<unknown>) => {
     // Opaque origins report "null". Authenticate the exact Window and instance token.
     if (event.source !== frame.contentWindow || !event.data || typeof event.data !== 'object' || disposed) return;
     const data = event.data as Record<string, unknown>;
-    if (data.channel !== 'xlr8:preview' || data.token !== token) return;
+    if (data.channel !== 'chaldea:preview' || data.token !== token) return;
     if (data.type === 'resize' && typeof data.height === 'number' && Number.isFinite(data.height)) {
       host.style.minHeight = `${Math.max(300, Math.min(4096, data.height))}px`;
     }
@@ -44,7 +44,7 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
   };
   window.addEventListener('message', receive);
   frame.addEventListener('load', () => {
-    if (!disposed) frame.contentWindow?.postMessage({ channel: 'xlr8:preview', type: 'init', token }, '*');
+    if (!disposed) frame.contentWindow?.postMessage({ channel: 'chaldea:preview', type: 'init', token }, '*');
   });
   frame.addEventListener('error', fail);
   host.dataset.ready = 'false'; host.replaceChildren(frame);

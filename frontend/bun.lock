@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "xlr8-frontend",
+      "name": "chaldea-frontend",
       "dependencies": {
         "ajv": "8.20.0",
         "fflate": "0.8.3",

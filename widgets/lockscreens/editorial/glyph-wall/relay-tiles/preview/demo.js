@@ -225,4 +225,4 @@
 })();
 
 
-window.XLR8Archive.finish({"select": [{"selector": "button[data-layout=\"wall\"]"}, {"selector": "select[data-glyph]", "value": "a"}], "remove": ["button[data-layout]", "select[data-glyph]"], "controls": false});
+window.ChaldeaArchive.finish({"select": [{"selector": "button[data-layout=\"wall\"]"}, {"selector": "select[data-glyph]", "value": "a"}], "remove": ["button[data-layout]", "select[data-glyph]"], "controls": false});

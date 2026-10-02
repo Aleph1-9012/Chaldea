@@ -1,6 +1,6 @@
 # Panel bands curtain
 
-The Panel bands curtain design from the owner-supplied `Lib-assests/curtains-and-buttons/curtain-design-studies.html`, available as its own widget in XLR8.
+The Panel bands curtain design from the owner-supplied `Lib-assests/curtains-and-buttons/curtain-design-studies.html`, available as its own widget in Chaldea.
 
 ## Try it
 

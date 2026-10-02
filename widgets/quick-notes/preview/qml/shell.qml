@@ -8,7 +8,7 @@ import Quickshell
 ShellRoot {
     Window {
         visible: true
-        title: "XLR8 / Quick notes"
+        title: "Chaldea / Quick notes"
         width: Math.max(360, notes.implicitWidth + 48)
         height: Math.min(800, notes.implicitHeight + 48)
         minimumWidth: 320

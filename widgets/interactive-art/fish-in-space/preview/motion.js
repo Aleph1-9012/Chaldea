@@ -266,5 +266,5 @@
 
   const api = { createSchool, createSpine, bodyEnvelope };
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else globalThis.XLR8FishMotion = api;
+  else globalThis.ChaldeaFishMotion = api;
 })();

@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { findWidget, selectWidgets, widgetSources } from '../../scripts/widget-sources';
 
 async function fixture(run: (root: string) => Promise<void>) {
-  const root = await mkdtemp(join(tmpdir(), 'xlr8-sources-'));
+  const root = await mkdtemp(join(tmpdir(), 'chaldea-sources-'));
   try {
     for (const [path, id] of [['glyphs/branch', 'stable-branch'], ['glyphs/relay', 'stable-relay'], ['notes/refined', 'stable-notes']] as const) {
       await mkdir(join(root, path), { recursive: true });

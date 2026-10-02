@@ -167,4 +167,4 @@
 })();
 
 
-window.XLR8Archive.finish({"select": [{"selector": "button[data-select=\"C\"]"}], "remove": ["button[data-select]"], "hide": ["section[data-design]:not([data-design=\"C\"])"], "controls": false});
+window.ChaldeaArchive.finish({"select": [{"selector": "button[data-select=\"C\"]"}], "remove": ["button[data-select]"], "hide": ["section[data-design]:not([data-design=\"C\"])"], "controls": false});

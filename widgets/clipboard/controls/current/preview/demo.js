@@ -88,4 +88,4 @@
 })();
 
 
-window.XLR8Archive.finish({"select": [{"selector": "button[data-design=\"current\"]"}], "remove": ["button[data-design]"], "controls": false});
+window.ChaldeaArchive.finish({"select": [{"selector": "button[data-design=\"current\"]"}], "remove": ["button[data-design]"], "controls": false});

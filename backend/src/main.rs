@@ -1,10 +1,10 @@
+use chaldea::{build, content, error::Result};
 use std::{collections::BTreeMap, path::Path, process::ExitCode};
-use xlr8::{build, content, error::Result};
 fn run() -> Result<()> {
     let mut args = std::env::args().skip(1);
     let command = args.next().unwrap_or_default();
     if command == "--help" || command == "-h" {
-        println!("xlr8 check|build --config PATH --source PATH [--out PATH] [--include-drafts]");
+        println!("chaldea check|build --config PATH --source PATH [--out PATH] [--include-drafts]");
         return Ok(());
     }
     if !["check", "build"].contains(&command.as_str()) {

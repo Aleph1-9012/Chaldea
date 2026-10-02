@@ -25,12 +25,12 @@ if (widget || group) {
   // the stable widget ID in their name, including the native notes browser tests.
   const pattern = `^(?:${ids.map(escapePattern).join('|')}):|^archive `;
   bun(['test', '--timeout', '25000', 'tests/browser', '--test-name-pattern', pattern], {
-    ...process.env, XLR8_TEST_WIDGETS: JSON.stringify(ids),
+    ...process.env, CHALDEA_TEST_WIDGETS: JSON.stringify(ids),
   });
 } else {
   run('make', ['_check-code', scope === 'core' ? '_check-content' : 'content']);
   bun(['test', ...(scope === 'core'
     ? ['tests/unit/generator.test.ts', 'tests/unit/widget-sources.test.ts']
     : ['tests/unit'])]);
-  if (scope === 'all') bun(['run', 'test:browser'], { ...process.env, XLR8_TEST_WIDGETS: '' });
+  if (scope === 'all') bun(['run', 'test:browser'], { ...process.env, CHALDEA_TEST_WIDGETS: '' });
 }

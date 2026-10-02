@@ -270,4 +270,4 @@
 
 
 
-window.XLR8Archive.finish({"fixed": {"Lock/unlock animation": "Register bands"}, "controls": false});
+window.ChaldeaArchive.finish({"fixed": {"Lock/unlock animation": "Register bands"}, "controls": false});

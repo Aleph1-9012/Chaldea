@@ -96,11 +96,11 @@
       panel.append(content);
       stack.append(panel);
     });
-    XLR8Notes.updateCount();XLR8Notes.reveal(stack,'.ts-memo:has([aria-expanded="true"])');
+    ChaldeaNotes.updateCount();ChaldeaNotes.reveal(stack,'.ts-memo:has([aria-expanded="true"])');
   }
   root.querySelector('.ts-new').addEventListener('click', () => {
     const note = { id: nextId++, title: '', body: '', changed: false };
-    XLR8Notes.add(notes,note);
+    ChaldeaNotes.add(notes,note);
     selectNote(note);
     stack.querySelector('input').focus();
     status.textContent = 'NEW NOTE · PREVIEW ONLY';
@@ -108,9 +108,9 @@
   function renderDesign() { root.classList.toggle('ts-no-grid', !design.grid); }
   renderNotes();
   renderDesign();
-  window.XLR8Preview.connect(settings => {
+  window.ChaldeaPreview.connect(settings => {
     design.grid=settings.s0Grid;renderDesign();
-    XLR8Notes.apply(settings,110,10);
-    XLR8Notes.reveal(stack,'.ts-memo:has([aria-expanded="true"])');
+    ChaldeaNotes.apply(settings,110,10);
+    ChaldeaNotes.reveal(stack,'.ts-memo:has([aria-expanded="true"])');
   });
 })();

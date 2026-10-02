@@ -16,7 +16,7 @@ const { bundle } = await loadLocal(content, id);
 if (!bundle.definition.exports.some(f => f.path === 'shell.qml')) throw new Error('Native checks require an exported shell.qml.');
 const output = join(root, 'build/native'); await mkdir(output, { recursive: true });
 const run = await mkdtemp(join(output, `${id}-`));
-const runtime = await mkdtemp(join(tmpdir(), 'xlr8-qs-')); await chmod(runtime, 0o700);
+const runtime = await mkdtemp(join(tmpdir(), 'chaldea-qs-')); await chmod(runtime, 0o700);
 const environment: Record<string, string | undefined> = { ...process.env, QT_QPA_PLATFORM: 'offscreen', QT_QUICK_BACKEND: 'software', XDG_RUNTIME_DIR: runtime, XDG_CACHE_HOME: join(run, 'cache') };
 delete environment.WAYLAND_DISPLAY; delete environment.DISPLAY;
 const qtTool = (name: string) => process.env[name.toUpperCase()] ?? (existsSync(`/usr/lib/qt6/bin/${name}`) ? `/usr/lib/qt6/bin/${name}` : name);

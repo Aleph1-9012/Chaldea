@@ -1,6 +1,6 @@
 # Tsugumori / Resonance sculpture
 
-The Resonance sculpture design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in XLR8.
+The Resonance sculpture design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in Chaldea.
 
 ## Try it
 

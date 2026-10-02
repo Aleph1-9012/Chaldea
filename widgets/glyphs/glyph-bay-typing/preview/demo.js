@@ -223,5 +223,5 @@
     }, state.motion ? 1500 : 800);
   });
   render();
-  window.XLR8Preview.connect(settings => { Object.assign(state, settings); render(); });
+  window.ChaldeaPreview.connect(settings => { Object.assign(state, settings); render(); });
 })();

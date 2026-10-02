@@ -25,8 +25,8 @@ try {
       await new Promise<void>((done, reject) => {
         const timeout = setTimeout(() => reject(new Error('Preview did not render.')), 6000);
         window.addEventListener('message', event => { if (event.data?.type === 'rendered' && event.data.token === token) { clearTimeout(timeout); done(); } });
-        window.postMessage({ channel: 'xlr8:preview', type: 'init', token }, '*');
-        window.postMessage({ channel: 'xlr8:preview', type: 'settings', token, sequence: 1, settings }, '*');
+        window.postMessage({ channel: 'chaldea:preview', type: 'init', token }, '*');
+        window.postMessage({ channel: 'chaldea:preview', type: 'settings', token, sequence: 1, settings }, '*');
       });
     }, defaults(bundle.definition));
     const cdp = await page.context().newCDPSession(page);

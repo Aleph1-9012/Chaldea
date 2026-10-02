@@ -270,4 +270,4 @@
 
 
 
-window.XLR8Archive.finish({"fixed": {"Lock/unlock animation": "Folio sweep"}, "controls": false});
+window.ChaldeaArchive.finish({"fixed": {"Lock/unlock animation": "Folio sweep"}, "controls": false});

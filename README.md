@@ -1,4 +1,4 @@
-# XLR8
+# Chaldea
 
 A widget library for Quickshell. Browse interactive previews, customize their appearance, and copy or download widgets for your desktop.
 
@@ -17,8 +17,8 @@ Entries marked **HTML draft** are interactive previews with native downloads dis
 Local setup requires GNU Make, a C compiler, and the pinned [Rust](rust-toolchain.toml) and [Bun](.bun-version) versions.
 
 ```sh
-git clone https://github.com/Aleph1-9012/XLR8.git
-cd XLR8
+git clone https://github.com/Aleph1-9012/Chaldea.git
+cd Chaldea
 make setup
 make dev
 ```

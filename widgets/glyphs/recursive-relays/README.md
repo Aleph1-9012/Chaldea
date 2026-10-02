@@ -1,6 +1,6 @@
 # Tsugumori / Recursive relays
 
-The Recursive relays design from the owner-supplied `Lib-assests/glyphs/tsugumori-five-glyph-studies.html`, available as its own widget in XLR8.
+The Recursive relays design from the owner-supplied `Lib-assests/glyphs/tsugumori-five-glyph-studies.html`, available as its own widget in Chaldea.
 
 ## Try it
 

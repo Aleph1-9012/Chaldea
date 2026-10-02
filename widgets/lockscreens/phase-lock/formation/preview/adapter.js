@@ -1,1 +1,1 @@
-window.XLR8Preview.connect(() => {});
+window.ChaldeaPreview.connect(() => {});

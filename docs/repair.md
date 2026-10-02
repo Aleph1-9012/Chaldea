@@ -1,6 +1,6 @@
 # Repair and verification
 
-Run the canonical commands from the repository root. `make -f /absolute/path/to/XLR8/Makefile <target>` also works; content paths are explicit.
+Run the canonical commands from the repository root. `make -f /absolute/path/to/Chaldea/Makefile <target>` also works; content paths are explicit.
 
 ## Setup and stale output
 
@@ -11,6 +11,8 @@ Make keeps Cargo and Bun caches under ignored `build/`. Install the pinned Bun v
 If a preview reflects old widget source, run `make content` and reload. Vite watches application source; it does not rebuild Rust content. A production build removes local drafts from `build/content/`. Run `make content` again to restore them for development.
 
 Never patch a revision under `build/` or `dist/`. Fix its declared source and rebuild. Rust prepares content in staging and replaces only output bearing its ownership marker. If it refuses an unowned output directory, inspect that path before choosing a new output location. Do not add a marker to bypass that protection.
+
+The project config is `chaldea.toml`, the Rust package and CLI are `chaldea`, and the frontend package is `chaldea-frontend`. Rebuild with `make content` or `make build` after updating an existing checkout. The packager recognizes the former ownership marker solely to migrate generated output and writes only `.chaldea-content`. Preview adapters use `window.ChaldeaPreview` and the `chaldea:preview` channel. Rebuilt revisions include this runtime change; widget IDs and selection URLs stay the same. Reload any open development tabs after rebuilding.
 
 ## Development commands
 
@@ -29,12 +31,12 @@ Never patch a revision under `build/` or `dist/`. Fix its declared source and re
 A server started inside an automation session can stop when that session ends. On Linux with a systemd user session, run this from the repository root to keep the server independent of the launching terminal. Stop any existing preview on port 5175 first.
 
 ```sh
-systemd-run --user --unit=xlr8-dev --collect --service-type=exec \
+systemd-run --user --unit=chaldea-dev --collect --service-type=exec \
   --working-directory="$PWD" --setenv="PATH=$PATH" \
   --property=Restart=on-failure --property=RestartSec=2s make dev
 ```
 
-This transient service restarts after a failure and stays available during the user session. It is not enabled at boot. Open `http://127.0.0.1:5175/` once Vite starts. Use `systemctl --user status xlr8-dev` to inspect it, `journalctl --user -u xlr8-dev -n 50` for logs, and `systemctl --user stop xlr8-dev` to stop it. Widget-source changes still require `make content` and a page reload.
+This transient service restarts after a failure and stays available during the user session. It is not enabled at boot. Open `http://127.0.0.1:5175/` once Vite starts. Use `systemctl --user status chaldea-dev` to inspect it, `journalctl --user -u chaldea-dev -n 50` for logs, and `systemctl --user stop chaldea-dev` to stop it. Widget-source changes still require `make content` and a page reload.
 
 ## Find a content error
 

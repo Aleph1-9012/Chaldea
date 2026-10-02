@@ -163,7 +163,7 @@ pub fn load(config_path: &Path, source: &Path) -> Result<Project> {
             "--source must match configured widgets directory",
         ));
     }
-    let mut shared = BTreeMap::from([("xlr8.toml".into(), config_bytes)]);
+    let mut shared = BTreeMap::from([("chaldea.toml".into(), config_bytes)]);
     for path in config
         .shared_inputs
         .iter()

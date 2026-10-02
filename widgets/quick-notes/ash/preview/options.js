@@ -2,7 +2,7 @@
 (() => {
   const root = document.querySelector('[id^="ts-notes-"]');
   let settings = {};
-  window.XLR8Notes = {
+  window.ChaldeaNotes = {
     apply(values, rowHeight = 40, rowGap = 7) {
       settings = values;
       const density = values.listDensity;
@@ -18,7 +18,7 @@
       // A manually resized textarea must also follow the next accepted settings snapshot.
       root.querySelectorAll('textarea').forEach(body => { body.style.height = values.editorHeight + 'px'; });
       this.updateCount();
-      window.XLR8NotesAppearance.apply(values);
+      window.ChaldeaNotesAppearance.apply(values);
     },
     add(notes, note) {
       const index = settings.newNotePosition === 'Top' ? 0 : notes.length;
@@ -46,5 +46,5 @@
       });
     },
   };
-  root.addEventListener('input', () => window.XLR8Notes.updateCount());
+  root.addEventListener('input', () => window.ChaldeaNotes.updateCount());
 })();

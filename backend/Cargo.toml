@@ -1,9 +1,9 @@
 [package]
-name = "xlr8"
+name = "chaldea"
 version = "0.1.0"
 edition = "2024"
 license = "Apache-2.0"
-description = "Validate and package XLR8 widgets"
+description = "Validate and package Chaldea widgets"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }

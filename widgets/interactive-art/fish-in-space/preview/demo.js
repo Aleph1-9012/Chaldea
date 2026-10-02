@@ -5,7 +5,7 @@
   const canvas = $('scene'), ctx = canvas.getContext('2d');
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
   const design = { trails: true, detail: 1 };
-  const school = XLR8FishMotion.createSchool(800, 414);
+  const school = ChaldeaFishMotion.createSchool(800, 414);
   let width = 0, height = 0, paused = media.matches, visible = true, raf = 0, last = null, cue = null;
   const say = text => { $('status').textContent = text; };
 
@@ -39,7 +39,7 @@
       const size = unit * state.scale * school.bodyFit;
       const cp = Math.cos(pitch), sp = Math.sin(pitch);
       const ch = Math.cos(heading), sh = Math.sin(heading);
-      const spine = XLR8FishMotion.createSpine(state);
+      const spine = ChaldeaFishMotion.createSpine(state);
       function radius(u) {
         return (.032 + .265 * Math.pow(Math.sin(Math.PI * Math.min(1, u / .99)), 1.35)) * (1 - u * .55);
       }
@@ -212,6 +212,6 @@
   resize(); syncPause(); syncGather();
   say(paused ? 'Reduced motion: still preview. Press Play to animate.' : 'Two fish, swimming independently.');
   schedule();
-  const disconnect = window.XLR8Preview.connect(settings => { Object.assign(design, settings); draw(); });
+  const disconnect = window.ChaldeaPreview.connect(settings => { Object.assign(design, settings); draw(); });
   window.addEventListener('pagehide', () => { stop(); intersection.disconnect(); sizeObserver.disconnect(); disconnect(); });
 })();
