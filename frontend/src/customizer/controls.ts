@@ -1,7 +1,7 @@
 import type { Definition, Settings } from '../catalog/contracts';
 import { el } from '../components/dom';
 import { FieldError } from './settings';
-export function controls(definition: Definition, values: Settings, change: (key: string, value: unknown) => void) {
+export function controls(definition: Definition, values: Settings, change: (key: string, value: Settings[string]) => void) {
   const root = el('div', 'controls');
   const inputs = new Map<string, (HTMLInputElement | HTMLSelectElement)[]>();
   const errors = new Map<string, HTMLElement>();
