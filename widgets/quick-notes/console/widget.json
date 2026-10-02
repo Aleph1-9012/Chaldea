@@ -184,11 +184,6 @@
       "kind": "file"
     },
     {
-      "source": "qml/NoteGrid.qml",
-      "path": "NoteGrid.qml",
-      "kind": "file"
-    },
-    {
       "source": "qml/NotesConsole.qml",
       "path": "NotesConsole.qml",
       "kind": "file"

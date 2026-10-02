@@ -9,7 +9,7 @@ test('new nested widget folders are discovered without editing a test inventory'
   try {
     const dir = join(root, 'notes/study/new-design');
     await mkdir(dir, { recursive: true });
-    await writeFile(join(dir, 'widget.json'), JSON.stringify({ id: 'stable-id', category: 'Notes' }));
+    await writeFile(join(dir, 'widget.json'), JSON.stringify({ id: 'stable-id' }));
     await mkdir(join(root, 'notes/_shared/qml'), { recursive: true });
     await writeFile(join(root, 'notes/_shared/qml/Helper.qml'), 'import QtQuick\nItem {}\n');
     const sources = await widgetSources(root);
@@ -17,7 +17,7 @@ test('new nested widget folders are discovered without editing a test inventory'
     expect(findWidget(sources, 'stable-id')).toEqual(findWidget(sources, 'notes/study/new-design'));
     expect(() => findWidget(sources, 'missing')).toThrow();
     await mkdir(join(root, 'duplicate'));
-    await writeFile(join(root, 'duplicate/widget.json'), JSON.stringify({ id: 'stable-id', category: 'Notes' }));
+    await writeFile(join(root, 'duplicate/widget.json'), JSON.stringify({ id: 'stable-id' }));
     await expect(widgetSources(root)).rejects.toThrow('Duplicate widget ID');
     await rm(join(root, 'duplicate'), { recursive: true });
     await symlink(root, join(root, 'loop'));

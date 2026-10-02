@@ -318,7 +318,7 @@ fn production_replaces_old_output_without_publishing_drafts_or_private_files() {
 }
 
 #[test]
-fn output_ownership_is_required_and_legacy_output_migrates() {
+fn output_ownership_is_required_before_replacing_a_directory() {
     let p = project();
     let temp = tempfile::tempdir().unwrap();
     let output = temp.path().join("output");
@@ -331,13 +331,14 @@ fn output_ownership_is_required_and_legacy_output_migrates() {
         fs::read_to_string(output.join("keep")).unwrap(),
         "user file"
     );
-    fs::write(output.join(".xlr8-content"), "XLR8 generated content v1\n").unwrap();
+    fs::write(
+        output.join(".chaldea-content"),
+        "Chaldea generated content v1\n",
+    )
+    .unwrap();
     build::build(&p, &output, false).unwrap();
-    assert_eq!(
-        fs::read_to_string(output.join(".chaldea-content")).unwrap(),
-        "Chaldea generated content v1\n"
-    );
-    assert!(!output.join(".xlr8-content").exists());
+    assert!(!output.join("keep").exists());
+    assert!(output.join("catalog.json").is_file());
     assert!(build::build(&p, &p.source, false).is_err());
 }
 

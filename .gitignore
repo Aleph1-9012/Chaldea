@@ -2,8 +2,6 @@
 /dist/
 /backend/target/
 /frontend/node_modules/
-/frontend/test-results/
-/frontend/playwright-report/
 .env
 .env.*
 *.log

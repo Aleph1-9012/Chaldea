@@ -2,7 +2,7 @@ import { readdir, readFile, realpath } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 
-export interface WidgetSource { id: string; category: string; dir: string; path: string }
+export interface WidgetSource { id: string; dir: string; path: string }
 export const repository = resolve(import.meta.dir, '../..');
 
 // Source paths are an authoring detail. Public IDs always come from widget.json.
@@ -15,10 +15,10 @@ export async function widgetSources(root = join(repository, 'widgets')): Promise
     if (existsSync(definition)) {
       const file = await realpath(definition);
       if (relative(dir, file).startsWith('..')) throw new Error(`Definition escapes widget folder: ${definition}`);
-      const { id, category } = JSON.parse(await readFile(file, 'utf8'));
-      if (typeof id !== 'string' || !/^[a-z][a-z0-9-]+$/.test(id) || typeof category !== 'string') throw new Error(`Invalid identity in ${definition}`);
+      const { id } = JSON.parse(await readFile(file, 'utf8'));
+      if (typeof id !== 'string' || !/^[a-z][a-z0-9-]+$/.test(id)) throw new Error(`Invalid identity in ${definition}`);
       if (ids.has(id)) throw new Error(`Duplicate widget ID: ${id}`);
-      ids.add(id); sources.push({ id, category, dir, path: relative(root, dir) });
+      ids.add(id); sources.push({ id, dir, path: relative(root, dir) });
       return;
     }
     const before = sources.length;

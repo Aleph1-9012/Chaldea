@@ -32,20 +32,11 @@ fn write(path: &Path, bytes: &[u8]) -> Result<()> {
     fs::create_dir_all(path.parent().unwrap())?;
     fs::write(path, bytes).map_err(|e| issue(path, "write", e))
 }
+const MARKER: &str = ".chaldea-content";
+const MARKER_TEXT: &[u8] = b"Chaldea generated content v1\n";
 fn owns_output(output: &Path) -> bool {
-    [
-        (
-            ".chaldea-content",
-            b"Chaldea generated content v1\n".as_slice(),
-        ),
-        // Read the former ownership marker only to migrate existing output.
-        (".xlr8-content", b"XLR8 generated content v1\n".as_slice()),
-    ]
-    .into_iter()
-    .any(|(name, expected)| {
-        let marker = output.join(name);
-        !marker.is_symlink() && fs::read(marker).is_ok_and(|actual| actual == expected)
-    })
+    let marker = output.join(MARKER);
+    !marker.is_symlink() && fs::read(marker).is_ok_and(|actual| actual == MARKER_TEXT)
 }
 fn bundle(project: &Project, widget: &Widget, revision: &str, dest: &Path) -> Result<()> {
     let d = &widget.definition;
@@ -135,10 +126,7 @@ pub fn build(project: &Project, output: &Path, include_drafts: bool) -> Result<u
         &stage.path().join("catalog.json"),
         &serde_json::to_vec_pretty(&catalog::catalog(entries)?)?,
     )?;
-    write(
-        &stage.path().join(".chaldea-content"),
-        b"Chaldea generated content v1\n",
-    )?;
+    write(&stage.path().join(MARKER), MARKER_TEXT)?;
     let previous = tempfile::Builder::new()
         .prefix(".chaldea-previous-")
         .tempdir_in(&parent)?;

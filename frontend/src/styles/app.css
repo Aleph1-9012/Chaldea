@@ -1,4 +1,4 @@
-:root{font-family:Inter,Arial,sans-serif;color:#292e2b;background:#f5f4f0;font-synthesis:none;font-size:14px;line-height:1.5;--muted:#757970;--rule:#dedfd7;--accent:#485c32;--mono:'JetBrains Mono','Cascadia Code',monospace}
+:root{font-family:Inter,Arial,sans-serif;color:#292e2b;background:#f5f4f0;font-synthesis:none;font-size:14px;line-height:1.5;--muted:#757970;--rule:#dedfd7;--mono:'JetBrains Mono','Cascadia Code',monospace}
 *{box-sizing:border-box}
 body{margin:0}
 button,input,select{font:inherit}
