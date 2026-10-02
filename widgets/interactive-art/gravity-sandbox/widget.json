@@ -1,5 +1,5 @@
 {
-  "id": "tsugumori-gravity-sandbox",
+  "id": "interactive-art-gravity-sandbox",
   "title": "Tsugumori / Gravity sandbox",
   "summary": "Hold or drag inside the field, add gravity wells, and release or scatter the particles. Escape releases all wells. State resets when you leave this widget.",
   "category": "Interactive art",

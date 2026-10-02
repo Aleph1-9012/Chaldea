@@ -283,11 +283,11 @@
       "source": "glyphs/tsugumori-five-glyph-studies.html",
       "disposition": "existing",
       "widgets": [
-        "tsugumori-radical-exchange",
-        "tsugumori-oblique-ligatures",
-        "tsugumori-shifted-script",
-        "tsugumori-branch-grammar",
-        "tsugumori-recursive-relays"
+        "glyphs-radical-exchange",
+        "glyphs-oblique-ligatures",
+        "glyphs-shifted-script",
+        "glyphs-branch-grammar",
+        "glyphs-recursive-relays"
       ],
       "sha256": "01224cfd169df19cff0b715b913acd964c391ba73fc02de68e9f2fb3ceff1ba0"
     },
@@ -295,7 +295,7 @@
       "source": "glyphs/tsugumori-glyph-bay-typing.html",
       "disposition": "existing",
       "widgets": [
-        "tsugumori-glyph-bay-typing"
+        "glyphs-glyph-bay-typing"
       ],
       "sha256": "33923000189a6e3c49a82a8b2fca03dee7907f10db51d1248435d55461a7dc58"
     },
@@ -303,7 +303,7 @@
       "source": "interactive-art/tsugumori-drift-and-tsumugi.html",
       "disposition": "existing",
       "widgets": [
-        "tsugumori-fish-in-space"
+        "interactive-art-fish-in-space"
       ],
       "sha256": "7948dc2f2a16ee848de4592d1d9c58dcbf8d756b7ebdfb0594e077880cb95875",
       "excluded": [
@@ -314,8 +314,8 @@
       "source": "interactive-art/tsugumori-eight-play-studies.html",
       "disposition": "existing",
       "widgets": [
-        "tsugumori-mechanical-rhythm",
-        "tsugumori-magnetic-powder"
+        "interactive-art-mechanical-rhythm",
+        "interactive-art-magnetic-powder"
       ],
       "sha256": "32346a91f1ca8662f70729f4684fc8bd49ef8958f4b1aa66ad85f31835aaca90",
       "excluded": [
@@ -331,12 +331,12 @@
       "source": "interactive-art/tsugumori-play-lab.html",
       "disposition": "existing",
       "widgets": [
-        "tsugumori-session-fossils",
-        "tsugumori-gravity-sandbox",
-        "tsugumori-signal-hunting",
-        "tsugumori-resonance-sculpture",
-        "tsugumori-orbital-playground",
-        "tsugumori-specimen-chamber"
+        "interactive-art-session-fossils",
+        "interactive-art-gravity-sandbox",
+        "interactive-art-signal-hunting",
+        "interactive-art-resonance-sculpture",
+        "interactive-art-orbital-playground",
+        "interactive-art-specimen-chamber"
       ],
       "sha256": "7602b97ddbef589470b84531394c4302b5b684a4c96737fad5a933f110520529"
     },
@@ -743,11 +743,11 @@
       "source": "player/tsugumori-player-directions.html",
       "disposition": "imported",
       "widgets": [
-        "player-directions-matrix",
-        "player-directions-sleeve",
-        "player-directions-rail",
-        "player-directions-ledger",
-        "player-directions-title"
+        "player-matrix",
+        "player-sleeve",
+        "player-rail",
+        "player-ledger",
+        "player-title"
       ],
       "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be"
     },
@@ -783,7 +783,7 @@
       "source": "quick-notes/tsugumori-notes-a-cassette.html",
       "disposition": "imported",
       "widgets": [
-        "notes-notes-a-cassette"
+        "quick-notes-cassette"
       ],
       "sha256": "9b3949697080a750f2a928f3a7b316e5f42d64fc10d878004965157624976291"
     },
@@ -793,14 +793,14 @@
       "reason": "Red palette for Cassette notes, included as a setting",
       "sha256": "02a5068c175284a36de8d1798f36d69451c12ddaa484a4e20291f6ef1064328d",
       "widgets": [
-        "notes-notes-a-cassette"
+        "quick-notes-cassette"
       ]
     },
     {
       "source": "quick-notes/tsugumori-notes-b-index.html",
       "disposition": "imported",
       "widgets": [
-        "notes-notes-b-index"
+        "quick-notes-index"
       ],
       "sha256": "a0c77f0101eb486c73a4f0617575d9e6b57b8d3f25cecef8dfd54fb1a6bba71a"
     },
@@ -808,7 +808,7 @@
       "source": "quick-notes/tsugumori-notes-c-console.html",
       "disposition": "imported",
       "widgets": [
-        "notes-notes-c-console"
+        "quick-notes-console"
       ],
       "sha256": "8adf176cab3dfd1c751d2b1e4f7f82a560a9089838c9f2462c7c5cf1b2eb7431"
     },
@@ -816,7 +816,7 @@
       "source": "quick-notes/tsugumori-notes-d-ash.html",
       "disposition": "imported",
       "widgets": [
-        "notes-notes-d-ash"
+        "quick-notes-ash"
       ],
       "sha256": "31632c30e437af5594d17a5174120ceece371d8000df7989da1b073c5a98da0f"
     },
@@ -831,7 +831,7 @@
       "source": "quick-notes/tsugumori-notes-preview.html",
       "disposition": "imported",
       "widgets": [
-        "notes-notes-preview"
+        "quick-notes-preview"
       ],
       "sha256": "df3f53c11eecfa4b71678625d8b053f507006f53389cad41b0ec1611f8683584"
     },
@@ -839,7 +839,7 @@
       "source": "quick-notes/tsugumori-notes-refined.html",
       "disposition": "imported",
       "widgets": [
-        "notes-notes-refined"
+        "quick-notes-refined"
       ],
       "sha256": "048d8c6954fb62e64d132844c8e34cdd96775fb419513f32c5d9d0c475b309a5"
     },
@@ -3395,7 +3395,7 @@
       }
     },
     {
-      "id": "player-directions-matrix",
+      "id": "player-matrix",
       "source": "player/tsugumori-player-directions.html",
       "name": "Player directions / Matrix",
       "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
@@ -3415,7 +3415,7 @@
       }
     },
     {
-      "id": "player-directions-sleeve",
+      "id": "player-sleeve",
       "source": "player/tsugumori-player-directions.html",
       "name": "Player directions / Sleeve",
       "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
@@ -3435,7 +3435,7 @@
       }
     },
     {
-      "id": "player-directions-rail",
+      "id": "player-rail",
       "source": "player/tsugumori-player-directions.html",
       "name": "Player directions / Rail",
       "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
@@ -3455,7 +3455,7 @@
       }
     },
     {
-      "id": "player-directions-ledger",
+      "id": "player-ledger",
       "source": "player/tsugumori-player-directions.html",
       "name": "Player directions / Ledger",
       "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
@@ -3475,7 +3475,7 @@
       }
     },
     {
-      "id": "player-directions-title",
+      "id": "player-title",
       "source": "player/tsugumori-player-directions.html",
       "name": "Player directions / Title",
       "sha256": "92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be",
@@ -3495,7 +3495,7 @@
       }
     },
     {
-      "id": "notes-notes-a-cassette",
+      "id": "quick-notes-cassette",
       "source": "quick-notes/tsugumori-notes-a-cassette.html",
       "name": "Notes a cassette",
       "sha256": "9b3949697080a750f2a928f3a7b316e5f42d64fc10d878004965157624976291",
@@ -3504,7 +3504,7 @@
       }
     },
     {
-      "id": "notes-notes-b-index",
+      "id": "quick-notes-index",
       "source": "quick-notes/tsugumori-notes-b-index.html",
       "name": "Notes b index",
       "sha256": "a0c77f0101eb486c73a4f0617575d9e6b57b8d3f25cecef8dfd54fb1a6bba71a",
@@ -3513,7 +3513,7 @@
       }
     },
     {
-      "id": "notes-notes-c-console",
+      "id": "quick-notes-console",
       "source": "quick-notes/tsugumori-notes-c-console.html",
       "name": "Notes c console",
       "sha256": "8adf176cab3dfd1c751d2b1e4f7f82a560a9089838c9f2462c7c5cf1b2eb7431",
@@ -3522,7 +3522,7 @@
       }
     },
     {
-      "id": "notes-notes-d-ash",
+      "id": "quick-notes-ash",
       "source": "quick-notes/tsugumori-notes-d-ash.html",
       "name": "Notes d ash",
       "sha256": "31632c30e437af5594d17a5174120ceece371d8000df7989da1b073c5a98da0f",
@@ -3531,7 +3531,7 @@
       }
     },
     {
-      "id": "notes-notes-preview",
+      "id": "quick-notes-preview",
       "source": "quick-notes/tsugumori-notes-preview.html",
       "name": "Notes preview",
       "sha256": "df3f53c11eecfa4b71678625d8b053f507006f53389cad41b0ec1611f8683584",
@@ -3540,7 +3540,7 @@
       }
     },
     {
-      "id": "notes-notes-refined",
+      "id": "quick-notes-refined",
       "source": "quick-notes/tsugumori-notes-refined.html",
       "name": "Notes refined",
       "sha256": "048d8c6954fb62e64d132844c8e34cdd96775fb419513f32c5d9d0c475b309a5",

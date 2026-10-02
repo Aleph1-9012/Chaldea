@@ -1,5 +1,5 @@
 {
-  "id": "notes-notes-preview",
+  "id": "quick-notes-preview",
   "title": "Tsugumori / Notes preview",
   "summary": "Write, edit, and switch notes in a standalone QML component. Notes stay in memory for the current session.",
   "category": "Quick notes",

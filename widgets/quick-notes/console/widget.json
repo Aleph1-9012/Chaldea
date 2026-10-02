@@ -1,5 +1,5 @@
 {
-  "id": "notes-notes-c-console",
+  "id": "quick-notes-console",
   "title": "Tsugumori / Notes c console",
   "summary": "Write, edit, and switch notes in a standalone QML component. Notes stay in memory for the current session.",
   "category": "Quick notes",
