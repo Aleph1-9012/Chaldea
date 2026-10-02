@@ -63,7 +63,9 @@ A template placeholder must be the complete typed property value on its line. Un
 
 ## Browser problems
 
-`make check` starts Vite when port 5175 is free and uses a separate Chromium context per test. Stop an unrelated server on that port before testing. Use `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to select a browser, or install Playwright Chromium with `bunx --bun playwright install --with-deps chromium` in `frontend/`. On Linux containers, browser/server execution may need a less restricted sandbox.
+Browser checks start their own Vite server on an available localhost port and close it after the suite. They never reuse or stop the development server on port 5175. Each test still gets a separate Chromium context. Setup has a 60-second timeout, including Chromium's 30-second launch deadline; individual tests keep their 25-second timeout. Setup logs report server and browser readiness so a startup failure identifies the stalled stage.
+
+CI uses the Chromium installed by Playwright. Locally, `/usr/bin/chromium` is used when available; `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` explicitly overrides either choice. Install Playwright Chromium with `bunx --bun playwright install --with-deps chromium` in `frontend/`. On Linux containers, browser/server execution may need a less restricted sandbox.
 
 Anamorphic 704, Kinetic typography, Kirigami panel, Pachinko gutter, and Notes numbered have been removed. Their previous widget URLs now show "Widget not found".
 
