@@ -148,10 +148,7 @@ pub fn widget(widget: &Widget) -> Result<()> {
             }
             let text = std::str::from_utf8(&widget.inputs[&f.source])
                 .map_err(|e| issue(&file, &f.source, e))?;
-            bound.extend(
-                template(text, &d.settings)
-                    .map_err(|e| issue(&widget.dir.join(&f.source), "template", e))?,
-            );
+            bound.extend(template(text, &d.settings).map_err(|e| issue(&file, &f.source, e))?);
         }
     }
     let has_qml = d.exports.iter().any(|f| f.kind == "template");

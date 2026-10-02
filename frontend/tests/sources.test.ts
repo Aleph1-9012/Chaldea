@@ -10,6 +10,8 @@ test('new nested widget folders are discovered without editing a test inventory'
     const dir = join(root, 'notes/study/new-design');
     await mkdir(dir, { recursive: true });
     await writeFile(join(dir, 'widget.json'), JSON.stringify({ id: 'stable-id', category: 'Notes' }));
+    await mkdir(join(root, 'notes/_shared/qml'), { recursive: true });
+    await writeFile(join(root, 'notes/_shared/qml/Helper.qml'), 'import QtQuick\nItem {}\n');
     const sources = await widgetSources(root);
     expect(sources).toHaveLength(1);
     expect(findWidget(sources, 'stable-id')).toEqual(findWidget(sources, 'notes/study/new-design'));

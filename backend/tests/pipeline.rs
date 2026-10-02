@@ -141,6 +141,64 @@ fn discovery_preserves_identity_after_folder_moves_and_rejects_duplicates() {
 }
 
 #[test]
+fn shared_group_files_serve_widgets_without_their_own_copy() {
+    let license = |p: &content::Project| {
+        let widget = p
+            .widgets
+            .iter()
+            .find(|w| w.definition.id == "contract-fixture");
+        widget.unwrap().inputs["LICENSE"].clone()
+    };
+    let temp = fixture();
+    let before = load(&temp);
+    let widgets = temp.path().join("widgets");
+    let group = widgets.join("notes");
+    fs::create_dir_all(group.join("_shared")).unwrap();
+    fs::rename(widgets.join("contract-fixture"), group.join("design")).unwrap();
+    fs::rename(group.join("design/LICENSE"), group.join("_shared/LICENSE")).unwrap();
+    let hoisted = load(&temp);
+    assert_eq!(hoisted.widgets.len(), before.widgets.len());
+    for (old, new) in before.widgets.iter().zip(&hoisted.widgets) {
+        assert_eq!(
+            build::revision(&before, old).unwrap(),
+            build::revision(&hoisted, new).unwrap()
+        );
+    }
+    fs::create_dir(widgets.join("_shared")).unwrap();
+    fs::write(widgets.join("_shared/LICENSE"), "library terms").unwrap();
+    assert_eq!(license(&load(&temp)), license(&before));
+    fs::remove_file(group.join("_shared/LICENSE")).unwrap();
+    assert_eq!(license(&load(&temp)), b"library terms");
+    fs::write(group.join("design/LICENSE"), "own terms").unwrap();
+    assert_eq!(license(&load(&temp)), b"own terms");
+    fs::remove_file(group.join("design/LICENSE")).unwrap();
+    fs::remove_file(widgets.join("_shared/LICENSE")).unwrap();
+    assert!(fails(&temp));
+    let temp = fixture();
+    fs::create_dir_all(temp.path().join("widgets/group/_shared")).unwrap();
+    assert!(fails(&temp));
+    #[cfg(unix)]
+    {
+        let temp = fixture();
+        let widgets = temp.path().join("widgets");
+        fs::create_dir(widgets.join("_shared")).unwrap();
+        fs::write(widgets.join("_shared/LICENSE"), "library terms").unwrap();
+        let own = widgets.join("contract-fixture/LICENSE");
+        fs::remove_file(&own).unwrap();
+        std::os::unix::fs::symlink(widgets.join("missing"), &own).unwrap();
+        assert!(fails(&temp));
+        fs::remove_file(&own).unwrap();
+        fs::remove_file(widgets.join("_shared/LICENSE")).unwrap();
+        std::os::unix::fs::symlink(
+            temp.path().join("chaldea.toml"),
+            widgets.join("_shared/LICENSE"),
+        )
+        .unwrap();
+        assert!(fails(&temp));
+    }
+}
+
+#[test]
 fn file_mappings_reject_escapes_conflicts_and_reserved_paths() {
     for invalid in ["../../chaldea.toml", "/etc/passwd", "../private.txt"] {
         let temp = fixture();

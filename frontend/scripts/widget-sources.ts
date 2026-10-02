@@ -26,7 +26,8 @@ export async function widgetSources(root = join(repository, 'widgets')): Promise
     for (const entry of entries) {
       if (entry.name.startsWith('.')) continue;
       if (entry.isSymbolicLink()) throw new Error(`Source groups cannot contain symlinks: ${join(dir, entry.name)}`);
-      if (entry.isDirectory()) await visit(join(dir, entry.name));
+      // A group's _shared folder holds files for the widgets below it, never a widget.
+      if (entry.isDirectory() && entry.name !== '_shared') await visit(join(dir, entry.name));
     }
     if (sources.length === before && !allowEmpty) throw new Error(`No widget.json in source group: ${dir}`);
   }

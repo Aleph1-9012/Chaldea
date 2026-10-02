@@ -105,6 +105,28 @@ pub fn confined(root: &Path, relative: &str) -> Result<PathBuf> {
     }
     Ok(path)
 }
+/// Files in a group's `_shared` folder serve every widget below that group.
+const SHARED: &str = "_shared";
+/// Resolve a declared source. A widget's own file wins; otherwise the nearest
+/// parent group's `_shared` folder supplies it.
+fn source_file(library: &Path, widget: &Path, relative: &str) -> Result<PathBuf> {
+    let groups = widget
+        .ancestors()
+        .skip(1)
+        .take_while(|group| group.starts_with(library))
+        .map(|group| group.join(SHARED));
+    for root in std::iter::once(widget.to_path_buf()).chain(groups) {
+        // A dangling link is an error in `confined`, never a reason to fall back.
+        if root.join(relative).symlink_metadata().is_ok() {
+            return confined(&root, relative);
+        }
+    }
+    Err(issue(
+        widget,
+        relative,
+        "not found in this widget or a parent _shared folder",
+    ))
+}
 fn widget_directories(dir: &Path, found: &mut Vec<PathBuf>, allow_empty: bool) -> Result<()> {
     if dir.join("widget.json").exists() {
         found.push(dir.to_path_buf());
@@ -127,7 +149,7 @@ fn widget_directories(dir: &Path, found: &mut Vec<PathBuf>, allow_empty: bool) -
                 "source groups cannot contain symlinks",
             ));
         }
-        if kind.is_dir() {
+        if kind.is_dir() && name != SHARED {
             widget_directories(&confined(dir, &name)?, found, false)?;
         }
     }
@@ -208,7 +230,7 @@ pub fn load(config_path: &Path, source: &Path) -> Result<Project> {
             .chain(definition.exports.iter().map(|f| &f.source))
             .chain(definition.usage.iter())
         {
-            inputs.insert(path.clone(), read(&confined(&dir, path)?)?);
+            inputs.insert(path.clone(), read(&source_file(&source, &dir, path)?)?);
         }
         let widget = Widget {
             dir,
