@@ -70,3 +70,29 @@ Thumbnail capture still uses Playwright as an authoring tool through `scripts/th
 ## Distribution notices
 
 The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Widget ZIP files include their own applicable licenses.
+
+## Player downloads
+
+The five Player entries now have native QML exports and are included in production builds. Their browser previews retain silent sample tracks. Downloads use Quickshell.Services.Mpris to control connected desktop media applications, with a source list instead of the preview's sample collection. Each ZIP includes its helper QML, `shell.qml`, usage, and license.
+
+If a native player is idle, start an application that exposes MPRIS on the same session bus. Missing or disabled actions follow the application's reported capabilities; seeking also requires a known duration. A selected source that closes falls back to another available player. Album art loads from the URL supplied by that application. The browser cannot verify these integrations.
+
+For isolated native inspection, export the exact files with the documented Bun export command and use their `shell.qml`. A private `dbus-run-session` prevents test controls from reaching live media apps; populate that bus with a test media service when checking playback behavior. Local offscreen rendering verifies layout and QML loading but does not verify compositor placement or every media application's MPRIS behavior.
+
+## Glyph downloads
+
+All six Glyph entries now include native QML and are included in production builds. Keep each extracted `GlyphArt.js` beside its QML files. That drawing helper is also used by the browser preview, so typing length, deletion, and the artwork's geometry follow the same rules.
+
+These are visual components with a dummy-input field and an Unlock curtain preview. They do not implement authentication or a desktop session lock. Entered characters are replaced after committed edits; only the bounded length drives the drawing. Timing, motion, and emphasis settings preserve that length. The native animation setting can disable transitions, and hiding a component stops pending motion and replay timers.
+
+Use the same generator/export command and isolated `shell.qml` workflow described above. Browser and native inspection should include pasting, selection deletion, reversing input, motion interruption, clearing, and replay cancellation. The generic library checker discovers their JavaScript helpers and export mappings without new test registration.
+
+## Interactive art downloads
+
+All nine Interactive art entries include native QML and appear in production builds. Keep each exported `ArtEngine.js` with its QML helpers. The same engine drives the browser preview. Preserve the original drawing rules and interactions when changing either host; settings must leave scene state and collections intact.
+
+Shared JavaScript must work in Qt’s JavaScript engine as well as the browser. These engines use ES2016-compatible syntax, including `Object.assign` instead of object spread. Browser and Qt Canvas APIs differ; the shared drawing code uses a Bezier ellipse helper to preserve the same geometry in both.
+
+Mechanical rhythm additionally needs Qt Multimedia, `ArtAudio.qml`, and its six original PCM files under `sounds/`. Sound starts off, requires an available output, and stops on pause or hiding. The other eight exports are silent. Orbital workspaces, resonance beats, and fossil sessions are sample data; collections are kept only in memory.
+
+Use the existing export command and an isolated launcher for native inspection. Check pointer gestures, keyboard controls, collection recall, pause/resume, settings, and narrow layouts. A muted audio check establishes sample loading and control behavior, not audible output quality. The generic checker discovers these exports and assets automatically; no new test command or registration is needed.

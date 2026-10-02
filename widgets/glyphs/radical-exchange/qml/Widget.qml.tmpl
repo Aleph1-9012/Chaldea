@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: 0BSD
+import QtQuick
+
+GlyphWidget {
+    designName: "Radical exchange"
+    property int duration: {{duration}}
+    property int red: {{red}}
+    property bool motion: {{motion}}
+    transitionTime: duration
+    emphasis: red
+    animationEnabled: motion
+}

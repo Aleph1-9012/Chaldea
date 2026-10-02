@@ -1,15 +1,43 @@
 # Tsugumori / Resonance sculpture
 
-The Resonance sculpture design from the owner-supplied `Lib-assests/interactive-art/tsugumori-play-lab.html`, available as its own widget in Chaldea.
+The owner-supplied design now has an interactive browser preview and a native QML export. Both use the same simulation and drawing rules in `ArtEngine.js`.
 
-## Try it
+## Run
 
-Play or pause the silent demo beat and adjust its pattern and response to reshape the sculpture. State resets when you leave this widget.
+Download and extract the complete ZIP. Keep `Widget.qml`, its QML helpers, and `ArtEngine.js` together. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
-Use the controls inside the preview. Settings below it adjust this design. State stays in memory and resets when you leave. Fonts and icons are local, with no external requests.
+```sh
+qs -p /absolute/path/to/the/extracted-folder/shell.qml
+```
 
-## Implementation status
+The launcher opens a regular, resizable window and scrolls when the controls need more room. It uses Qt Quick, Qt Quick Controls Basic, and Qt Quick Layouts. To embed the component in a QML layout:
 
-Interactive HTML draft. Native QML, desktop integration, authentication, and widget export are not implemented. `make dev` includes this preview; production builds omit it. Original widget code and local icon markup use 0BSD.
+```qml
+import "./resonance-sculpture" as Art
 
-Source SHA-256: `7602b97ddbef589470b84531394c4302b5b684a4c96737fad5a933f110520529`. The source archive is unchanged. This widget extracts one design, keeps its direct interactions, and connects its settings to the sandbox preview runtime.
+Art.Widget {
+    width: 740
+}
+```
+
+The artwork adapts to the component width. Font families use installed fonts with system fallback. No remote assets are requested.
+
+## Interaction and settings
+
+Play demo beat animates the ring using a silent simulated rhythm. Choose a beat pattern and adjust Intensity; Pause demo beat lets the sculpture settle. It uses no microphone or media-player input. Coordinate grid, point detail, and accent color adjust its appearance.
+
+Use the controls inside the artwork. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
+
+Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and ZIP downloads contain the same settings snapshot; they do not include the current scene or collections.
+
+## Host integration
+
+`paused`, `running`, and `statusText` expose the component’s current state. The native template binds Chaldea settings to the component. `ArtEngine.js` contains this design’s original drawing and interaction logic, shared with the browser host. Chaldea’s frontend generator creates the QML template output.
+
+## Source and license
+
+The design is from `Lib-assests/interactive-art/tsugumori-play-lab.html`. It remains its own widget entry; the source archive is unchanged.
+
+Source SHA-256: `7602b97ddbef589470b84531394c4302b5b684a4c96737fad5a933f110520529`.
+
+Original drawing rules, preview code, and native implementation use 0BSD. The download includes `LICENSE`.

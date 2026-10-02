@@ -1,15 +1,15 @@
 {
   "id": "player-directions-ledger",
   "title": "Tsugumori / Player directions / Ledger",
-  "summary": "Play or pause the silent sample timeline, seek, switch tracks, and inspect the player artwork.",
+  "summary": "Control desktop media players with live track details, artwork, playback, seeking, and source selection.",
   "category": "Player",
   "tags": [
     "player",
     "tsugumori",
-    "interactive",
-    "draft"
+    "mpris",
+    "qml"
   ],
-  "status": "draft",
+  "status": "published",
   "preview": "preview/index.html",
   "thumbnail": "thumbnail.webp",
   "usage": "README.md",
@@ -37,10 +37,6 @@
       "path": "preview/demo.js"
     },
     {
-      "source": "preview/support.js",
-      "path": "preview/support.js"
-    },
-    {
       "source": "thumbnail.webp",
       "path": "thumbnail.webp"
     },
@@ -49,5 +45,71 @@
       "path": "LICENSE"
     }
   ],
-  "exports": []
+  "exports": [
+    {
+      "source": "qml/Widget.qml.tmpl",
+      "path": "Widget.qml",
+      "kind": "template"
+    },
+    {
+      "source": "qml/PlayerBackend.qml",
+      "path": "PlayerBackend.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerText.qml",
+      "path": "PlayerText.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerButton.qml",
+      "path": "PlayerButton.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerTransport.qml",
+      "path": "PlayerTransport.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerSeek.qml",
+      "path": "PlayerSeek.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerSources.qml",
+      "path": "PlayerSources.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerArtwork.qml",
+      "path": "PlayerArtwork.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/PlayerBase.qml",
+      "path": "PlayerBase.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/shell.qml",
+      "path": "shell.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LedgerPlayer.qml",
+      "path": "LedgerPlayer.qml",
+      "kind": "file"
+    },
+    {
+      "source": "README.md",
+      "path": "README.md",
+      "kind": "file"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE",
+      "kind": "file"
+    }
+  ]
 }

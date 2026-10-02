@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: 0BSD
+import QtQuick
+
+GlyphWidget {
+    designName: "Glyph Bay typing"
+    property int travel: {{travel}}
+    property bool motion: {{motion}}
+    transitionTime: travel
+    animationEnabled: motion
+    glyphBay: true
+}
