@@ -6,11 +6,13 @@ import "ArtEngine.js" as Art
 
 Item {
     id: root
-    property color paperColor: "#f6f5f2"
-    property color inkColor: "#16151a"
+    property color paperColor: "#ffffff"
+    property color inkColor: "#0c0c0f"
     property string threadDetail: "Fine"
     property bool compactCanvas: false
     property bool paused: false
+    // Buffer pixels per logical pixel. The ink is drawn pixel by pixel in JavaScript, so lower is faster.
+    property real pixelScale: .5
     readonly property var engine: session.engine
     readonly property bool running: visible && !!engine && !paused
     readonly property string statusText: session.status
@@ -135,7 +137,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.topMargin: 4
                 Layout.bottomMargin: 12
-                text: "Threads obey a strict attractor. Chaos frays them loose."
+                text: "Precise loops drawn on a pulse. Chaos takes them apart into ink."
                 color: root.dimColor
                 font.family: root.monoFamily
                 font.pixelSize: 11
@@ -168,16 +170,17 @@ Item {
                 }
                 Canvas {
                     id: drawing
-                    width: scene.width * 2; height: scene.height * 2
-                    scale: .5; transformOrigin: Item.TopLeft
+                    width: Math.max(8, Math.round(scene.width * root.pixelScale))
+                    height: Math.max(8, Math.round(scene.height * root.pixelScale))
+                    scale: scene.width > 0 ? scene.width / width : 1
+                    transformOrigin: Item.TopLeft
+                    smooth: true
                     onPaint: {
                         if (!root.engine || scene.width < 1 || scene.height < 1) return;
                         const ctx = getContext("2d");
-                        ctx.reset();
-                        ctx.setTransform(2, 0, 0, 2, 0, 0);
                         const elapsed = root.running ? session.elapsed : 0;
                         session.elapsed = 0;
-                        root.engine.render(ctx, scene.width, scene.height, elapsed);
+                        root.engine.render(ctx, scene.width, scene.height, elapsed, width / scene.width);
                         if (root.engine.status() !== session.status) session.status = root.engine.status();
                     }
                 }

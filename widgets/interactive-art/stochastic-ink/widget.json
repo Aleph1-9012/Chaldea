@@ -1,7 +1,7 @@
 {
   "id": "interactive-art-stochastic-ink",
   "title": "Stochastic ink",
-  "summary": "Ink threads obey a strict attractor while chaos frays them loose. Drag to draw threads out, tap to release a burst, rack focus through the depth of field.",
+  "summary": "Precise loops are drawn on a pulse, then a chaotic flow takes them apart into lace, combed ribbons, and smoke around a black core. Stir the ink, tap to draw a rule, rack focus through the depth of field.",
   "category": "Interactive art",
   "tags": [
     "interactive-art",
@@ -19,13 +19,13 @@
       "key": "paper",
       "label": "Paper",
       "type": "color",
-      "default": "#f6f5f2"
+      "default": "#ffffff"
     },
     {
       "key": "ink",
       "label": "Ink",
       "type": "color",
-      "default": "#16151a"
+      "default": "#0c0c0f"
     },
     {
       "key": "detail",

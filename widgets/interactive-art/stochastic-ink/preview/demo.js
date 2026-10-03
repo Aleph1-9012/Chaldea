@@ -5,7 +5,7 @@
     const canvas = $('stage'), ctx = canvas.getContext('2d');
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const engine = createArtEngine();
-    const bindings = new Map(), appearance = { paper: '#f6f5f2', ink: '#16151a', detail: 'Fine', compact: false };
+    const bindings = new Map(), appearance = { paper: '#ffffff', ink: '#0c0c0f', detail: 'Fine', compact: false };
     let W = 0, H = 0, ratio = 1, last = null, raf = 0, visible = true, captured = false, syncTime = 0;
 
     function makeControl(c) {
@@ -91,8 +91,7 @@
         if (!W || !H)
             return;
 
-        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-        engine.render(ctx, W, H, elapsed);
+        engine.render(ctx, W, H, elapsed, ratio);
     }
 
     function act(key, value) {
@@ -204,7 +203,8 @@
         const r = canvas.getBoundingClientRect();
         W = Math.max(1, r.width);
         H = Math.max(1, r.height);
-        ratio = Math.min(window.devicePixelRatio || 1, 2);
+        // The engine writes pixels itself, so cap the buffer at 1.5x to keep frames cheap.
+        ratio = Math.min(window.devicePixelRatio || 1, 1.5);
         canvas.width = Math.round(W * ratio);
         canvas.height = Math.round(H * ratio);
         draw(0);
