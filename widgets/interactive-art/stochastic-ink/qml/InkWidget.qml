@@ -203,8 +203,8 @@ Item {
                     anchors.fill: parent
                     camera: camera
                     environment: SceneEnvironment {
-                        backgroundMode: SceneEnvironment.Color
-                        clearColor: root.paperColor
+                        // Let the Qt Quick frame supply paper without a 3D color conversion.
+                        backgroundMode: SceneEnvironment.Transparent
                         // Colors go out exactly as given, the way the browser preview mixes them.
                         tonemapMode: SceneEnvironment.TonemapModeNone
                         antialiasingMode: SceneEnvironment.NoAA
@@ -230,6 +230,9 @@ Item {
                             // "Over" with one ink color gives the same result in any drawing order.
                             sourceBlend: CustomMaterial.SrcAlpha
                             destinationBlend: CustomMaterial.OneMinusSrcAlpha
+                            // Accumulate coverage independently of ink color for Qt Quick compositing.
+                            sourceAlphaBlend: CustomMaterial.One
+                            destinationAlphaBlend: CustomMaterial.OneMinusSrcAlpha
                             vertexShader: "ink.vert"
                             fragmentShader: "ink.frag"
                             property TextureInput uLines: TextureInput {

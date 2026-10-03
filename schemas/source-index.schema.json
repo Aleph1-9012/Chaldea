@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "formatVersion": { "const": 1 },
+    "sourceRoot": { "$ref": "#/definitions/path" },
+    "widgets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,47}$" },
+          "path": { "anyOf": [{ "const": "" }, { "$ref": "#/definitions/path" }] },
+          "thumbnailSource": { "$ref": "#/definitions/path" }
+        },
+        "required": ["id", "path", "thumbnailSource"]
+      }
+    }
+  },
+  "required": ["formatVersion", "sourceRoot", "widgets"],
+  "definitions": {
+    "path": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$"
+    }
+  }
+}

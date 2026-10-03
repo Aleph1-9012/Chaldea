@@ -7,7 +7,7 @@ Button {
     property color paper: "#f6f5f2"
     property color line: Qt.rgba(ink.r, ink.g, ink.b, .16)
     property bool selected: false
-    implicitWidth: label.implicitWidth + 28
+    implicitWidth: Math.ceil(measurement.width) + 28
     implicitHeight: 36
     padding: 8
     font.family: "JetBrains Mono"
@@ -18,6 +18,7 @@ Button {
     opacity: enabled ? 1 : .4
     Accessible.name: text
     readonly property bool filled: selected || down || hovered
+    TextMetrics { id: measurement; text: control.text; font: control.font }
     background: Rectangle {
         color: control.filled ? control.ink : "transparent"
         border.color: control.visualFocus || control.filled ? control.ink : control.line

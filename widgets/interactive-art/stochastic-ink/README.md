@@ -24,6 +24,8 @@ Ink.Widget {
 
 The artwork adapts to the component width. Font families use installed fonts with system fallback. No remote assets are requested.
 
+Run it in a graphical session with a Qt Quick 3D-capable renderer. The native inspection used Wayland with OpenGL ES and Vulkan. Qt's software scene-graph renderer cannot draw this 3D view; see the [Qt Quick 3D graphics requirements](https://doc.qt.io/qt-6/qtquick3d-requirements.html).
+
 ## Interaction and settings
 
 - Drag to turn the view.
@@ -46,13 +48,13 @@ Appearance changes preserve the current scene. All interaction state stays in me
 `ArtEngine.js` runs the scene in both hosts: which lines exist, their shapes, the beat, the chaos envelope of each line, and the camera. Each frame it writes a small table, one row per line, and the GPU does the rest. `INK_SHADER_CORE` in the same file holds the shared GPU math: noise, the curve shapes, and the displacement.
 
 - In the browser, `preview/InkGL.js` draws with WebGL 2. It adds ink density into a floating-point buffer and then maps density to paper and ink colors.
-- In native QML, `InkWidget.qml` draws with Qt Quick 3D. `ink.vert` repeats `INK_SHADER_CORE` verbatim between its CORE markers and hard-codes the point layout of `INK_GROUPS`. Change those together; the component warns on the console if the layouts disagree. Points blend "over" in a single ink color, with a little dithering so faint, defocused ink survives 8-bit rounding.
+- In native QML, `InkWidget.qml` draws with Qt Quick 3D. `ink.vert` repeats `INK_SHADER_CORE` verbatim between its CORE markers and hard-codes the point layout of `INK_GROUPS`. Change those together; the component warns on the console if the layouts disagree. Points blend "over" in a single ink color, with a little dithering so faint, defocused ink survives 8-bit rounding. Alpha coverage accumulates separately from color, and the Qt Quick frame supplies the paper behind the transparent 3D view.
 
 `paused`, `running`, and `statusText` expose the component's current state. The native template binds Chaldea settings to `paperColor`, `inkColor`, `threadDetail`, and `compactCanvas`. Unlike the other Interactive art designs, this widget keeps its own paper-and-ink QML host instead of the shared dark frame.
 
-## Status
+## Native inspection
 
-The browser preview has been run and checked. The native QML version has not yet been launched in Quickshell. Its shaders were compiled and rendered through WebGL with Qt's built-in names mapped across, and that output matches the browser preview, but the Qt Quick 3D wiring (instancing, the line texture, and blending) still needs a real run before this widget is published.
+The generated export was launched in an isolated Quickshell 0.3.0 configuration with Qt 6.11.2 on Wayland and an NVIDIA RTX 5070 Laptop GPU. Native rendering, ink and paper colors, beat/reseed, rule selection, sliders, pointer and keyboard controls, pause, hidden-state suspension, and narrow layouts were inspected. Qt Quick Test supplied mouse and keyboard events. This verifies the exported component on that setup; it does not establish performance or driver compatibility on every GPU. No live desktop configuration was changed.
 
 ## Source and license
 

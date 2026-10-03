@@ -1,21 +1,29 @@
 import { expect, test } from 'bun:test';
 import settings from '../../schemas/fixtures/settings.json';
 import templates from '../../schemas/fixtures/templates.json';
-import type { Setting } from '../src/catalog/contracts';
 import { assertBundle, assertCatalog, assertDefinition } from '../src/catalog/contracts';
-import { defaults, validateSettings } from '../src/customizer/settings';
+import { assertSettings, defaults, FieldError, validateSettings, validateValue } from '../src/customizer/settings';
 import { templateBindings } from '../src/generator';
 import { fixture } from './fixture';
 
 test('settings and template rules agree with the shared Rust contract cases', () => {
   const { definition } = fixture();
+
   for (const item of settings) {
-    const validate = () => defaults({ ...definition, settings: [item.setting as Setting] });
+    const validate = () => {
+      const candidate = { ...definition, settings: [item.setting] };
+      assertDefinition(candidate);
+
+      return defaults(candidate);
+    };
+
     try { if (item.valid) expect(validate).not.toThrow(); else expect(validate).toThrow(); }
     catch (cause) { throw new Error(item.name, { cause }); }
   }
+
   for (const item of templates) {
     const validate = () => templateBindings(item.source, definition);
+
     try { if (item.valid) expect(validate).not.toThrow(); else expect(validate).toThrow(); }
     catch (cause) { throw new Error(item.name, { cause }); }
   }
@@ -23,12 +31,37 @@ test('settings and template rules agree with the shared Rust contract cases', ()
 
 test('user settings reject missing, unknown, nonfinite, and out-of-range values', () => {
   const { definition } = fixture(), initial = defaults(definition);
-  for (const level of [NaN, Infinity, -1, 101, 2.5, '50', undefined]) {
+
+  for (const level of [NaN, Infinity, -Infinity, -1, 101, 2.5, '50']) {
     expect(() => validateSettings(definition, { ...initial, level })).toThrow();
   }
+
   expect(() => validateSettings(definition, {})).toThrow();
   expect(() => validateSettings(definition, { ...initial, unexpected: true })).toThrow();
   expect(validateSettings(definition, initial)).toEqual(initial);
+});
+
+test('settings JSON rejects malformed objects and nested values at the parsing boundary', () => {
+  const { definition } = fixture();
+
+  for (const source of ['null', '[]', 'true', '50', '"settings"', '{"level":null}', '{"level":[]}', '{"level":{}}', '{"level":1e999}']) {
+    const value: unknown = JSON.parse(source);
+    expect(() => assertSettings(value)).toThrow();
+  }
+
+  const value: unknown = JSON.parse(JSON.stringify(defaults(definition)));
+  assertSettings(value);
+  expect(validateSettings(definition, value)).toEqual(defaults(definition));
+});
+
+test('setting errors keep their messages and normalization', () => {
+  const number = { key: 'level', label: 'Level', type: 'number', default: 0, min: 0, max: 100, step: 1 } as const;
+  const color = { key: 'accent', label: 'Accent', type: 'color', default: '#ABCDEF' } as const;
+
+  expect(() => validateValue(number, undefined)).toThrow(new FieldError('level', 'Level: enter a number between 0 and 100.'));
+  expect(() => validateValue(number, 0.5)).toThrow(new FieldError('level', 'Level: use increments of 1.'));
+  expect(Object.is(validateValue(number, -0), 0)).toBe(true);
+  expect(validateValue(color, '#ABCDEF')).toBe('#abcdef');
 });
 
 test('catalog and bundle boundaries reject duplicate IDs and mismatched exports', () => {
@@ -38,10 +71,12 @@ test('catalog and bundle boundaries reject duplicate IDs and mismatched exports'
   // Catalog summaries contain only their declared fields.
   const { id, title, summary, category, tags, status, bundleUrl, thumbnailUrl } = item;
   const entry = { id, title, summary, category, tags, status, revision, bundleUrl, thumbnailUrl };
+
   expect(() => assertCatalog({ formatVersion: 1, widgets: [entry] })).not.toThrow();
   expect(() => assertCatalog({ formatVersion: 1, widgets: [entry, entry] })).toThrow();
   expect(() => assertCatalog({ formatVersion: 1, widgets: [{ ...entry, bundleUrl: '../wrong.json' }] })).toThrow();
-  const bundle = { formatVersion: 1, id, revision, settingsSchemaVersion: 1, nativeBaseline: 'Contract fixture', definition, templates, usage: 'Instructions', assets: definition.exports.filter(file => file.kind === 'file').map(file => ({ path: file.path, url: `files/${file.path}` })) };
+  const bundle = { formatVersion: 1, id, revision, settingsSchemaVersion: 1, nativeBaseline: 'Contract fixture', definition, templates, usage: 'Instructions', assets: definition.exports.flatMap(file => file.kind === 'file' ? [{ path: file.path, url: `files/${file.path}` }] : []) };
+
   expect(() => assertBundle(bundle)).not.toThrow();
   expect(() => assertBundle({ ...bundle, id: 'wrong-id' })).toThrow();
   expect(() => assertBundle({ ...bundle, assets: [] })).toThrow();

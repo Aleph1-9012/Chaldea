@@ -287,6 +287,53 @@ fn revisions_are_deterministic_and_track_only_declared_inputs() {
 }
 
 #[test]
+fn local_source_index_uses_discovery_paths_and_declared_thumbnail_sources() {
+    let temp = fixture();
+    change(&temp, |d| {
+        let thumbnail = d["thumbnail"].clone();
+        let mapping = d["publicFiles"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|file| file["path"] == thumbnail)
+            .unwrap();
+        mapping["source"] = json!("images/card.svg");
+    });
+    let widgets = temp.path().join("widgets");
+    let group = widgets.join("notes/study");
+    fs::create_dir_all(group.join("_shared/images")).unwrap();
+    fs::rename(widgets.join("contract-fixture"), group.join("renamed")).unwrap();
+    fs::rename(
+        group.join("renamed/thumbnail.svg"),
+        group.join("_shared/images/card.svg"),
+    )
+    .unwrap();
+    let p = load(&temp);
+    let output = temp.path().join("output");
+    build::build(&p, &output, true).unwrap();
+    let index: Value =
+        serde_json::from_slice(&fs::read(output.join("source-index.json")).unwrap()).unwrap();
+    assert_eq!(
+        index,
+        json!({
+            "formatVersion": 1,
+            "sourceRoot": "widgets",
+            "widgets": [
+                { "id": "contract-fixture", "path": "notes/study/renamed", "thumbnailSource": "images/card.svg" },
+                { "id": "draft-fixture", "path": "draft-fixture", "thumbnailSource": "thumbnail.svg" },
+            ],
+        })
+    );
+    for widget in &p.widgets {
+        let revision = output
+            .join("revisions")
+            .join(&widget.definition.id)
+            .join(build::revision(&p, widget).unwrap());
+        assert!(!revision.join("source-index.json").exists());
+    }
+}
+
+#[test]
 fn production_replaces_old_output_without_publishing_drafts_or_private_files() {
     let temp = fixture();
     fs::write(
@@ -298,12 +345,14 @@ fn production_replaces_old_output_without_publishing_drafts_or_private_files() {
     let output = temp.path().join("output");
     build::build(&p, &output, true).unwrap();
     assert!(output.join("revisions/draft-fixture").is_dir());
+    assert!(output.join("source-index.json").is_file());
     build::build(&p, &output, false).unwrap();
     let catalog: Value =
         serde_json::from_slice(&fs::read(output.join("catalog.json")).unwrap()).unwrap();
     assert_eq!(catalog["widgets"].as_array().unwrap().len(), 1);
     assert_eq!(catalog["widgets"][0]["id"], "contract-fixture");
     assert!(!output.join("revisions/draft-fixture").exists());
+    assert!(!output.join("source-index.json").exists());
     let widget = p
         .widgets
         .iter()

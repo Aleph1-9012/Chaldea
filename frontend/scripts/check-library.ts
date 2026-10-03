@@ -97,9 +97,9 @@ export function inspectExports(definition: Definition, templates: Record<string,
 async function checkLibrary() {
   // Rust is the only reader of widget sources. Inspect the revisions it packaged.
   const local = await readCatalog(join(repository, 'build/content'));
-  const sources = await widgetSources();
+  const sources = await widgetSources(local.root);
   const packaged = local.catalog.widgets.map(widget => widget.id).sort();
-  assert.deepEqual(packaged, sources.map(source => source.id).sort(), 'Local content must contain exactly the widget sources. Run make content.');
+  assert.deepEqual(packaged, sources.map(source => source.id).sort(), 'Local catalog and source index must contain the same widgets. Run make content.');
 
   const bundles = new Map<string, Bundle>();
   let scripts = 0, exports = 0;
@@ -108,6 +108,10 @@ async function checkLibrary() {
     try {
       const item = local.catalog.widgets.find(widget => widget.id === source.id)!;
       const { bundle, assets, dir } = await loadRevision(local.root, item);
+      const thumbnail = bundle.definition.publicFiles.find(file => file.path === bundle.definition.thumbnail);
+
+      assert.equal(thumbnail?.source, source.thumbnailSource, 'Source index must match the packaged thumbnail mapping');
+
       const runtime = await readFile(join(dir, 'preview-runtime.js'));
       new Script(decoder.decode(runtime), { filename: 'preview-runtime.js' });
 
@@ -125,8 +129,10 @@ async function checkLibrary() {
   const dist = join(repository, 'dist');
   for (const name of ['index.html', 'LICENSE.txt', 'NOTICE.txt', 'THIRD_PARTY_LICENSES.txt']) await readFile(join(dist, name));
 
+  assert.equal((await readdir(dist)).includes('source-index.json'), false, 'Local source index must not enter the production artifact');
+
   const production = await readCatalog(dist);
-  const published = [...bundles.values()].filter(bundle => bundle.definition.status === 'published').map(bundle => bundle.id).sort();
+  const published = [...bundles.values()].flatMap(bundle => bundle.definition.status === 'published' ? [bundle.id] : []).sort();
   assert.deepEqual(production.catalog.widgets.map(widget => widget.id).sort(), published, 'Production catalog must contain exactly the published widgets');
 
   const revisionDirs = await readdir(join(dist, 'revisions')).catch((error: NodeJS.ErrnoException) => {

@@ -38,6 +38,37 @@ fn owns_output(output: &Path) -> bool {
     let marker = output.join(MARKER);
     !marker.is_symlink() && fs::read(marker).is_ok_and(|actual| actual == MARKER_TEXT)
 }
+fn source_index(project: &Project) -> Result<Value> {
+    let mut widgets = Vec::new();
+    for widget in &project.widgets {
+        let path = widget
+            .dir
+            .strip_prefix(&project.source)?
+            .to_str()
+            .ok_or("widget source path must be UTF-8")?
+            .replace('\\', "/");
+        let thumbnail = widget
+            .definition
+            .public_files
+            .iter()
+            .find(|file| file.path == widget.definition.thumbnail)
+            .ok_or_else(|| issue(&widget.dir, "thumbnail", "missing public file mapping"))?;
+        widgets.push(json!({
+            "id": widget.definition.id,
+            "path": path,
+            "thumbnailSource": thumbnail.source,
+        }));
+    }
+    let value = json!({
+        "formatVersion": 1,
+        "sourceRoot": project.config.widgets,
+        "widgets": widgets,
+    });
+    let schema: Value =
+        serde_json::from_str(include_str!("../../schemas/source-index.schema.json"))?;
+    jsonschema::validate(&schema, &value).map_err(|e| e.to_string())?;
+    Ok(value)
+}
 fn bundle(project: &Project, widget: &Widget, revision: &str, dest: &Path) -> Result<()> {
     let d = &widget.definition;
     for f in &d.public_files {
@@ -126,6 +157,12 @@ pub fn build(project: &Project, output: &Path, include_drafts: bool) -> Result<u
         &stage.path().join("catalog.json"),
         &serde_json::to_vec_pretty(&catalog::catalog(entries)?)?,
     )?;
+    if include_drafts {
+        write(
+            &stage.path().join("source-index.json"),
+            &serde_json::to_vec_pretty(&source_index(project)?)?,
+        )?;
+    }
     write(&stage.path().join(MARKER), MARKER_TEXT)?;
     let previous = tempfile::Builder::new()
         .prefix(".chaldea-previous-")

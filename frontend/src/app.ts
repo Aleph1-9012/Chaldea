@@ -14,7 +14,8 @@ export async function start(root: HTMLElement): Promise<void> {
   const main = root.querySelector<HTMLElement>('main')!;
   const categories = root.querySelector<HTMLElement>('#categories')!;
   const search = root.querySelector<HTMLInputElement>('#search')!;
-  let catalog: Catalog;
+  let catalog: Catalog | undefined;
+  let loadingCatalog = false;
   let category = allWidgets;
   let currentPreview: Preview | undefined;
   let activeRequest: AbortController | undefined;
@@ -44,6 +45,8 @@ export async function start(root: HTMLElement): Promise<void> {
   };
 
   const renderNavigation = () => {
+    if (!catalog) return;
+
     categories.replaceChildren();
 
     for (const name of [allWidgets, ...new Set(catalog.widgets.map(w => w.category))]) {
@@ -59,6 +62,8 @@ export async function start(root: HTMLElement): Promise<void> {
   };
 
   const browse = () => {
+    if (!catalog) return;
+
     dispose();
     renderNavigation();
     document.title = 'Chaldea · Quickshell widget library';
@@ -92,6 +97,12 @@ export async function start(root: HTMLElement): Promise<void> {
   };
 
   function route() {
+    if (!catalog) {
+      void initialize();
+
+      return;
+    }
+
     const selected = new URL(location.href).searchParams.get('widget');
 
     if (!selected) {
@@ -113,6 +124,9 @@ export async function start(root: HTMLElement): Promise<void> {
   }
 
   const initialize = async () => {
+    if (loadingCatalog) return;
+
+    loadingCatalog = true;
     main.replaceChildren(el('p', 'loading', 'Loading the collection…'));
 
     try {
@@ -120,6 +134,8 @@ export async function start(root: HTMLElement): Promise<void> {
       route();
     } catch (failure) {
       notice('The collection could not load', errorText(failure), () => { void initialize(); });
+    } finally {
+      loadingCatalog = false;
     }
   };
 

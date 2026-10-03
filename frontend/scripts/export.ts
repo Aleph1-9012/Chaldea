@@ -1,8 +1,8 @@
 import { readFile, mkdir, writeFile, realpath } from 'node:fs/promises';
 import { resolve, dirname, join, relative } from 'node:path';
 import { assertBundle, assertCatalog, safePath } from '../src/catalog/contracts';
-import type { Summary } from '../src/catalog/contracts';
-import { defaults } from '../src/customizer/settings';
+import type { Settings, Summary } from '../src/catalog/contracts';
+import { assertSettings, defaults } from '../src/customizer/settings';
 import { generate } from '../src/generator';
 
 export async function readCatalog(content: string) {
@@ -44,24 +44,39 @@ export async function loadLocal(content: string, id: string) {
   return loadRevision(root, item);
 }
 
-export async function exportWidget(content: string, id: string, output: string, overrides: Record<string, unknown> = {}) {
+export async function exportWidget(content: string, id: string, output: string, overrides: Settings = {}) {
   const { bundle, assets } = await loadLocal(content, id);
   const snapshot = generate(bundle.definition, bundle.templates, { ...defaults(bundle.definition), ...overrides }, assets);
   // Never overwrite an existing directory, including through a symlink.
   await mkdir(output, { recursive: false });
+
   for (const file of snapshot.files) {
     if (!safePath(file.path)) throw new Error('Unsafe export path.');
+
     const dest = join(output, file.path);
+
     await mkdir(dirname(dest), { recursive: true });
     await writeFile(dest, file.bytes, { flag: 'wx' });
   }
+
   return snapshot;
 }
+
 if (import.meta.main) {
   const [id, output, settingsFile] = process.argv.slice(2);
+
   if (!id || !output) throw new Error('Usage: bun run export <widget-id> <new-output-directory> [settings.json]');
-  const overrides = settingsFile ? JSON.parse(await readFile(settingsFile, 'utf8')) as Record<string, unknown> : {};
+
+  let overrides: Settings = {};
+
+  if (settingsFile) {
+    const value: unknown = JSON.parse(await readFile(settingsFile, 'utf8'));
+    assertSettings(value);
+    overrides = value;
+  }
+
   const content = resolve(import.meta.dir, '../../build/content');
   const snapshot = await exportWidget(content, id, resolve(output), overrides);
+
   console.log(`Exported ${snapshot.files.length} files to ${resolve(output)}`);
 }

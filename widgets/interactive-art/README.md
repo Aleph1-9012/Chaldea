@@ -2,7 +2,7 @@
 
 Fish in space, Magnetic powder, Mechanical rhythm, Specimen chamber, Orbital playground, Resonance sculpture, Signal hunting, Gravity sandbox, and Session fossils each have an independent QML export and are included in production builds. Each preserves its original drawing and direct controls. Collections remain in memory. Mechanical rhythm includes optional native sound; the other eight designs are silent.
 
-Stochastic ink is an original design, not an archive import. It is a draft with a complete native export that has not yet been launched in Quickshell. It draws a GPU point cloud: WebGL 2 in the browser and Qt Quick 3D natively, so its native version also needs the Qt Quick 3D module. It keeps its own paper-and-ink host (`InkWidget.qml`, `InkField.qml`, `InkButton.qml`, `InkText.qml`, the shaders `ink.vert` and `ink.frag`, and its own `shell.qml`) instead of the shared dark frame, and none of the shared files below apply to it.
+Stochastic ink is an original design with a verified native export and is also included in production builds. It draws a GPU point cloud: WebGL 2 in the browser and Qt Quick 3D natively, so its native version also needs the Qt Quick 3D module and a compatible graphics renderer. It keeps its own paper-and-ink host (`InkWidget.qml`, `InkField.qml`, `InkButton.qml`, `InkText.qml`, the shaders `ink.vert` and `ink.frag`, and its own `shell.qml`). None of the shared files below apply to it. Its README records the native inspection environment and limits.
 
 ## Shared files
 

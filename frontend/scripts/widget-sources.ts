@@ -1,43 +1,75 @@
-import { readdir, readFile, realpath } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { lstat, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import Ajv from 'ajv';
+import sourceIndexSchema from '../../schemas/source-index.schema.json';
 
-export interface WidgetSource { id: string; dir: string; path: string }
+interface SourceEntry { id: string; path: string; thumbnailSource: string }
+
+interface SourceIndex { formatVersion: 1; sourceRoot: string; widgets: SourceEntry[] }
+
+export interface WidgetSource extends SourceEntry { dir: string }
+
 export const repository = resolve(import.meta.dir, '../..');
 
-// Source paths are an authoring detail. Public IDs always come from widget.json.
-export async function widgetSources(root = join(repository, 'widgets')): Promise<WidgetSource[]> {
-  root = await realpath(root);
-  const sources: WidgetSource[] = [];
+const ajv = new Ajv({ allErrors: true, strict: false });
+const checkSourceIndex = ajv.compile<SourceIndex>(sourceIndexSchema);
+
+// Rust discovers sources and records their authoring paths alongside local content.
+export async function widgetSources(content = join(repository, 'build/content'), projectRoot = repository): Promise<WidgetSource[]> {
+  const index = JSON.parse(await readFile(join(content, 'source-index.json'), 'utf8'));
+
+  if (!checkSourceIndex(index)) throw new Error(`Invalid source index: ${ajv.errorsText(checkSourceIndex.errors)}. Run make content.`);
+
   const ids = new Set<string>();
-  async function visit(dir: string, allowEmpty = false): Promise<void> {
-    const definition = join(dir, 'widget.json');
-    if (existsSync(definition)) {
-      const file = await realpath(definition);
-      if (relative(dir, file).startsWith('..')) throw new Error(`Definition escapes widget folder: ${definition}`);
-      const { id } = JSON.parse(await readFile(file, 'utf8'));
-      if (typeof id !== 'string' || !/^[a-z][a-z0-9-]+$/.test(id)) throw new Error(`Invalid identity in ${definition}`);
-      if (ids.has(id)) throw new Error(`Duplicate widget ID: ${id}`);
-      ids.add(id); sources.push({ id, dir, path: relative(root, dir) });
-      return;
-    }
-    const before = sources.length;
-    const entries = (await readdir(dir, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name));
-    for (const entry of entries) {
-      if (entry.name.startsWith('.')) continue;
-      if (entry.isSymbolicLink()) throw new Error(`Source groups cannot contain symlinks: ${join(dir, entry.name)}`);
-      // A group's _shared folder holds files for the widgets below it, never a widget.
-      if (entry.isDirectory() && entry.name !== '_shared') await visit(join(dir, entry.name));
-    }
-    if (sources.length === before && !allowEmpty) throw new Error(`No widget.json in source group: ${dir}`);
+  const paths = new Set<string>();
+  const sources: WidgetSource[] = [];
+
+  for (const entry of index.widgets) {
+    if (ids.has(entry.id) || paths.has(entry.path)) throw new Error('Source index contains duplicate widget IDs or paths. Run make content.');
+
+    ids.add(entry.id);
+    paths.add(entry.path);
+    sources.push({ ...entry, dir: resolve(projectRoot, index.sourceRoot, entry.path) });
   }
-  await visit(root, true);
-  return sources.sort((a, b) => a.id.localeCompare(b.id));
+
+  return sources;
 }
 
 export function findWidget(sources: WidgetSource[], selector: string): WidgetSource {
   const path = selector.replace(/^widgets\//, '').replace(/\/$/, '');
   const widget = sources.find(source => source.id === selector || source.path === path);
+
   if (!widget) throw new Error(`Unknown widget: ${selector}. Use its ID or source path under widgets/.`);
+
   return widget;
+}
+
+export async function writeThumbnail(source: WidgetSource, bytes: Uint8Array): Promise<string> {
+  const root = resolve(source.dir);
+  const destination = resolve(root, source.thumbnailSource);
+  const path = relative(root, destination);
+
+  if (!path || path === '..' || path.startsWith(`..${sep}`) || isAbsolute(path)) throw new Error(`${source.id}: thumbnail destination must stay inside its widget folder.`);
+  if (await realpath(root) !== root) throw new Error(`${source.id}: thumbnail destination includes a symlink: ${root}`);
+
+  let component = root;
+
+  // Inspect metadata only. Rust still owns source discovery and content reads.
+  for (const part of path.split(sep)) {
+    component = join(component, part);
+
+    const metadata = await lstat(component).catch((cause: NodeJS.ErrnoException) => {
+      if (cause.code === 'ENOENT') return;
+
+      throw cause;
+    });
+
+    if (metadata?.isSymbolicLink()) throw new Error(`${source.id}: thumbnail destination includes a symlink: ${component}`);
+    if (metadata && (component === destination ? !metadata.isFile() : !metadata.isDirectory())) throw new Error(`${source.id}: invalid thumbnail destination component: ${component}`);
+  }
+
+  await mkdir(dirname(destination), { recursive: true });
+  await writeFile(destination, bytes);
+
+  return destination;
 }

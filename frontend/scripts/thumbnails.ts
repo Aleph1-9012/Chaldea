@@ -1,22 +1,32 @@
 import { chromium } from 'playwright';
 import { existsSync } from 'node:fs';
-import { writeFile, readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-import { assertCatalog } from '../src/catalog/contracts';
+import { relative, resolve } from 'node:path';
 import { defaults } from '../src/customizer/settings';
-import { loadLocal } from './export';
-import { findWidget, widgetSources } from './widget-sources';
-const root = resolve(import.meta.dir, '../..');
-const catalog: unknown = JSON.parse(await readFile(resolve(root, 'build/content/catalog.json'), 'utf8')); assertCatalog(catalog);
+import { loadRevision, readCatalog } from './export';
+import { findWidget, repository, widgetSources, writeThumbnail } from './widget-sources';
+
+const local = await readCatalog(resolve(repository, 'build/content'));
 const base = process.argv[2] ?? 'http://127.0.0.1:5175/';
-const sources = await widgetSources();
-const ids = process.argv.slice(3).map(selector => findWidget(sources, selector).id);
-if (ids.some(id => !catalog.widgets.some(item => item.id === id))) throw new Error('Unknown widget ID.');
+const sources = await widgetSources(local.root);
+const selectors = process.argv.slice(3);
+
+const selected = (selectors.length ? selectors.map(selector => findWidget(sources, selector)) : sources).map(source => {
+  const item = local.catalog.widgets.find(widget => widget.id === source.id);
+
+  if (!item) throw new Error(`Missing packaged widget ${source.id}. Run make content.`);
+  if (!source.thumbnailSource.endsWith('.webp')) throw new Error(`${source.id}: thumbnail capture requires a declared WebP source.`);
+
+  return { source, item };
+});
+
 const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ?? (existsSync('/usr/bin/chromium') ? '/usr/bin/chromium' : undefined), args: ['--no-sandbox'] });
+
 try {
-  for (const item of catalog.widgets) {
-    if (ids.length && !ids.includes(item.id)) continue;
-    const { bundle } = await loadLocal(resolve(root, 'build/content'), item.id);
+  for (const { source, item } of selected) {
+    const { bundle } = await loadRevision(local.root, item);
+
+    if (!bundle.definition.publicFiles.some(file => file.path === bundle.definition.thumbnail && file.source === source.thumbnailSource)) throw new Error(`${item.id}: thumbnail source index does not match the packaged revision. Run make content.`);
+
     const page = await browser.newPage({ viewport: { width: 800, height: 500 }, reducedMotion: 'reduce' });
     const preview = new URL(bundle.definition.preview, new URL('.', new URL(item.bundleUrl, base)));
     await page.goto(preview.href);
@@ -32,8 +42,9 @@ try {
     const cdp = await page.context().newCDPSession(page);
     await cdp.send('Emulation.setDefaultBackgroundColorOverride', { color: { r: 25, g: 27, b: 29, a: 1 } });
     const { data } = await cdp.send('Page.captureScreenshot', { format: 'webp', quality: 88, clip: { x: 0, y: 0, width: 800, height: 500, scale: 0.8 } });
-    const source = findWidget(sources, item.id);
-    await writeFile(resolve(source.dir, 'thumbnail.webp'), Buffer.from(data, 'base64'));
-    console.log(`Captured widgets/${source.path}/thumbnail.webp`); await page.close();
+    const destination = await writeThumbnail(source, Buffer.from(data, 'base64'));
+
+    console.log(`Captured ${relative(repository, destination)}`);
+    await page.close();
   }
 } finally { await browser.close(); }

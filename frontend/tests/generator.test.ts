@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test';
-import { generate } from '../src/generator';
+import { generate, serialize } from '../src/generator';
 import { defaults } from '../src/customizer/settings';
 import { fixture } from './fixture';
 
@@ -17,6 +17,14 @@ test('QML values remain literal and snapshots do not change after another edit',
   expect(first.settings.level).toBe(68);
   expect(Object.isFrozen(next.settings)).toBe(true);
   expect(Object.isFrozen(next.files)).toBe(true);
+});
+
+test('QML serialization rejects nonfinite numbers without coercing other scalars', () => {
+  for (const value of [NaN, Infinity, -Infinity]) expect(() => serialize(value)).toThrow('QML numbers must be finite.');
+
+  expect(serialize('Infinity')).toBe('"Infinity"');
+  expect(serialize(false)).toBe('false');
+  expect(serialize(0)).toBe('0');
 });
 
 test('exports preserve binary assets and fail when a required file is absent', () => {

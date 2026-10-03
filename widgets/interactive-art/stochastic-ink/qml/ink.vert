@@ -101,10 +101,10 @@ void MAIN() {
     POSITION = vec4(2.0, 2.0, 2.0, 1.0);
     int li;
     float s;
-    inkLayout(gl_InstanceIndex, li, s);
+    inkLayout(INSTANCE_INDEX, li, s);
     // Per-point random numbers, derived from the instance so no per-point buffer is needed.
-    vec3 ra = vec3(inkPcg(uvec3(uint(gl_InstanceIndex), 7u, 13u)) >> 8u) / 16777216.0;
-    vec3 rnd = vec3(inkPcg(uvec3(uint(gl_InstanceIndex), 101u, 57u)) >> 8u) / 16777216.0;
+    vec3 ra = vec3(inkPcg(uvec3(uint(INSTANCE_INDEX), 7u, 13u)) >> 8u) / 16777216.0;
+    vec3 rnd = vec3(inkPcg(uvec3(uint(INSTANCE_INDEX), 101u, 57u)) >> 8u) / 16777216.0;
     vec4 h = texelFetch(uLines, ivec2(0, li), 0);
     if (h.x < 0.5 || h.z < 0.002 || ra.x > uKeep)
         return;

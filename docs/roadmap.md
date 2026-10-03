@@ -4,7 +4,7 @@ Where the library stands, what gets added next, and how to add it. Update this f
 
 ## Where things stand
 
-The tooling is complete for anonymous browsing, customization, copying, and downloading: one Rust packager, one QML generator, and a browser-free `make check` that discovers every widget.
+The tooling is complete for anonymous browsing, customization, copying, and downloading: one Rust packager, one QML generator, and a browser-free `make check` that discovers every widget. Rust owns source discovery and emits a local source index for frontend authoring tools; production output contains no source index.
 
 Four families have native QML exports: Quick notes, Player, Glyphs, and Interactive art. Clipboard, Curtains and buttons, and Lockscreens are HTML drafts. [The inventory](widget-inventory.md) has the counts.
 
@@ -27,7 +27,7 @@ Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 | A refinement to a shared component | Copy the file into `quick-notes/refined/` (or the widget being refined) and change the copy. Move it back to `_shared/` only when the owner approves the rollout. |
 | A setting | Use the five existing types. Bind it in the preview and in a QML template. Use a plain camelCase key; the `s0…` prefixes on imported settings stay as they are. |
 | A setting type or definition field | Change `schemas/`, `backend/src/content.rs` and `validate.rs`, the frontend `catalog/contracts.ts`, `customizer/settings.ts`, and `generator/index.ts`, and `schemas/fixtures/` together, so Rust and the browser keep agreeing. Keep `shared_inputs` in `chaldea.toml` current if generator dependencies move. |
-| A source-layout convenience | Implement it in `backend/src/content.rs`. Frontend scripts read packaged revisions; only the folder discovery in `frontend/scripts/widget-sources.ts` mirrors Rust and changes if the rule for finding widget folders does. |
+| A source-layout convenience | Implement discovery and resolution in `backend/src/content.rs`. Rust emits the local source index in `backend/src/build.rs`; keep `schemas/source-index.schema.json` and its frontend consumer in agreement if authoring metadata changes. Frontend scripts read that index and packaged revisions. |
 
 A widget's ID is its folder path under `widgets/` with each `/` replaced by `-`: `widgets/player/matrix/` is `player-matrix`. Choose it when the widget is created and keep it if the folder later moves. The four native families follow this rule. Draft IDs from the archive import keep their old form until the drafts that stay are decided; give a draft its path-derived ID when it is ported. Once published, IDs and setting keys are public identities and do not change.
 

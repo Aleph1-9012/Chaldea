@@ -18,14 +18,14 @@ There are no scope flags, per-widget test modes, browser test installations, fis
 
 ## What the checks cover
 
-`make test` exercises shared behavior with small synthetic fixtures: settings and typed QML placeholders, escaping and immutable generated results, complete assets, draft export restrictions, folder discovery, revisions, path confinement, publication ownership, draft omission, and recovery after packaging failure. Shared Rust/TypeScript contract cases live in `schemas/fixtures/`; they verify that both implementations agree.
+`make test` exercises shared behavior with small synthetic fixtures: settings and typed QML placeholders, escaping and immutable generated results, complete assets, draft export restrictions, folder discovery and the local source index, revisions, path confinement, publication ownership, draft omission, and recovery after packaging failure. Shared Rust/TypeScript contract cases live in `schemas/fixtures/`; they verify that both implementations agree.
 
-`make check` runs those units, Rust formatting and Clippy, a local content build, and one production build. TypeScript checking happens once during the production build. Rust is the only reader of widget sources and validates the entire library each time it packages. The frontend library validator then inspects the packaged revision of every discovered widget in `build/content/` and checks:
+`make check` runs those units, Rust formatting and Clippy, a local content build, and one production build. TypeScript checking happens once during the production build. Rust is the only reader of widget sources and validates the entire library each time it packages. It writes `build/content/source-index.json` with the discovered IDs, source folders, and thumbnail mappings. The frontend library validator checks that the index and local catalog contain the same widgets, then inspects every packaged revision and checks:
 
 - Classic preview JavaScript syntax without executing it, the shared runtime reference, and literal HTML `src`, `href`, `poster`, and CSS `url(...)` asset references.
 - Valid default and boundary settings for every widget.
 - Generated QML and complete ZIP contents for each widget with native exports, using default, low, and high settings.
-- Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Each production revision must equal the one checked locally. Draft files must not appear in `dist/`.
+- Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Each production revision must equal the one checked locally. Draft files and the local source index must not appear in `dist/`.
 
 The library validator has no widget-ID list to update. Add a valid `widget.json` in any supported category/study folder and it is checked on the next run. Errors identify the source folder or file. Unit tests remain independent of library size; the library scan grows with the files being checked.
 
@@ -35,7 +35,7 @@ These are static and data checks. They do not claim to verify visible layouts, c
 
 CI runs `make setup` followed by the same `make check`, then saves `dist/` as the release candidate. Pull requests and pushes to `main` are checked; ordinary branch pushes do not launch a second copy of a pull-request run. A newer run cancels a superseded run for the same ref. No browser is downloaded or launched.
 
-Local and production content are separate. `build/content/` always holds every widget, drafts included; `build/production/` holds the published set that Vite copies into `dist/`. A running `make dev` keeps its drafts through a check. Do not run `make build` again after a successful check unless sources have changed.
+Local and production content are separate. `build/content/` always holds every widget, drafts included, and its source index; `build/production/` holds the published set that Vite copies into `dist/`. The source index never enters production bundles or revision hashes. A running `make dev` keeps its drafts through a check. Do not run `make build` again after a successful check unless sources have changed.
 
 No hosting provider is configured. A passing check creates a local candidate; it does not deploy the site. Follow `docs/publishing.md` for release and rollback requirements.
 
@@ -65,7 +65,7 @@ bun run export <widget-id> <new-output-directory> [settings.json]
 
 The destination must not exist. Keep every file from the export together. Use Qt 6 tools to inspect native QML, and load the exported `shell.qml` in a separate test configuration rather than modifying live desktop files. Record the revision, environment, and limits when claiming native support.
 
-Thumbnail capture still uses Playwright as an authoring tool through `scripts/thumbnails.ts`; it is not part of either check command. Browser binaries are only needed if you explicitly use that tool.
+Thumbnail capture still uses Playwright as an authoring tool through `scripts/thumbnails.ts`; it is not part of either check command. Browser binaries are only needed if you explicitly use that tool. Run `make content` after moving a widget or changing its thumbnail mapping so the local source index is current. From `frontend/`, `bun scripts/thumbnails.ts <preview-base-url> [widget-id-or-path ...]` accepts IDs and paths under `widgets/`, including an optional `widgets/` prefix. With no selectors it captures every local widget. Capture requires a declared WebP source and writes that source path inside the widget folder, even if the current file comes from `_shared/`. The writer checks filesystem metadata and rejects symlinked destination folders or files before creating directories or writing bytes. Run `make content` again to package the new image.
 
 ## Distribution notices
 

@@ -14,6 +14,8 @@ The packager writes a complete staging directory before replacing its prior gene
 
 `make content` packages every widget, drafts included, into `build/content/` for development and checks. `make build` packages only published widgets into `build/production/`, which Vite copies into `dist/`. Each assembly starts from clean staging and keeps only the current revisions. The publishing host must retain old public revision URLs separately; a local `dist/` directory is not that retention mechanism.
 
+Local packaging also writes `source-index.json` from Rust's discovery results. The shared `schemas/source-index.schema.json` contract records the configured source root and each widget's ID, relative folder, and declared thumbnail source. Frontend authoring scripts read this index and packaged revisions without reading `widgets/`. Thumbnail capture writes the declared source path inside the selected widget folder, creating a local override when the packaged thumbnail came from `_shared/`. The index stays outside revision bundles and hashes, and production packaging omits it.
+
 The `chaldea-bundle-v1` salt in `backend/src/build.rs` represents packaging semantics. Change it when packaging behavior changes the bytes or interpretation without changing another hashed input. Keep `shared_inputs` current if generator dependencies move or grow.
 
 ## Browser state
