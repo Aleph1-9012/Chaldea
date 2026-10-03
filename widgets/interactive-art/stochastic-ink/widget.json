@@ -1,7 +1,7 @@
 {
   "id": "interactive-art-stochastic-ink",
   "title": "Stochastic ink",
-  "summary": "Precise loops are drawn on a pulse, then a chaotic flow takes them apart into lace, combed ribbons, and smoke around a black core. Stir the ink, tap to draw a rule, rack focus through the depth of field.",
+  "summary": "Precise curves are drawn on the beat, then chaos frays them into beaded ink around a dark core, with combed sheets, loops, and pale defocused shells. Drag to turn the view, tap to strike a beat.",
   "category": "Interactive art",
   "tags": [
     "interactive-art",
@@ -59,6 +59,10 @@
       "path": "preview/ArtEngine.js"
     },
     {
+      "source": "preview/InkGL.js",
+      "path": "preview/InkGL.js"
+    },
+    {
       "source": "thumbnail.webp",
       "path": "thumbnail.webp"
     },
@@ -96,6 +100,16 @@
     {
       "source": "qml/shell.qml",
       "path": "shell.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/ink.frag",
+      "path": "ink.frag",
+      "kind": "file"
+    },
+    {
+      "source": "qml/ink.vert",
+      "path": "ink.vert",
       "kind": "file"
     },
     {

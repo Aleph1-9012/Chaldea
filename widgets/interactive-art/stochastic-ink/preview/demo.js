@@ -2,11 +2,12 @@
 (() => {
     const root = document.getElementById('stochastic-ink');
     const $ = key => root.querySelector('[data-' + key + ']');
-    const canvas = $('stage'), ctx = canvas.getContext('2d');
+    const canvas = $('stage');
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const engine = createArtEngine();
     const bindings = new Map(), appearance = { paper: '#ffffff', ink: '#0c0c0f', detail: 'Fine', compact: false };
-    let W = 0, H = 0, ratio = 1, last = null, raf = 0, visible = true, captured = false, syncTime = 0;
+    const reduced = 'Reduced motion: still image. Press Play to animate.';
+    let renderer = null, W = 0, H = 0, last = null, raf = 0, visible = true, captured = false, syncTime = 0;
 
     function makeControl(c) {
         let el, box, valueLabel, nameLabel;
@@ -37,7 +38,7 @@
             $('controls').appendChild(box);
         }
 
-        bindings.set(c.key, { el, valueLabel, nameLabel, type: c.type, options: '' });
+        bindings.set(c.key, { el, valueLabel, nameLabel, options: '' });
     }
 
     function syncControls() {
@@ -72,7 +73,7 @@
                 }
             }
 
-            // Leave a control alone while it is being dragged or edited.
+            // Leave a range alone while it is being dragged.
             if (document.activeElement !== b.el || c.type === 'select')
                 b.el.value = String(c.value);
 
@@ -88,10 +89,11 @@
     }
 
     function draw(elapsed) {
-        if (!W || !H)
+        if (!renderer || !W || !H)
             return;
 
-        engine.render(ctx, W, H, elapsed, ratio);
+        engine.advance(elapsed);
+        renderer.draw(engine);
     }
 
     function act(key, value) {
@@ -104,7 +106,7 @@
     function run(now) {
         raf = 0;
 
-        if (last !== null && now - last < 1000 / 30) {
+        if (last !== null && now - last < 1000 / 31) {
             schedule();
 
             return;
@@ -124,7 +126,7 @@
     }
 
     function schedule() {
-        if (!engine.paused && visible && !document.hidden && !raf)
+        if (renderer && !engine.paused && visible && !document.hidden && !raf)
             raf = requestAnimationFrame(run);
     }
 
@@ -199,12 +201,38 @@
         draw(0);
     });
 
+    function start() {
+        try {
+            renderer = createInkRenderer(canvas);
+        }
+        catch (error) {
+            renderer = null;
+        }
+
+        if (!renderer) {
+            $('status').textContent = 'This preview needs WebGL 2, which this browser has turned off or does not support.';
+
+            return;
+        }
+
+        draw(0);
+        schedule();
+    }
+
+    // The GPU can drop the context (a driver reset, a sleeping laptop). Wait for it, then rebuild.
+    canvas.addEventListener('webglcontextlost', e => {
+        e.preventDefault();
+        stop();
+        renderer = null;
+    });
+
+    canvas.addEventListener('webglcontextrestored', start);
+
     function resize() {
         const r = canvas.getBoundingClientRect();
         W = Math.max(1, r.width);
         H = Math.max(1, r.height);
-        // The engine writes pixels itself, so cap the buffer at 1.5x to keep frames cheap.
-        ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
         canvas.width = Math.round(W * ratio);
         canvas.height = Math.round(H * ratio);
         draw(0);
@@ -228,8 +256,8 @@
         style.setProperty('--paper', appearance.paper);
         style.setProperty('--ink', appearance.ink);
         style.setProperty('--dim', rgba(appearance.ink, .6));
-        style.setProperty('--line', rgba(appearance.ink, .16));
-        style.setProperty('--wash', rgba(appearance.ink, .04));
+        style.setProperty('--line', rgba(appearance.ink, .14));
+        style.setProperty('--wash', rgba(appearance.ink, .035));
         document.body.style.setProperty('--paper', appearance.paper);
         canvas.style.height = appearance.compact ? '340px' : '';
         engine.configure({ paper: appearance.paper, ink: appearance.ink, detail: appearance.detail });
@@ -251,17 +279,18 @@
 
     media.addEventListener('change', () => {
         if (media.matches)
-            setPaused(true, 'Reduced motion: still image. Press Play to animate.');
+            setPaused(true, reduced);
     });
 
     $('hint').textContent = engine.meta.hint;
     syncControls();
     applyAppearance();
-    setPaused(media.matches, media.matches ? 'Reduced motion: still image. Press Play to animate.' : '');
+    setPaused(media.matches, media.matches ? reduced : '');
     report();
+    start();
 
     if (media.matches)
-        $('status').textContent = 'Reduced motion: still image. Press Play to animate.';
+        $('status').textContent = reduced;
 
     window.ChaldeaPreview.connect(settings => {
         for (const key of Object.keys(appearance))
