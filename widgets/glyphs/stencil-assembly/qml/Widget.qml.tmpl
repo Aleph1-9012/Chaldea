@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: 0BSD
+import QtQuick
+
+GlyphWidget {
+    designName: "Stencil assembly"
+    property int duration: {{s0Duration}}
+    property int red: {{s1Red}}
+    property bool motion: {{s2Motion}}
+    transitionTime: duration
+    emphasis: red
+    animationEnabled: motion
+}

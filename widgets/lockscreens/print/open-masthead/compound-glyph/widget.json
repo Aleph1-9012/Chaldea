@@ -7,9 +7,9 @@
     "lockscreen",
     "tsugumori",
     "interactive",
-    "draft"
+    "qml"
   ],
-  "status": "draft",
+  "status": "published",
   "preview": "preview/index.html",
   "thumbnail": "thumbnail.webp",
   "usage": "README.md",
@@ -52,5 +52,71 @@
       "path": "LICENSE"
     }
   ],
-  "exports": []
+  "exports": [
+    {
+      "source": "qml/Widget.qml.tmpl",
+      "path": "Widget.qml",
+      "kind": "template"
+    },
+    {
+      "source": "qml/LockText.qml",
+      "path": "LockText.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockArtwork.qml",
+      "path": "LockArtwork.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockButton.qml",
+      "path": "LockButton.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockClock.qml",
+      "path": "LockClock.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockIdentity.qml",
+      "path": "LockIdentity.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockAuth.qml",
+      "path": "LockAuth.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockScreen.qml",
+      "path": "LockScreen.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockComposition.qml",
+      "path": "LockComposition.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/shell.qml",
+      "path": "shell.qml",
+      "kind": "file"
+    },
+    {
+      "source": "assets/GlyphArt.js",
+      "path": "GlyphArt.js",
+      "kind": "file"
+    },
+    {
+      "source": "README.md",
+      "path": "README.md",
+      "kind": "file"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE",
+      "kind": "file"
+    }
+  ]
 }

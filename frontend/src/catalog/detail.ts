@@ -104,7 +104,7 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
 
   if (d.settings.length || interactive) workbench.append(customizer);
 
-  if (((!native && d.category !== 'Glyphs') || !d.settings.length) && !interactive) workbench.classList.add('preview-only');
+  if ((d.category === 'Lockscreens' || (!native && d.category !== 'Glyphs') || !d.settings.length) && !interactive) workbench.classList.add('preview-only');
 
   const sectionTitle = el('div', 'output-heading');
   sectionTitle.append(

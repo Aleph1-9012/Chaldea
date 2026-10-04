@@ -7,9 +7,9 @@
     "glyphs",
     "tsugumori",
     "interactive",
-    "draft"
+    "qml"
   ],
-  "status": "draft",
+  "status": "published",
   "preview": "preview/index.html",
   "thumbnail": "thumbnail.webp",
   "usage": "README.md",
@@ -61,5 +61,46 @@
       "path": "LICENSE"
     }
   ],
-  "exports": []
+  "exports": [
+    {
+      "source": "qml/Widget.qml.tmpl",
+      "path": "Widget.qml",
+      "kind": "template"
+    },
+    {
+      "source": "qml/GlyphText.qml",
+      "path": "GlyphText.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/GlyphWidget.qml",
+      "path": "GlyphWidget.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/GlyphArtwork.qml",
+      "path": "GlyphArtwork.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/shell.qml",
+      "path": "shell.qml",
+      "kind": "file"
+    },
+    {
+      "source": "assets/GlyphArt.js",
+      "path": "GlyphArt.js",
+      "kind": "file"
+    },
+    {
+      "source": "README.md",
+      "path": "README.md",
+      "kind": "file"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE",
+      "kind": "file"
+    }
+  ]
 }

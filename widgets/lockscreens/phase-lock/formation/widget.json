@@ -1,14 +1,14 @@
 {
   "id": "tsugumori",
   "title": "Tsugumori / Phase lock",
-  "summary": "The original formation-corner lockscreen study. An interactive HTML draft; native authentication is not implemented.",
+  "summary": "Formation terminals and a centered red folio over a reversible glyph field. Native visual component with dummy input and lock/unlock animation previews.",
   "category": "Lockscreens",
   "tags": [
     "lockscreen",
     "tsugumori",
-    "draft"
+    "qml"
   ],
-  "status": "draft",
+  "status": "published",
   "preview": "preview/index.html",
   "thumbnail": "thumbnail.webp",
   "usage": "README.md",
@@ -31,5 +31,46 @@
       "path": "thumbnail.webp"
     }
   ],
-  "exports": []
+  "exports": [
+    {
+      "source": "qml/Widget.qml.tmpl",
+      "path": "Widget.qml",
+      "kind": "template"
+    },
+    {
+      "source": "qml/PhaseLock.qml",
+      "path": "PhaseLock.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockText.qml",
+      "path": "LockText.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/LockButton.qml",
+      "path": "LockButton.qml",
+      "kind": "file"
+    },
+    {
+      "source": "qml/shell.qml",
+      "path": "shell.qml",
+      "kind": "file"
+    },
+    {
+      "source": "assets/PhaseArt.js",
+      "path": "PhaseArt.js",
+      "kind": "file"
+    },
+    {
+      "source": "README.md",
+      "path": "README.md",
+      "kind": "file"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE",
+      "kind": "file"
+    }
+  ]
 }

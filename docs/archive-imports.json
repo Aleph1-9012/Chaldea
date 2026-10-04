@@ -558,7 +558,7 @@
         "Generative lockscreen studies / Crossweave",
         "Generative lockscreen studies / Folded lattice"
       ],
-      "reason": "The owner requested one entry per lockscreen layout. Earlier variations remain represented by Typesetter, ID lockscreen-reactive-lockscreen-studies-ty-e2b460, and Stencil assembly, ID lockscreen-reactive-lockscreen-studies-st-69ba9c, both now retained in Glyphs as HTML artwork and input drafts. The original source archive is retained."
+      "reason": "The owner requested one entry per lockscreen layout. Earlier variations remain represented by Typesetter, ID lockscreen-reactive-lockscreen-studies-ty-e2b460, and Stencil assembly, ID lockscreen-reactive-lockscreen-studies-st-69ba9c, both now retained in Glyphs with native artwork and input exports. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
@@ -663,7 +663,7 @@
         "Mechanical lockscreen studies / Registration proof",
         "Mechanical lockscreen studies / Pressure print"
       ],
-      "reason": "The owner requested one entry per lockscreen layout. Earlier variations remain represented by Reactive Relay tiles, ID lockscreen-reactive-lockscreen-studies-re-a37a9d; Stencil assembly, ID lockscreen-reactive-lockscreen-studies-st-69ba9c, now in Glyphs; and Typesetter, ID lockscreen-reactive-lockscreen-studies-ty-e2b460, now in Glyphs. The owner moved Punch record to Glyphs as an HTML artwork and input draft, keeping ID lockscreen-mechanical-lockscreen-studies-e940db and its settings keys. Its lockscreen clock, power actions, and surrounding layout were removed. The original source archive is retained."
+      "reason": "The owner requested one entry per lockscreen layout. Earlier variations remain represented by Reactive Relay tiles, ID lockscreen-reactive-lockscreen-studies-re-a37a9d; Stencil assembly, ID lockscreen-reactive-lockscreen-studies-st-69ba9c, now in Glyphs; and Typesetter, ID lockscreen-reactive-lockscreen-studies-ty-e2b460, now in Glyphs. The owner moved Punch record to Glyphs, now with native artwork and input exports, keeping ID lockscreen-mechanical-lockscreen-studies-e940db and its settings keys. Its lockscreen clock, power actions, and surrounding layout were removed. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-new-lockscreen-directions.html",
@@ -723,7 +723,7 @@
       "excluded": [
         "Reactive lockscreen studies / Phase screens"
       ],
-      "reason": "The owner removed Phase screens from Chaldea and moved Shutter bank, Formation field, Stencil assembly, and Typesetter to Glyphs. Those entries keep their IDs, settings keys, and HTML draft status. Their artwork and input use the Glyph preview host; lockscreen clocks, power actions, and surrounding layouts were removed. Relay tiles remains a lockscreen preview. The original source archive is retained."
+      "reason": "The owner removed Phase screens from Chaldea and moved Shutter bank, Formation field, Stencil assembly, and Typesetter to Glyphs. Those entries keep their IDs and settings keys and now have native exports. Their artwork and input use the Glyph preview host; lockscreen clocks, power actions, and surrounding layouts were removed. Relay tiles remains a lockscreen preview. The original source archive is retained."
     },
     {
       "source": "menu/menu-detail-studies.html",

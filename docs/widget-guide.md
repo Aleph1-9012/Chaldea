@@ -1,6 +1,6 @@
 # Author a widget
 
-Discuss new designs with the maintainer before adding or porting a widget. Preserve its existing identity and behavior. Give each approved design its own widget entry. Keep palettes and tuning options as settings, and preserve the design's purpose. `widgets/lockscreens/phase-lock/formation/` shows how an existing interactive HTML design is hosted as a draft.
+Discuss new designs with the maintainer before adding or porting a widget. Preserve its existing identity and behavior. Give each approved design its own widget entry. Keep palettes and tuning options as settings, and preserve the design's purpose. `widgets/lockscreens/phase-lock/formation/` keeps an existing interactive HTML design alongside its native visual component.
 
 ## Source files
 
@@ -57,7 +57,7 @@ The adapter registers `window.ChaldeaPreview.connect(settings => { /* update DOM
 
 Controls inside the widget must remain usable with pointer and keyboard input. A customization sidebar is additional UI, not a replacement for those interactions. The shared runtime reports content height so the frame can show the complete interface. The parent authenticates and bounds resize messages.
 
-Import each distinct design from a study page as a separate widget with its own ID, title, thumbnail, preview, and applicable settings. Remove design-switching controls from its preview. Palettes such as Bone/Charcoal remain settings. See [the design inventory](widget-inventory.md). HTML drafts use the full width with settings below. Connect the original design controls directly with `ChaldeaPreview.connect`; the runtime provides no `Tweak` helper or remote icon/font wrapper. Archive imports that need the original helper declare the 0BSD `preview/support.js` from `widgets/_shared/`, which maps the original controls to this connection and supplies local SVG icons. Native QML export requires complete export mappings.
+Import each distinct design from a study page as a separate widget with its own ID, title, thumbnail, preview, and applicable settings. Remove design-switching controls from its preview. Palettes such as Bone/Charcoal remain settings. See [the design inventory](widget-inventory.md). Lockscreens use the full width with settings below, including after native promotion. Other HTML drafts use the full width except Glyphs, which retain the native Glyph preview layout. Connect the original design controls directly with `ChaldeaPreview.connect`; the runtime provides no `Tweak` helper or remote icon/font wrapper. Archive imports that need the original helper declare the 0BSD `preview/support.js` from `widgets/_shared/`, which maps the original controls to this connection and supplies local SVG icons. Native QML export requires complete export mappings.
 
 The callback must apply settings synchronously. The runtime acknowledges successful rendering and reports callback errors. Timers inside a preview stop when its frame is destroyed. Implement and test corresponding behavior in QML separately.
 

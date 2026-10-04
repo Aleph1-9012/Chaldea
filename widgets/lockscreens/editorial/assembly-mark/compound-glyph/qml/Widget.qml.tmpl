@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: 0BSD
+import QtQuick
+
+LockScreen {
+    property int s0Duration: {{s0Duration}}
+    property bool s1Motion: {{s1Motion}}
+
+    transitionTime: s0Duration
+    animationEnabled: s1Motion
+    designName: "Assembly mark"
+}

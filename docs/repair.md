@@ -75,4 +75,4 @@ The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE
 
 ## Family notes
 
-Each family with native exports keeps its component, shared-file, and inspection notes beside its sources: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), and [Interactive art](../widgets/interactive-art/README.md). Add a `README.md` to a category folder when its first native export lands.
+Each family with native exports keeps its component, shared-file, and inspection notes beside its sources: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), and [Lockscreens](../widgets/lockscreens/README.md). Lockscreen exports are visual components with demo interactions; the preview launcher does not authenticate or lock the session.

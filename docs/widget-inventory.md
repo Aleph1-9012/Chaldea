@@ -1,6 +1,6 @@
 # Widget inventory
 
-The library contains 41 designs. 27 published designs have native exports: six Quick notes, five Players, six Glyphs, and ten Interactive art widgets, including the original [Stochastic ink](../widgets/interactive-art/stochastic-ink/README.md). The remaining 14 are HTML drafts: five Glyphs and nine Lockscreens. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
+The library contains 41 designs, all with native QML exports: six Quick notes, five Players, eleven Glyphs, ten Interactive art widgets, and nine Lockscreens. Interactive art includes the original [Stochastic ink](../widgets/interactive-art/stochastic-ink/README.md). No HTML-only drafts remain. Lockscreens export visual components and demo interactions; they do not implement authentication or desktop session locking. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
 
 | Source page | Individual widgets |
 | --- | --- |
@@ -18,7 +18,7 @@ Open a design with `/?widget=<widget-id>`. Each widget has its own in-memory sta
 
 ## Native families
 
-Quick notes, Player, Glyphs, and Interactive art have native QML exports. Each family's components, shared files, and inspection notes are in its category folder: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), and [Interactive art](../widgets/interactive-art/README.md).
+All five families have native QML exports. Each family's components, shared files, and inspection notes are in its category folder: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), and [Lockscreens](../widgets/lockscreens/README.md).
 
 ## Archive import
 
@@ -26,7 +26,7 @@ The library retains 24 entries from the archive import alongside the 16 earlier 
 
 The import manifest records excluded sources and designs, consolidated lockscreen variants, and palette companions.
 
-Punch record, Shutter bank, Formation field, Stencil assembly, and Typesetter now belong to Glyphs as HTML drafts. They retain artwork and input in the Glyph preview host, with lockscreen clocks, power actions, and surrounding layouts removed. Their IDs and settings keys are unchanged.
+Punch record, Shutter bank, Formation field, Stencil assembly, and Typesetter belong to Glyphs and now have native exports. They retain artwork and input in the Glyph preview host, with lockscreen clocks, power actions, and surrounding layouts removed. Their IDs and settings keys are unchanged.
 
 Lockscreens retain one entry per layout; artwork and motion variations share that representative. [The lockscreen guide](../widgets/lockscreens/README.md) lists the retained previews and their selected artwork. Only the entries listed below are available in the catalog.
 

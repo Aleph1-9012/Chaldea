@@ -6,7 +6,7 @@ Where the library stands, what gets added next, and how to add it. Update this f
 
 The tooling is complete for anonymous browsing, customization, copying, and downloading: one Rust packager, one QML generator, and a browser-free `make check` that discovers every widget. Rust owns source discovery and emits a local source index for frontend authoring tools; production output contains no source index.
 
-Four families have native QML exports: Quick notes, Player, Glyphs, and Interactive art. Glyphs also includes HTML drafts extracted from lockscreen artwork; Lockscreens remain HTML drafts. Moving those glyph previews kept their IDs and settings keys and did not add native exports. [The inventory](widget-inventory.md) has the counts.
+All five families have native QML exports: Quick notes, Player, Glyphs, Interactive art, and Lockscreens. The five extracted Glyphs and nine Lockscreens now export native components with their existing IDs and settings keys. Lockscreens provide visual components and demo interactions, with authentication and desktop session locking left to a separate host. [The inventory](widget-inventory.md) has the counts.
 
 Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 
@@ -14,7 +14,7 @@ Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 
 1. **Settle source layout before the first publication.** Revision URLs become permanent once published, and a format change after that needs a migration. Until then, moving files, changing `chaldea.toml`, or changing packaging costs nothing.
 2. **Publish the native families.** Choose a host that keeps old revision URLs, add `.github/workflows/deploy.yml`, and follow [the publication requirements](publishing.md) through a practiced rollback and a performance measurement.
-3. **Port drafts to native QML one family at a time.** A family is done when every design in it exports, its README is written, and its native inspection is recorded. Lockscreen exports are visual components until native authentication is designed as its own piece of work.
+3. **Build lockscreen authentication only on request.** The visual components are complete. A secure session lock, credential handling, and authentication need a separate design and integration review.
 4. **Add new designs** only on the owner's request, each as its own widget entry.
 
 ## Adding to the library
@@ -31,7 +31,7 @@ Keep one entry per lockscreen layout. Artwork, glyph, background, and motion var
 | A setting type or definition field | Change `schemas/`, `backend/src/content.rs` and `validate.rs`, the frontend `catalog/contracts.ts`, `customizer/settings.ts`, and `generator/index.ts`, and `schemas/fixtures/` together, so Rust and the browser keep agreeing. Keep `shared_inputs` in `chaldea.toml` current if generator dependencies move. |
 | A source-layout convenience | Implement discovery and resolution in `backend/src/content.rs`. Rust emits the local source index in `backend/src/build.rs`; keep `schemas/source-index.schema.json` and its frontend consumer in agreement if authoring metadata changes. Frontend scripts read that index and packaged revisions. |
 
-A widget's ID is its folder path under `widgets/` with each `/` replaced by `-`: `widgets/player/matrix/` is `player-matrix`. Choose it when the widget is created and keep it if the folder later moves. The native entries in the four families follow this rule. Draft IDs from the archive import keep their old form until the drafts that stay are decided; give a draft its path-derived ID when it is ported. Once published, IDs and setting keys are public identities and do not change.
+A widget's ID is its folder path under `widgets/` with each `/` replaced by `-`: `widgets/player/matrix/` is `player-matrix`. Choose it when the widget is created and keep it if the folder later moves. Retained archive entries keep their existing IDs when ported, including entries moved from Lockscreens to Glyphs. IDs and setting keys are public identities and do not change.
 
 After any change, `make check` must pass. Inspect a changed preview in `make dev`, and a changed export in an isolated Quickshell configuration, before calling it done.
 

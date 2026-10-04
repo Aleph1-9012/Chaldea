@@ -10,7 +10,7 @@ A widget library for Quickshell. Browse interactive previews, customize their ap
 
 Each download includes the widget's supporting files, usage instructions, and license. Follow its included README to run it or add it to your Quickshell configuration.
 
-Entries marked **HTML draft** are interactive previews with native downloads disabled. Browsing and customization require no account.
+All current widgets have native downloads. Lockscreen downloads provide visual components and demo interactions; authentication and desktop session locking are separate integrations. Browsing and customization require no account.
 
 ## Browse locally
 
