@@ -2,61 +2,73 @@
   "sources": [
     {
       "source": "clipboard/tsugumori-clipboard-c-refined.html",
-      "disposition": "imported",
-      "widgets": [
-        "clipboard-c-refined"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "418c295626b367a6e10a42a1aaf85dd307945551dd6ab4c38880801249341226",
+      "excluded": [
+        "Clipboard c refined"
       ],
-      "sha256": "418c295626b367a6e10a42a1aaf85dd307945551dd6ab4c38880801249341226"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "clipboard/tsugumori-clipboard-control-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "clipboard-control-studies-current",
-        "clipboard-control-studies-black-bands",
-        "clipboard-control-studies-raised-keys",
-        "clipboard-control-studies-red-plates",
-        "clipboard-control-studies-dark-docks"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
+      "excluded": [
+        "Clipboard control studies / Current",
+        "Clipboard control studies / Black bands",
+        "Clipboard control studies / Raised keys",
+        "Clipboard control studies / Red plates",
+        "Clipboard control studies / Dark docks"
       ],
-      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "clipboard/tsugumori-clipboard-flow.html",
-      "disposition": "existing",
-      "widgets": [
-        "tsugumori-clipboard-flow"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "cd5095c0b8ee81c7a8a09623449ce25939ba6a33421817203f9b4c486dc1dcf0",
+      "excluded": [
+        "Clipboard flow"
       ],
-      "sha256": "cd5095c0b8ee81c7a8a09623449ce25939ba6a33421817203f9b4c486dc1dcf0"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "clipboard/tsugumori-clipboard-rice-fit.html",
-      "disposition": "existing",
-      "widgets": [
-        "tsugumori-clipboard-rice-fit"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "31354ac9d18ab77624b27f0fda643faba3b6c79aec10ab6eef4f4e170d583924",
+      "excluded": [
+        "Clipboard rice fit"
       ],
-      "sha256": "31354ac9d18ab77624b27f0fda643faba3b6c79aec10ab6eef4f4e170d583924"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "clipboard/tsugumori-clipboard-styles.html",
-      "disposition": "imported",
-      "widgets": [
-        "clipboard-styles-a-index",
-        "clipboard-styles-b-strip",
-        "clipboard-styles-c-grid",
-        "clipboard-styles-d-foldout"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
+      "excluded": [
+        "Clipboard styles / A index",
+        "Clipboard styles / B strip",
+        "Clipboard styles / C grid",
+        "Clipboard styles / D foldout"
       ],
-      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
-      "disposition": "imported",
-      "widgets": [
-        "clipboard-visual-treatments-a-stencil",
-        "clipboard-visual-treatments-b-terminal",
-        "clipboard-visual-treatments-c-label",
-        "clipboard-visual-treatments-d-glass"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
+      "excluded": [
+        "Clipboard visual treatments / A stencil",
+        "Clipboard visual treatments / B terminal",
+        "Clipboard visual treatments / C label",
+        "Clipboard visual treatments / D Glass"
       ],
-      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "control-center/control-center-arrow-redesign.html",
@@ -189,25 +201,29 @@
     },
     {
       "source": "curtains-and-buttons/curtain-a-refinements.html",
-      "disposition": "existing",
-      "widgets": [
-        "curtain-ghost-mark",
-        "curtain-service-rail",
-        "curtain-registration",
-        "curtain-original-red-field"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "104dc8ab991de6d2519a49a0f06eac1160bf8aac5a452bbfa3246072e81cc070",
+      "excluded": [
+        "Ghost mark curtain",
+        "Service rail curtain",
+        "Registration curtain",
+        "Original red field curtain"
       ],
-      "sha256": "104dc8ab991de6d2519a49a0f06eac1160bf8aac5a452bbfa3246072e81cc070"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "curtains-and-buttons/curtain-design-studies.html",
-      "disposition": "existing",
-      "widgets": [
-        "curtain-signal-sweep",
-        "curtain-panel-bands",
-        "curtain-hull-stencil",
-        "curtain-red-field"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "db2da944fd72b8a76d460c81428e0223fba32b1312cc4705df4c3c2ae6f90fed",
+      "excluded": [
+        "Signal sweep curtain",
+        "Panel bands curtain",
+        "Hull stencil curtain",
+        "Red field curtain"
       ],
-      "sha256": "db2da944fd72b8a76d460c81428e0223fba32b1312cc4705df4c3c2ae6f90fed"
+      "reason": "The owner removed the Clipboard and Curtains and buttons sections from Chaldea. The original source archive is retained."
     },
     {
       "source": "curtains-and-buttons/tsugumori-button-studies.html",
@@ -360,73 +376,83 @@
     },
     {
       "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-d3-relay-expansion-relay-banks",
-        "lockscreen-d3-relay-expansion-formation-gantry",
-        "lockscreen-d3-relay-expansion-section-drawing"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
+      "excluded": [
+        "D3 relay expansion / Relay banks",
+        "D3 relay expansion / Formation gantry",
+        "D3 relay expansion / Section drawing"
       ],
-      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-flat-background-iterations-reg-6a0cb7",
-        "lockscreen-flat-background-iterations-relay-etch",
-        "lockscreen-flat-background-iterations-ste-d0086b",
-        "lockscreen-flat-background-iterations-sho-adb6cc",
-        "lockscreen-flat-background-iterations-cel-308c14"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
+      "excluded": [
+        "Flat background iterations / Register print",
+        "Flat background iterations / Relay etch",
+        "Flat background iterations / Stencil press",
+        "Flat background iterations / Shōi linkage",
+        "Flat background iterations / Cellular ink"
       ],
-      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-fresh-motion-iterations-ink-exposure",
-        "lockscreen-fresh-motion-iterations-sector-77adf1",
-        "lockscreen-fresh-motion-iterations-phase-comb",
-        "lockscreen-fresh-motion-iterations-glyph-86b7ac",
-        "lockscreen-fresh-motion-iterations-fault-seam"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
+      "excluded": [
+        "Fresh motion iterations / Ink exposure",
+        "Fresh motion iterations / Sector aperture",
+        "Fresh motion iterations / Phase comb",
+        "Fresh motion iterations / Glyph overprint",
+        "Fresh motion iterations / Fault seam"
       ],
-      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/animations/tsugumori-procedural-motion.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-procedural-motion-phase-lock",
-        "lockscreen-procedural-motion-interference",
-        "lockscreen-procedural-motion-ena-strain"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
+      "excluded": [
+        "Procedural motion / Phase lock",
+        "Procedural motion / Interference",
+        "Procedural motion / Ena strain"
       ],
-      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-shoi-d-motion-studies-corner-docking",
-        "lockscreen-shoi-d-motion-studies-vector-corridor",
-        "lockscreen-shoi-d-motion-studies-relay-gantry",
-        "lockscreen-shoi-d-motion-studies-tension-gate",
-        "lockscreen-shoi-d-motion-studies-command-spine"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
+      "excluded": [
+        "Shoi d motion studies / Corner docking",
+        "Shoi d motion studies / Vector corridor",
+        "Shoi d motion studies / Relay gantry",
+        "Shoi d motion studies / Tension gate",
+        "Shoi d motion studies / Command spine"
       ],
-      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-wave-background-redesigns-rela-6154ba",
-        "lockscreen-wave-background-redesigns-inte-87860b",
-        "lockscreen-wave-background-redesigns-shoi-dbed54"
-      ],
+      "disposition": "excluded",
+      "widgets": [],
       "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
       "excluded": [
         "Contour front",
-        "Ena weave"
-      ]
+        "Ena weave",
+        "Wave background redesigns / Relay lattice",
+        "Wave background redesigns / Interlock plates",
+        "Wave background redesigns / Shōi linkage"
+      ],
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/corners/tsugumori-phase-corner-studies.html",
@@ -446,168 +472,198 @@
       "disposition": "imported",
       "widgets": [
         "lockscreen-afk-layout-previews-relay-inde-bee7ea",
-        "lockscreen-afk-layout-previews-relay-inde-208dab",
-        "lockscreen-afk-layout-previews-relay-inde-14b210",
-        "lockscreen-afk-layout-previews-type-folio-44fc03",
-        "lockscreen-afk-layout-previews-type-folio-62241a",
-        "lockscreen-afk-layout-previews-type-folio-f3d185",
-        "lockscreen-afk-layout-previews-cross-regi-07a642",
-        "lockscreen-afk-layout-previews-cross-regi-6cb930",
-        "lockscreen-afk-layout-previews-cross-regi-c7b1bb",
-        "lockscreen-afk-layout-previews-red-regist-db98ff",
-        "lockscreen-afk-layout-previews-red-regist-c43205",
-        "lockscreen-afk-layout-previews-red-regist-77e230",
-        "lockscreen-afk-layout-previews-glyph-colo-301eb1",
-        "lockscreen-afk-layout-previews-glyph-colo-b2946d",
-        "lockscreen-afk-layout-previews-glyph-colo-b86933"
+        "lockscreen-afk-layout-previews-type-folio-44fc03"
       ],
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142"
+      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
+      "excluded": [
+        "Afk layout previews / Relay index / Typesetter",
+        "Afk layout previews / Relay index / Compound glyph",
+        "Afk layout previews / Type folio / Typesetter",
+        "Afk layout previews / Type folio / Compound glyph",
+        "Afk layout previews / Cross register / Typesetter",
+        "Afk layout previews / Cross register / Compound glyph",
+        "Afk layout previews / Red register / Typesetter",
+        "Afk layout previews / Red register / Compound glyph",
+        "Afk layout previews / Glyph colon / Typesetter",
+        "Afk layout previews / Glyph colon / Compound glyph",
+        "Afk layout previews / Cross register / Relay tiles",
+        "Afk layout previews / Red register / Relay tiles",
+        "Afk layout previews / Glyph colon / Relay tiles"
+      ],
+      "reason": "The owner requested one entry per lockscreen layout and later removed Cross register, Glyph colon, and Red register. Relay index and Type folio remain, with artwork variations consolidated under retained IDs lockscreen-afk-layout-previews-relay-inde-bee7ea and lockscreen-afk-layout-previews-type-folio-44fc03. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-current-layout-afk.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-current-layout-afk-relay-tiles",
-        "lockscreen-current-layout-afk-typesetter",
-        "lockscreen-current-layout-afk-compound-glyph"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
+      "excluded": [
+        "Current layout afk / Typesetter",
+        "Current layout afk / Compound glyph",
+        "Current layout afk / Relay tiles"
       ],
-      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341"
+      "reason": "The owner removed the Current layout AFK design from Chaldea. Its Typesetter and Compound glyph variants had already been excluded when one entry per lockscreen layout was selected. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-folio-center-seam",
-        "lockscreen-folio-rail-dock",
-        "lockscreen-folio-scan-gate"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
+      "excluded": [
+        "Folio / Center seam",
+        "Folio / Rail dock",
+        "Folio / Scan gate"
       ],
-      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-folio-k-centered.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-folio-k-centered"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "0e3041b3220340e5243a453dcd73233b9ba0c07ea4c9755c2b0a4acc4475c727",
+      "excluded": [
+        "Folio k centered"
       ],
-      "sha256": "0e3041b3220340e5243a453dcd73233b9ba0c07ea4c9755c2b0a4acc4475c727"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-folio-k-password-motion.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-folio-folio-sweep",
-        "lockscreen-folio-split-shutters",
-        "lockscreen-folio-register-bands"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
+      "excluded": [
+        "Folio / Folio sweep",
+        "Folio / Split shutters",
+        "Folio / Register bands"
       ],
-      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-folio-k-time-header.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-folio-k-time-header"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "886b7e629f80eec4ad9814da73d357f92f9ab57baaaab897cf32ff58e1c0435e",
+      "excluded": [
+        "Folio k time header"
       ],
-      "sha256": "886b7e629f80eec4ad9814da73d357f92f9ab57baaaab897cf32ff58e1c0435e"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-generative-lockscreen-studies-366808",
-        "lockscreen-generative-lockscreen-studies-800023",
-        "lockscreen-generative-lockscreen-studies-46963f"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
+      "excluded": [
+        "Generative lockscreen studies / Compound glyph",
+        "Generative lockscreen studies / Crossweave",
+        "Generative lockscreen studies / Folded lattice"
       ],
-      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901"
+      "reason": "The owner requested one entry per lockscreen layout. Earlier variations remain represented by Typesetter, ID lockscreen-reactive-lockscreen-studies-ty-e2b460, and Stencil assembly, ID lockscreen-reactive-lockscreen-studies-st-69ba9c, both now retained in Glyphs as HTML artwork and input drafts. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
       "disposition": "imported",
       "widgets": [
-        "lockscreen-editorial-studies-assembly-mar-2cfd2d",
-        "lockscreen-editorial-studies-assembly-mar-e21ce3",
         "lockscreen-editorial-studies-assembly-mar-4068d0",
-        "lockscreen-editorial-studies-foundry-post-c91290",
-        "lockscreen-editorial-studies-foundry-post-5154b5",
         "lockscreen-editorial-studies-foundry-post-598bff",
-        "lockscreen-editorial-studies-reverse-prin-48eddd",
-        "lockscreen-editorial-studies-reverse-prin-3efaac",
-        "lockscreen-editorial-studies-reverse-prin-7a2bf3",
-        "lockscreen-editorial-studies-glyph-wall-r-64977c",
-        "lockscreen-editorial-studies-glyph-wall-t-333d6b",
-        "lockscreen-editorial-studies-glyph-wall-c-7f654d"
+        "lockscreen-editorial-studies-reverse-prin-7a2bf3"
       ],
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1"
+      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
+      "excluded": [
+        "Lockscreen editorial studies / Assembly mark / Relay tiles",
+        "Lockscreen editorial studies / Assembly mark / Typesetter",
+        "Lockscreen editorial studies / Foundry poster / Relay tiles",
+        "Lockscreen editorial studies / Foundry poster / Typesetter",
+        "Lockscreen editorial studies / Reverse print / Relay tiles",
+        "Lockscreen editorial studies / Reverse print / Typesetter",
+        "Lockscreen editorial studies / Glyph wall / Relay tiles",
+        "Lockscreen editorial studies / Glyph wall / Typesetter",
+        "Lockscreen editorial studies / Glyph wall / Compound glyph"
+      ],
+      "reason": "The owner requested one entry per lockscreen layout and later removed Glyph wall. Assembly mark, Foundry poster, and Reverse print remain, with artwork variations consolidated under retained IDs lockscreen-editorial-studies-assembly-mar-4068d0, lockscreen-editorial-studies-foundry-post-598bff, and lockscreen-editorial-studies-reverse-prin-7a2bf3. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-lockscreen-folio-k-base.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-folio-k-base"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "544da36b1ce54e7ecf5d287860c632ec55c0f5f169f6c1e50a15a3ddc7edee97",
+      "excluded": [
+        "Lockscreen folio k base"
       ],
-      "sha256": "544da36b1ce54e7ecf5d287860c632ec55c0f5f169f6c1e50a15a3ddc7edee97"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-layout-redesigns-split-console-870277",
-        "lockscreen-layout-redesigns-split-console-7fd428",
-        "lockscreen-layout-redesigns-split-console-bbf520",
-        "lockscreen-layout-redesigns-sidewall-relay-tiles",
-        "lockscreen-layout-redesigns-sidewall-typesetter",
-        "lockscreen-layout-redesigns-sidewall-comp-7bc7a2",
-        "lockscreen-layout-redesigns-lower-deck-re-a793db",
-        "lockscreen-layout-redesigns-lower-deck-ty-40906d",
-        "lockscreen-layout-redesigns-lower-deck-co-5ddd06",
-        "lockscreen-layout-redesigns-crimson-bay-r-c2a392",
-        "lockscreen-layout-redesigns-crimson-bay-t-76c876",
-        "lockscreen-layout-redesigns-crimson-bay-c-e67047",
-        "lockscreen-layout-redesigns-aperture-relay-tiles",
-        "lockscreen-layout-redesigns-aperture-typesetter",
-        "lockscreen-layout-redesigns-aperture-comp-a20d72"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
+      "excluded": [
+        "Lockscreen layout redesigns / Split console / Typesetter",
+        "Lockscreen layout redesigns / Split console / Compound glyph",
+        "Lockscreen layout redesigns / Sidewall / Typesetter",
+        "Lockscreen layout redesigns / Sidewall / Compound glyph",
+        "Lockscreen layout redesigns / Lower deck / Typesetter",
+        "Lockscreen layout redesigns / Lower deck / Compound glyph",
+        "Lockscreen layout redesigns / Crimson bay / Typesetter",
+        "Lockscreen layout redesigns / Crimson bay / Compound glyph",
+        "Lockscreen layout redesigns / Aperture / Typesetter",
+        "Lockscreen layout redesigns / Aperture / Compound glyph",
+        "Lockscreen layout redesigns / Sidewall / Relay tiles",
+        "Lockscreen layout redesigns / Lower deck / Relay tiles",
+        "Lockscreen layout redesigns / Crimson bay / Relay tiles",
+        "Lockscreen layout redesigns / Aperture / Relay tiles",
+        "Lockscreen layout redesigns / Split console / Relay tiles"
       ],
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766"
+      "reason": "The owner removed every layout redesign from this page, including the final Split console entry. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
       "disposition": "imported",
       "widgets": [
-        "lockscreen-print-iterations-index-spine-r-bd9d41",
-        "lockscreen-print-iterations-index-spine-t-90bb62",
         "lockscreen-print-iterations-index-spine-c-26d6e1",
-        "lockscreen-print-iterations-equipment-lab-55cc31",
-        "lockscreen-print-iterations-equipment-lab-681e2f",
-        "lockscreen-print-iterations-equipment-lab-f663ed",
-        "lockscreen-print-iterations-red-folio-rel-ca20d5",
-        "lockscreen-print-iterations-red-folio-typesetter",
-        "lockscreen-print-iterations-red-folio-com-9ff4ad",
-        "lockscreen-print-iterations-open-masthead-0c1d6b",
-        "lockscreen-print-iterations-open-masthead-708582",
         "lockscreen-print-iterations-open-masthead-08f5cf"
       ],
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637"
+      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
+      "excluded": [
+        "Lockscreen print iterations / Index spine / Relay tiles",
+        "Lockscreen print iterations / Index spine / Typesetter",
+        "Lockscreen print iterations / Equipment label / Relay tiles",
+        "Lockscreen print iterations / Equipment label / Typesetter",
+        "Lockscreen print iterations / Red folio / Relay tiles",
+        "Lockscreen print iterations / Red folio / Typesetter",
+        "Lockscreen print iterations / Red folio / Compound glyph",
+        "Lockscreen print iterations / Open masthead / Relay tiles",
+        "Lockscreen print iterations / Open masthead / Typesetter",
+        "Lockscreen print iterations / Equipment label / Compound glyph"
+      ],
+      "reason": "The owner requested one entry per lockscreen layout and later removed Equipment label. Index spine and Open masthead remain, with artwork variations consolidated under retained IDs lockscreen-print-iterations-index-spine-c-26d6e1 and lockscreen-print-iterations-open-masthead-08f5cf. Red folio was previously consolidated under Phase lock, retained ID tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-lockscreen-studies.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-studies-access-frame",
-        "lockscreen-studies-split-console",
-        "lockscreen-studies-red-band",
-        "lockscreen-studies-glyph-bay"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
+      "excluded": [
+        "Lockscreen studies / Glyph bay",
+        "Lockscreen studies / Access frame",
+        "Lockscreen studies / Split console",
+        "Lockscreen studies / Red band"
       ],
-      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774"
+      "reason": "The owner removed Access frame, Split console, and Red band. Glyph bay was previously consolidated under Reactive Relay tiles, retained ID lockscreen-reactive-lockscreen-studies-re-a37a9d, to keep one entry per lockscreen layout. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
       "disposition": "imported",
       "widgets": [
-        "lockscreen-mechanical-lockscreen-studies-5d848e",
-        "lockscreen-mechanical-lockscreen-studies-a8391a",
-        "lockscreen-mechanical-lockscreen-studies-e940db",
-        "lockscreen-mechanical-lockscreen-studies-d0ee44"
+        "lockscreen-mechanical-lockscreen-studies-e940db"
       ],
-      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d"
+      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
+      "excluded": [
+        "Mechanical lockscreen studies / Die-cut assembly",
+        "Mechanical lockscreen studies / Registration proof",
+        "Mechanical lockscreen studies / Pressure print"
+      ],
+      "reason": "The owner requested one entry per lockscreen layout. Earlier variations remain represented by Reactive Relay tiles, ID lockscreen-reactive-lockscreen-studies-re-a37a9d; Stencil assembly, ID lockscreen-reactive-lockscreen-studies-st-69ba9c, now in Glyphs; and Typesetter, ID lockscreen-reactive-lockscreen-studies-ty-e2b460, now in Glyphs. The owner moved Punch record to Glyphs as an HTML artwork and input draft, keeping ID lockscreen-mechanical-lockscreen-studies-e940db and its settings keys. Its lockscreen clock, power actions, and surrounding layout were removed. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-new-lockscreen-directions.html",
@@ -625,11 +681,13 @@
     },
     {
       "source": "lockscreen/tsugumori-phase-formation-glyph-soft-backup.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-phase-formation-glyph-soft-backup"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "035922967f4a4753ed74d7a27f49ffd091d8edd942fac2d0a80e40c33f571325",
+      "excluded": [
+        "Phase lock / Soft glyph"
       ],
-      "sha256": "035922967f4a4753ed74d7a27f49ffd091d8edd942fac2d0a80e40c33f571325"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-phase-formation-lock.html",
@@ -641,13 +699,15 @@
     },
     {
       "source": "lockscreen/tsugumori-phase-lock-sharp.html",
-      "disposition": "imported",
-      "widgets": [
-        "lockscreen-phase-lock-sharp-phase-lock",
-        "lockscreen-phase-lock-sharp-interference",
-        "lockscreen-phase-lock-sharp-ena-strain"
+      "disposition": "excluded",
+      "widgets": [],
+      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
+      "excluded": [
+        "Phase lock sharp / Phase lock",
+        "Phase lock sharp / Interference",
+        "Phase lock sharp / Ena strain"
       ],
-      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003"
+      "reason": "The owner requested one entry per lockscreen layout. Artwork and motion variations are no longer separate entries. Retained layout IDs for these variants: tsugumori. The original source archive is retained."
     },
     {
       "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
@@ -655,12 +715,15 @@
       "widgets": [
         "lockscreen-reactive-lockscreen-studies-re-a37a9d",
         "lockscreen-reactive-lockscreen-studies-sh-6c6cb4",
-        "lockscreen-reactive-lockscreen-studies-ph-f75474",
         "lockscreen-reactive-lockscreen-studies-fo-efe52f",
         "lockscreen-reactive-lockscreen-studies-st-69ba9c",
         "lockscreen-reactive-lockscreen-studies-ty-e2b460"
       ],
-      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13"
+      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
+      "excluded": [
+        "Reactive lockscreen studies / Phase screens"
+      ],
+      "reason": "The owner removed Phase screens from Chaldea and moved Shutter bank, Formation field, Stencil assembly, and Typesetter to Glyphs. Those entries keep their IDs, settings keys, and HTML draft status. Their artwork and input use the Glyph preview host; lockscreen clocks, power actions, and surrounding layouts were removed. Relay tiles remains a lockscreen preview. The original source archive is retained."
     },
     {
       "source": "menu/menu-detail-studies.html",
@@ -1070,644 +1133,6 @@
   ],
   "entries": [
     {
-      "id": "clipboard-c-refined",
-      "source": "clipboard/tsugumori-clipboard-c-refined.html",
-      "name": "Clipboard c refined",
-      "sha256": "418c295626b367a6e10a42a1aaf85dd307945551dd6ab4c38880801249341226",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-control-studies-current",
-      "source": "clipboard/tsugumori-clipboard-control-studies.html",
-      "name": "Clipboard control studies / Current",
-      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"current\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-control-studies-black-bands",
-      "source": "clipboard/tsugumori-clipboard-control-studies.html",
-      "name": "Clipboard control studies / Black bands",
-      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-control-studies-raised-keys",
-      "source": "clipboard/tsugumori-clipboard-control-studies.html",
-      "name": "Clipboard control studies / Raised keys",
-      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-control-studies-red-plates",
-      "source": "clipboard/tsugumori-clipboard-control-studies.html",
-      "name": "Clipboard control studies / Red plates",
-      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-control-studies-dark-docks",
-      "source": "clipboard/tsugumori-clipboard-control-studies.html",
-      "name": "Clipboard control studies / Dark docks",
-      "sha256": "a12bf43566b4048e342f0b160b33d277591cb597656e73cbc3aab505b05662fa",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"d\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-styles-a-index",
-      "source": "clipboard/tsugumori-clipboard-styles.html",
-      "name": "Clipboard styles / A index",
-      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout-choice=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-layout-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-styles-b-strip",
-      "source": "clipboard/tsugumori-clipboard-styles.html",
-      "name": "Clipboard styles / B strip",
-      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout-choice=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-layout-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-styles-c-grid",
-      "source": "clipboard/tsugumori-clipboard-styles.html",
-      "name": "Clipboard styles / C grid",
-      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout-choice=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-layout-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-styles-d-foldout",
-      "source": "clipboard/tsugumori-clipboard-styles.html",
-      "name": "Clipboard styles / D foldout",
-      "sha256": "9e001ceec0d8f9d4d70af09371b10efb7ec90b79b6920d6b00baa183cc05d22e",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout-choice=\"d\"]"
-          }
-        ],
-        "remove": [
-          "button[data-layout-choice]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-visual-treatments-a-stencil",
-      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
-      "name": "Clipboard visual treatments / A stencil",
-      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-style=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-style]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-visual-treatments-b-terminal",
-      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
-      "name": "Clipboard visual treatments / B terminal",
-      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-style=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-style]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-visual-treatments-c-label",
-      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
-      "name": "Clipboard visual treatments / C label",
-      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-style=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-style]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "clipboard-visual-treatments-d-glass",
-      "source": "clipboard/tsugumori-clipboard-visual-treatments.html",
-      "name": "Clipboard visual treatments / D Glass",
-      "sha256": "d16c3be3b52b6d2eac094d543981ed59dd9c71cad12c555b5fd4815a34960613",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-style=\"d\"]"
-          }
-        ],
-        "remove": [
-          "button[data-style]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-d3-relay-expansion-relay-banks",
-      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
-      "name": "D3 relay expansion / Relay banks",
-      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"banks\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-d3-relay-expansion-formation-gantry",
-      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
-      "name": "D3 relay expansion / Formation gantry",
-      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"formation\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-d3-relay-expansion-section-drawing",
-      "source": "lockscreen/animations/tsugumori-d3-relay-expansion.html",
-      "name": "D3 relay expansion / Section drawing",
-      "sha256": "3d5fbd1cd3b04539d9f8bc3f8067142aeb927d69b4bc3baa43078d12c27ecfa5",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"section\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-flat-background-iterations-reg-6a0cb7",
-      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
-      "name": "Flat background iterations / Register print",
-      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"contour\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-flat-background-iterations-relay-etch",
-      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
-      "name": "Flat background iterations / Relay etch",
-      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"relay\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-flat-background-iterations-ste-d0086b",
-      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
-      "name": "Flat background iterations / Stencil press",
-      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"plates\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-flat-background-iterations-sho-adb6cc",
-      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
-      "name": "Flat background iterations / Shōi linkage",
-      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"formation\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-flat-background-iterations-cel-308c14",
-      "source": "lockscreen/animations/tsugumori-flat-background-iterations.html",
-      "name": "Flat background iterations / Cellular ink",
-      "sha256": "b126f96047c0552a981ee8bacfc5632cdc9c325ddcab15ff417eb352f7b77414",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"membrane\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-fresh-motion-iterations-ink-exposure",
-      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
-      "name": "Fresh motion iterations / Ink exposure",
-      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"burn\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-fresh-motion-iterations-sector-77adf1",
-      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
-      "name": "Fresh motion iterations / Sector aperture",
-      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"aperture\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-fresh-motion-iterations-phase-comb",
-      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
-      "name": "Fresh motion iterations / Phase comb",
-      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"comb\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-fresh-motion-iterations-glyph-86b7ac",
-      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
-      "name": "Fresh motion iterations / Glyph overprint",
-      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"overprint\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-fresh-motion-iterations-fault-seam",
-      "source": "lockscreen/animations/tsugumori-fresh-motion-iterations.html",
-      "name": "Fresh motion iterations / Fault seam",
-      "sha256": "cf643d0b17af383b6d7b554c3f419dcee8dba4fe692f71cced76d20afb79400f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"fault\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-procedural-motion-phase-lock",
-      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
-      "name": "Procedural motion / Phase lock",
-      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"phase\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-procedural-motion-interference",
-      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
-      "name": "Procedural motion / Interference",
-      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"interference\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-procedural-motion-ena-strain",
-      "source": "lockscreen/animations/tsugumori-procedural-motion.html",
-      "name": "Procedural motion / Ena strain",
-      "sha256": "361ac6eb68984dc2f9ee903e84a1a258a66bb4a10ca3e281a7cf127f74b5409f",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"tissue\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-shoi-d-motion-studies-corner-docking",
-      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
-      "name": "Shoi d motion studies / Corner docking",
-      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"docking\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-shoi-d-motion-studies-vector-corridor",
-      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
-      "name": "Shoi d motion studies / Vector corridor",
-      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"vector\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-shoi-d-motion-studies-relay-gantry",
-      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
-      "name": "Shoi d motion studies / Relay gantry",
-      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"relay\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-shoi-d-motion-studies-tension-gate",
-      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
-      "name": "Shoi d motion studies / Tension gate",
-      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"tension\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-shoi-d-motion-studies-command-spine",
-      "source": "lockscreen/animations/tsugumori-shoi-d-motion-studies.html",
-      "name": "Shoi d motion studies / Command spine",
-      "sha256": "28c694dd1c099965545c713c4e41decce60d59085852ab00c243260a8f3da8b2",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"spine\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-wave-background-redesigns-rela-6154ba",
-      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
-      "name": "Wave background redesigns / Relay lattice",
-      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"relay\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-wave-background-redesigns-inte-87860b",
-      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
-      "name": "Wave background redesigns / Interlock plates",
-      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"plates\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-wave-background-redesigns-shoi-dbed54",
-      "source": "lockscreen/animations/tsugumori-wave-background-redesigns.html",
-      "name": "Wave background redesigns / Shōi linkage",
-      "sha256": "97140fee85459aa1b9bca84467f68f199b0189b862a73d668a38c8b2bcc23536",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"formation\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "lockscreen-afk-layout-previews-relay-inde-bee7ea",
       "source": "lockscreen/tsugumori-afk-layout-previews.html",
       "name": "Afk layout previews / Relay index / Relay tiles",
@@ -1720,50 +1145,6 @@
           {
             "selector": "select[data-glyph]",
             "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-relay-inde-208dab",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Relay index / Typesetter",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"counterform\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-relay-inde-14b210",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Relay index / Compound glyph",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"counterform\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
           }
         ],
         "remove": [
@@ -1796,484 +1177,6 @@
       }
     },
     {
-      "id": "lockscreen-afk-layout-previews-type-folio-62241a",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Type folio / Typesetter",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"folio\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-type-folio-f3d185",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Type folio / Compound glyph",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"folio\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-cross-regi-07a642",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Cross register / Relay tiles",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"confluence\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-cross-regi-6cb930",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Cross register / Typesetter",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"confluence\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-cross-regi-c7b1bb",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Cross register / Compound glyph",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"confluence\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-red-regist-db98ff",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Red register / Relay tiles",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"incision\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-red-regist-c43205",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Red register / Typesetter",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"incision\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-red-regist-77e230",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Red register / Compound glyph",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"incision\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-glyph-colo-301eb1",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Glyph colon / Relay tiles",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"colon\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-glyph-colo-b2946d",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Glyph colon / Typesetter",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"colon\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-afk-layout-previews-glyph-colo-b86933",
-      "source": "lockscreen/tsugumori-afk-layout-previews.html",
-      "name": "Afk layout previews / Glyph colon / Compound glyph",
-      "sha256": "838b648c2a5df70f6c71a75243523dbaff5561e438a362fcdb18c4644dc09142",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"colon\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-current-layout-afk-relay-tiles",
-      "source": "lockscreen/tsugumori-current-layout-afk.html",
-      "name": "Current layout afk / Relay tiles",
-      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-current-layout-afk-typesetter",
-      "source": "lockscreen/tsugumori-current-layout-afk.html",
-      "name": "Current layout afk / Typesetter",
-      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"f\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-current-layout-afk-compound-glyph",
-      "source": "lockscreen/tsugumori-current-layout-afk.html",
-      "name": "Current layout afk / Compound glyph",
-      "sha256": "3888fa882758fc1bd54fab6860b81488da1ce27c85f411167c81cb253424a341",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"k\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-center-seam",
-      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
-      "name": "Folio / Center seam",
-      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
-      "selection": {
-        "fixed": {
-          "Appear/disappear animation": "Center seam"
-        },
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-rail-dock",
-      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
-      "name": "Folio / Rail dock",
-      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
-      "selection": {
-        "fixed": {
-          "Appear/disappear animation": "Rail dock"
-        },
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-scan-gate",
-      "source": "lockscreen/tsugumori-folio-k-centered-entrance.html",
-      "name": "Folio / Scan gate",
-      "sha256": "bd7cd9b70daf96b8c589dbdbc78073f28295cb2e0a2292bce1b9673784ac1fc9",
-      "selection": {
-        "fixed": {
-          "Appear/disappear animation": "Scan gate"
-        },
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-k-centered",
-      "source": "lockscreen/tsugumori-folio-k-centered.html",
-      "name": "Folio k centered",
-      "sha256": "0e3041b3220340e5243a453dcd73233b9ba0c07ea4c9755c2b0a4acc4475c727",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-folio-sweep",
-      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
-      "name": "Folio / Folio sweep",
-      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
-      "selection": {
-        "fixed": {
-          "Lock/unlock animation": "Folio sweep"
-        },
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-split-shutters",
-      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
-      "name": "Folio / Split shutters",
-      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
-      "selection": {
-        "fixed": {
-          "Lock/unlock animation": "Split shutters"
-        },
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-register-bands",
-      "source": "lockscreen/tsugumori-folio-k-password-motion.html",
-      "name": "Folio / Register bands",
-      "sha256": "8a75a780196d634a13d3f5c1d564805ae87f211e9dbc7e751790df555afefa9a",
-      "selection": {
-        "fixed": {
-          "Lock/unlock animation": "Register bands"
-        },
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-k-time-header",
-      "source": "lockscreen/tsugumori-folio-k-time-header.html",
-      "name": "Folio k time header",
-      "sha256": "886b7e629f80eec4ad9814da73d357f92f9ab57baaaab897cf32ff58e1c0435e",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-generative-lockscreen-studies-366808",
-      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
-      "name": "Generative lockscreen studies / Compound glyph",
-      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"k\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-generative-lockscreen-studies-800023",
-      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
-      "name": "Generative lockscreen studies / Crossweave",
-      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"l\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-generative-lockscreen-studies-46963f",
-      "source": "lockscreen/tsugumori-generative-lockscreen-studies.html",
-      "name": "Generative lockscreen studies / Folded lattice",
-      "sha256": "6b29d9fc3df47ea10888f2110285ba0dc0ee6fc961561d7906bc345393f5c901",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"m\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-assembly-mar-2cfd2d",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Assembly mark / Relay tiles",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"seal\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-assembly-mar-e21ce3",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Assembly mark / Typesetter",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"seal\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "lockscreen-editorial-studies-assembly-mar-4068d0",
       "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
       "name": "Lockscreen editorial studies / Assembly mark / Compound glyph",
@@ -2286,50 +1189,6 @@
           {
             "selector": "select[data-glyph]",
             "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-foundry-post-c91290",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Foundry poster / Relay tiles",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"poster\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-foundry-post-5154b5",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Foundry poster / Typesetter",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"poster\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
           }
         ],
         "remove": [
@@ -2362,50 +1221,6 @@
       }
     },
     {
-      "id": "lockscreen-editorial-studies-reverse-prin-48eddd",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Reverse print / Relay tiles",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"reverse\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-reverse-prin-3efaac",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Reverse print / Typesetter",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"reverse\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "lockscreen-editorial-studies-reverse-prin-7a2bf3",
       "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
       "name": "Lockscreen editorial studies / Reverse print / Compound glyph",
@@ -2418,455 +1233,6 @@
           {
             "selector": "select[data-glyph]",
             "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-glyph-wall-r-64977c",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Glyph wall / Relay tiles",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"wall\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-glyph-wall-t-333d6b",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Glyph wall / Typesetter",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"wall\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-editorial-studies-glyph-wall-c-7f654d",
-      "source": "lockscreen/tsugumori-lockscreen-editorial-studies.html",
-      "name": "Lockscreen editorial studies / Glyph wall / Compound glyph",
-      "sha256": "ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"wall\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-folio-k-base",
-      "source": "lockscreen/tsugumori-lockscreen-folio-k-base.html",
-      "name": "Lockscreen folio k base",
-      "sha256": "544da36b1ce54e7ecf5d287860c632ec55c0f5f169f6c1e50a15a3ddc7edee97",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-split-console-870277",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Split console / Relay tiles",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"console\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-split-console-7fd428",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Split console / Typesetter",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"console\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-split-console-bbf520",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Split console / Compound glyph",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"console\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-sidewall-relay-tiles",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Sidewall / Relay tiles",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"sidewall\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-sidewall-typesetter",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Sidewall / Typesetter",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"sidewall\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-sidewall-comp-7bc7a2",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Sidewall / Compound glyph",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"sidewall\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-lower-deck-re-a793db",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Lower deck / Relay tiles",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"deck\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-lower-deck-ty-40906d",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Lower deck / Typesetter",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"deck\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-lower-deck-co-5ddd06",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Lower deck / Compound glyph",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"deck\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-crimson-bay-r-c2a392",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Crimson bay / Relay tiles",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"crimson\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-crimson-bay-t-76c876",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Crimson bay / Typesetter",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"crimson\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-crimson-bay-c-e67047",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Crimson bay / Compound glyph",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"crimson\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-aperture-relay-tiles",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Aperture / Relay tiles",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"aperture\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-aperture-typesetter",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Aperture / Typesetter",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"aperture\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-layout-redesigns-aperture-comp-a20d72",
-      "source": "lockscreen/tsugumori-lockscreen-layout-redesigns.html",
-      "name": "Lockscreen layout redesigns / Aperture / Compound glyph",
-      "sha256": "6f1cdabf22763d70094b0f2a29f99877d0b7489986377a002ad22def5823a766",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"aperture\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-index-spine-r-bd9d41",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Index spine / Relay tiles",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"spine\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-index-spine-t-90bb62",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Index spine / Typesetter",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"spine\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
           }
         ],
         "remove": [
@@ -2899,182 +1265,6 @@
       }
     },
     {
-      "id": "lockscreen-print-iterations-equipment-lab-55cc31",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Equipment label / Relay tiles",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"label\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-equipment-lab-681e2f",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Equipment label / Typesetter",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"label\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-equipment-lab-f663ed",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Equipment label / Compound glyph",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"label\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-red-folio-rel-ca20d5",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Red folio / Relay tiles",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"folio\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-red-folio-typesetter",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Red folio / Typesetter",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"folio\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-red-folio-com-9ff4ad",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Red folio / Compound glyph",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"folio\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "k"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-open-masthead-0c1d6b",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Open masthead / Relay tiles",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"masthead\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "a"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-print-iterations-open-masthead-708582",
-      "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
-      "name": "Lockscreen print iterations / Open masthead / Typesetter",
-      "sha256": "ad9513f49fea46170dd640adf80aa95ef3a44b0a20203bfe82f536e2c68d2637",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-layout=\"masthead\"]"
-          },
-          {
-            "selector": "select[data-glyph]",
-            "value": "f"
-          }
-        ],
-        "remove": [
-          "button[data-layout]",
-          "select[data-glyph]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "lockscreen-print-iterations-open-masthead-08f5cf",
       "source": "lockscreen/tsugumori-lockscreen-print-iterations.html",
       "name": "Lockscreen print iterations / Open masthead / Compound glyph",
@@ -3097,193 +1287,14 @@
       }
     },
     {
-      "id": "lockscreen-studies-access-frame",
-      "source": "lockscreen/tsugumori-lockscreen-studies.html",
-      "name": "Lockscreen studies / Access frame",
-      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"a\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-studies-split-console",
-      "source": "lockscreen/tsugumori-lockscreen-studies.html",
-      "name": "Lockscreen studies / Split console",
-      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"b\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-studies-red-band",
-      "source": "lockscreen/tsugumori-lockscreen-studies.html",
-      "name": "Lockscreen studies / Red band",
-      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-studies-glyph-bay",
-      "source": "lockscreen/tsugumori-lockscreen-studies.html",
-      "name": "Lockscreen studies / Glyph bay",
-      "sha256": "1cad632b90f99ca2d9cd754c0688e0aa835ec7d01278f176190775e1d779e774",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"d\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-mechanical-lockscreen-studies-5d848e",
-      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
-      "name": "Mechanical lockscreen studies / Die-cut assembly",
-      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"g\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-mechanical-lockscreen-studies-a8391a",
-      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
-      "name": "Mechanical lockscreen studies / Registration proof",
-      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"h\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "lockscreen-mechanical-lockscreen-studies-e940db",
       "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
-      "name": "Mechanical lockscreen studies / Punch record",
+      "name": "Punch record",
       "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
       "selection": {
         "select": [
           {
             "selector": "button[data-design=\"i\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-mechanical-lockscreen-studies-d0ee44",
-      "source": "lockscreen/tsugumori-mechanical-lockscreen-studies.html",
-      "name": "Mechanical lockscreen studies / Pressure print",
-      "sha256": "83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"j\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-phase-formation-glyph-soft-backup",
-      "source": "lockscreen/tsugumori-phase-formation-glyph-soft-backup.html",
-      "name": "Phase lock / Soft glyph",
-      "sha256": "035922967f4a4753ed74d7a27f49ffd091d8edd942fac2d0a80e40c33f571325",
-      "selection": {
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-phase-lock-sharp-phase-lock",
-      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
-      "name": "Phase lock sharp / Phase lock",
-      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"phase\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-phase-lock-sharp-interference",
-      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
-      "name": "Phase lock sharp / Interference",
-      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"interference\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
-      "id": "lockscreen-phase-lock-sharp-ena-strain",
-      "source": "lockscreen/tsugumori-phase-lock-sharp.html",
-      "name": "Phase lock sharp / Ena strain",
-      "sha256": "2187ac689cd17d7b40630d7a4becbf24ed9b7dc2952adacfa731e63778ddc003",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"tissue\"]"
           }
         ],
         "remove": [
@@ -3312,7 +1323,7 @@
     {
       "id": "lockscreen-reactive-lockscreen-studies-sh-6c6cb4",
       "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
-      "name": "Reactive lockscreen studies / Shutter bank",
+      "name": "Shutter bank",
       "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
       "selection": {
         "select": [
@@ -3327,26 +1338,9 @@
       }
     },
     {
-      "id": "lockscreen-reactive-lockscreen-studies-ph-f75474",
-      "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
-      "name": "Reactive lockscreen studies / Phase screens",
-      "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
-      "selection": {
-        "select": [
-          {
-            "selector": "button[data-design=\"c\"]"
-          }
-        ],
-        "remove": [
-          "button[data-design]"
-        ],
-        "controls": false
-      }
-    },
-    {
       "id": "lockscreen-reactive-lockscreen-studies-fo-efe52f",
       "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
-      "name": "Reactive lockscreen studies / Formation field",
+      "name": "Formation field",
       "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
       "selection": {
         "select": [
@@ -3363,7 +1357,7 @@
     {
       "id": "lockscreen-reactive-lockscreen-studies-st-69ba9c",
       "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
-      "name": "Reactive lockscreen studies / Stencil assembly",
+      "name": "Stencil assembly",
       "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
       "selection": {
         "select": [
@@ -3380,7 +1374,7 @@
     {
       "id": "lockscreen-reactive-lockscreen-studies-ty-e2b460",
       "source": "lockscreen/tsugumori-reactive-lockscreen-studies.html",
-      "name": "Reactive lockscreen studies / Typesetter",
+      "name": "Typesetter",
       "sha256": "f4a1b52e0f6b6d1b14f7a6dd6241cd2dda7bd7b4644af8cad053ece5f4556b13",
       "selection": {
         "select": [

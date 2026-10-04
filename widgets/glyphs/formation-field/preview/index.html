@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"/>
+<title>Tsugumori / Formation field</title>
+<style>
+  html { color-scheme:dark; }
+  body { margin:0; display:flow-root; background:#090909; color:#e4e2dc; font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace; }
+  *, *::before, *::after { box-sizing:border-box; }
+  button, input { font:inherit; border-radius:0; }
+  button:focus-visible { outline:2px solid #e4e2dc; outline-offset:3px; }
+  [lang="ja"] { font-family:"Noto Sans JP","Noto Sans CJK JP",sans-serif; }
+  .tr-screen {
+    --tr-black:#090909; --tr-paper:#e4e2dc; --tr-muted:#93918b; --tr-red:#d1161c; --tr-line:#343330;
+    position:relative; isolation:isolate; overflow:hidden; width:min(100%,354px); margin-inline:auto; padding:24px 22px 20px;
+  }
+  .tr-layout { display:grid; justify-items:center; gap:22px; }
+  .tr-bay { width:min(100%,252px); }
+  .tr-art { display:block; width:100%; height:auto; aspect-ratio:1; background:var(--tr-black); }
+  .tr-auth { width:100%; min-width:0; padding-top:18px; border-top:1px solid var(--tr-line); }
+  .tr-user { display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:16px; font-size:12px; }
+  .tr-muted { color:var(--tr-muted); font-size:11px; letter-spacing:1.5px; }
+  .tr-label { display:flex; justify-content:space-between; gap:8px; margin-bottom:8px; color:var(--tr-muted); font-size:11px; letter-spacing:1px; }
+  .tr-input-wrap { display:flex; align-items:center; gap:10px; min-height:44px; padding:0 13px; border:1px solid #66635c; }
+  .tr-input-wrap:focus-within { border-color:var(--tr-paper); outline:1px solid var(--tr-paper); outline-offset:2px; }
+  .tr-input-mark { color:#e53136; font-size:21px; }
+  #tr-study-pass { min-width:0; width:100%; border:0; outline:0; padding:0; background:transparent; color:var(--tr-paper); font-size:16px; letter-spacing:4px; caret-color:var(--tr-red); }
+  #tr-study-pass::placeholder { color:var(--tr-muted); opacity:1; font-size:12px; letter-spacing:0; }
+  .tr-status { min-height:35px; padding-top:9px; color:var(--tr-muted); font-size:11px; letter-spacing:.7px; }
+  .tr-unlock { width:100%; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; justify-content:space-between; min-height:40px; padding:0 13px; border:1px solid var(--tr-red); background:var(--tr-black); color:var(--tr-paper); font-size:11px; letter-spacing:2px; cursor:pointer; }
+  .tr-unlock::before { content:""; position:absolute; z-index:-1; inset:0; background:var(--tr-red); transform:translateX(-101%); transition:transform 280ms cubic-bezier(.76,0,.24,1); }
+  .tr-unlock:hover::before, .tr-unlock:focus-visible::before { transform:translateX(0); }
+  .tr-unlock svg { width:16px; height:16px; flex-shrink:0; }
+  .tr-auth-foot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px 10px; margin-top:13px; color:var(--tr-muted); font-size:11px; }
+  .tr-curtain { position:absolute; z-index:10; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px; background:var(--tr-red); color:#130707; letter-spacing:2px; transform:translateY(-101%); pointer-events:none; transition:transform 440ms cubic-bezier(.76,0,.24,1); }
+  .tr-curtain-title { font-size:26px; font-weight:500; letter-spacing:8px; }
+  .tr-screen[data-unlock="true"] .tr-curtain { transform:translateY(0); }
+  .tr-screen[data-motion="off"] *, .tr-screen[data-motion="off"] *::before { transition:none; }
+  @media (pointer:coarse) { .tr-unlock { min-height:44px; } }
+  @media (prefers-reduced-motion:reduce) { *, *::before { transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="ts-glyph-study">
+<section class="tr-screen" aria-label="Formation field glyph preview">
+<div class="tr-layout">
+<div class="tr-bay">
+<canvas aria-label="Formation field. A mechanical pattern that reacts to the length of the dummy input." class="tr-art" height="504" role="img" width="504">Input-reactive glyph artwork.</canvas>
+</div>
+<div class="tr-auth">
+<div class="tr-user"><span class="tr-muted">USER</span><span>PREVIEW USER</span></div>
+<label class="tr-label" for="tr-study-pass">DEMO PASSWORD <span lang="ja">本人確認</span></label>
+<div class="tr-input-wrap"><span aria-hidden="true" class="tr-input-mark">›</span><input aria-label="Demo password. Use dummy text to animate the artwork; Backspace reverses it." autocapitalize="off" autocomplete="off" id="tr-study-pass" maxlength="64" placeholder="Type dummy text…" spellcheck="false" type="password"/></div>
+<div aria-live="polite" class="tr-status" role="status">TYPE TO ACTIVATE</div>
+<button class="tr-unlock" type="button"><span>UNLOCK</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"></path></svg></button>
+<div class="tr-auth-foot"><span>SESSION / 01</span><span lang="ja">セッションロック中</span></div>
+</div>
+</div>
+<div aria-hidden="true" class="tr-curtain"><span lang="ja">継衛 / TYPE 17</span><span class="tr-curtain-title">SID0NIA</span><span>UNLOCK PREVIEW</span></div>
+</section>
+</div>
+<script src="../preview-runtime.js"></script>
+<script src="GlyphArt.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>

@@ -3,6 +3,7 @@
     const root = document.getElementById('stochastic-ink');
     const $ = key => root.querySelector('[data-' + key + ']');
     const canvas = $('stage');
+    const standaloneLabel = canvas.getAttribute('aria-label'), standaloneText = canvas.textContent;
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const engine = createArtEngine();
     const bindings = new Map(), appearance = { paper: '#ffffff', ink: '#0c0c0f', detail: 'Fine', compact: false };
@@ -79,6 +80,8 @@
 
             b.valueLabel.textContent = c.type === 'range' ? String(c.value) : '';
         });
+
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function report() {
@@ -86,6 +89,8 @@
 
         if ($('status').textContent !== message)
             $('status').textContent = message;
+
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function draw(elapsed) {
@@ -152,6 +157,8 @@
 
         if (message)
             $('status').textContent = message;
+
+        window.ChaldeaPreview.controlsChanged();
     }
 
     $('pause').addEventListener('click', () => setPaused(!engine.paused, engine.paused ? 'Animation playing.' : 'Animation paused. Controls still redraw the ink.'));
@@ -211,6 +218,7 @@
 
         if (!renderer) {
             $('status').textContent = 'This preview needs WebGL 2, which this browser has turned off or does not support.';
+            window.ChaldeaPreview.controlsChanged();
 
             return;
         }
@@ -298,5 +306,21 @@
                 appearance[key] = settings[key];
 
         applyAppearance();
+        window.ChaldeaPreview.controlsChanged();
+    }, {
+        read() {
+            return { controls: engine.controls(), archives: [], status: $('status').textContent, paused: engine.paused };
+        },
+        action: act,
+        pause(value) {
+            setPaused(value, value ? 'Animation paused. Controls still redraw the ink.' : 'Animation playing.');
+        },
+        hosted(active) {
+            root.querySelectorAll('.ink-controls, .ink-actions, .ink-footer').forEach(element => {
+                element.hidden = active;
+            });
+            canvas.setAttribute('aria-label', active ? standaloneLabel.replace('Controls are below.', 'Controls are beside the artwork.') : standaloneLabel);
+            canvas.textContent = active ? 'Interactive art. All main actions have controls beside the artwork.' : standaloneText;
+        },
     });
 })();

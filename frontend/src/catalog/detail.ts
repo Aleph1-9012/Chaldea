@@ -1,5 +1,6 @@
 import type { LoadedWidget, Settings } from './contracts';
 import { codePanel } from '../components/code-panel';
+import { interactionControls } from '../components/interaction-controls';
 import { el, button, errorText } from '../components/dom';
 import { controls } from '../customizer/controls';
 import { defaults, validateSettings } from '../customizer/settings';
@@ -23,16 +24,21 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
   const heading = el('header', 'detail-heading');
   heading.append(copy, el('span', d.status === 'draft' ? 'tag draft' : 'tag', d.status === 'draft' ? 'HTML DRAFT' : 'QML READY'));
 
-  const stageHeader = el('div', 'stage-header');
-  stageHeader.append(el('span', '', 'LIVE PREVIEW'), el('span', '', 'HTML demonstration'));
-
   const previewHost = el('div', 'preview-host');
-  const stageFooter = el('div', 'stage-footer');
-  stageFooter.append(el('span', '', 'Use the controls inside the preview'), el('span', '', 'INTERACTIVE'));
-
   const stage = el('section', 'preview-section');
   stage.setAttribute('aria-label', 'Widget preview');
-  stage.append(stageHeader, previewHost, stageFooter);
+  stage.append(previewHost);
+
+  if (d.category !== 'Glyphs' && d.category !== 'Interactive art') {
+    const stageHeader = el('div', 'stage-header');
+    stageHeader.append(el('span', '', 'LIVE PREVIEW'), el('span', '', 'HTML demonstration'));
+
+    const stageFooter = el('div', 'stage-footer');
+    stageFooter.append(el('span', '', 'Use the controls inside the preview'), el('span', '', 'INTERACTIVE'));
+
+    stage.prepend(stageHeader);
+    stage.append(stageFooter);
+  }
 
   const error = el('p', 'generation-error');
   error.setAttribute('role', 'alert');
@@ -43,6 +49,7 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
   const initial = defaults(d);
   let proposed: Settings = { ...initial };
   let preview: Preview | undefined;
+  const interactive = d.category === 'Interactive art' ? interactionControls((key, value) => preview?.action(key, value)) : undefined;
   let fields: ReturnType<typeof controls>;
 
   // Settings, generated files, and the preview always change together.
@@ -86,14 +93,18 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
 
   const customizer = el('section', 'customizer');
   customizer.setAttribute('aria-label', 'Customize widget');
-  customizer.append(customizerHeader, controlHost, error, el('p', 'customizer-note', 'Your settings stay in memory. Reloading restores the defaults.'));
+  customizer.append(customizerHeader, controlHost, error);
+
+  if (interactive) customizer.append(interactive.root);
+
+  customizer.append(el('p', 'customizer-note', 'Your settings stay in memory. Reloading restores the defaults.'));
 
   const workbench = el('div', 'workbench');
   workbench.append(stage);
 
-  if (d.settings.length) workbench.append(customizer);
+  if (d.settings.length || interactive) workbench.append(customizer);
 
-  if (!native || !d.settings.length) workbench.classList.add('preview-only');
+  if (((!native && d.category !== 'Glyphs') || !d.settings.length) && !interactive) workbench.classList.add('preview-only');
 
   const sectionTitle = el('div', 'output-heading');
   sectionTitle.append(
@@ -116,7 +127,7 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
   return {
     nodes: [button('← All widgets', back, 'back-button'), heading, workbench, sectionTitle, output, usage, revision],
     start() {
-      preview = mountPreview(previewHost, widget, initial);
+      preview = mountPreview(previewHost, widget, initial, interactive);
       update();
 
       return preview;

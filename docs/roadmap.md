@@ -6,7 +6,7 @@ Where the library stands, what gets added next, and how to add it. Update this f
 
 The tooling is complete for anonymous browsing, customization, copying, and downloading: one Rust packager, one QML generator, and a browser-free `make check` that discovers every widget. Rust owns source discovery and emits a local source index for frontend authoring tools; production output contains no source index.
 
-Four families have native QML exports: Quick notes, Player, Glyphs, and Interactive art. Clipboard, Curtains and buttons, and Lockscreens are HTML drafts. [The inventory](widget-inventory.md) has the counts.
+Four families have native QML exports: Quick notes, Player, Glyphs, and Interactive art. Glyphs also includes HTML drafts extracted from lockscreen artwork; Lockscreens remain HTML drafts. Moving those glyph previews kept their IDs and settings keys and did not add native exports. [The inventory](widget-inventory.md) has the counts.
 
 Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 
@@ -19,6 +19,8 @@ Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 
 ## Adding to the library
 
+Keep one entry per lockscreen layout. Artwork, glyph, background, and motion variations of that layout do not get separate entries. Preserve the retained preview's selected design; future variation controls belong in its settings when the owner requests them. [The lockscreen guide](../widgets/lockscreens/README.md) records the retained previews.
+
 | Addition | What to do |
 | --- | --- |
 | A design in an existing family | Create its folder with `widget.json`, preview, thumbnail, README, and the files unique to it. Declare the family helpers it uses; they resolve from the category's `_shared/`. |
@@ -29,7 +31,7 @@ Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 | A setting type or definition field | Change `schemas/`, `backend/src/content.rs` and `validate.rs`, the frontend `catalog/contracts.ts`, `customizer/settings.ts`, and `generator/index.ts`, and `schemas/fixtures/` together, so Rust and the browser keep agreeing. Keep `shared_inputs` in `chaldea.toml` current if generator dependencies move. |
 | A source-layout convenience | Implement discovery and resolution in `backend/src/content.rs`. Rust emits the local source index in `backend/src/build.rs`; keep `schemas/source-index.schema.json` and its frontend consumer in agreement if authoring metadata changes. Frontend scripts read that index and packaged revisions. |
 
-A widget's ID is its folder path under `widgets/` with each `/` replaced by `-`: `widgets/player/matrix/` is `player-matrix`. Choose it when the widget is created and keep it if the folder later moves. The four native families follow this rule. Draft IDs from the archive import keep their old form until the drafts that stay are decided; give a draft its path-derived ID when it is ported. Once published, IDs and setting keys are public identities and do not change.
+A widget's ID is its folder path under `widgets/` with each `/` replaced by `-`: `widgets/player/matrix/` is `player-matrix`. Choose it when the widget is created and keep it if the folder later moves. The native entries in the four families follow this rule. Draft IDs from the archive import keep their old form until the drafts that stay are decided; give a draft its path-derived ID when it is ported. Once published, IDs and setting keys are public identities and do not change.
 
 After any change, `make check` must pass. Inspect a changed preview in `make dev`, and a changed export in an isolated Quickshell configuration, before calling it done.
 

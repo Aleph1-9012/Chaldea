@@ -1,0 +1,65 @@
+{
+  "id": "lockscreen-reactive-lockscreen-studies-fo-efe52f",
+  "title": "Tsugumori / Formation field",
+  "summary": "Paired needles rotate into formations as red patches spread across the field. Type dummy text to change the glyphs, erase it to reverse them, and try the Unlock preview.",
+  "category": "Glyphs",
+  "tags": [
+    "glyphs",
+    "tsugumori",
+    "interactive",
+    "draft"
+  ],
+  "status": "draft",
+  "preview": "preview/index.html",
+  "thumbnail": "thumbnail.webp",
+  "usage": "README.md",
+  "settings": [
+    {
+      "key": "s0Duration",
+      "label": "Input transition",
+      "type": "number",
+      "default": 100,
+      "min": 80,
+      "max": 350,
+      "step": 10
+    },
+    {
+      "key": "s1Red",
+      "label": "Red emphasis",
+      "type": "number",
+      "default": 100,
+      "min": 65,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "key": "s2Motion",
+      "label": "Input animation",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "publicFiles": [
+    {
+      "source": "preview/index.html",
+      "path": "preview/index.html"
+    },
+    {
+      "source": "preview/demo.js",
+      "path": "preview/demo.js"
+    },
+    {
+      "source": "assets/GlyphArt.js",
+      "path": "preview/GlyphArt.js"
+    },
+    {
+      "source": "thumbnail.webp",
+      "path": "thumbnail.webp"
+    },
+    {
+      "source": "LICENSE",
+      "path": "LICENSE"
+    }
+  ],
+  "exports": []
+}

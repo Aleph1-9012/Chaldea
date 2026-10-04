@@ -4,12 +4,18 @@
     const canvas = root.querySelector('canvas'), ctx = canvas.getContext('2d');
     const engine = createArtEngine();
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const standaloneLabel = canvas.getAttribute('aria-label'), standaloneText = canvas.textContent;
     let width = 1, height = 1, last = 0, frame = 0, visible = true, archiveCount = -1;
+    let hostedControls = false;
     engine.setPaused(preference.matches);
     function sync() {
         root.querySelector('[data-title]').textContent = engine.meta.title;
         root.querySelector('[data-gesture]').textContent = engine.meta.hint;
         root.querySelector('[data-status]').textContent = engine.status();
+
+        if (hostedControls)
+            canvas.setAttribute('aria-label', engine.meta.title + '. ' + engine.meta.hint + ' Controls are beside the artwork.');
+
         const pause = root.querySelector('[data-action="motion"]');
         pause.textContent = engine.paused ? 'Resume motion' : 'Pause motion';
         pause.setAttribute('aria-pressed', String(engine.paused));
@@ -58,6 +64,8 @@
 
             archiveCount = archives.length;
         }
+
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function draw(dt = 0) {
@@ -84,6 +92,7 @@
         frame = 0;
         last = 0;
         engine.suspend();
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function act(key, value) {
@@ -92,8 +101,10 @@
         draw();
         schedule();
 
-        if (focus?.startsWith('input:'))
+        if (!hostedControls && focus?.startsWith('input:'))
             root.querySelector(`[data-input="${focus.slice(6)}"]`).focus();
+
+        return focus;
     }
 
     root.querySelectorAll('[data-action]').forEach(el => el.addEventListener('click', () => act(el.dataset.action)));
@@ -200,6 +211,30 @@
         engine.configure(settings);
         root.style.setProperty('--ts-red', settings.accent);
         draw();
+        sync();
+    }, {
+        read() {
+            return { controls: engine.controls(), archives: engine.archives(), status: engine.status(), paused: engine.paused };
+        },
+        action: act,
+        pause(value) {
+            engine.setPaused(value);
+
+            if (engine.paused)
+                stop();
+
+            sync();
+            draw();
+            schedule();
+        },
+        hosted(active) {
+            hostedControls = active;
+            root.querySelectorAll('.ts-controls, [data-action="motion"], .ts-status').forEach(element => {
+                element.hidden = active;
+            });
+            canvas.setAttribute('aria-label', active ? engine.meta.title + '. ' + engine.meta.hint + ' Controls are beside the artwork.' : standaloneLabel);
+            canvas.textContent = active ? 'Interactive artwork. Use the controls beside the artwork to change it.' : standaloneText;
+        },
     });
 
     window.addEventListener('pagehide', () => {

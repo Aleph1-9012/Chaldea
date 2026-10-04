@@ -1,0 +1,238 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "chaldea-preview-host-v1",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "const": "chaldea:preview"
+        },
+        "token": {
+          "type": "string",
+          "pattern": "^[a-f0-9-]{36}$"
+        },
+        "type": {
+          "const": "init"
+        },
+        "externalControls": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "channel",
+        "token",
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "const": "chaldea:preview"
+        },
+        "token": {
+          "type": "string",
+          "pattern": "^[a-f0-9-]{36}$"
+        },
+        "type": {
+          "const": "settings"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "settings": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "channel",
+        "token",
+        "type",
+        "sequence",
+        "settings"
+      ]
+    },
+    {
+      "$ref": "#/definitions/action"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "const": "chaldea:preview"
+        },
+        "token": {
+          "type": "string",
+          "pattern": "^[a-f0-9-]{36}$"
+        },
+        "type": {
+          "const": "controls-mounted"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "channel",
+        "token",
+        "type",
+        "revision"
+      ]
+    }
+  ],
+  "definitions": {
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "const": "chaldea:preview"
+        },
+        "token": {
+          "type": "string",
+          "pattern": "^[a-f0-9-]{36}$"
+        },
+        "type": {
+          "const": "action"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "kind": {
+          "enum": [
+            "button",
+            "range",
+            "select",
+            "text",
+            "archive",
+            "pause",
+            "escape"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9:_-]{1,80}$"
+        },
+        "value": {}
+      },
+      "required": [
+        "channel",
+        "token",
+        "type",
+        "sequence",
+        "kind",
+        "key"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "range"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "select",
+                  "text"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "string",
+                "pattern": "^[\\s\\S]{0,1024}$"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "pause"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "button",
+                  "archive",
+                  "escape"
+                ]
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "value"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

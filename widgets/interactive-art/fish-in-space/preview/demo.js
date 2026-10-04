@@ -3,6 +3,7 @@
     const root = document.getElementById('tsugumori-organic-lab');
     const canvas = root.querySelector('canvas'), ctx = canvas.getContext('2d'), engine = createArtEngine();
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const standaloneLabel = canvas.getAttribute('aria-label'), standaloneText = canvas.textContent;
     let width = 1, height = 1, last = 0, frame = 0, visible = true;
     engine.setPaused(preference.matches);
     function sync() {
@@ -13,6 +14,7 @@
         pause.textContent = engine.paused ? 'PLAY' : 'PAUSE';
         pause.setAttribute('aria-label', engine.paused ? 'Play animation' : 'Pause animation');
         root.querySelector('[data-status]').textContent = engine.status();
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function draw(dt = 0) {
@@ -40,15 +42,15 @@
         last = 0;
     }
 
-    root.querySelector('[data-gather]').addEventListener('click', () => {
-        engine.action('gather');
+    function act(key) {
+        engine.action(key);
         sync();
         draw();
         schedule();
-    });
+    }
 
-    root.querySelector('[data-pause]').addEventListener('click', () => {
-        engine.setPaused(!engine.paused);
+    function pause(value) {
+        engine.setPaused(value);
 
         if (engine.paused)
             stop();
@@ -56,7 +58,10 @@
         sync();
         draw();
         schedule();
-    });
+    }
+
+    root.querySelector('[data-gather]').addEventListener('click', () => act('gather'));
+    root.querySelector('[data-pause]').addEventListener('click', () => pause(!engine.paused));
 
     canvas.addEventListener('click', event => {
         const r = canvas.getBoundingClientRect();
@@ -121,6 +126,20 @@
     const disconnect = window.ChaldeaPreview.connect(settings => {
         engine.configure(settings);
         draw();
+        sync();
+    }, {
+        read() {
+            return { controls: engine.controls(), archives: [], status: engine.status(), paused: engine.paused };
+        },
+        action: act,
+        pause,
+        hosted(active) {
+            root.querySelectorAll('.org-footer, .org-caption').forEach(element => {
+                element.hidden = active;
+            });
+            canvas.setAttribute('aria-label', active ? standaloneLabel + ' Controls are beside the artwork.' : standaloneLabel);
+            canvas.textContent = active ? 'Animated artwork. Controls beside the artwork provide alternatives to pointer interaction.' : standaloneText;
+        },
     });
 
     window.addEventListener('pagehide', () => {

@@ -3,6 +3,7 @@
     const root = document.getElementById('tsugumori-eight-studies');
     const $ = key => root.querySelector('[data-' + key + ']');
     const canvas = $('stage'), ctx = canvas.getContext('2d');
+    const standaloneText = canvas.textContent;
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const study = makeRhythmWheel();
     const title = "MECHANICAL RHYTHM";
@@ -96,6 +97,8 @@
 
             b.el.disabled = Boolean(c.disabled);
         });
+
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function report() {
@@ -103,6 +106,8 @@
 
         if (message && $('status').textContent !== message)
             $('status').textContent = message;
+
+        window.ChaldeaPreview.controlsChanged();
     }
 
     function act(key, value) {
@@ -164,6 +169,8 @@
 
         if (bindings.size)
             syncControls();
+
+        report();
     }
 
     function initializeScene() {
@@ -182,8 +189,8 @@
         $('pause').setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
     }
 
-    $('pause').addEventListener('click', () => {
-        paused = !paused;
+    function setPaused(value) {
+        paused = value;
         pauseLabel();
 
         if (paused)
@@ -193,7 +200,10 @@
 
         syncControls();
         $('status').textContent = paused ? 'Animation paused.' : 'Animation playing.';
-    });
+        window.ChaldeaPreview.controlsChanged();
+    }
+
+    $('pause').addEventListener('click', () => setPaused(!paused));
 
     function pos(e) {
         const r = canvas.getBoundingClientRect();
@@ -274,6 +284,7 @@
             pauseLabel();
             syncControls();
             $('status').textContent = 'Reduced motion: still preview. Press Play to animate.';
+            window.ChaldeaPreview.controlsChanged();
         }
     });
 
@@ -291,5 +302,19 @@
         Object.assign(appearance, settings);
         canvas.style.height = appearance.compact ? '320px' : '';
         resize();
+        window.ChaldeaPreview.controlsChanged();
+    }, {
+        read() {
+            return { controls: study.controls(), archives: [], status: $('status').textContent, paused };
+        },
+        action: act,
+        pause: setPaused,
+        hosted(active) {
+            root.querySelectorAll('.eight-controls, .eight-footer').forEach(element => {
+                element.hidden = active;
+            });
+            canvas.setAttribute('aria-label', title + '. ' + hint + (active ? ' Controls are beside the artwork.' : ' Controls are below.'));
+            canvas.textContent = active ? 'Interactive art. All main actions have controls beside the artwork.' : standaloneText;
+        },
     });
 })();

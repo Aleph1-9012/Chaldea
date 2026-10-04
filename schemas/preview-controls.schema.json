@@ -1,0 +1,250 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "chaldea-preview-controls-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "controls": {
+      "type": "array",
+      "maxItems": 48,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9:_-]{1,80}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "hidden": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "type": {
+                "const": "button"
+              },
+              "pressed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "key",
+              "label",
+              "type",
+              "hidden",
+              "disabled"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9:_-]{1,80}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "hidden": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "type": {
+                "const": "range"
+              },
+              "value": {
+                "type": "number"
+              },
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              },
+              "step": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "output": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "quality": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": [
+              "key",
+              "label",
+              "type",
+              "hidden",
+              "disabled",
+              "value",
+              "min",
+              "max",
+              "step"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9:_-]{1,80}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "hidden": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "type": {
+                "const": "select"
+              },
+              "value": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "options": {
+                "type": "array",
+                "maxItems": 64,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 128
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 120
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "label"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "key",
+              "label",
+              "type",
+              "hidden",
+              "disabled",
+              "value",
+              "options"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9:_-]{1,80}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "hidden": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "type": {
+                "const": "text"
+              },
+              "value": {
+                "type": "string",
+                "maxLength": 1024
+              },
+              "maxLength": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1024
+              },
+              "placeholder": {
+                "type": "string",
+                "maxLength": 128
+              }
+            },
+            "required": [
+              "key",
+              "label",
+              "type",
+              "hidden",
+              "disabled",
+              "value",
+              "maxLength"
+            ]
+          }
+        ]
+      }
+    },
+    "archives": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9:_-]{1,80}$"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "key",
+          "label"
+        ]
+      }
+    },
+    "status": {
+      "type": "string",
+      "maxLength": 1024
+    },
+    "paused": {
+      "type": "boolean"
+    },
+    "canEscape": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "controls",
+    "archives",
+    "status",
+    "paused"
+  ]
+}
