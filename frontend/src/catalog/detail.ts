@@ -8,7 +8,7 @@ import { generate } from '../generator';
 import { mountPreview } from '../preview/frame';
 import type { Preview } from '../preview/frame';
 
-export interface DetailView {
+interface DetailView {
   nodes: HTMLElement[];
   start(): Preview;
 }

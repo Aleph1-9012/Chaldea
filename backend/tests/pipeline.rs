@@ -1,6 +1,7 @@
 use chaldea::{build, content, validate};
 use serde_json::{Value, json};
 use std::{
+    collections::BTreeMap,
     fs,
     path::{Path, PathBuf},
 };
@@ -24,6 +25,27 @@ fn copy_dir(source: &Path, target: &Path) {
             fs::copy(entry.path(), to).unwrap();
         }
     }
+}
+fn output_files(dir: &Path) -> BTreeMap<PathBuf, Vec<u8>> {
+    let mut files = BTreeMap::new();
+    for entry in fs::read_dir(dir).unwrap() {
+        let entry = entry.unwrap();
+        let name = PathBuf::from(entry.file_name());
+        let kind = entry.file_type().unwrap();
+        if kind.is_dir() {
+            for (path, bytes) in output_files(&entry.path()) {
+                files.insert(name.join(path), bytes);
+            }
+        } else {
+            assert!(
+                kind.is_file(),
+                "unexpected output: {}",
+                entry.path().display()
+            );
+            files.insert(name, fs::read(entry.path()).unwrap());
+        }
+    }
+    files
 }
 fn fixture() -> tempfile::TempDir {
     let temp = tempfile::tempdir().unwrap();
@@ -212,8 +234,25 @@ fn file_mappings_reject_escapes_conflicts_and_reserved_paths() {
         "preview",
     ] {
         let temp = fixture();
-        change(&temp, |d| d["publicFiles"][2]["path"] = json!(invalid));
-        assert!(fails(&temp), "{invalid}");
+        change(&temp, |d| {
+            d["publicFiles"].as_array_mut().unwrap().push(json!({
+                "source": "assets/sample.txt",
+                "path": invalid,
+            }));
+        });
+        let error = content::load(
+            &temp.path().join("chaldea.toml"),
+            &temp.path().join("widgets"),
+        )
+        .err()
+        .expect("conflicting public path must be rejected")
+        .to_string();
+        assert!(
+            error.contains(&format!(
+                "[{invalid}]: duplicate, conflicting, or reserved public path"
+            )),
+            "{error}"
+        );
     }
     #[cfg(unix)]
     {
@@ -265,7 +304,6 @@ fn revisions_are_deterministic_and_track_only_declared_inputs() {
     let temp = fixture();
     let mut p = load(&temp);
     let original = build::revision(&p, &p.widgets[0]).unwrap();
-    assert_eq!(original, build::revision(&p, &p.widgets[0]).unwrap());
     fs::write(
         temp.path().join("widgets/contract-fixture/private.txt"),
         "private",
@@ -334,7 +372,7 @@ fn local_source_index_uses_discovery_paths_and_declared_thumbnail_sources() {
 }
 
 #[test]
-fn production_replaces_old_output_without_publishing_drafts_or_private_files() {
+fn publication_replaces_only_owned_output_and_omits_drafts_and_private_files() {
     let temp = fixture();
     fs::write(
         temp.path().join("widgets/contract-fixture/private.txt"),
@@ -343,7 +381,22 @@ fn production_replaces_old_output_without_publishing_drafts_or_private_files() {
     .unwrap();
     let p = load(&temp);
     let output = temp.path().join("output");
+    fs::create_dir(&output).unwrap();
+    fs::write(output.join("keep"), "user file").unwrap();
+    assert!(build::build(&p, &output, false).is_err());
+    fs::write(output.join(".chaldea-content"), "incorrect marker").unwrap();
+    assert!(build::build(&p, &output, false).is_err());
+    assert_eq!(
+        fs::read_to_string(output.join("keep")).unwrap(),
+        "user file"
+    );
+    fs::write(
+        output.join(".chaldea-content"),
+        "Chaldea generated content v1\n",
+    )
+    .unwrap();
     build::build(&p, &output, true).unwrap();
+    assert!(!output.join("keep").exists());
     assert!(output.join("revisions/draft-fixture").is_dir());
     assert!(output.join("source-index.json").is_file());
     build::build(&p, &output, false).unwrap();
@@ -364,30 +417,6 @@ fn production_replaces_old_output_without_publishing_drafts_or_private_files() {
     assert!(bundle.join("bundle.json").is_file());
     assert!(bundle.join("files/LICENSE").is_file());
     assert!(!bundle.join("private.txt").exists());
-}
-
-#[test]
-fn output_ownership_is_required_before_replacing_a_directory() {
-    let p = project();
-    let temp = tempfile::tempdir().unwrap();
-    let output = temp.path().join("output");
-    fs::create_dir(&output).unwrap();
-    fs::write(output.join("keep"), "user file").unwrap();
-    assert!(build::build(&p, &output, false).is_err());
-    fs::write(output.join(".chaldea-content"), "incorrect marker").unwrap();
-    assert!(build::build(&p, &output, false).is_err());
-    assert_eq!(
-        fs::read_to_string(output.join("keep")).unwrap(),
-        "user file"
-    );
-    fs::write(
-        output.join(".chaldea-content"),
-        "Chaldea generated content v1\n",
-    )
-    .unwrap();
-    build::build(&p, &output, false).unwrap();
-    assert!(!output.join("keep").exists());
-    assert!(output.join("catalog.json").is_file());
     assert!(build::build(&p, &p.source, false).is_err());
 }
 
@@ -397,15 +426,16 @@ fn failed_packaging_leaves_the_previous_catalog_and_files_untouched() {
     let temp = tempfile::tempdir().unwrap();
     let output = temp.path().join("output");
     build::build(&p, &output, false).unwrap();
-    let before = fs::read(output.join("catalog.json")).unwrap();
+    let before = output_files(&output);
     let widget = p
         .widgets
         .iter_mut()
         .find(|w| w.definition.id == "contract-fixture")
         .unwrap();
+    // Fail while staging a bundle, before the existing output is replaced.
     widget
         .inputs
         .insert("qml/Widget.qml.tmpl".into(), vec![0xff]);
     assert!(build::build(&p, &output, false).is_err());
-    assert_eq!(fs::read(output.join("catalog.json")).unwrap(), before);
+    assert_eq!(output_files(&output), before);
 }

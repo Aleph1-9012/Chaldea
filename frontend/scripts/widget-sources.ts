@@ -7,7 +7,7 @@ interface SourceEntry { id: string; path: string; thumbnailSource: string }
 
 interface SourceIndex { formatVersion: 1; sourceRoot: string; widgets: SourceEntry[] }
 
-export interface WidgetSource extends SourceEntry { dir: string }
+interface WidgetSource extends SourceEntry { dir: string }
 
 export const repository = resolve(import.meta.dir, '../..');
 

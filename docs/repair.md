@@ -18,13 +18,13 @@ There are no scope flags, per-widget test modes, browser test installations, fis
 
 ## What the checks cover
 
-`make test` exercises shared behavior with small synthetic fixtures: settings and typed QML placeholders, escaping and immutable generated results, complete assets, draft export restrictions, preview messages and runtime generation, folder discovery and the local source index, revisions, path confinement, publication ownership, draft omission, and recovery after packaging failure. Shared Rust/TypeScript contract cases live in `schemas/fixtures/`; they verify that both implementations agree.
+`make test` exercises shared behavior with small synthetic fixtures: settings boundaries and typed QML placeholders, escaping and immutable generated results, complete assets, draft export restrictions, preview messages and runtime generation, folder discovery and the local source index, revisions, path confinement, publication ownership, draft omission, and preservation of existing output after a staging failure. Shared Rust/TypeScript contract cases live in `schemas/fixtures/`; they verify that both implementations agree. Generator tests cover boundary values for all five setting types without repeating them for every widget.
 
 `make check` runs those units, Rust formatting and Clippy, a local content build, and one production build. TypeScript checking happens once during the production build. Rust is the only reader of widget sources and validates the entire library each time it packages. It writes `build/content/source-index.json` with the discovered IDs, source folders, and thumbnail mappings. The frontend library validator checks that the index and local catalog contain the same widgets, then inspects every packaged revision and checks:
 
 - Classic preview JavaScript syntax without executing it, the shared runtime reference, and literal HTML `src`, `href`, `poster`, and CSS `url(...)` asset references.
-- Valid default and boundary settings for every widget.
-- Generated QML and complete ZIP contents for each widget with native exports, using default, low, and high settings.
+- Valid setting definitions and defaults for every widget.
+- One generated QML and complete ZIP check per native widget, using its default settings. Shared unit tests cover serialization and settings boundaries; the library scan checks each widget's templates and assets.
 - Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Each production revision must equal the one checked locally. Draft files and the local source index must not appear in `dist/`.
 
 The library validator has no widget-ID list to update. Add a valid `widget.json` in any supported category/study folder and it is checked on the next run. Errors identify the source folder or file. Unit tests remain independent of library size; the library scan grows with the files being checked.

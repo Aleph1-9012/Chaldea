@@ -5,11 +5,6 @@ Source folders use short names grouped by category. Larger collections group by 
 ```text
 widgets/
   _shared/                  LICENSE and preview/support.js for the whole library
-  clipboard/
-    flow/
-    controls/black-bands/
-  curtains/
-    red-field/
   glyphs/
     _shared/qml/            helpers every Glyph design uses unchanged
     branch-grammar/
@@ -17,7 +12,7 @@ widgets/
     fish-in-space/
   lockscreens/
     phase-lock/formation/
-    layouts/aperture/compound-glyph/
+    editorial/assembly-mark/compound-glyph/
   player/
     README.md               family notes
     matrix/

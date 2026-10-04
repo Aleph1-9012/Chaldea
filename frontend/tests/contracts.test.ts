@@ -2,7 +2,7 @@ import { expect, test } from 'bun:test';
 import settings from '../../schemas/fixtures/settings.json';
 import templates from '../../schemas/fixtures/templates.json';
 import { assertBundle, assertCatalog, assertDefinition } from '../src/catalog/contracts';
-import { assertSettings, defaults, FieldError, validateSettings, validateValue } from '../src/customizer/settings';
+import { assertSettings, defaults, FieldError, validateSettings } from '../src/customizer/settings';
 import { templateBindings } from '../src/generator';
 import { fixture } from './fixture';
 
@@ -29,16 +29,21 @@ test('settings and template rules agree with the shared Rust contract cases', ()
   }
 });
 
-test('user settings reject missing, unknown, nonfinite, and out-of-range values', () => {
+test('user settings reject invalid values with field errors and normalize valid values', () => {
   const { definition } = fixture(), initial = defaults(definition);
 
-  for (const level of [NaN, Infinity, -Infinity, -1, 101, 2.5, '50']) {
+  for (const level of [NaN, Infinity, -Infinity, -1, 101, '50']) {
     expect(() => validateSettings(definition, { ...initial, level })).toThrow();
   }
 
-  expect(() => validateSettings(definition, {})).toThrow();
+  expect(() => validateSettings(definition, {})).toThrow(new FieldError('level', 'Level: enter a number between 0 and 100.'));
+  expect(() => validateSettings(definition, { ...initial, level: 0.5 })).toThrow(new FieldError('level', 'Level: use increments of 1.'));
   expect(() => validateSettings(definition, { ...initial, unexpected: true })).toThrow();
-  expect(validateSettings(definition, initial)).toEqual(initial);
+
+  const normalized = validateSettings(definition, { ...initial, level: -0, accent: '#ABCDEF' });
+
+  expect(Object.is(normalized.level, 0)).toBe(true);
+  expect(normalized.accent).toBe('#abcdef');
 });
 
 test('settings JSON rejects malformed objects and nested values at the parsing boundary', () => {
@@ -54,23 +59,12 @@ test('settings JSON rejects malformed objects and nested values at the parsing b
   expect(validateSettings(definition, value)).toEqual(defaults(definition));
 });
 
-test('setting errors keep their messages and normalization', () => {
-  const number = { key: 'level', label: 'Level', type: 'number', default: 0, min: 0, max: 100, step: 1 } as const;
-  const color = { key: 'accent', label: 'Accent', type: 'color', default: '#ABCDEF' } as const;
-
-  expect(() => validateValue(number, undefined)).toThrow(new FieldError('level', 'Level: enter a number between 0 and 100.'));
-  expect(() => validateValue(number, 0.5)).toThrow(new FieldError('level', 'Level: use increments of 1.'));
-  expect(Object.is(validateValue(number, -0), 0)).toBe(true);
-  expect(validateValue(color, '#ABCDEF')).toBe('#abcdef');
-});
-
 test('catalog and bundle boundaries reject duplicate IDs and mismatched exports', () => {
   const { definition, templates } = fixture();
   const revision = '0'.repeat(64);
-  const item = { ...definition, revision, bundleUrl: `revisions/${definition.id}/${revision}/bundle.json`, thumbnailUrl: `revisions/${definition.id}/${revision}/${definition.thumbnail}` };
-  // Catalog summaries contain only their declared fields.
-  const { id, title, summary, category, tags, status, bundleUrl, thumbnailUrl } = item;
-  const entry = { id, title, summary, category, tags, status, revision, bundleUrl, thumbnailUrl };
+  const { id, title, summary, category, tags, status } = definition;
+  const prefix = `revisions/${id}/${revision}/`;
+  const entry = { id, title, summary, category, tags, status, revision, bundleUrl: `${prefix}bundle.json`, thumbnailUrl: `${prefix}${definition.thumbnail}` };
 
   expect(() => assertCatalog({ formatVersion: 1, widgets: [entry] })).not.toThrow();
   expect(() => assertCatalog({ formatVersion: 1, widgets: [entry, entry] })).toThrow();

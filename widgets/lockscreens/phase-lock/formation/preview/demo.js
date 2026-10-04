@@ -12,12 +12,10 @@
   const status=root.querySelector('[data-sequence-status]'),fieldName=root.querySelector('[data-field-name]'),lockState=root.querySelector('[data-lock-state]');
   const enterButton=root.querySelector('[data-action="enter"]'),exitButton=root.querySelector('[data-action="exit"]');
   const settings={design:'phase',corner:'formation',panel:true,ink:100,motion:true,speed:1};
-  const cornerNames={register:'Registration',plates:'Maker plates',rails:'Edge rails',formation:'Formation terminals'};
-  const names={phase:'Phase lock',interference:'Interference',tissue:'Ena strain'};
+  const cornerNames={formation:'Formation terminals'};
+  const names={phase:'Phase lock'};
   const descriptions={
-    phase:'Short glyph fragments divide, adjust their joints, and settle in place. The center panel and its K glyph activate in the same sequence. Unlock releases the fragments locally.',
-    interference:'Two fine line fields change spacing and phase. Small red sections settle into alignment while the center panel rules register in place. Unlock breaks that alignment.',
-    tissue:'Cropped porous ribbons change local tension. Fine hatch bridges straighten and embedded red strands shift while the panel rules resolve in place. Unlock relaxes and thins the engraving.'
+    phase:'Short glyph fragments divide, adjust their joints, and settle in place. The center panel and its K glyph activate in the same sequence. Unlock releases the fragments locally.'
   };
   const preference=typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):null;
   let scene=null,sceneKey='',progress=1,sequence=null,frame=null;
@@ -58,29 +56,12 @@ function pixelRatio(){
   const ratio=globalThis.devicePixelRatio;
   return typeof ratio==='number'&&Number.isFinite(ratio)&&ratio>0?ratio:1;
 }
-function segment(points,from,to){
-  const out=[];if(to<=from||points.length<2)return out;
-  const a=clamp(from)*(points.length-1),b=clamp(to)*(points.length-1);
-  const sample=n=>{const i=Math.min(points.length-2,Math.floor(n)),q=n-i;return [lerp(points[i][0],points[i+1][0],q),lerp(points[i][1],points[i+1][1],q)];};
-  out.push(sample(a));for(let i=Math.floor(a)+1;i<b;i++)out.push(points[i]);out.push(sample(b));return out;
-}
-function polygon(c,pts){if(pts.length<3)return;c.moveTo(...pts[0]);for(let i=1;i<pts.length;i++)c.lineTo(...pts[i]);c.closePath();}
 function buildSystem(kind,w,h,box){
-  const s={kind,w,h,box:{...box},cells:[],ribbons:[]};
+  const s={kind,w,h,box:{...box},cells:[]};
   if(kind==='phase'){
     const size=84,cols=Math.ceil(w/size),rows=Math.ceil(h/size),ox=(w-cols*size)/2,oy=(h-rows*size)/2;
     function cell(x,y,size,key,depth){const node={x,y,size,key,depth,angle:Math.floor(hash(key,depth,27)*4)*Math.PI/2,children:[]};if(depth<2&&hash(key,depth,34)>(depth===0?.19:.58))for(let i=0;i<4;i++)node.children.push(cell(x+(i%2?1:-1)*size/4,y+(i<2?-1:1)*size/4,size/2,key*5+i+1,depth+1));return node;}
     for(let y=0;y<rows;y++)for(let x=0;x<cols;x++)s.cells.push(cell(ox+(x+.5)*size,oy+(y+.5)*size,size,y*cols+x+1,0));
-  }
-  if(kind==='tissue'){
-    for(let i=0;i<3;i++){
-      const left=i!==1;
-      s.ribbons.push({id:i,side:left?-1:1,baseX:w*(i===0?.135:i===1?.88:.055),baseWidth:Math.max(42,Math.min(102,w*(i===2?.053:.086))),offset:i*2.31,branch:i===2,
-        pores:Array.from({length:i===2?42:80},(_,j)=>({t:.025+hash(j,i,42)*.95,u:(hash(j,i,43)-.5)*1.9,a:9+hash(j,i,44)*35,b:4+hash(j,i,45)*18,key:j})),
-        fibers:Array.from({length:120},(_,j)=>({u:(hash(j,i,36)-.5)*1.96,v:hash(j,i,40),start:hash(j,i,37)*.91,length:.025+hash(j,i,38)*.16})),
-        hatches:Array.from({length:410},(_,j)=>({t:hash(j,i,31),u:(hash(j,i,32)-.5)*1.95,v:hash(j,i,33)})),
-        speckles:Array.from({length:900},(_,j)=>({t:hash(j,i,21),u:(hash(j,i,22)-.5)*2,v:hash(j,i,23)}))});
-    }
   }
   return s;
 }
@@ -104,83 +85,22 @@ function drawPhase(c,s,p,strength){
   }
   s.cells.forEach(node=>branch(node));
 }
-function interferencePoint(s,x,y,layer,p){
-  const {w,h}=s,u=x/w,v=y/h,settle=ramp(p,.04,.80),transient=1-settle;
-  const a=Math.exp(-((u-.16)**2/.045+(v-.27)**2/.19)),b=Math.exp(-((u-.89)**2/.044+(v-.76)**2/.20));
-  const phase=transient*(layer?2.1:-1.7),warp=(a*Math.sin(v*6.7+phase)+b*Math.sin(v*7.9-1.2-phase))*Math.min(62,w*.065);
-  const bend=layer?(Math.sin(v*5.3+phase)*11+warp*.45):warp;
-  return [x+bend,y+(layer?Math.sin(u*7.1-phase)*7:0)];
-}
-function drawInterference(c,s,p,strength){
-  const {w,h}=s,alive=ramp(p,.01,.19),settle=ramp(p,.02,.84),spacing=6.1;
-  for(let layer=0;layer<2;layer++){
-    const count=Math.ceil(w/spacing)+28;
-    for(let i=0;i<count;i++){
-      const offset=layer?(2.4+(1-settle)*8.2):0,x=(i-14)*spacing+offset;
-      const points=[];for(let j=0;j<=66;j++){const y=-24+(h+48)*j/66;points.push(interferencePoint(s,x,y,layer,p));}
-      const band=(Math.sin(i*.12+layer)*.5+.5),alpha=(layer?.16:.22)*alive*strength*(.68+band*.32);
-      strokePath(c,points,'#b4afa1',.70,alpha);
-      if(layer===1&&i%39===18){
-        const center=.20+(i%5)*.145+(1-settle)*.16,range=.055;
-        strokePath(c,segment(points,center-range,center+range),'#c41920',1.05,alive*strength*.74);
-      }
-    }
-  }
-}
-function ribbonFrame(s,r,t,p){
-  const q=ramp(p,.02,.81),loose=1-q,{w,h}=s;
-  let x=r.baseX+Math.sin(t*5.6+r.offset)*w*.042+Math.sin(t*11.4+r.offset)*w*.012;
-  let y=-90+t*(h+180);
-  if(r.branch){x+=w*.23*t*t;y=h*.16+t*h*.92;}
-  x+=loose*(Math.sin(t*12+r.offset)*20+Math.sin(t*27)*3);
-  const dx=Math.cos(t*5.6+r.offset)*w*.042*5.6+Math.cos(t*11.4+r.offset)*w*.012*11.4+(r.branch?w*.46*t:0)+loose*(Math.cos(t*12+r.offset)*240+Math.cos(t*27)*81);
-  const dy=r.branch?h*.92:h+180,d=Math.hypot(dx,dy),normal=[dy/d,-dx/d];
-  const width=r.baseWidth*(.70+.22*Math.sin(t*8.7+r.offset)+.10*Math.sin(t*24.5+r.offset)+.06*Math.sin(t*61.3+r.offset))*(r.branch?Math.pow(Math.max(.008,1-t),.65):1);
-  return {x,y,nx:normal[0],ny:normal[1],tx:dx/d,ty:dy/d,width,q};
-}
-function ribbonPoint(s,r,t,u,p){const a=ribbonFrame(s,r,t,p);return [a.x+a.nx*a.width*u,a.y+a.ny*a.width*u];}
-function porePath(s,r,pore,p){
-  const f=ribbonFrame(s,r,pore.t,p),cx=f.x+f.nx*f.width*pore.u,cy=f.y+f.ny*f.width*pore.u;
-  const stretch=lerp(.70,1.30,f.q),a=pore.a*stretch,b=pore.b/Math.sqrt(stretch),pts=[];
-  for(let j=0;j<20;j++){const angle=j*Math.PI/10,irregular=1+Math.sin(angle*3+pore.key)*.11+Math.sin(angle*5+pore.key)*.06,u=Math.cos(angle)*b*irregular,v=Math.sin(angle)*a*irregular;pts.push([cx+f.nx*u+f.tx*v,cy+f.ny*u+f.ty*v]);}
-  return pts;
-}
-function drawTissue(c,s,p,strength){
-  const alive=ramp(p,.015,.24),settle=ramp(p,.02,.81);
-  for(const r of s.ribbons){
-    const outer=[];for(let j=0;j<=92;j++)outer.push(ribbonPoint(s,r,j/92,1,p));for(let j=92;j>=0;j--)outer.push(ribbonPoint(s,r,j/92,-1,p));
-    c.save();c.beginPath();polygon(c,outer);for(const pore of r.pores)polygon(c,porePath(s,r,pore,p));
-    c.globalAlpha=alive*strength;c.fillStyle='#1e1e1a';c.fill('evenodd');c.clip('evenodd');
-    for(const fiber of r.fibers){const pts=[];for(let j=0;j<=15;j++){const t=fiber.start+fiber.length*j/15,u=fiber.u+Math.sin(t*39+r.id+fiber.v*3)*.075*(1-settle*.8);pts.push(ribbonPoint(s,r,t,u,p));}strokePath(c,pts,fiber.v>.87?'#b1a895':'#777264',fiber.v>.85?.72:.48,alive*strength*.40,ramp(p,fiber.v*.11,.52+fiber.v*.26));}
-    for(const h of r.hatches){const a=ribbonPoint(s,r,h.t,h.u,p),b=ribbonPoint(s,r,h.t+.005+(.011*(1-settle)),h.u+(.10+h.v*.24)*(h.v>.5?1:-1),p);strokePath(c,[a,b],'#989181',.5,alive*strength*.38);}
-    for(const grain of r.speckles){const pt=ribbonPoint(s,r,grain.t,grain.u,p);c.fillStyle=grain.v>.7?'#aca38f':'#625e53';c.globalAlpha=alive*strength*.29;c.fillRect(pt[0],pt[1],grain.v>.9?1.3:.65,.65);}
-    for(let k=0;k<2;k++){const pts=[];for(let j=0;j<=92;j++)pts.push(ribbonPoint(s,r,j/92,(k?1:-1)*(.32+r.id*.055),p));const center=.28+k*.35+(1-settle)*.21;strokePath(c,segment(pts,center-.065,center+.065),'#c7171f',1.1,alive*strength*.80);}
-    c.restore();
-    for(let i=0;i<r.pores.length;i+=3)strokePath(c,segment(porePath(s,r,r.pores[i],p),.08,.39),'#9a9382',.6,alive*strength*.40);
-    strokePath(c,outer.slice(0,93),'#767267',.60,alive*strength*.19,ramp(p,.06,.58));
-  }
-}
 function drawSystem(c,s,p,strength=1){
   p=clamp(p);strength=clamp(strength);c.globalAlpha=1;c.fillStyle='#080808';c.fillRect(0,0,s.w,s.h);c.lineCap='butt';c.lineJoin='miter';if(p===0)return;
-  if(s.kind==='phase')drawPhase(c,s,p,strength);else if(s.kind==='interference')drawInterference(c,s,p,strength);else drawTissue(c,s,p,strength);
+  drawPhase(c,s,p,strength);
   c.globalAlpha=1;
 }
-function componentState(kind,p){
-  const late=kind==='tissue'?.04:kind==='interference'?.07:0;
-  return {back:ramp(p,.10,.35),border:ramp(p,.18,.73),folio:ramp(p,.28+late,.67+late),folioText:ramp(p,.49+late,.76+late),user:ramp(p,.41+late,.68+late),clock:ramp(p,.48+late,.74+late),glyph:ramp(p,.22+late,.73+late),auth:ramp(p,.59+late,.87+late)};
+function componentState(p){
+  return {back:ramp(p,.10,.35),border:ramp(p,.18,.73),folio:ramp(p,.28,.67),folioText:ramp(p,.49,.76),user:ramp(p,.41,.68),clock:ramp(p,.48,.74),glyph:ramp(p,.22,.73),auth:ramp(p,.59,.87)};
 }
 function drawRegister(c,s,p){
   c.clearRect(0,0,s.w,s.h);if(p<=0||p>=1)return;
-  const {x,y,w,h,folio}=s.box,q=componentState(s.kind,p),active=ramp(p,.06,.17)*(1-ramp(p,.78,.97)),red='#b91a20',grey='#999486';
+  const {x,y,w,h,folio}=s.box,q=componentState(p),active=ramp(p,.06,.17)*(1-ramp(p,.78,.97)),red='#b91a20',grey='#999486';
   const corners=[[[x,y+32],[x,y],[x+32,y]],[[x+w-32,y],[x+w,y],[x+w,y+32]],[[x+w,y+h-32],[x+w,y+h],[x+w-32,y+h]],[[x+32,y+h],[x,y+h],[x,y+h-32]]];
   corners.forEach((pts,i)=>strokePath(c,pts,i===0||i===2?red:grey,1,active*.9,ramp(p,.05+i*.025,.29+i*.035)));
   if(s.kind==='phase'){
     for(let i=0;i<19;i++){const xx=x+(i+.5)*w/19,l=lerp(7,1,q.border);strokePath(c,[[xx,y-l],[xx,y+l]],i%6===0?red:grey,.75,active*.7);strokePath(c,[[xx,y+h-l],[xx,y+h+l]],grey,.75,active*.45);}
     strokePath(c,[[x+folio,y],[x+folio,y+h]],red,.8,active*.6,ramp(p,.18,.61));
-  } else if(s.kind==='interference'){
-    for(let i=0;i<7;i++){const d=(i-3)*5*(1-q.border);strokePath(c,[[x,y+d],[x+w,y+d]],i===3?red:grey,.65,active*(i===3?.6:.20));strokePath(c,[[x,y+h+d],[x+w,y+h+d]],grey,.65,active*.2);}
-  } else {
-    for(let side=0;side<2;side++){const pts=[];for(let j=0;j<=60;j++){const yy=y+j*h/60,xx=x+(side?w:0)+Math.sin(j*.33)*(1-q.border)*7;pts.push([xx,yy]);}strokePath(c,pts,side?grey:red,.85,active*.75,ramp(p,.10,.64));}
   }
   c.globalAlpha=1;
 }
@@ -189,12 +109,9 @@ function drawRegister(c,s,p){
 
   // OUTER CORNERS. Independent of the approved Phase field and center panel.
   const cornerDescriptions={
-    register:'Open registration brackets, a red 704 stamp, and four formation markers.',
-    plates:'Compact shipyard nameplates with Japanese lettering and recessed rules.',
-    rails:'Short edge rulers, a large ivory 704, and red alignment stops.',
     formation:'Angular terminal links and a four-position formation strip.'
   };
-  function drawCorners(c,s,p,kind,lockLabel='LOCKED'){
+  function drawCorners(c,s,p,lockLabel='LOCKED'){
     c.clearRect(0,0,s.w,s.h);
     const opacity=ramp(p,.28,.74);if(opacity<=.001)return;
     const compact=s.w<540,inset=compact?14:20,W=Math.min(244,(s.w-inset*2-20)/2);
@@ -222,84 +139,9 @@ function drawRegister(c,s,p){
       }else line([[x,y-size],[x+size,y],[x,y+size],[x-size,y],[x,y-size]],color);
     }
     function backing(x,y,w=W){block(x-5,y-3,w+10,50);}
-    function ruleTicks(x,y,w,direction=1){
-      line([[x,y],[x+w,y]],dim);
-      for(let i=0;i<=Math.floor(w/12);i++){
-        const xx=x+i*12,h=i%4===0?6:3;
-        line([[xx,y],[xx,y+direction*h]],i===0?red:dim);
-      }
-    }
     const shortLock=compact?(lockLabel==='LOCKED'?'LOCKED':lockLabel.startsWith('UNLOCK')?'RELEASE':'REGISTER'):lockLabel;
 
-    if(kind==='register'){
-      backing(L,T,compact?W:212);backing(R,T);backing(L,B,compact?W:212);backing(R,B);
-      line([[L,T+19],[L,T],[L+24,T]],red);
-      type('TSUGUMORI',L+12,T+12,white,11,500,.7);
-      type(compact?'TYPE-17':'東亜重工 // TYPE-17',L+12,T+32,grey,11);
-      line([[L+12,T+44],[L+W-12,T+44]]);
-      line([[R+W-24,T],[R+W,T],[R+W,T+20]],red);
-      block(R+W-60,T+7,48,25,red);
-      type('704',R+W-36,T+20,black,18,500,.5,'center');
-      if(!compact)type('SID0NIA',R+W-75,T+20,white,11,400,1,'right');
-      else type('SID0NIA',R+W-12,T+43,grey,11,400,0,'right');
-      if(!compact)type('継衛 // TYPE-17',R+W-12,T+43,grey,11,400,0,'right');
-      line([[L,B+23],[L,B+44],[L+24,B+44]],red);
-      type('SHŌI LINK',L+12,B+9,white,11,400,.7);
-      const span=compact?W-28:150,start=L+15;
-      line([[start,B+29],[start+span,B+29]]);
-      for(let i=0;i<4;i++)diamond(start+i*span/3,B+29,i===3,i===3?red:grey,3);
-      line([[R+W-24,B+44],[R+W,B+44],[R+W,B+22]],red);
-      type(shortLock,R+W-12,B+12,white,11,500,.6,'right');
-      line([[R+12,B+31],[R+W-12,B+31]]);
-      diamond(R+W-12,B+31,true,red,3);
-      if(!compact)type('SESSION // LOCAL',R+12,B+42,grey,11);
-    }else if(kind==='plates'){
-      backing(L,T);backing(R,T);backing(L,B);backing(R,B);
-      block(L,T,3,44,red);
-      line([[L+8,T],[L+W,T],[L+W,T+44],[L+8,T+44]]);
-      type('東亜重工',L+14,T+13,white,14,500,1.5);
-      type(compact?'TSUGUMORI':'TSUGUMORI // TYPE-17',L+14,T+34,grey,11);
-      block(R,T,W-57,24,white);
-      type('SID0NIA',R+8,T+12,black,11,500,0);
-      block(R+W-54,T,54,44,red);
-      type('704',R+W-27,T+22,black,21,500,0,'center');
-      type('TYPE-17',R+8,T+36,grey,11,400,.4);
-      block(L,B,3,44,red);
-      type('四騎掌位',L+14,B+12,white,13,500,1);
-      type(compact?'SHŌI // 04':'FORMATION // 04',L+14,B+34,grey,11);
-      line([[L+8,B+44],[L+W,B+44],[L+W,B+32]]);
-      line([[R,B],[R+W,B],[R+W,B+25],[R,B+25],[R,B]]);
-      block(R+1,B+1,4,23,red);
-      type(shortLock,R+12,B+13,white,11,500,.3);
-      const cell=(W-9)/4;
-      for(let i=0;i<4;i++){
-        const x=R+i*(cell+3);
-        line([[x,B+44],[x,B+33],[x+cell,B+33]],i===3?red:dim);
-      }
-    }else if(kind==='rails'){
-      backing(L,T);backing(R,T);backing(L,B);backing(R,B);
-      ruleTicks(L,T,W-18,1);
-      line([[L,T],[L,T+44]],dim);
-      block(L-1,T+18,3,14,red);
-      type('TSUGUMORI',L+14,T+23,white,11,500,1);
-      type(compact?'TYPE-17':'TYPE-17 // 東亜重工',L+14,T+41,grey,11);
-      ruleTicks(R+18,T,W-18,1);
-      line([[R+W,T],[R+W,T+44]],dim);
-      type('704',R+W-14,T+27,white,29,500,.5,'right');
-      if(compact)type('継衛',R+10,T+32,red,12);
-      else {type('継衛',R+15,T+24,red,14,500,1);type('SID0NIA',R+15,T+41,grey,11,400,1);}
-      block(R+W-2,T+18,3,14,red);
-      ruleTicks(L,B+44,W-18,-1);
-      line([[L,B],[L,B+44]],dim);
-      type('SID0NIA',L+14,B+11,white,11,500,compact?1:3);
-      type('SHŌI LINK',L+14,B+30,grey,11);
-      block(L-1,B+10,3,14,red);
-      ruleTicks(R+18,B+44,W-18,-1);
-      line([[R+W,B],[R+W,B+44]],dim);
-      type(shortLock,R+W-14,B+12,white,11,500,.6,'right');
-      type('認証 // 17',R+W-14,B+30,grey,11,400,1,'right');
-      block(R+W-2,B+10,3,14,red);
-    }else{
+    {
       backing(L,T);backing(R,T);backing(L,B);backing(R,B);
       line([[L,T+35],[L,T+5],[L+26,T+5],[L+26,T+28],[L+10,T+28],[L+10,T+16],[L+35,T+16]],grey);
       line([[L+6,T],[L+6,T+39],[L+21,T+39]],red);
@@ -376,11 +218,10 @@ function drawRegister(c,s,p){
     if(glyphCanvas.width!==side||glyphCanvas.height!==side){glyphCanvas.width=side;glyphCanvas.height=side;}
     glyphCtx.setTransform(side/252,0,0,side/252,0,0);glyphCtx.clearRect(0,0,252,252);
     glyphCtx.lineCap='butt';glyphCtx.lineJoin='miter';
-    const marks=makeArt('k',phase),q=componentState(settings.design,progress).glyph;
+    const marks=makeArt('k',phase),q=componentState(progress).glyph;
     for(let i=0;i<marks.length;i++){
       const mark=marks[i],local=ramp(q,hash(i,0,93)*.26,.58+hash(i,0,93)*.42);
-      if(settings.design==='phase')crispStroke(glyphCtx,mark.points,mark.c,mark.w,mark.alpha*local,local);
-      else strokePath(glyphCtx,mark.points,mark.c,mark.w,mark.alpha*local,local);
+      crispStroke(glyphCtx,mark.points,mark.c,mark.w,mark.alpha*local,local);
     }
     glyphCtx.globalAlpha=1;
   }
@@ -421,7 +262,7 @@ function measure() {
 function paint() {
   measure();if(ctx)drawSystem(ctx,scene,progress,settings.ink/100);
   if(registerCtx){if(settings.panel)drawRegister(registerCtx,scene,progress);else registerCtx.clearRect(0,0,scene.w,scene.h);}
-  const q=componentState(settings.design,progress);
+  const q=componentState(progress);
   panel.style.backgroundColor='rgba(9,9,9,'+q.back+')';
   panel.style.borderColor='rgba(73,66,58,'+q.border+')';
   folio.style.backgroundColor='rgba(209,22,28,'+q.folio+')';
@@ -433,7 +274,7 @@ function paint() {
   panel.inert=!settings.panel||progress<.96||sequence?.to===0;
   input.disabled=panel.inert;unlock.disabled=panel.inert;
   panel.setAttribute('aria-hidden',String(panel.inert));
-  if(cornerCtx)drawCorners(cornerCtx,scene,progress,settings.corner,sequence?.to===0?'UNLOCK / CLEAR':sequence?'LOCK / APPEAR':progress===1?'LOCKED':'LOCK RELEASED');
+  if(cornerCtx)drawCorners(cornerCtx,scene,progress,sequence?.to===0?'UNLOCK / CLEAR':sequence?'LOCK / APPEAR':progress===1?'LOCKED':'LOCK RELEASED');
   drawGlyph();
 }
 function sample(now) {

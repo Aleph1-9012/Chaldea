@@ -3,8 +3,8 @@ import { join } from 'node:path';
 import { Script } from 'node:vm';
 import assert from 'node:assert/strict';
 import { zipSync, unzipSync } from 'fflate';
-import type { Bundle, Definition, Settings } from '../src/catalog/contracts';
-import { defaults, validateSettings } from '../src/customizer/settings';
+import type { Bundle, Definition } from '../src/catalog/contracts';
+import { defaults } from '../src/customizer/settings';
 import { generate } from '../src/generator';
 import { loadRevision, readCatalog } from './export';
 import { repository, widgetSources } from './widget-sources';
@@ -63,35 +63,19 @@ export function inspectPreview(files: Readonly<Record<string, Uint8Array>>, entr
   return scripts;
 }
 
-export function samples(definition: Definition): Settings[] {
-  const initial = defaults(definition);
-  const low = { ...initial }, high = { ...initial };
-  for (const setting of definition.settings) {
-    switch (setting.type) {
-      case 'number':
-        low[setting.key] = setting.min;
-        high[setting.key] = Number((setting.min + Math.floor((setting.max - setting.min) / setting.step + 1e-9) * setting.step).toPrecision(14));
-        break;
-      case 'boolean': low[setting.key] = false; high[setting.key] = true; break;
-      case 'enum': low[setting.key] = setting.choices[0]!; high[setting.key] = setting.choices.at(-1)!; break;
-      case 'color': low[setting.key] = '#000000'; high[setting.key] = '#ffffff'; break;
-      case 'string': low[setting.key] = ''; high[setting.key] = 'x'.repeat(setting.maxLength); break;
-    }
-  }
-  return [initial, low, high].map(values => validateSettings(definition, values));
-}
-
 export function inspectExports(definition: Definition, templates: Record<string, string>, assets: Record<string, Uint8Array>): number {
-  const settings = samples(definition);
+  const settings = defaults(definition);
+
   if (!definition.exports.some(file => file.kind === 'template')) return 0;
-  for (const values of settings) {
-    const snapshot = generate(definition, templates, values, assets);
-    const files = Object.fromEntries(snapshot.files.map(file => [file.path, file.bytes]));
-    const unzipped = unzipSync(zipSync(files, { level: 0 }));
-    assert.deepEqual(Object.keys(unzipped).sort(), definition.exports.map(file => file.path).sort());
-    for (const [path, bytes] of Object.entries(files)) assert.deepEqual(unzipped[path], bytes, path);
-  }
-  return settings.length;
+
+  const snapshot = generate(definition, templates, settings, assets);
+  const files = Object.fromEntries(snapshot.files.map(file => [file.path, file.bytes]));
+  const unzipped = unzipSync(zipSync(files, { level: 0 }));
+  assert.deepEqual(Object.keys(unzipped).sort(), definition.exports.map(file => file.path).sort());
+
+  for (const [path, bytes] of Object.entries(files)) assert.deepEqual(unzipped[path], bytes, path);
+
+  return 1;
 }
 
 async function checkLibrary() {

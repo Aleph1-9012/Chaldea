@@ -2,7 +2,7 @@ import { assertDefinition } from '../catalog/contracts';
 import type { Definition, Settings } from '../catalog/contracts';
 import { validateSettings } from '../customizer/settings';
 
-export interface GeneratedFile { path: string; bytes: Uint8Array; text?: string }
+interface GeneratedFile { path: string; bytes: Uint8Array; text?: string }
 
 export interface Snapshot { settings: Settings; files: readonly GeneratedFile[] }
 

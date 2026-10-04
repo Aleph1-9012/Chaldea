@@ -128,9 +128,17 @@ test('checked-in preview runtime matches deterministic standalone generation', a
   expect(await generatePreviewRuntime()).toBe(generated);
 });
 
-test('preview action and state validators reject malformed or ambiguous controls', () => {
+test('preview protocol validators reject malformed messages and ambiguous controls', () => {
   for (const message of [command(1, 'button', 'capture'), command(1, 'range', 'amount', 4), command(1, 'select', 'mode', 'a'), command(1, 'text', 'name', 'test'), command(1, 'archive', 'archive:0'), command(1, 'pause', 'preview:pause', true), command(1, 'escape', 'preview:escape')]) expect(checkAction(message)).toBe(true);
   for (const message of [command(0, 'button', 'capture'), command(1.5, 'button', 'capture'), command(1, 'button', 'capture', true), command(1, 'range', 'amount', '4'), command(1, 'range', 'amount', Infinity), command(1, 'range', 'amount', -Infinity), command(1, 'range', 'amount', NaN), command(1, 'select', 'mode', false), command(1, 'text', 'name', 'x'.repeat(1025)), command(1, 'escape', 'preview:escape', true), { ...command(1, 'button', 'capture'), extra: true }]) expect(checkAction(message)).toBe(false);
+
+  for (const sequence of [NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    expect(checkAction(command(sequence, 'button', 'capture'))).toBe(false);
+    expect(checkHost({ ...envelope, type: 'settings', sequence, settings: {} })).toBe(false);
+    expect(checkHost({ ...envelope, type: 'controls-mounted', revision: sequence })).toBe(false);
+  }
+
+  expect(checkAction(command(Number.MAX_SAFE_INTEGER, 'button', 'capture'))).toBe(true);
 
   const current = state();
 
@@ -154,16 +162,6 @@ test('preview action and state validators reject malformed or ambiguous controls
   expect(interactionKind(current, 'hidden')).toBeUndefined();
   expect(interactionKind(current, 'disabled')).toBeUndefined();
   expect(interactionKind(current, 'missing')).toBeUndefined();
-});
-
-test('host protocol counters reject values outside the safe integer range', () => {
-  for (const sequence of [NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
-    expect(checkAction(command(sequence, 'button', 'capture'))).toBe(false);
-    expect(checkHost({ ...envelope, type: 'settings', sequence, settings: {} })).toBe(false);
-    expect(checkHost({ ...envelope, type: 'controls-mounted', revision: sequence })).toBe(false);
-  }
-
-  expect(checkAction(command(Number.MAX_SAFE_INTEGER, 'button', 'capture'))).toBe(true);
 });
 
 test('runtime authenticates the parent and token, waits for mount acknowledgement, and keeps settings separate', async () => {
@@ -234,8 +232,12 @@ test('runtime enforces live control bounds, rejects action replays, and reports 
   runtime.send(command(14, 'button', 'capture'));
   runtime.send(command(15, 'pause', 'preview:pause', true));
   expect(runtime.actions.map(action => action.key)).toEqual(['amount', 'mode', 'name', 'archive:0', 'capture']);
-  expect(runtime.messages).toContainEqual({ ...envelope, type: 'focus', key: 'name', sequence: 14 });
-  expect(runtime.messages.findIndex(message => message.type === 'controls' && message.ack === 14)).toBeLessThan(runtime.messages.findIndex(message => message.type === 'focus'));
+  expect(runtime.messages.filter(message =>
+    (message.type === 'controls' && message.ack === 14) || message.type === 'focus',
+  )).toEqual([
+    expect.objectContaining({ ...envelope, type: 'controls', ack: 14 }),
+    { ...envelope, type: 'focus', key: 'name', sequence: 14 },
+  ]);
   expect(runtime.latest()).toMatchObject({ ack: 15, state: { paused: true } });
   runtime.send(command(14, 'button', 'capture'));
   expect(runtime.messages.filter(message => message.type === 'focus')).toEqual([{ ...envelope, type: 'focus', key: 'name', sequence: 14 }]);
@@ -296,8 +298,12 @@ test('runtime publishes changed collections and preserves standalone controls or
   runtime.changed();
   expect(runtime.latest()).toMatchObject({ revision: 2, state: { archives: [{ key: 'archive:0', label: 'Renamed form' }] } });
   runtime.send(command(1, 'button', 'capture'));
-  expect(runtime.messages).toContainEqual({ ...envelope, type: 'action-error', message: 'That action could not complete. Try again.', sequence: 1 });
-  expect(runtime.messages.findIndex(message => message.type === 'controls' && message.ack === 1)).toBeLessThan(runtime.messages.findIndex(message => message.type === 'action-error'));
+  expect(runtime.messages.filter(message =>
+    (message.type === 'controls' && message.ack === 1) || message.type === 'action-error',
+  )).toEqual([
+    expect.objectContaining({ ...envelope, type: 'controls', ack: 1 }),
+    { ...envelope, type: 'action-error', message: 'That action could not complete. Try again.', sequence: 1 },
+  ]);
   expect(runtime.latest().ack).toBe(1);
   Object.defineProperty(runtime.current, 'status', { get() { throw new Error('State unavailable'); } });
   runtime.changed();

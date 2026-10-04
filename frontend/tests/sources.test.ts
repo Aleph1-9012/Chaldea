@@ -7,7 +7,7 @@ import { findWidget, widgetSources, writeThumbnail } from '../scripts/widget-sou
 const entry = { id: 'stable-id', path: 'notes/study/new-design', thumbnailSource: 'images/card.webp' };
 const index = { formatVersion: 1, sourceRoot: 'widgets', widgets: [entry] };
 
-test('packaged source index supplies selectors and thumbnail destinations without reading sources', async () => {
+test('source index supplies safe, unique selectors and thumbnail destinations without reading widgets', async () => {
   const root = await mkdtemp(join(tmpdir(), 'chaldea-library-'));
 
   try {
@@ -22,26 +22,18 @@ test('packaged source index supplies selectors and thumbnail destinations withou
     expect(() => findWidget(sources, 'missing')).toThrow();
     await writeFile(join(root, 'source-index.json'), JSON.stringify({ ...index, sourceRoot: 'library', widgets: [{ ...entry, path: '' }] }));
     expect(await widgetSources(root, root)).toEqual([{ ...entry, path: '', dir: join(root, 'library') }]);
-  } finally { await rm(root, { recursive: true, force: true }); }
-});
 
-test('source index rejects invalid mappings and duplicate identities or paths', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'chaldea-library-'));
-
-  const invalid = [
-    { ...index, formatVersion: 2 },
-    { ...index, sourceRoot: '../widgets' },
-    { ...index, widgets: [{ ...entry, id: 'Bad ID' }] },
-    { ...index, widgets: [{ ...entry, path: '/tmp/widget' }] },
-    { ...index, widgets: [{ ...entry, path: 'notes/../private' }] },
-    { ...index, widgets: [{ ...entry, thumbnailSource: '../../shared.webp' }] },
-    { ...index, widgets: [{ id: entry.id, path: entry.path }] },
-    { ...index, widgets: [entry, { ...entry, path: 'other/path' }] },
-    { ...index, widgets: [entry, { ...entry, id: 'other-id' }] },
-  ];
-
-  try {
-    for (const value of invalid) {
+    for (const value of [
+      { ...index, formatVersion: 2 },
+      { ...index, sourceRoot: '../widgets' },
+      { ...index, widgets: [{ ...entry, id: 'Bad ID' }] },
+      { ...index, widgets: [{ ...entry, path: '/tmp/widget' }] },
+      { ...index, widgets: [{ ...entry, path: 'notes/../private' }] },
+      { ...index, widgets: [{ ...entry, thumbnailSource: '../../shared.webp' }] },
+      { ...index, widgets: [{ id: entry.id, path: entry.path }] },
+      { ...index, widgets: [entry, { ...entry, path: 'other/path' }] },
+      { ...index, widgets: [entry, { ...entry, id: 'other-id' }] },
+    ]) {
       await writeFile(join(root, 'source-index.json'), JSON.stringify(value));
       await expect(widgetSources(root, root)).rejects.toThrow('Run make content');
     }

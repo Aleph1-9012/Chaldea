@@ -20,7 +20,7 @@ export function assertSettings<T>(value: T): asserts value is T & Settings {
   if (!checkSettings(value)) throw new Error('Settings values must be strings, finite numbers, or booleans.');
 }
 
-export function validateValue(setting: Setting, value: Settings[string] | undefined): Settings[string] {
+function validateValue(setting: Setting, value: Settings[string] | undefined): Settings[string] {
   const fail = (message: string): never => { throw new FieldError(setting.key, `${setting.label}: ${message}`); };
 
   switch (setting.type) {
