@@ -310,7 +310,7 @@
         action: act,
         pause: setPaused,
         hosted(active) {
-            root.querySelectorAll('.eight-controls, .eight-footer').forEach(element => {
+            root.querySelectorAll('.eight-brand, .eight-controls, .eight-footer').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', title + '. ' + hint + (active ? ' Controls are beside the artwork.' : ' Controls are below.'));

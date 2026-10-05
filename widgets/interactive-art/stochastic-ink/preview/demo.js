@@ -316,7 +316,7 @@
             setPaused(value, value ? 'Animation paused. Controls still redraw the ink.' : 'Animation playing.');
         },
         hosted(active) {
-            root.querySelectorAll('.ink-controls, .ink-actions, .ink-footer').forEach(element => {
+            root.querySelectorAll('.ink-head, .ink-sub, .ink-controls, .ink-actions, .ink-footer').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', active ? standaloneLabel.replace('Controls are below.', 'Controls are beside the artwork.') : standaloneLabel);

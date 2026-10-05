@@ -35,7 +35,7 @@ interface HostMessage {
 
 type RuntimeOutput = { channel: string; token: string } & (
   | { type: 'ready' | 'error' | 'controls-unavailable' }
-  | { type: 'resize'; height: number }
+  | { type: 'resize'; height: number; width?: number }
   | { type: 'rendered'; sequence: number }
   | { type: 'controls'; state: InteractionState; revision: number; ack: number }
   | { type: 'focus'; key: string; sequence: number }
@@ -68,6 +68,7 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
   const hosted: boolean[] = [];
   const current = state();
   const parent = { postMessage(message: RuntimeOutput) { messages.push(message); } };
+  const body = { dataset: { previewWidth: '' }, getBoundingClientRect: () => ({ height: 321.2 }) };
   let escaped = 0;
 
   const window: RuntimeWindow = {
@@ -82,7 +83,7 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
 
   new Script(await generatePreviewRuntime()).runInNewContext({
     window,
-    document: { body: { getBoundingClientRect: () => ({ height: 321.2 }) } },
+    document: { body },
     ResizeObserver: class { observe() {} disconnect() {} },
   });
 
@@ -101,7 +102,7 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
   const disconnect = api.connect(settings => rendered.push(settings), withControls ? interactions : undefined);
 
   return {
-    current, messages, rendered, actions, hosted, disconnect,
+    current, messages, rendered, actions, hosted, disconnect, body,
     get escaped() { return escaped; },
     changed: () => api.controlsChanged(),
     send(data: HostMessage, source = parent) {
@@ -199,8 +200,10 @@ test('runtime authenticates the parent and token, waits for mount acknowledgemen
   expect(runtime.messages).toContainEqual({ ...envelope, type: 'resize', height: 322 });
   runtime.send(command(Number.MAX_SAFE_INTEGER + 1, 'button', 'capture'));
   runtime.send(command(40, 'button', 'capture'));
+  runtime.body.dataset.previewWidth = '468';
   runtime.send({ ...settings, sequence: 2 });
   expect(runtime.rendered).toHaveLength(2);
+  expect(runtime.messages).toContainEqual({ ...envelope, type: 'resize', height: 322, width: 468 });
   expect(runtime.latest().ack).toBe(40);
   runtime.disconnect();
   runtime.send({ ...settings, sequence: 3 });

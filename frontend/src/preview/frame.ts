@@ -6,7 +6,7 @@ import type { InteractionState, InteractionValue, InteractionView } from './inte
 
 type PreviewMessage = { channel: 'chaldea:preview'; token: string } & (
   | { type: 'ready' | 'error' }
-  | { type: 'resize'; height: number }
+  | { type: 'resize'; height: number; width?: number }
   | { type: 'rendered'; sequence: number }
   | { type: 'controls'; state: InteractionState; revision: number; ack: number }
   | { type: 'focus'; key: string; sequence: number }
@@ -20,7 +20,7 @@ const checkMessage = new Ajv().addSchema(controlsSchema).compile<PreviewMessage>
   required: ['channel', 'token'],
   oneOf: [
     { properties: { type: { enum: ['ready', 'error', 'controls-unavailable'] } }, required: ['type'] },
-    { properties: { type: { const: 'resize' }, height: { type: 'number' } }, required: ['type', 'height'] },
+    { properties: { type: { const: 'resize' }, height: { type: 'number' }, width: { type: 'number' } }, required: ['type', 'height'] },
     { properties: { type: { const: 'rendered' }, sequence: { type: 'integer', minimum: 0, maximum: Number.MAX_SAFE_INTEGER } }, required: ['type', 'sequence'] },
     { properties: { type: { const: 'controls' }, state: { $ref: 'chaldea-preview-controls-v1' }, revision: { type: 'integer', minimum: 1, maximum: Number.MAX_SAFE_INTEGER }, ack: { type: 'integer', minimum: 0, maximum: Number.MAX_SAFE_INTEGER } }, required: ['type', 'state', 'revision', 'ack'] },
     { properties: { type: { const: 'focus' }, key: { type: 'string', pattern: '^[A-Za-z0-9:_-]{1,80}$' }, sequence: { type: 'integer', minimum: 1, maximum: Number.MAX_SAFE_INTEGER } }, required: ['type', 'key', 'sequence'] },
@@ -61,6 +61,7 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
       ? 'Preview unavailable. Valid QML can still be customized and exported.'
       : 'Preview unavailable. Reload the widget to try again.';
     host.style.removeProperty('min-height');
+    host.style.removeProperty('width');
     host.replaceChildren(fallback, message);
     interactions?.unavailable('Preview unavailable. Reload to restore its controls.');
     disposed = true; window.removeEventListener('message', receive);
@@ -83,6 +84,8 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
 
     if (data.type === 'resize') {
       host.style.minHeight = `${Math.max(300, Math.min(4096, data.height))}px`;
+
+      if (data.width !== undefined) host.style.width = `${Math.max(240, Math.min(2048, data.width))}px`;
     }
 
     if (data.type === 'ready' && !ready) { ready = true; send(); }

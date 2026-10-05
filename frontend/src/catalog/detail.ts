@@ -17,6 +17,7 @@ interface DetailView {
 export function detailView(widget: LoadedWidget, back: () => void): DetailView {
   const d = widget.bundle.definition;
   const native = d.exports.some(f => f.kind === 'template');
+  const notes = d.category === 'Quick notes';
 
   const copy = el('div');
   copy.append(el('p', 'eyebrow', `${d.category.toUpperCase()} / ${d.license}`), el('h1', '', d.title), el('p', '', d.summary));
@@ -29,7 +30,7 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
   stage.setAttribute('aria-label', 'Widget preview');
   stage.append(previewHost);
 
-  if (d.category !== 'Glyphs' && d.category !== 'Interactive art') {
+  if (!notes && d.category !== 'Glyphs' && d.category !== 'Interactive art') {
     const stageHeader = el('div', 'stage-header');
     stageHeader.append(el('span', '', 'LIVE PREVIEW'), el('span', '', 'HTML demonstration'));
 
@@ -99,7 +100,7 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
 
   customizer.append(el('p', 'customizer-note', 'Your settings stay in memory. Reloading restores the defaults.'));
 
-  const workbench = el('div', 'workbench');
+  const workbench = el('div', notes ? 'workbench notes-workbench' : 'workbench');
   workbench.append(stage);
 
   if (d.settings.length || interactive) workbench.append(customizer);

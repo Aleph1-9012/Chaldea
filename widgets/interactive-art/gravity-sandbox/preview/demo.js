@@ -234,7 +234,7 @@
         },
         hosted(active) {
             hostedControls = active;
-            root.querySelectorAll('.ts-controls, [data-action="motion"], .ts-status').forEach(element => {
+            root.querySelectorAll('.ts-mast, .ts-controls, [data-action="motion"], .ts-status, .ts-foot').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', active ? engine.meta.title + '. ' + engine.meta.hint + ' Controls are beside the artwork.' : standaloneLabel);

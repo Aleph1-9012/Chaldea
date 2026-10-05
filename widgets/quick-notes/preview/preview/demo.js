@@ -15,7 +15,11 @@
   let open=true;
   let updateTimer;
   const design={width:414,rule:true};
-  function renderDesign() { root.style.setProperty('--ts-drawer-width',`${design.width}px`); root.dataset.rule=String(design.rule); }
+  function renderDesign() {
+    root.style.setProperty('--ts-drawer-width',`${design.width}px`);
+    document.body.dataset.previewWidth=String(design.width+48);
+    root.dataset.rule=String(design.rule);
+  }
   function renderList() {
     list.replaceChildren();
     notes.forEach((note,index) => {

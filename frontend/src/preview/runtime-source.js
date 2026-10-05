@@ -68,6 +68,7 @@
       let token = null;
       let sequence = -1;
       let lastHeight = 0;
+      let lastWidth = 0;
       let externalControls = false;
       let hosted = false;
       let revision = 0;
@@ -83,11 +84,14 @@
         if (!token) return;
 
         const height = Math.ceil(document.body.getBoundingClientRect().height);
+        const preferredWidth = Number(document.body.dataset.previewWidth);
+        const width = Number.isFinite(preferredWidth) && preferredWidth > 0 ? Math.ceil(preferredWidth) : 0;
 
-        if (height === lastHeight) return;
+        if (height === lastHeight && width === lastWidth) return;
 
         lastHeight = height;
-        post({ type: 'resize', height });
+        lastWidth = width;
+        post(width ? { type: 'resize', height, width } : { type: 'resize', height });
       };
 
       const publish = () => {
