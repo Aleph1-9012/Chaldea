@@ -4,10 +4,10 @@ The original Phase field, formation terminals, red folio, and centered K glyph a
 
 ## Run
 
-Download and extract the complete ZIP. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
 The launcher opens a regular resizable window. It uses Qt Quick, Qt Quick Controls Basic, and Qt Quick Layouts, and leaves desktop configuration alone. Keep every exported file together.
@@ -40,4 +40,4 @@ Native verification uses exact generated files in an isolated Quickshell configu
 
 ## Source and license
 
-Adapted from the owner's `Lib-assests/lockscreen/tsugumori-phase-formation-lock.html`. Remote font imports were removed, the example username was replaced, and scripts were made local. Original widget, native implementation, and preview code use 0BSD. The download includes `LICENSE`. No rights to third-party names or characters are asserted.
+Adapted from the owner's `Lib-assests/lockscreen/tsugumori-phase-formation-lock.html`. Remote font imports were removed, the example username was replaced, and scripts were made local. Original widget, native implementation, and preview code use 0BSD. The output file list includes `LICENSE`. No rights to third-party names or characters are asserted.

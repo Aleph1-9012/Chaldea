@@ -24,6 +24,6 @@ These exports are visual components with local demo state. They do not authentic
 
 ## Files and inspection
 
-The native helpers are kept in each widget folder; no category-wide QML helpers were introduced. Each ZIP contains its own files, launcher, instructions, and 0BSD license. The browser previews keep their existing shared adapter where declared. Fonts use installed system families and fallback; no font files are bundled.
+The native helpers are kept in each widget folder; no category-wide QML helpers were introduced. Each output file list includes its native files, launcher, instructions, and 0BSD license. Save all listed files together, preserving their paths. The browser previews keep their existing shared adapter where declared. Fonts use installed system families and fallback; no font files are bundled.
 
 Use the documented Bun export command and load the exact exported `shell.qml` in an isolated Quickshell configuration. Inspect typing and deletion, keyboard navigation, animation reversal, power preview dismissal where present, and desktop and narrow layouts. The generic library checker discovers all settings and export mappings automatically. Native inspection verifies the visual components and local interactions, not authentication or compositor integration.

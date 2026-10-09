@@ -4,13 +4,13 @@ The refined drawer has editable notes, a note index, New note, Escape/collapse/r
 
 ## Run
 
-Download the ZIP and extract all files into their own folder. Keep `Widget.qml` beside its helper QML files. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. Keep `Widget.qml` beside its helper QML files. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
-The example opens a regular, resizable window. The component itself uses Qt Quick, Qt Quick Controls Basic, and QtQml Models. It does not require desktop services. For an existing QML layout, import the extracted folder under an alias and instantiate its `Widget`:
+The example opens a regular, resizable window. The component itself uses Qt Quick, Qt Quick Controls Basic, and QtQml Models. It does not require desktop services. For an existing QML layout, import the widget folder under an alias and instantiate its `Widget`:
 
 ```qml
 import "./quick-notes" as Notes
@@ -38,7 +38,7 @@ Source SHA-256: `048d8c6954fb62e64d132844c8e34cdd96775fb419513f32c5d9d0c475b309a
 
 Use Palette to choose Original, Cobalt, Forest, Paper, or Custom. Custom uses the three color pickers for background, text, and accent. Muted text, dividers, grids, and selection colors follow the chosen palette. Custom color values remain available when you switch presets.
 
-The original square corners and frame widths are fixed. Reset restores the design's original appearance without deleting session notes. Appearance settings are included in copied QML and ZIP downloads.
+The original square corners and frame widths are fixed. Reset restores the design's original appearance without deleting session notes. Appearance settings are included in copied QML and individual file downloads.
 
 ## Reading and writing
 
@@ -49,4 +49,4 @@ The original square corners and frame widths are fixed. Reset restores the desig
 - Text count shows Words, Characters, or Off above the current note. It counts only the body. Words are separated by whitespace; character counts include spaces and line breaks and count Unicode code points, not bytes.
 - Show note numbers toggles prefixes in the note list. The current-note position stays visible above the editor.
 
-Changing these controls preserves note text, selection, deletion history, and editor focus. All options are included in copied QML and ZIP downloads.
+Changing these controls preserves note text, selection, deletion history, and editor focus. All options are included in copied QML and individual file downloads.

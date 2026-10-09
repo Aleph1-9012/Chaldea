@@ -45,7 +45,7 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
   error.setAttribute('role', 'alert');
   error.hidden = true;
 
-  const panel = codePanel(d.id);
+  const panel = codePanel();
   const controlHost = el('div');
   const initial = defaults(d);
   let proposed: Settings = { ...initial };
@@ -94,13 +94,23 @@ export function detailView(widget: LoadedWidget, back: () => void): DetailView {
 
   const customizer = el('section', 'customizer');
   customizer.setAttribute('aria-label', 'Customize widget');
-  customizer.append(customizerHeader, controlHost, error);
+  const customizerNote = el('p', 'customizer-note', 'Your settings stay in memory. Reloading restores the defaults.');
 
-  if (interactive) customizer.append(interactive.root);
+  if (interactive) {
+    const toolbar = el('div', 'customizer-toolbar');
+    toolbar.append(customizerHeader, interactive.pause);
 
-  customizer.append(el('p', 'customizer-note', 'Your settings stay in memory. Reloading restores the defaults.'));
+    const body = el('div', 'customizer-body');
+    body.append(interactive.root, controlHost, error, customizerNote);
+    customizer.append(toolbar, body);
+  } else {
+    customizer.append(customizerHeader, controlHost, error, customizerNote);
+  }
 
   const workbench = el('div', notes ? 'workbench notes-workbench' : 'workbench');
+
+  if (interactive) workbench.classList.add('art-workbench');
+
   workbench.append(stage);
 
   if (d.settings.length || interactive) workbench.append(customizer);

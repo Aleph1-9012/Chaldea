@@ -4,10 +4,10 @@ Matrix renders the current cover as a 32 × 32 glyph field beside the track meta
 
 ## Run
 
-Download and extract the complete ZIP. Keep `Widget.qml` beside its helper QML files. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. Keep `Widget.qml` beside its helper QML files. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
 The example opens a regular, resizable window. It uses Qt Quick, Qt Quick Controls Basic, Qt Quick Layouts, and Quickshell.Services.Mpris. It does not change desktop configuration. To embed it in an existing Quickshell layout:
@@ -42,4 +42,4 @@ This is one design from the owner-supplied `Lib-assests/player/tsugumori-player-
 
 Source SHA-256: `92f5f7aaf835c78f3f0ec115402620c5f6d279a5f8f48b82d618f8b0b9aff7be`.
 
-Original widget, native implementation, and preview code use 0BSD. The download includes `LICENSE`.
+Original widget, native implementation, and preview code use 0BSD. The output file list includes `LICENSE`.

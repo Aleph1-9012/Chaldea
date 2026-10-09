@@ -4,9 +4,9 @@ A native QML port of the selected Tsugumori lockscreen layout. The browser previ
 
 ## Run
 
-Extract the complete download into its own directory, then run `qs -p /absolute/path/to/shell.qml` with Quickshell 0.3.0 and Qt 6.11.2. The launcher opens an ordinary window and scrolls when its contents exceed the window height. Install JetBrains Mono, EB Garamond, and Noto Sans CJK JP for the intended typography; Qt falls back to available fonts otherwise.
+Save each listed output file into a widget directory, preserving file names and subfolders, then run `qs -p /absolute/path/to/shell.qml` with Quickshell 0.3.0 and Qt 6.11.2. The launcher opens an ordinary window and scrolls when its contents exceed the window height. Install JetBrains Mono, EB Garamond, and Noto Sans CJK JP for the intended typography; Qt falls back to available fonts otherwise.
 
-The download includes `Widget.qml`, its local QML helpers, the original glyph drawing rules, this README, and the 0BSD license. Keep these files together. To embed it, place `Widget` in an existing QML view and give it a width and at least its `implicitHeight`.
+The output file list includes `Widget.qml`, its local QML helpers, the original glyph drawing rules, this README, and the 0BSD license. Keep these files together. To embed it, place `Widget` in an existing QML view and give it a width and at least its `implicitHeight`.
 
 ## Try it
 

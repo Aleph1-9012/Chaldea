@@ -4,13 +4,13 @@ The side index selects notes while the editor stays open. New note focuses the t
 
 ## Run
 
-Download the ZIP and extract all files into their own folder. Keep `Widget.qml` beside its helper QML files. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. Keep `Widget.qml` beside its helper QML files. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
-The example opens a regular, resizable window. The component itself uses Qt Quick, Qt Quick Controls Basic, and QtQml Models. It does not require desktop services. For an existing QML layout, import the extracted folder under an alias and instantiate its `Widget`:
+The example opens a regular, resizable window. The component itself uses Qt Quick, Qt Quick Controls Basic, and QtQml Models. It does not require desktop services. For an existing QML layout, import the widget folder under an alias and instantiate its `Widget`:
 
 ```qml
 import "./quick-notes" as Notes
@@ -38,7 +38,7 @@ Source SHA-256: `a0c77f0101eb486c73a4f0617575d9e6b57b8d3f25cecef8dfd54fb1a6bba71
 
 Use Palette to choose Original, Cobalt, Forest, Paper, or Custom. Cassette retains its Bone and Red presets in place of Original. Custom uses the three color pickers for background, text, and accent. Muted text, dividers, grids, and selection colors follow the chosen palette. Custom color values remain available when you switch presets.
 
-The original square corners and frame widths are fixed. Reset restores the design's original appearance without deleting session notes. Appearance settings are included in copied QML and ZIP downloads.
+The original square corners and frame widths are fixed. Reset restores the design's original appearance without deleting session notes. Appearance settings are included in copied QML and individual file downloads.
 
 ## Reading and writing
 
@@ -46,6 +46,6 @@ Writing area height sets the body from 100 to 280 px. Long text scrolls inside i
 
 Note list spacing offers Compact, Comfortable, and Spacious. Visible note rows sets the scrolling list height from two to eight rows, with four by default. The active note stays in view when the list changes. Show note numbers toggles the list prefixes.
 
-New note position places future notes at Top or Bottom without reordering existing notes. Reset restores this design's defaults while keeping note text and selection. These controls are included in copied QML and ZIP downloads.
+New note position places future notes at Top or Bottom without reordering existing notes. Reset restores this design's defaults while keeping note text and selection. These controls are included in copied QML and individual file downloads.
 
 Index retains its Note row height control. Note list spacing adjusts that height by 8 px in either direction.

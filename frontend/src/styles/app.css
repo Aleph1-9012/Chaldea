@@ -86,11 +86,16 @@ main:focus{outline:0}
 .preview-host>img{width:100%;height:260px;object-fit:contain}
 .preview-error{color:#e2d7b6;font-size:12px;padding:12px 24px}
 .customizer{padding:22px 22px 15px;border-left:1px solid #d6d9ce}
-/* Keep the notes preview at its content height while settings scroll beside it. */
+/* Let the preview determine height while longer settings panels scroll beside it. */
+.workbench.art-workbench{min-height:0}
 .workbench.notes-workbench{min-height:0;width:max-content;max-width:100%;grid-template-columns:minmax(0,max-content) 266px}
 .notes-workbench .preview-host{width:480px;max-width:100%}
-.notes-workbench .preview-host iframe{min-height:0}
+.notes-workbench .preview-host iframe,.art-workbench .preview-host iframe{min-height:0}
 .notes-workbench .customizer{contain:size;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.art-workbench .customizer{contain:size;min-height:0;display:flex;flex-direction:column;padding:0}
+.customizer-toolbar{flex:none;padding:22px 22px 16px;border-bottom:1px solid #e1e3d9}
+.customizer-toolbar .customizer-heading{margin-bottom:16px}
+.customizer-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:20px 22px 15px}
 .customizer-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
 .customizer-heading h2{font-size:14px}
 .reset-button{background:none;border:0;font:9px var(--mono);text-decoration:underline;color:#92998a;padding:4px 0}
@@ -106,7 +111,7 @@ main:focus{outline:0}
 .field-row input[type=checkbox]:checked:before{left:16px}
 .number-input{flex:none;width:56px;background:#f5f6ef;border:1px solid #d9ddcf;padding:7px 4px 7px 8px;border-radius:3px;font:11px var(--mono);color:#536047}
 .field-error,.generation-error{color:#ac382d;font-size:10px;line-height:1.6;margin-top:6px}
-.interaction-controls{min-width:0;margin:22px 0 0;padding:20px 0 0;border:0;border-top:1px solid #e1e3d9}
+.interaction-controls{min-width:0;margin:0 0 22px;padding:0 0 20px;border:0;border-bottom:1px solid #e1e3d9}
 .interaction-field{min-width:0}
 .interaction-field .field-row>input[type=text],.interaction-field .field-row>select{min-width:0}
 .interaction-action,.interaction-archive,.interaction-pause{width:100%;white-space:normal;overflow-wrap:anywhere;text-align:left;line-height:1.5}
@@ -114,11 +119,11 @@ main:focus{outline:0}
 .interaction-value{flex:none;max-width:45%;font:10px/1.5 var(--mono);color:#536047;text-align:right;overflow-wrap:anywhere}
 .interaction-quality{display:block;width:100%;height:6px;margin-top:8px;accent-color:#6c8052}
 .interaction-archives{display:grid;gap:8px;margin-top:18px}
-.interaction-pause{margin-top:18px}
+.interaction-pause{margin:0}
 .interaction-status{font-size:10px;line-height:1.7;color:#68705f;margin-top:12px;overflow-wrap:anywhere}
 .interaction-status:empty{display:none}
 .interaction-error{color:#ac382d}
-.interaction-controls :disabled{cursor:default;opacity:.55}
+.interaction-controls :disabled,.interaction-pause:disabled{cursor:default;opacity:.55}
 .customizer-note{font-size:9px;line-height:1.7;color:#959b8e;border-top:1px solid #e1e3d9;padding-top:15px;margin-top:25px}
 .output-heading{display:flex;align-items:center;justify-content:space-between;margin:29px 0 13px}
 .output-heading h2{font-size:15px}
@@ -132,6 +137,7 @@ main:focus{outline:0}
 .button.primary:hover{background:#51623f}
 .button.small{font-size:10px;padding:7px 11px}
 .code-panel pre{font:11px/1.85 var(--mono);margin:0;padding:22px 24px;background:#212722;color:#c6d0ba;max-height:310px;overflow:auto;tab-size:4}
+.code-hint{padding:12px 14px;border-top:1px solid #d8dbd0;color:#68705f;font-size:10px;line-height:1.7}
 .usage{margin-top:22px;border-bottom:1px solid var(--rule);padding-bottom:17px}
 .usage summary{cursor:pointer;font-size:12px;color:#67735a}
 .usage-text{font:11px/1.9 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:#6f7867;max-width:850px}
@@ -150,6 +156,8 @@ main:focus{outline:0}
 .workbench{grid-template-columns:minmax(0,1fr) 225px}
 .workbench.notes-workbench{grid-template-columns:minmax(0,max-content) 225px}
 .customizer{padding:20px 16px}
+.customizer-toolbar{padding:20px 16px 16px}
+.customizer-body{padding:20px 16px 15px}
 main{padding:35px 27px}
 .topbar{padding:0 24px}
 .collection-stamp{width:105px}
@@ -191,7 +199,9 @@ main{padding:28px 18px}
 .workbench{grid-template-columns:1fr}
 .workbench.notes-workbench{grid-template-columns:minmax(0,1fr)}
 .customizer{border-left:0;border-top:1px solid #d6d9ce;padding:20px}
-.notes-workbench .customizer{contain:none;overflow-y:visible;overscroll-behavior:auto}
+.notes-workbench .customizer,.art-workbench .customizer{contain:none;overflow-y:visible;overscroll-behavior:auto}
+.customizer-toolbar,.customizer-body{padding:20px}
+.customizer-body{overflow-y:visible;overscroll-behavior:auto}
 .controls{grid-template-columns:1fr 1fr;gap:20px}
 .field-row{gap:6px}
 .field-row .number-input{width:56px}

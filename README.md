@@ -20,9 +20,9 @@ Lockscreen and Glyph previews do not authenticate or lock the desktop session. T
 
 1. Browse the collection and try a widget in its preview.
 2. Adjust its available settings to fit your setup.
-3. Copy the QML or download the complete widget ZIP.
+3. Choose an output file, then copy its text or download that file.
 
-Each ZIP includes the generated QML, supporting files, a `shell.qml` preview launcher, usage instructions, and the applicable license. Keep the files together and follow the included README to try the widget or integrate it into your Quickshell configuration.
+Save every file in the output selector: the generated QML, supporting files, the `shell.qml` preview launcher, `README.md`, and the applicable license. Preserve the listed file names and subfolders, including any images or audio. Follow the widget's README to try it or integrate it into your Quickshell configuration.
 
 Browsing, customization, copying, and downloading require no account. Settings and preview state stay in memory and reset when the preview is left or the page reloads. The application has no telemetry or saved visitor state.
 
@@ -57,7 +57,7 @@ Run these from the repository root:
 
 `make check` already builds the production site. CI runs the same check and saves `dist/` as the `chaldea-site` artifact; it does not deploy it. No browser is installed or launched by the checks.
 
-The library checker discovers new widgets automatically and validates preview script syntax and declared assets, settings, QML generation, ZIP contents, and the production catalog. Inspect changed layouts and interactions in `make dev`; inspect changed native exports in an isolated Quickshell configuration.
+The library checker discovers new widgets automatically and validates preview script syntax and declared assets, settings, generated files and asset bytes, and the production catalog. Inspect changed layouts and interactions in `make dev`; inspect changed native exports in an isolated Quickshell configuration.
 
 ## Project structure
 

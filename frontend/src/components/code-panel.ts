@@ -1,7 +1,7 @@
-import { zipSync } from 'fflate';
 import type { Snapshot } from '../generator';
 import { el, button, errorText } from './dom';
-export function codePanel(id: string) {
+
+export function codePanel() {
   const root = el('section', 'code-panel'); root.setAttribute('aria-label', 'Generated files');
   const bar = el('div', 'code-bar');
   const select = el('select', 'file-select'); select.setAttribute('aria-label', 'Output file');
@@ -13,25 +13,42 @@ export function codePanel(id: string) {
   const current = () => snapshot?.files.find(f => f.path === select.value);
   const copy = button('Copy file', () => { void (async () => {
     const file = current(); const atClick = version;
-    if (!file?.text) return;
+
+    if (file?.text === undefined) return;
+
     try { await navigator.clipboard.writeText(file.text); if (version === atClick) status.textContent = `Copied ${file.path}`; }
     catch { if (version === atClick) { const range = document.createRange(); range.selectNodeContents(code); getSelection()?.removeAllRanges(); getSelection()?.addRange(range); status.textContent = 'Clipboard unavailable. Selected code can be copied manually.'; } }
   })(); }, 'button small');
-  const download = button('Download ZIP ↓', () => {
-    if (!snapshot) return;
+  const download = button('Download file ↓', () => {
+    const file = current();
+
+    if (!file) return;
+
     try {
-      const bytes = zipSync(Object.fromEntries(snapshot.files.map(f => [f.path, f.bytes])));
-      const url = URL.createObjectURL(new Blob([new Uint8Array(bytes).buffer], { type: 'application/zip' }));
-      const link = el('a'); link.href = url; link.download = `${id}.zip`; link.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000); status.textContent = 'Downloaded all matching files.';
+      const type = file.text === undefined ? 'application/octet-stream' : 'text/plain;charset=utf-8';
+      const url = URL.createObjectURL(new Blob([new Uint8Array(file.bytes).buffer], { type }));
+      const link = el('a');
+      link.href = url;
+      link.download = file.path.slice(file.path.lastIndexOf('/') + 1);
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      status.textContent = file.path.includes('/') ? `Download started. Save it as ${file.path}.` : `Download started for ${file.path}.`;
     } catch (error) { status.textContent = errorText(error); }
   }, 'button primary small');
   const render = () => {
-    const file = current(); code.textContent = file?.text ?? (file ? `Binary asset · ${file.bytes.byteLength} bytes\nIncluded in the ZIP download.` : 'Code is unavailable until all settings are valid.');
-    copy.disabled = !file?.text; download.disabled = !snapshot;
+    const file = current(); code.textContent = file?.text ?? (file ? `Binary asset · ${file.bytes.byteLength} bytes\nUse Download file to save ${file.path}.` : 'Code is unavailable until all settings are valid.');
+    copy.disabled = file?.text === undefined; download.disabled = !file;
   };
-  select.addEventListener('change', render);
-  bar.append(select, status, copy, download); root.append(bar, pre);
+
+  select.addEventListener('change', () => {
+    version++;
+    status.textContent = '';
+    render();
+  });
+
+  const hint = el('p', 'code-hint', 'Save every listed file, including README.md and LICENSE. Keep the names and folder paths shown in the selector.');
+  bar.append(select, status, copy, download); root.append(bar, pre, hint);
+
   return { root, update(next: Snapshot | null) {
     snapshot = next; version++; status.textContent = '';
     const selected = select.value; select.replaceChildren();

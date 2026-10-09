@@ -2,7 +2,6 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { Script } from 'node:vm';
 import assert from 'node:assert/strict';
-import { zipSync, unzipSync } from 'fflate';
 import type { Bundle, Definition } from '../src/catalog/contracts';
 import { defaults } from '../src/customizer/settings';
 import { generate } from '../src/generator';
@@ -69,11 +68,11 @@ export function inspectExports(definition: Definition, templates: Record<string,
   if (!definition.exports.some(file => file.kind === 'template')) return 0;
 
   const snapshot = generate(definition, templates, settings, assets);
-  const files = Object.fromEntries(snapshot.files.map(file => [file.path, file.bytes]));
-  const unzipped = unzipSync(zipSync(files, { level: 0 }));
-  assert.deepEqual(Object.keys(unzipped).sort(), definition.exports.map(file => file.path).sort());
+  assert.deepEqual(snapshot.files.map(file => file.path).sort(), definition.exports.map(file => file.path).sort());
 
-  for (const [path, bytes] of Object.entries(files)) assert.deepEqual(unzipped[path], bytes, path);
+  for (const file of snapshot.files) {
+    if (file.path in assets) assert.deepEqual(file.bytes, assets[file.path], file.path);
+  }
 
   return 1;
 }
@@ -132,7 +131,7 @@ async function checkLibrary() {
     await readFile(join(dir, bundle.definition.preview));
   }
 
-  console.log(`Library passed: ${bundles.size} widgets, ${scripts} preview scripts, ${exports} QML/ZIP samples, ${published.length} production entries.`);
+  console.log(`Library passed: ${bundles.size} widgets, ${scripts} preview scripts, ${exports} native export samples, ${published.length} production entries.`);
 }
 
 if (import.meta.main) await checkLibrary();

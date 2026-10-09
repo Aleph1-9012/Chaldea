@@ -347,14 +347,16 @@
       "source": "interactive-art/tsugumori-play-lab.html",
       "disposition": "existing",
       "widgets": [
-        "interactive-art-session-fossils",
         "interactive-art-gravity-sandbox",
         "interactive-art-signal-hunting",
         "interactive-art-resonance-sculpture",
         "interactive-art-orbital-playground",
         "interactive-art-specimen-chamber"
       ],
-      "sha256": "7602b97ddbef589470b84531394c4302b5b684a4c96737fad5a933f110520529"
+      "sha256": "7602b97ddbef589470b84531394c4302b5b684a4c96737fad5a933f110520529",
+      "excluded": [
+        "Session fossils"
+      ]
     },
     {
       "source": "lockscreen/animations/d-series-backup/tsugumori-d3-relay-expansion.html",

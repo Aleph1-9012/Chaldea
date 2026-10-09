@@ -6,10 +6,10 @@ This is an interactive visual study. It does not authenticate users, create a se
 
 ## Run
 
-Download and extract the complete ZIP. Keep `Widget.qml`, its QML helpers, and `GlyphArt.js` together. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. Keep `Widget.qml`, its QML helpers, and `GlyphArt.js` together. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
 The launcher opens a regular, resizable window. It uses Qt Quick, Qt Quick Controls Basic, and Qt Quick Layouts. It does not change desktop configuration or connect to authentication services. To embed the component in a QML layout:
@@ -32,7 +32,7 @@ Enter and Unlock replay the curtain when the input is nonempty. Empty submission
 
 Input transition sets the base travel time from 80 to 350 ms. Larger edits extend the transition up to 700 ms. Red emphasis adjusts the red tint from 65 to 100 percent. Input animation turns movement and the curtain transition on or off.
 
-Appearance and timing changes preserve the input length. The browser also honors reduced-motion preferences. In native QML, use the animation setting to disable transitions. Hidden native components stop their pending movement and replay timers. Copied QML and ZIP downloads include the same settings snapshot.
+Appearance and timing changes preserve the input length. The browser also honors reduced-motion preferences. In native QML, use the animation setting to disable transitions. Hidden native components stop their pending movement and replay timers. Copied QML and individual file downloads include the same settings snapshot.
 
 ## Host integration
 
@@ -52,4 +52,4 @@ The owner-supplied design is from `Lib-assests/lockscreen/tsugumori-mechanical-l
 
 Source SHA-256: `83854d6f74c43e8f9a36c268a69a746b519765cf77468a2af0c54171225efc8d`.
 
-Original drawing rules, preview code, and native implementation use 0BSD. The download includes `LICENSE`.
+Original drawing rules, preview code, and native implementation use 0BSD. The output file list includes `LICENSE`.

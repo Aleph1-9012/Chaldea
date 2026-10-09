@@ -10,7 +10,7 @@ Discovery descends through category and study folders and stops at each `widget.
 
 ## Shared files
 
-A category or study folder can hold a `_shared/` folder for files that several of its widgets use unchanged. Each declared `source` is looked up in the widget folder first, then in the `_shared/` folder of each parent group, nearest first, ending at `widgets/_shared/`. The mapping is written the same way in both cases. `qml/PlayerBase.qml` resolves to `widgets/player/_shared/qml/PlayerBase.qml` when the widget has no `qml/PlayerBase.qml` of its own. Every download still contains its own copy of each file. A resolved path must stay inside the folder that supplied it.
+A category or study folder can hold a `_shared/` folder for files that several of its widgets use unchanged. Each declared `source` is looked up in the widget folder first, then in the `_shared/` folder of each parent group, nearest first, ending at `widgets/_shared/`. The mapping is written the same way in both cases. `qml/PlayerBase.qml` resolves to `widgets/player/_shared/qml/PlayerBase.qml` when the widget has no `qml/PlayerBase.qml` of its own. Each widget's output file list includes its own copy of every required file. A resolved path must stay inside the folder that supplied it.
 
 `widgets/_shared/` holds the 0BSD `LICENSE` and the archive adapter `preview/support.js`. Each native family keeps its common QML helpers and launcher in its category's `_shared/qml/`; see that category's `README.md`. Keep `widget.json`, the preview entry, the thumbnail, and the README in the widget folder.
 
@@ -65,7 +65,7 @@ The callback must apply settings synchronously. The runtime acknowledges success
 
 An HTML-only widget uses `status: "draft"` and `exports: []`. It still needs valid metadata, declared preview/thumbnail files, and valid supplied settings. It can appear in `make dev`, with native export unavailable. `make build` excludes all drafts.
 
-Publish only after native QML, exported usage, and an exported `LICENSE` are complete. Original widget code uses 0BSD. Preserve third-party notices and list any additional assets and licenses in the download. Rust checks required file presence; it cannot establish ownership or prove native behavior.
+Publish only after native QML, exported usage, and an exported `LICENSE` are complete. Original widget code uses 0BSD. Preserve third-party notices and include any additional assets and licenses in the output file list. Rust checks required file presence; it cannot establish ownership or prove native behavior.
 
 ## Verify the change
 

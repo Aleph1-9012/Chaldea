@@ -4,10 +4,10 @@ The owner-supplied design now has an interactive browser preview and a native QM
 
 ## Run
 
-Download and extract the complete ZIP. Keep `Widget.qml`, its QML helpers, and `ArtEngine.js` together. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. Keep `Widget.qml`, its QML helpers, and `ArtEngine.js` together. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
 The launcher opens a regular, resizable window and scrolls when the controls need more room. It uses Qt Quick, Qt Quick Controls Basic, and Qt Quick Layouts. To embed the component in a QML layout:
@@ -34,7 +34,7 @@ Fish particle trails adds a short wake behind each tail. Fish detail controls th
 
 Use the controls inside the artwork. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
 
-Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and ZIP downloads contain the same settings snapshot; they do not include the current scene or collections.
+Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and individual file downloads contain the same settings snapshot; they do not include the current scene or collections.
 
 ## Host integration
 
@@ -46,4 +46,4 @@ The design is from `Lib-assests/interactive-art/tsugumori-drift-and-tsumugi.html
 
 Source SHA-256: `7948dc2f2a16ee848de4592d1d9c58dcbf8d756b7ebdfb0594e077880cb95875`.
 
-Original drawing rules, preview code, and native implementation use 0BSD. The download includes `LICENSE`.
+Original drawing rules, preview code, and native implementation use 0BSD. The output file list includes `LICENSE`.

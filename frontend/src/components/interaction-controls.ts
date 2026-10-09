@@ -22,8 +22,9 @@ export function interactionControls(send: (key: string, value?: string | number 
 
   const fields = el('div', 'controls interaction-fields');
   const archives = el('div', 'interaction-archives');
-  const pause = el('button', 'button interaction-pause', 'Pause');
+  const pause = el('button', 'button interaction-pause', 'Pause animation');
   pause.type = 'button';
+  pause.disabled = true;
 
   let currentStatus = 'Connecting preview controls…';
   let actionError: string | undefined;
@@ -31,7 +32,7 @@ export function interactionControls(send: (key: string, value?: string | number 
   status.setAttribute('role', 'status');
   status.setAttribute('aria-live', 'polite');
   status.setAttribute('aria-atomic', 'true');
-  root.append(fields, archives, pause, status);
+  root.append(fields, archives, status);
 
   const views = new Map<string, ControlView>();
   const archiveButtons = new Map<string, HTMLButtonElement>();
@@ -58,12 +59,16 @@ export function interactionControls(send: (key: string, value?: string | number 
   };
 
   pause.addEventListener('click', () => action('preview:pause', !paused));
-  root.addEventListener('keydown', event => {
+
+  const escape = (event: KeyboardEvent) => {
     if (event.key !== 'Escape' || event.isComposing || event.defaultPrevented || root.disabled || !canEscape) return;
 
     event.preventDefault();
     action('preview:escape');
-  });
+  };
+
+  root.addEventListener('keydown', escape);
+  pause.addEventListener('keydown', escape);
 
   function createView(control: InteractionControl): ControlView {
     const field = el('div', 'field interaction-field');
@@ -195,15 +200,16 @@ export function interactionControls(send: (key: string, value?: string | number 
   }
 
   return {
-    root,
+    root, pause,
     update(state: InteractionState, ack: number) {
       const active = document.activeElement;
-      const focused = active instanceof HTMLElement && root.contains(active) ? active : undefined;
+      const focused = active instanceof HTMLElement && (root.contains(active) || active === pause) ? active : undefined;
       const text = focused instanceof HTMLInputElement && focused.type === 'text' ? focused : undefined;
       const selection = text ? { start: text.selectionStart, end: text.selectionEnd, direction: text.selectionDirection } : undefined;
       const retained = new Set(state.controls.map(control => control.key));
 
       root.disabled = false;
+      pause.disabled = false;
 
       for (const [key, view] of views) {
         if (retained.has(key)) continue;
@@ -264,7 +270,7 @@ export function interactionControls(send: (key: string, value?: string | number 
       archives.hidden = state.archives.length === 0;
       paused = state.paused;
       canEscape = state.canEscape ?? false;
-      pause.textContent = paused ? 'Play' : 'Pause';
+      pause.textContent = paused ? 'Play animation' : 'Pause animation';
       pause.setAttribute('aria-pressed', String(paused));
       currentStatus = state.status;
       renderStatus();
@@ -294,6 +300,7 @@ export function interactionControls(send: (key: string, value?: string | number 
     },
     unavailable(message = 'Preview controls are unavailable.') {
       root.disabled = true;
+      pause.disabled = true;
       pending.clear();
       actionError = undefined;
       currentStatus = message;

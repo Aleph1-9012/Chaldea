@@ -22,7 +22,7 @@ The `chaldea-bundle-v1` salt in `backend/src/build.rs` represents packaging sema
 
 The browser validates the catalog and selected bundle with the same schema documents Rust uses. Shared fixtures exercise semantic rules beyond JSON Schema. Definitions own defaults and limits; UI code has no widget-specific settings registry.
 
-For each edit to a native widget's appearance settings, the app validates proposed values and synchronously generates every file. It then gives the accepted snapshot to the code panel and its settings to the preview. Copy and ZIP use that file collection. An invalid edit disables export and clears visible stale code until the input is corrected or reset. Draft previews receive validated settings without generating exports. Async widget loads use abort signals and request counters.
+For each edit to a native widget's appearance settings, the app validates proposed values and synchronously generates every file. It then gives the accepted snapshot to the code panel and its settings to the preview. Copy and Download file use the selected file from that collection. Text can be copied or downloaded; binary assets can be downloaded byte for byte. An invalid edit disables export and clears visible stale code until the input is corrected or reset. Draft previews receive validated settings without generating exports. Async widget loads use abort signals and request counters.
 
 The pure generator in `frontend/src/generator/index.ts` imports no browser, storage, or network APIs. Templates accept placeholders only as complete typed QML property values. Strings use JSON escaping, numbers must be finite and within declared bounds, and enum values must be declared. Replacement happens once, so placeholder-looking user text stays literal. Static and binary exports are copied byte for byte.
 
@@ -40,7 +40,7 @@ A six-second load/render timeout replaces the frame with a thumbnail. Independen
 
 ## Launch boundaries
 
-The library has no backend server, user accounts, creator uploads, saved visitor state, telemetry, or remote fonts. Downloads include all declared widget assets and applicable licenses. Native behavior is verified separately in isolated Quickshell configurations.
+The library has no backend server, user accounts, creator uploads, saved visitor state, telemetry, or remote fonts. All declared widget files and applicable licenses are available individually in the output selector. Native behavior is verified separately in isolated Quickshell configurations.
 
 An account API, private storage, authentication, preset migrations, and server-side permissions remain deferred. If needed later, start with an API executable in the existing Rust package. Anonymous browsing, customization, and export must continue independently.
 
@@ -50,4 +50,4 @@ Only owner-requested designs belong in `widgets/`. [The inventory](widget-invent
 
 The AFK, Editorial, Print, and Reactive lockscreen previews declare the `support.js` adapter in `widgets/_shared/preview/` for the source pages' optional tuning controls and inline SVG icons. The adapter connects appearance settings through `ChaldeaPreview.connect`; it runs inside the same opaque iframe and requests no external assets. Multi-design selectors are fixed to the chosen design and removed. Some source scripts share hidden supporting DOM; those panels are inert and omitted from display. Notes, media, lockscreen, and desktop actions use local sample state. Validation and export tests use an internal contract fixture outside the catalog.
 
-Each family with native exports documents its components, shared files, and inspection notes beside its sources: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), and [Lockscreens](../widgets/lockscreens/README.md). Every ZIP contains its own design, helper files, launcher, instructions, and license.
+Each family with native exports documents its components, shared files, and inspection notes beside its sources: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), and [Lockscreens](../widgets/lockscreens/README.md). Each output list includes the design, helper files, launcher, instructions, and license. Save them with their declared names and folder paths.

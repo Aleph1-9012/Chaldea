@@ -24,7 +24,7 @@ There are no scope flags, per-widget test modes, browser test installations, fis
 
 - Classic preview JavaScript syntax without executing it, the shared runtime reference, and literal HTML `src`, `href`, `poster`, and CSS `url(...)` asset references.
 - Valid setting definitions and defaults for every widget.
-- One generated QML and complete ZIP check per native widget, using its default settings. Shared unit tests cover serialization and settings boundaries; the library scan checks each widget's templates and assets.
+- One complete native export check per widget, using its default settings. The output must contain every declared file and preserve packaged asset bytes. Shared unit tests cover serialization and settings boundaries; the library scan checks each widget's templates and assets.
 - Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Each production revision must equal the one checked locally. Draft files and the local source index must not appear in `dist/`.
 
 The library validator has no widget-ID list to update. Add a valid `widget.json` in any supported category/study folder and it is checked on the next run. Errors identify the source folder or file. Unit tests remain independent of library size; the library scan grows with the files being checked.
@@ -61,6 +61,8 @@ If the browser shows an old or removed widget, rebuild local content and reload.
 
 ## Manual export inspection
 
+The browser's Download file button saves only the selected output, including binary images and audio. Copy file is available for text files. Save every listed file, including README.md and LICENSE, and preserve its displayed path in your widget folder. Browsers download the final file name only; create any listed subfolders yourself, such as `sounds/` for Mechanical rhythm. Invalid settings disable both actions until corrected.
+
 To create exact generated files without a browser, run this inside `frontend/`:
 
 ```sh
@@ -73,7 +75,7 @@ Thumbnail capture still uses Playwright as an authoring tool through `scripts/th
 
 ## Distribution notices
 
-The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Widget ZIP files include their own applicable licenses.
+The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Each widget's output file list includes its applicable license; save it with the other files.
 
 ## Family notes
 

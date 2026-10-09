@@ -1,13 +1,13 @@
 # Widget inventory
 
-The library contains 41 designs, all with native QML exports: six Quick notes, five Players, eleven Glyphs, ten Interactive art widgets, and nine Lockscreens. Interactive art includes the original [Stochastic ink](../widgets/interactive-art/stochastic-ink/README.md). No HTML-only drafts remain. Lockscreens export visual components and demo interactions; they do not implement authentication or desktop session locking. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
+The library contains 39 designs, all with native QML exports: six Quick notes, five Players, eleven Glyphs, eight Interactive art widgets, and nine Lockscreens. No HTML-only drafts remain. Lockscreens export visual components and demo interactions; they do not implement authentication or desktop session locking. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
 
 | Source page | Individual widgets |
 | --- | --- |
 | `tsugumori-five-glyph-studies.html` | [Recursive relays](../widgets/glyphs/recursive-relays/README.md), [Branch grammar](../widgets/glyphs/branch-grammar/README.md), [Shifted script](../widgets/glyphs/shifted-script/README.md), [Oblique ligatures](../widgets/glyphs/oblique-ligatures/README.md), [Radical exchange](../widgets/glyphs/radical-exchange/README.md) |
 | `tsugumori-drift-and-tsumugi.html` | [Fish in space](../widgets/interactive-art/fish-in-space/README.md) |
 | `tsugumori-eight-play-studies.html` | [Magnetic powder](../widgets/interactive-art/magnetic-powder/README.md), [Mechanical rhythm](../widgets/interactive-art/mechanical-rhythm/README.md) |
-| `tsugumori-play-lab.html` | [Specimen chamber](../widgets/interactive-art/specimen-chamber/README.md), [Orbital playground](../widgets/interactive-art/orbital-playground/README.md), [Resonance sculpture](../widgets/interactive-art/resonance-sculpture/README.md), [Signal hunting](../widgets/interactive-art/signal-hunting/README.md), [Gravity sandbox](../widgets/interactive-art/gravity-sandbox/README.md), [Session fossils](../widgets/interactive-art/session-fossils/README.md) |
+| `tsugumori-play-lab.html` | [Specimen chamber](../widgets/interactive-art/specimen-chamber/README.md), [Orbital playground](../widgets/interactive-art/orbital-playground/README.md), [Resonance sculpture](../widgets/interactive-art/resonance-sculpture/README.md), [Signal hunting](../widgets/interactive-art/signal-hunting/README.md), [Gravity sandbox](../widgets/interactive-art/gravity-sandbox/README.md) |
 
 The existing entries remain available:
 
@@ -22,7 +22,7 @@ All five families have native QML exports. Each family's components, shared file
 
 ## Archive import
 
-The library retains 24 entries from the archive import alongside the 16 earlier designs and the original Stochastic ink widget. All 125 HTML files are accounted for in [the import manifest](archive-imports.json), including excluded categories, duplicates, and palette companions. Auxiliary images, PDFs, and helper scripts remain references. The archive is unchanged.
+The library retains 24 entries from the archive import alongside the 15 earlier designs. All 125 HTML files are accounted for in [the import manifest](archive-imports.json), including excluded categories, duplicates, and palette companions. Auxiliary images, PDFs, and helper scripts remain references. The archive is unchanged.
 
 The import manifest records excluded sources and designs, consolidated lockscreen variants, and palette companions.
 
@@ -33,7 +33,7 @@ Lockscreens retain one entry per layout; artwork and motion variations share tha
 | Category | Widgets |
 | --- | ---: |
 | Glyphs | 11 |
-| Interactive art | 10 |
+| Interactive art | 8 |
 | Lockscreens | 9 |
 | Player | 5 |
 | Quick notes | 6 |

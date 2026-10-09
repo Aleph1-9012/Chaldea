@@ -4,10 +4,10 @@ Reverse print retains the original compound glyph, layout, and dummy-input anima
 
 ## Run
 
-Download and extract the complete ZIP. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
+Save each file from the output selector into a widget folder, preserving the displayed file names and subfolders. With Quickshell 0.3.0 and Qt 6.11.2 installed, run:
 
 ```sh
-qs -p /absolute/path/to/the/extracted-folder/shell.qml
+qs -p /absolute/path/to/the/widget-folder/shell.qml
 ```
 
 The launcher opens a resizable preview window and leaves desktop configuration alone. Keep every exported file together. Qt Quick, Qt Quick Controls Basic, JetBrains Mono, and Noto Sans CJK JP provide the native presentation. No fonts are bundled; font fallback can affect text metrics.
@@ -30,6 +30,6 @@ This component does not authenticate, lock a desktop session, or run power comma
 
 This is one design from the owner-supplied `Lib-assests/lockscreen/tsugumori-lockscreen-editorial-studies.html`. Distinct designs have separate library entries. Appearance settings remain controls.
 
-Original widget code, the native implementation, and the preview adapter use 0BSD. The download includes `LICENSE`. No desktop services are connected.
+Original widget code, the native implementation, and the preview adapter use 0BSD. The output file list includes `LICENSE`. No desktop services are connected.
 
 Source SHA-256: `ae4a17c3627cad0c01261d227385da2c391c6bee60be3bfd2a66048e96d882c1`. The source archive is unchanged.
