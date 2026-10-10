@@ -8,6 +8,8 @@ The tooling is complete for anonymous browsing, customization, copying, and down
 
 All five families have native QML exports: Quick notes, Player, Glyphs, Interactive art, and Lockscreens. The five extracted Glyphs and nine Lockscreens now export native components with their existing IDs and settings keys. Lockscreens provide visual components and demo interactions, with authentication and desktop session locking left to a separate host. [The inventory](widget-inventory.md) has the counts.
 
+The public Svelte 5 frontend follows the Chaldea-Final and Chaldea Components Figma pages. It includes the poster homepage, searchable masonry library, grouped customization controls, and file-by-file export. The original backend preview UI remains available at `/?workbench` in development. Bun runs Vite, Svelte diagnostics, and the shared unit tests.
+
 Nothing is published. No host, deploy workflow, or rollback drill exists yet.
 
 ## Next, in order

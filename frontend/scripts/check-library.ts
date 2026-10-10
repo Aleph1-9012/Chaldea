@@ -110,7 +110,7 @@ async function checkLibrary() {
 
   // Verify the built artifact without serving it or launching a browser.
   const dist = join(repository, 'dist');
-  for (const name of ['index.html', 'LICENSE.txt', 'NOTICE.txt', 'THIRD_PARTY_LICENSES.txt']) await readFile(join(dist, name));
+  for (const name of ['index.html', 'LICENSE.txt', 'NOTICE.txt', 'THIRD_PARTY_LICENSES.txt', 'licenses/faculty-glyphic.txt', 'licenses/jetbrains-mono.txt']) await readFile(join(dist, name));
 
   assert.equal((await readdir(dist)).includes('source-index.json'), false, 'Local source index must not enter the production artifact');
 

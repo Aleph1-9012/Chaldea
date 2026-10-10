@@ -3,7 +3,7 @@ import widgetSchema from '../../../schemas/widget.schema.json';
 import catalogSchema from '../../../schemas/catalog.schema.json';
 import bundleSchema from '../../../schemas/bundle.schema.json';
 
-type BaseSetting = { key: string; label: string };
+type BaseSetting = { key: string; label: string; group?: string };
 
 export type Setting = BaseSetting & (
   | { type: 'number'; default: number; min: number; max: number; step: number }
@@ -26,6 +26,7 @@ export interface Definition {
 
 export interface Summary extends Pick<Definition, 'id' | 'title' | 'summary' | 'category' | 'tags' | 'status'> {
   revision: string; bundleUrl: string; thumbnailUrl: string;
+  settingsCount: number;
 }
 
 export interface Catalog { formatVersion: 1; widgets: Summary[] }

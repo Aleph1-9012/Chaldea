@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { fileURLToPath } from 'node:url';
 import { readFile, realpath } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
@@ -16,11 +17,15 @@ const mime: Record<string, string> = {
 export default defineConfig(({ command }) => ({
   base: './',
   publicDir: command === 'build' ? production : content,
-  plugins: [{
+  plugins: [svelte(), {
     name: 'generated-content',
     async generateBundle() {
       for (const name of ['LICENSE', 'NOTICE']) {
         this.emitFile({ type: 'asset', fileName: `${name}.txt`, source: await readFile(new URL(`../${name}`, import.meta.url), 'utf8') });
+      }
+
+      for (const font of ['faculty-glyphic', 'jetbrains-mono']) {
+        this.emitFile({ type: 'asset', fileName: `licenses/${font}.txt`, source: await readFile(new URL(`./node_modules/@fontsource/${font}/LICENSE`, import.meta.url), 'utf8') });
       }
     },
     configureServer(server) {

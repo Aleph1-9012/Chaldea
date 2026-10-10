@@ -190,5 +190,19 @@
       "max": 1e+308,
       "step": 1e-307
     }
+  },
+  {
+    "name": "grouped setting preserves its value contract",
+    "valid": true,
+    "setting": {
+      "key": "level",
+      "label": "Level",
+      "group": "Style",
+      "type": "number",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
   }
 ]

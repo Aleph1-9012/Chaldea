@@ -49,6 +49,7 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
   let interactionState: InteractionState | undefined;
   let interactionRevision = 0, actionSequence = 0, actionAck = 0;
   let timeout: ReturnType<typeof setTimeout>;
+
   const fail = () => {
     if (disposed) return;
 

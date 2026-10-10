@@ -278,6 +278,8 @@ fn definitions_reject_invalid_settings_and_incomplete_published_widgets() {
     for modify in [
         |d: &mut Value| d["settings"][0]["default"] = json!(200),
         |d: &mut Value| d["settings"][1]["key"] = json!("level"),
+        |d: &mut Value| d["settings"][0]["group"] = json!(""),
+        |d: &mut Value| d["settings"][0]["group"] = json!("x".repeat(41)),
         |d: &mut Value| d["exports"] = json!([]),
         |d: &mut Value| d["id"] = json!("Bad ID"),
         |d: &mut Value| d["usage"] = Value::Null,
@@ -404,6 +406,16 @@ fn publication_replaces_only_owned_output_and_omits_drafts_and_private_files() {
         serde_json::from_slice(&fs::read(output.join("catalog.json")).unwrap()).unwrap();
     assert_eq!(catalog["widgets"].as_array().unwrap().len(), 1);
     assert_eq!(catalog["widgets"][0]["id"], "contract-fixture");
+    assert_eq!(
+        catalog["widgets"][0]["settingsCount"],
+        p.widgets
+            .iter()
+            .find(|widget| widget.definition.id == "contract-fixture")
+            .unwrap()
+            .definition
+            .settings
+            .len()
+    );
     assert!(!output.join("revisions/draft-fixture").exists());
     assert!(!output.join("source-index.json").exists());
     let widget = p

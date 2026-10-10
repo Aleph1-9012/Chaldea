@@ -64,10 +64,12 @@ test('catalog and bundle boundaries reject duplicate IDs and mismatched exports'
   const revision = '0'.repeat(64);
   const { id, title, summary, category, tags, status } = definition;
   const prefix = `revisions/${id}/${revision}/`;
-  const entry = { id, title, summary, category, tags, status, revision, bundleUrl: `${prefix}bundle.json`, thumbnailUrl: `${prefix}${definition.thumbnail}` };
+  const entry = { id, title, summary, category, tags, status, revision, settingsCount: definition.settings.length, bundleUrl: `${prefix}bundle.json`, thumbnailUrl: `${prefix}${definition.thumbnail}` };
 
   expect(() => assertCatalog({ formatVersion: 1, widgets: [entry] })).not.toThrow();
   expect(() => assertCatalog({ formatVersion: 1, widgets: [entry, entry] })).toThrow();
+  expect(() => assertCatalog({ formatVersion: 1, widgets: [{ ...entry, settingsCount: -1 }] })).toThrow();
+  expect(() => assertCatalog({ formatVersion: 1, widgets: [{ ...entry, settingsCount: 1.5 }] })).toThrow();
   expect(() => assertCatalog({ formatVersion: 1, widgets: [{ ...entry, bundleUrl: '../wrong.json' }] })).toThrow();
   const bundle = { formatVersion: 1, id, revision, settingsSchemaVersion: 1, nativeBaseline: 'Contract fixture', definition, templates, usage: 'Instructions', assets: definition.exports.flatMap(file => file.kind === 'file' ? [{ path: file.path, url: `files/${file.path}` }] : []) };
 
@@ -75,4 +77,6 @@ test('catalog and bundle boundaries reject duplicate IDs and mismatched exports'
   expect(() => assertBundle({ ...bundle, id: 'wrong-id' })).toThrow();
   expect(() => assertBundle({ ...bundle, assets: [] })).toThrow();
   expect(() => assertDefinition({ ...definition, exports: [...definition.exports, definition.exports[0]] })).toThrow();
+  expect(() => assertDefinition({ ...definition, settings: [{ ...definition.settings[0], group: '' }] })).toThrow();
+  expect(() => assertDefinition({ ...definition, settings: [{ ...definition.settings[0], group: 'x'.repeat(41) }] })).toThrow();
 });

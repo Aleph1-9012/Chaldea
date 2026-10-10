@@ -3,7 +3,7 @@ use serde_json::{Value, json};
 pub fn entry(d: &Definition, revision: &str) -> Value {
     let base = format!("revisions/{}/{revision}", d.id);
     json!({"id":d.id,"title":d.title,"summary":d.summary,"category":d.category,
-        "tags":d.tags,"status":d.status,"revision":revision,
+        "tags":d.tags,"status":d.status,"revision":revision,"settingsCount":d.settings.len(),
         "bundleUrl":format!("{base}/bundle.json"),"thumbnailUrl":format!("{base}/{}",d.thumbnail)})
 }
 pub fn catalog(entries: Vec<Value>) -> Result<Value> {

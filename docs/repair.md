@@ -14,18 +14,23 @@ Run commands from the repository root. `make -f /absolute/path/to/Chaldea/Makefi
 | `make build` | Build production output in `dist/`, excluding drafts |
 | `make preview` | Serve the production output on port 4173 |
 
+Open `/` for the public Svelte site, `/?page=library` for the catalog, or `/?workbench` for the original backend preview UI. The workbench is available only in development and is not included in production bundles. Site code lives in `frontend/src/site/`; the shared generator and preview protocol keep their existing paths.
+
+The library supports A–Z and Family sorting. `sort=family` selects Family; missing or unsupported sort values use A–Z.
+
 There are no scope flags, per-widget test modes, browser test installations, fish simulations, or native test matrices. The former suites are available in Git history if a past investigation needs them.
 
 ## What the checks cover
 
 `make test` exercises shared behavior with small synthetic fixtures: settings boundaries and typed QML placeholders, escaping and immutable generated results, complete assets, draft export restrictions, preview messages and runtime generation, folder discovery and the local source index, revisions, path confinement, publication ownership, draft omission, and preservation of existing output after a staging failure. Shared Rust/TypeScript contract cases live in `schemas/fixtures/`; they verify that both implementations agree. Generator tests cover boundary values for all five setting types without repeating them for every widget.
 
-`make check` runs those units, Rust formatting and Clippy, a local content build, and one production build. TypeScript checking happens once during the production build. Rust is the only reader of widget sources and validates the entire library each time it packages. It writes `build/content/source-index.json` with the discovered IDs, source folders, and thumbnail mappings. The frontend library validator checks that the index and local catalog contain the same widgets, then inspects every packaged revision and checks:
+`make check` runs those units, Rust formatting and Clippy, a local content build, and one production build. Svelte diagnostics and TypeScript checking run during the production build. Rust is the only reader of widget sources and validates the entire library each time it packages. It writes `build/content/source-index.json` with the discovered IDs, source folders, and thumbnail mappings. The frontend library validator checks that the index and local catalog contain the same widgets, then inspects every packaged revision and checks:
 
 - Classic preview JavaScript syntax without executing it, the shared runtime reference, and literal HTML `src`, `href`, `poster`, and CSS `url(...)` asset references.
 - Valid setting definitions and defaults for every widget.
 - One complete native export check per widget, using its default settings. The output must contain every declared file and preserve packaged asset bytes. Shared unit tests cover serialization and settings boundaries; the library scan checks each widget's templates and assets.
 - Production notices, bundle identities, thumbnails, export assets, and the exact published widget set. Each production revision must equal the one checked locally. Draft files and the local source index must not appear in `dist/`.
+- The SIL Open Font licenses for the site's self-hosted Faculty Glyphic and JetBrains Mono files, emitted under `dist/licenses/` by Vite.
 
 The library validator has no widget-ID list to update. Add a valid `widget.json` in any supported category/study folder and it is checked on the next run. Errors identify the source folder or file. Unit tests remain independent of library size; the library scan grows with the files being checked.
 
@@ -72,6 +77,16 @@ bun run export <widget-id> <new-output-directory> [settings.json]
 The destination must not exist. Keep every file from the export together. Use Qt 6 tools to inspect native QML, and load the exported `shell.qml` in a separate test configuration rather than modifying live desktop files. Record the revision, environment, and limits when claiming native support.
 
 Thumbnail capture still uses Playwright as an authoring tool through `scripts/thumbnails.ts`; it is not part of either check command. Browser binaries are only needed if you explicitly use that tool. Run `make content` after moving a widget or changing its thumbnail mapping so the local source index is current. From `frontend/`, `bun scripts/thumbnails.ts <preview-base-url> [widget-id-or-path ...]` accepts IDs and paths under `widgets/`, including an optional `widgets/` prefix. With no selectors it captures every local widget. Capture requires a declared WebP source and writes that source path inside the widget folder, even if the current file comes from `_shared/`. The writer checks filesystem metadata and rejects symlinked destination folders or files before creating directories or writing bytes. Run `make content` again to package the new image.
+
+Blurry library cards usually indicate old 640 × 400 captures. The capture script now uses the card proportions from `frontend/src/site/catalog.ts`, waits for fonts and canvas rendering, and saves quality-95 WebP images at roughly 1320 or 2000 pixels wide. Tall lockscreen pages are fitted into the capture area so their login and footer remain visible. Regenerate the affected thumbnails and run `make content`; increasing an existing image's CSS size cannot restore its detail.
+
+For an off-center capture or unwanted demo controls, inspect the widget's `frames` entry in `scripts/thumbnails.ts`. Console uses its notes section with 20 pixels of padding. Phase Lock uses its artwork section at a 1024-pixel viewport width so the full background and corner details fit the card. The capture expands around the selected element to match the card ratio, preserving the complete widget. Keep these adjustments in the capture script rather than changing the live preview's layout.
+
+Live widget detail pages use natural preview sizes rather than thumbnail proportions or iframe scaling. The preview can grow up to 1200 pixels wide, and its authenticated body-height messages set the stage's height. If a preview is clipped after a settings change, check that it sends an updated `resize` message; do not restore a fixed stage height or shrink the iframe. Compact widgets can report a preferred width, which is capped by the available space on mobile.
+
+The unfiltered A–Z library uses masonry placement and individual card proportions. Family filters, search results, and Family sorting use rows in the selected order, with each row starting at the left. Every card uses one column, and cards in the same family have equal dimensions. Family plate ratios live in `site/catalog.ts`: Glyphs 7:10, Art and Player 8:5, Lockscreens 1:1, and Notes 9:10. Art and Player filters use fewer, wider columns. Thumbnails fit inside their plates without additional cropping. Position, width, and plate proportions transition together when filters change.
+
+Entering the library through a link from another page uses a 620 ms green wipe through the browser's View Transitions API. Family, sort, and search changes keep their card transitions. Reduced motion and browsers without the API navigate immediately. Browser Back and Forward also update immediately so native scroll restoration can use the destination layout. The animated route update waits for Svelte's layout, and newer navigation cancels an unfinished wipe so a delayed callback cannot restore an old route.
 
 ## Distribution notices
 

@@ -17,7 +17,7 @@ export async function loadWidget(item: Summary, signal?: AbortSignal): Promise<L
   const url = contentUrl(item.bundleUrl);
   const bundle: unknown = await (await response(url, signal)).json();
   assertBundle(bundle);
-  if (bundle.id !== item.id || bundle.revision !== item.revision || bundle.definition.status !== item.status) throw new Error('Catalog and widget revision do not match. Reload the catalog.');
+  if (bundle.id !== item.id || bundle.revision !== item.revision || bundle.definition.status !== item.status || bundle.definition.settings.length !== item.settingsCount) throw new Error('Catalog and widget revision do not match. Reload the catalog.');
   const base = new URL('.', url);
   const assets = Object.fromEntries(await Promise.all(bundle.assets.map(async asset =>
     [asset.path, new Uint8Array(await (await response(new URL(asset.url, base), signal)).arrayBuffer())] as const)));

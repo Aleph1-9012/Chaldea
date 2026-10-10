@@ -24,7 +24,7 @@ Paths cannot contain traversal, spaces, URL schemes, or escaping symlinks. Mappi
 
 ## Settings and bindings
 
-Each setting declares a unique key, label, type, and default. Number settings also declare `min`, `max`, and positive `step`; strings declare `maxLength`; enums declare `choices`. Colors use six-digit hex. Booleans have true/false defaults. Defaults must pass the same checks as user edits.
+Each setting declares a unique key, label, type, and default. Number settings also declare `min`, `max`, and positive `step`; strings declare `maxLength`; enums declare `choices`. Colors use six-digit hex. Booleans have true/false defaults. Defaults must pass the same checks as user edits. An optional `group` label, 1 to 40 characters, places a setting in a customization tab. Groups appear in definition order; ungrouped settings appear under Settings. Quick Notes Refined uses Style, Layout, and Notes. Group labels do not change exported values.
 
 For example, this definition creates a slider and numeric input:
 
@@ -75,4 +75,4 @@ Then use `make dev` to inspect a changed preview at desktop and narrow widths. T
 
 To export without a browser, run `bun run export <id> <new-directory> [settings.json]` inside `frontend/`. Overrides are validated against the same definition. The destination must not already exist.
 
-To refresh source thumbnails, keep `make dev` running and run `bun scripts/thumbnails.ts` inside `frontend/`. To update only selected entries, use `bun scripts/thumbnails.ts http://127.0.0.1:5175/ <id-or-source-path> [...]`, such as `glyphs/branch-grammar`. This captures WebP files from the actual previews. Then run `make content` again and review the images. Thumbnail changes produce new revisions.
+To refresh source thumbnails, keep `make dev` running and run `bun scripts/thumbnails.ts` inside `frontend/`. To update only selected entries, use `bun scripts/thumbnails.ts http://127.0.0.1:5175/ <id-or-source-path> [...]`, such as `glyphs/branch-grammar`. This captures WebP files from the actual previews, waits for fonts and canvas rendering, and crops to the library card proportions. Images are roughly 1320 pixels wide for single-column cards and 2000 pixels wide for cards that can span two columns, covering their largest layout sizes at 2× density. The script's `frames` entries center Console with padding and capture Phase Lock's full artwork without its demo toolbar. These capture overrides do not change the live previews. Then run `make content` again and review the images. Thumbnail changes produce new revisions.

@@ -5,3 +5,7 @@ The application is licensed under the Apache License, Version 2.0.
 Original widget code and original widget assets under widgets/ are
 licensed separately under the BSD Zero Clause License (0BSD).
 Third-party components and assets retain their own terms.
+
+The site uses Faculty Glyphic and JetBrains Mono under the SIL Open Font
+License 1.1. Their copyright notices and licenses ship in
+licenses/faculty-glyphic.txt and licenses/jetbrains-mono.txt.

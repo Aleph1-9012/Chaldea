@@ -121,8 +121,7 @@ Item {
         width: parent.width
         height: main.implicitHeight + inset * 2
         color: root.frameStyle === "lab" ? "#0a0a0a" : "#080808"
-        border.color: root.frameStyle === "lab" ? root.accentColor : "#522020"
-        Rectangle { visible: root.frameStyle === "lab"; anchors.fill: parent; anchors.margins: 5; color: "transparent"; border.color: "#492020" }
+        border.width: 0
         Rectangle { width: 7; height: 1; color: "#e8e8e8" }
         Rectangle { width: 1; height: 7; color: "#e8e8e8" }
         ColumnLayout {

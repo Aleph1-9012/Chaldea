@@ -20,7 +20,7 @@ export function interactionControls(send: (key: string, value?: string | number 
   root.disabled = true;
   root.setAttribute('aria-label', 'Preview controls');
 
-  const fields = el('div', 'controls interaction-fields');
+  const fields = el('div', 'controls');
   const archives = el('div', 'interaction-archives');
   const pause = el('button', 'button interaction-pause', 'Pause animation');
   pause.type = 'button';
@@ -71,7 +71,7 @@ export function interactionControls(send: (key: string, value?: string | number 
   pause.addEventListener('keydown', escape);
 
   function createView(control: InteractionControl): ControlView {
-    const field = el('div', 'field interaction-field');
+    const field = el('div', 'interaction-field');
 
     if (control.type === 'button') {
       const input = el('button', 'button interaction-action');

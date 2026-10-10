@@ -59,6 +59,10 @@
             "type": "string",
             "pattern": "^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*$",
             "maxLength": 180
+          },
+          "settingsCount": {
+            "type": "integer",
+            "minimum": 0
           }
         },
         "required": [
@@ -70,7 +74,8 @@
           "status",
           "revision",
           "bundleUrl",
-          "thumbnailUrl"
+          "thumbnailUrl",
+          "settingsCount"
         ]
       }
     }

@@ -35,7 +35,7 @@ export async function loadRevision(root: string, item: Summary) {
   return { bundle, assets, dir };
 }
 
-export async function loadLocal(content: string, id: string) {
+async function loadLocal(content: string, id: string) {
   const { root, catalog } = await readCatalog(content);
   const item = catalog.widgets.find(w => w.id === id);
 
@@ -44,7 +44,7 @@ export async function loadLocal(content: string, id: string) {
   return loadRevision(root, item);
 }
 
-export async function exportWidget(content: string, id: string, output: string, overrides: Settings = {}) {
+async function exportWidget(content: string, id: string, output: string, overrides: Settings) {
   const { bundle, assets } = await loadLocal(content, id);
   const snapshot = generate(bundle.definition, bundle.templates, { ...defaults(bundle.definition), ...overrides }, assets);
   // Never overwrite an existing directory, including through a symlink.

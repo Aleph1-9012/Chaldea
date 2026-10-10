@@ -6,7 +6,7 @@ export const allWidgets = 'All widgets';
 
 function card(widget: Summary, index: number, open: (id: string) => void): HTMLAnchorElement {
   const link = el('a', 'widget-card');
-  link.href = `?widget=${widget.id}`;
+  link.href = `?workbench&widget=${widget.id}`;
   link.addEventListener('click', event => {
     // Modified clicks keep the browser's own behavior, such as opening a new tab.
     if (event.ctrlKey || event.metaKey || event.shiftKey) return;

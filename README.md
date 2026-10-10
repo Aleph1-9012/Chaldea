@@ -39,7 +39,7 @@ make dev
 
 Open [localhost:5175](http://127.0.0.1:5175/) to browse the library.
 
-Frontend edits update through Vite. After editing files under `widgets/`, run `make content` and reload the page to rebuild the packaged previews.
+The Svelte 5 site runs at `http://127.0.0.1:5175/`. The original backend preview UI remains at `http://127.0.0.1:5175/?workbench` during development. Frontend edits update through Vite. After editing files under `widgets/`, run `make content` and reload the page to rebuild the packaged previews.
 
 ## Development commands
 
@@ -64,7 +64,7 @@ The library checker discovers new widgets automatically and validates preview sc
 | Path | Contents |
 | --- | --- |
 | `backend/` | Rust source discovery, validation, and content packaging. |
-| `frontend/` | Vanilla TypeScript application, shared QML generator, authoring scripts, and unit tests. |
+| `frontend/` | Svelte 5 and TypeScript site, development workbench, shared QML generator, authoring scripts, and unit tests. |
 | `widgets/` | Widget definitions, browser previews, native components, assets, and usage guides. |
 | `schemas/` | Shared JSON contracts and cross-language fixtures. |
 | `docs/` | Architecture, development, authoring, publication, and provenance records. |

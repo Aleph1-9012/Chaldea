@@ -8,5 +8,5 @@
     "noUnusedParameters": true, "verbatimModuleSyntax": true,
     "types": ["vite/client", "bun"]
   },
-  "include": ["src/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts", "*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.svelte", "scripts/**/*.ts", "tests/**/*.ts", "*.ts"]
 }

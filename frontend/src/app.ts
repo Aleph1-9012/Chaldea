@@ -32,6 +32,7 @@ export async function start(root: HTMLElement): Promise<void> {
   const navigate = (id?: string) => {
     const url = new URL(location.href);
     url.search = '';
+    url.searchParams.set('workbench', '');
 
     if (id) url.searchParams.set('widget', id);
 

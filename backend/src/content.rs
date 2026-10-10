@@ -23,6 +23,8 @@ pub struct Config {
 pub struct Setting {
     pub key: String,
     pub label: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group: Option<String>,
     #[serde(rename = "type")]
     pub kind: String,
     pub default: Value,

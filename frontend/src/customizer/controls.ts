@@ -6,7 +6,7 @@ export function controls(definition: Definition, values: Settings, change: (key:
   const inputs = new Map<string, (HTMLInputElement | HTMLSelectElement)[]>();
   const errors = new Map<string, HTMLElement>();
   for (const setting of definition.settings) {
-    const field = el('div', 'field'); const label = el('label', 'field-label', setting.label);
+    const field = el('div'); const label = el('label', 'field-label', setting.label);
     const id = `setting-${setting.key}`; label.htmlFor = id;
     const row = el('div', 'field-row');
     let input: HTMLInputElement | HTMLSelectElement;
@@ -31,7 +31,7 @@ export function controls(definition: Definition, values: Settings, change: (key:
         control.addEventListener('input', () => { number.value = control.value; change(setting.key, control.valueAsNumber); });
         row.append(number); related.push(number);
       } else if (setting.type === 'color') {
-        const text = el('input', 'hex-input'); text.type = 'text'; text.value = control.value; text.maxLength = 7;
+        const text = el('input'); text.type = 'text'; text.value = control.value; text.maxLength = 7;
         text.setAttribute('aria-label', `${setting.label} hex`);
         text.addEventListener('input', () => { if (/^#[\da-f]{6}$/i.test(text.value)) control.value = text.value; change(setting.key, text.value); });
         control.addEventListener('input', () => { text.value = control.value; change(setting.key, control.value); });
