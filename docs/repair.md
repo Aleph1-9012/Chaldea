@@ -14,7 +14,9 @@ Run commands from the repository root. `make -f /absolute/path/to/Chaldea/Makefi
 | `make build` | Build production output in `dist/`, excluding drafts |
 | `make preview` | Serve the production output on port 4173 |
 
-Open `/` for the public Svelte site, `/?page=library` for the catalog, or `/?workbench` for the original backend preview UI. The workbench is available only in development and is not included in production bundles. Site code lives in `frontend/src/site/`; the shared generator and preview protocol keep their existing paths.
+Open `/` for the Svelte site or `/?page=library` for the catalog. This is the only frontend in development and production. The old vanilla frontend has been removed; `?workbench` bookmarks redirect within the same page to the library or selected widget. Site code lives in `frontend/src/site/`; the catalog client, generator, settings validator, and preview protocol keep their existing paths.
+
+The Rust backend runs during `make content`, `make dev`, and `make build`. It produces `catalog.json` and versioned bundles, which the Svelte site loads through `frontend/src/catalog/load.ts`. Development serves `build/content/`; production serves the published revisions copied into `dist/`. No separate runtime API process is needed.
 
 The dark initial background and keyboard skip-link styles live in `frontend/index.html` so they apply before JavaScript loads either application's stylesheet. Keep them in the HTML to prevent a white flash and an unstyled "Skip to content" link during refresh. The link appears when focused from the keyboard.
 
@@ -64,11 +66,11 @@ Quick Notes previews declare their preferred frame width with `data-preview-widt
 
 Template placeholders must be complete typed property values. Every native setting needs a binding. Published widgets require QML, nonempty exported instructions, and an exported license. An HTML-only design remains a draft with downloads disabled.
 
-If the browser shows an old or removed widget, rebuild local content and reload. Removed widget sources remain in Git history; original import provenance is recorded in `docs/archive-imports.json`.
+If the browser shows an old or removed widget, rebuild local content and reload. A widget load error's Try again button also revalidates the catalog and loads the current revision. Removed widget sources remain in Git history; original import provenance is recorded in `docs/archive-imports.json`.
 
 ## Manual export inspection
 
-The public site's Save file button saves only the selected output, including binary assets. Copy is available for text files. The development workbench labels these actions Download file and Copy file. Save every listed file, including README.md and LICENSE, and preserve its displayed path in your widget folder. Browsers download the final file name only; create any listed subfolders yourself. Invalid settings disable both actions until corrected.
+The public site's Save file button saves only the selected output, including binary assets. Copy is available for text files. Save every listed file, including README.md and LICENSE, and preserve its displayed path in your widget folder. Browsers download the final file name only; create any listed subfolders yourself. Invalid settings disable both actions until corrected.
 
 To create exact generated files without a browser, run this inside `frontend/`:
 
@@ -88,7 +90,7 @@ Branch Grammar, Oblique Ligatures, and Radical Exchange frame their complete gly
 
 Interactive art thumbnails acknowledge the preview's external controls during startup, then frame the complete canvas and center it within the card proportions. This excludes standalone buttons, duplicate titles, and gesture instructions. Embedded artwork uses the same view, with actions in the customization sidebar and instructions retained in canvas accessibility labels. Widget detail pages omit the generic instruction paragraph below the preview.
 
-Preview frames stay invisible until their first authenticated settings render completes. The runtime publishes sidebar controls before its ready message, so the host acknowledges those controls before sending initial settings. This prevents standalone demo labels flashing during startup without a timed delay. Retained lockscreen previews remove the complete archive toolbar and layout description after selecting their fixed design, including the leftover “Glyph” label.
+Preview frames stay invisible until their first authenticated settings render completes. The runtime publishes sidebar controls before its ready message, so the host acknowledges those controls before sending initial settings. This prevents standalone demo labels flashing during startup without a timed delay. Retained lockscreen documents contain only their fixed design; the archive toolbar, layout description, and leftover “Glyph” label are removed from the source.
 
 Live widget detail pages use natural preview sizes rather than thumbnail proportions or iframe scaling. Most previews can grow up to 1200 pixels wide. Interactive art fills the preview column without outer padding or the standalone artwork frame, and its canvas height sets the panel height. Authenticated body-height messages resize the host, including Magnetic powder's Compact canvas setting. If a preview is clipped after a settings change, check that it sends an updated `resize` message; do not restore a fixed stage height or shrink the iframe. Compact widgets can report a preferred width, which is capped by the available space on mobile.
 

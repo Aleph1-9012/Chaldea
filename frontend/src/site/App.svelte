@@ -33,7 +33,6 @@
   let catalogFailure = $state('');
   let widgetFailure = $state('');
   let footerVisible = $state(false);
-  let retry = $state(0);
   let main: HTMLElement;
   let catalogRequest: AbortController;
   let pageTransition: ViewTransition | undefined;
@@ -45,10 +44,13 @@
     catalogRequest?.abort();
     const request = new AbortController();
     catalogRequest = request;
+    catalog = undefined;
     catalogFailure = '';
 
     try {
-      catalog = await loadCatalog(request.signal);
+      const loaded = await loadCatalog(request.signal);
+
+      if (!request.signal.aborted) catalog = loaded;
     } catch (error) {
       if (!request.signal.aborted) catalogFailure = errorText(error);
     }
@@ -72,7 +74,6 @@
   $effect(() => {
     const id = route.widget;
     const available = catalog;
-    void retry;
     widget = undefined;
     widgetFailure = '';
 
@@ -171,7 +172,7 @@
       <div class="page-notice" role="status">Opening the library…</div>
     {:else if route.widget}
       {#if widgetFailure}
-        <div class="page-notice" role="alert"><h1>Widget unavailable</h1><p>{widgetFailure}</p><button class="primary-link" onclick={() => { retry++; }}>Try again</button><a class="text-link" href={libraryUrl()}>Back to the library</a></div>
+        <div class="page-notice" role="alert"><h1>Widget unavailable</h1><p>{widgetFailure}</p><button class="primary-link" onclick={initialize}>Try again</button><a class="text-link" href={libraryUrl()}>Back to the library</a></div>
       {:else if widget}
         {#key widget.bundle.id}<div in:fade={{ duration: prefersReducedMotion.current ? 0 : 180 }}><Detail {widget} {index} /></div>{/key}
       {:else}<div class="page-notice" role="status">Opening widget…</div>{/if}

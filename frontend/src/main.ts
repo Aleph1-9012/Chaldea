@@ -1,12 +1,17 @@
-const root = document.querySelector<HTMLElement>('#app')!;
+import { mount } from 'svelte';
+import App from './site/App.svelte';
+import './site/site.css';
 
-if (import.meta.env.DEV && new URLSearchParams(location.search).has('workbench')) {
-  await import('./styles/app.css');
-  const { start } = await import('./app');
-  await start(root);
-} else {
-  const { mount } = await import('svelte');
-  const { default: App } = await import('./site/App.svelte');
-  await import('./site/site.css');
-  mount(App, { target: root });
+// Keep old preview bookmarks usable in the single Svelte application.
+const url = new URL(location.href);
+
+if (url.searchParams.has('workbench')) {
+  url.searchParams.delete('workbench');
+
+  if (!url.searchParams.get('widget')) url.searchParams.set('page', 'library');
+
+  history.replaceState(history.state, '', url);
 }
+
+const root = document.querySelector<HTMLElement>('#app')!;
+mount(App, { target: root });

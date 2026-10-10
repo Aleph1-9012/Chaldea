@@ -4,13 +4,13 @@ import { defaults } from '../customizer/settings';
 import { generate } from '../generator';
 const siteBase = new URL(import.meta.env.BASE_URL, location.href);
 export const contentUrl = (path: string): string => new URL(path, siteBase).href;
-async function response(url: string | URL, signal?: AbortSignal): Promise<Response> {
-  const result = await fetch(url, { credentials: 'omit', signal });
+async function response(url: string | URL, signal?: AbortSignal, cache: RequestCache = 'default'): Promise<Response> {
+  const result = await fetch(url, { credentials: 'omit', signal, cache });
   if (!result.ok) throw new Error(`Could not load ${new URL(url, siteBase).pathname} (${result.status}).`);
   return result;
 }
 export async function loadCatalog(signal?: AbortSignal): Promise<Catalog> {
-  const result: unknown = await (await response(contentUrl('catalog.json'), signal)).json();
+  const result: unknown = await (await response(contentUrl('catalog.json'), signal, 'no-cache')).json();
   assertCatalog(result); return result;
 }
 export async function loadWidget(item: Summary, signal?: AbortSignal): Promise<LoadedWidget> {
