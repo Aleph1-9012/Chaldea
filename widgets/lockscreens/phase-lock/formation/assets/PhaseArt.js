@@ -190,7 +190,7 @@ function drawRegister(c, s, p) {
     c.globalAlpha = 1;
 }
 
-function drawCorners(c, s, p, kind, lockLabel = 'LOCKED') {
+function drawCorners(c, s, p, lockLabel = 'LOCKED') {
     c.clearRect(0, 0, s.w, s.h);
     const opacity = ramp(p, .28, .74);
 

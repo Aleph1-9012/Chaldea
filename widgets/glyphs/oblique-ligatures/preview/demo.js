@@ -11,17 +11,23 @@
     const pass = root.querySelector('#tr-study-pass');
     const status = root.querySelector('.tr-status');
     const unlock = root.querySelector('.tr-unlock');
-    const state = { motion: true, duration: 100, red: 100 };
+    const state = { motion: true, duration: 220, red: 100 };
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
-    let count = 0, phase = 0, motion = null, frame = null;
+    let count = 0, phase = 0, velocity = 0, frame = null, lastFrame = 0;
     let composing = false, compositionEcho = false, previewTimer = null;
-    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-    const lerp = (a, b, t) => a + (b - a) * t;
+
     function draw() {
         if (!context)
             return;
 
-        context.setTransform(2, 0, 0, 2, 0, 0);
+        const side = Math.max(1, Math.round(canvas.getBoundingClientRect().width * Math.max(3, Math.min(window.devicePixelRatio || 1, 4))));
+
+        if (canvas.width !== side || canvas.height !== side) {
+            canvas.width = side;
+            canvas.height = side;
+        }
+
+        context.setTransform(side / 252, 0, 0, side / 252, 0, 0);
         context.clearRect(0, 0, 252, 252);
         context.fillStyle = '#090909';
         context.fillRect(0, 0, 252, 252);
@@ -30,7 +36,7 @@
         context.rect(0, 0, 252, 252);
         context.clip();
         context.lineCap = 'butt';
-        context.lineJoin = 'miter';
+        context.lineJoin = 'bevel';
 
         for (const m of glyphMarks(phase, state.red)) {
             context.globalAlpha = m.alpha;
@@ -45,52 +51,44 @@
         context.globalAlpha = 1;
     }
 
-    function sample(now) {
-        if (!motion)
-            return 1;
-
-        const t = clamp((now - motion.started) / motion.duration);
-        phase = t === 1 ? motion.to : lerp(motion.from, motion.to, 1 - Math.pow(1 - t, 3));
-
-        return t;
-    }
-
     function tick(now) {
         frame = null;
 
         if (!root.isConnected) {
-            motion = null;
+            velocity = 0;
 
             return;
         }
 
-        const done = sample(now) === 1;
+        const next = advanceGlyphMotion(phase, velocity, count, (now - lastFrame) / 1000, state.duration);
+        phase = next.phase;
+        velocity = next.velocity;
+        lastFrame = now;
         draw();
 
-        if (done)
-            motion = null;
-        else
+        if (phase !== count || velocity !== 0)
             frame = requestAnimationFrame(tick);
     }
 
     function animate() {
-        sample(performance.now());
+        if (!state.motion || preference.matches || document.hidden) {
+            if (frame !== null)
+                cancelAnimationFrame(frame);
 
-        if (frame !== null)
-            cancelAnimationFrame(frame);
-
-        frame = null;
-        motion = null;
-
-        if (!state.motion || preference.matches || Math.abs(phase - count) < .00001) {
+            frame = null;
+            velocity = 0;
             phase = count;
             draw();
 
             return;
         }
 
-        motion = { from: phase, to: count, started: performance.now(), duration: Math.min(700, state.duration * Math.max(1, Math.sqrt(Math.abs(count - phase)))) };
-        frame = requestAnimationFrame(tick);
+        if (frame === null && (phase !== count || velocity !== 0)) {
+            lastFrame = performance.now();
+            frame = requestAnimationFrame(tick);
+        }
+
+        draw();
     }
 
     function restStatus() {
@@ -176,6 +174,18 @@
         animate();
     }
 
+    const observer = new ResizeObserver(() => {
+        if (!root.isConnected) {
+            observer.disconnect();
+
+            return;
+        }
+
+        draw();
+    });
+    observer.observe(canvas);
+    window.addEventListener('resize', draw);
+    document.addEventListener('visibilitychange', animate);
     preference.addEventListener('change', render);
     render();
     // First render does not depend on the optional design-control helper.

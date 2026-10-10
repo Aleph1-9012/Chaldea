@@ -16,14 +16,14 @@ Item {
     onEmphasisChanged: drawing.requestPaint()
     Canvas {
         id: drawing
-        width: 504
-        height: 504
-        scale: artwork.width / 504
+        width: 756
+        height: 756
+        scale: artwork.width / 756
         transformOrigin: Item.TopLeft
         onPaint: {
             const context = getContext("2d");
             context.reset();
-            context.setTransform(2, 0, 0, 2, 0, 0);
+            context.setTransform(3, 0, 0, 3, 0, 0);
             context.fillStyle = "#090909";
             context.fillRect(0, 0, 252, 252);
             context.lineCap = "butt";

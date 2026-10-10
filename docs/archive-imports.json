@@ -330,7 +330,6 @@
       "source": "interactive-art/tsugumori-eight-play-studies.html",
       "disposition": "existing",
       "widgets": [
-        "interactive-art-mechanical-rhythm",
         "interactive-art-magnetic-powder"
       ],
       "sha256": "32346a91f1ca8662f70729f4684fc8bd49ef8958f4b1aa66ad85f31835aaca90",
@@ -340,8 +339,10 @@
         "Anamorphic 704",
         "Kinetic typography",
         "Kirigami panel",
-        "Pachinko gutter"
-      ]
+        "Pachinko gutter",
+        "Mechanical rhythm"
+      ],
+      "reason": "Mechanical rhythm was removed at the owner's request. The original source archive is retained."
     },
     {
       "source": "interactive-art/tsugumori-play-lab.html",

@@ -10,11 +10,11 @@ function createArtEngine() {
         return v - Math.floor(v);
     };
 
-    const design = { grid: true, density: 'Fine', accent: '#cc1515' };
+    const design = { density: 'Fine', accent: '#cc1515' };
     const state = { mode: 2, paused: false, time: 0, visible: true, dirty: true, w: 700, h: 380, pointer: { x: 0, y: 0, inside: false, down: false }, forms: [], signals: [], fossils: [] };
     const specimen = { motion: .55, response: 1, freeze: null, ripples: [], offsetX: 0, offsetY: 0 };
     const orbit = { selected: 2, bodies: Array.from({ length: 5 }, (_, i) => ({ phase: i * 1.24, r: .4 + i * .125, speed: (i % 2 ? -1 : 1) * (.15 + i * .028), spin: 0 })), hits: [], drag: null };
-    const resonance = { playing: false, energy: 0, beat: 'drift', intensity: .7, clock: 0 };
+    const resonance = { playing: false, energy: 0, beat: 'drift', intensity: .7, response: .7, clock: 0, phase: 0, bass: 0, treble: 0 };
     const targets = [[28, 64, 76], [72, 35, 58], [46, 82, 31]], discoveries = ['Scout vessel', 'Ribbed wanderer', 'The broken crown'];
     const signal = { index: 0, values: [50, 50, 50], locked: false };
     const gravity = { strength: .65, count: 700, center: false, second: false, particles: [], burst: 0 };
@@ -51,7 +51,7 @@ function createArtEngine() {
         return fields.find(c => c.key === 'input:' + key);
     }
 
-    function archiveChip(container, label, callback) {
+    function archiveChip(label, callback) {
         view.archives.push({ label, callback });
     }
 
@@ -89,20 +89,6 @@ function createArtEngine() {
         ctx.stroke();
     }
 
-    function dot(x, y, r, color) {
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, TAU);
-        ctx.fill();
-    }
-
-    function text(str, x, y, color = bone(.62), align = 'left', size = 11) {
-        ctx.font = size + 'px "Share Tech Mono", monospace';
-        ctx.textAlign = align;
-        ctx.fillStyle = color;
-        ctx.fillText(str, x, y);
-    }
-
     function project(x, y, z, scale, angle = .4, tilt = .25, cx = state.w / 2, cy = state.h / 2 + 5) {
         const x1 = x * Math.cos(angle) + z * Math.sin(angle), z1 = -x * Math.sin(angle) + z * Math.cos(angle);
         const y1 = y * Math.cos(tilt) - z1 * Math.sin(tilt), z2 = y * Math.sin(tilt) + z1 * Math.cos(tilt);
@@ -116,40 +102,6 @@ function createArtEngine() {
         ctx.clearRect(0, 0, w, h);
         ctx.fillStyle = '#0a0a0a';
         ctx.fillRect(0, 0, w, h);
-
-        if (design.grid) {
-            ctx.strokeStyle = accent(.1);
-            ctx.lineWidth = .65;
-            ctx.beginPath();
-
-            for (let x = 0; x < w; x += 20) {
-                ctx.moveTo(x + .5, 0);
-                ctx.lineTo(x + .5, h);
-            }
-
-            for (let y = 0; y < h; y += 20) {
-                ctx.moveTo(0, y + .5);
-                ctx.lineTo(w, y + .5);
-            }
-
-            ctx.stroke();
-        }
-
-        ctx.strokeStyle = accent(.38);
-        ctx.beginPath();
-        const m = 16, l = 12;
-        [[m, 36, 1, 1], [w - m, 36, -1, 1], [m, h - m, 1, -1], [w - m, h - m, -1, -1]].forEach(([x, y, sx, sy]) => {
-            ctx.moveTo(x + sx * l, y);
-            ctx.lineTo(x, y);
-            ctx.lineTo(x, y + sy * l);
-        });
-
-        ctx.stroke();
-
-        for (let i = 0; i < 9; i++) {
-            const y = 58 + i * (h - 100) / 8;
-            line([{ x: 8, y }, { x: i % 2 ? 11 : 14, y }], accent(.4));
-        }
     }
 
     function makeParticles() {
@@ -182,16 +134,33 @@ function createArtEngine() {
         return all;
     }
 
+    function advanceResonance(dt) {
+        if (dt <= 0) return;
+
+        const target = resonance.playing ? 1 : 0;
+        const decay = Math.exp(-5 * dt), previousEnergy = resonance.energy;
+        resonance.energy = target + (previousEnergy - target) * decay;
+        resonance.clock += target * dt + (previousEnergy - target) * (1 - decay) / 5;
+        resonance.phase += dt * { drift: 72, pulse: 118, break: 144 }[resonance.beat] / 60;
+        resonance.response = mix(resonance.response, resonance.intensity, 1 - Math.exp(-10 * dt));
+
+        const beat = resonance.phase, fraction = beat % 1;
+        const weight = resonance.beat === 'break' && Math.floor(beat) % 3 === 1 ? .3 : 1;
+        const bass = Math.exp(-fraction * 9) * weight;
+        const treble = Math.exp(-((beat * 2) % 1) * 12);
+        resonance.bass = mix(resonance.bass, bass, 1 - Math.exp(-dt * (bass > resonance.bass ? 28 : 12)));
+        resonance.treble = mix(resonance.treble, treble, 1 - Math.exp(-dt * (treble > resonance.treble ? 42 : 20)));
+
+        if (!resonance.playing && resonance.energy < .002)
+            resonance.energy = 0;
+    }
+
     function drawResonance(dt) {
-        const bpm = { drift: 72, pulse: 118, break: 144 }[resonance.beat];
+        advanceResonance(dt);
 
-        if (resonance.playing)
-            resonance.clock += dt;
-
-        resonance.energy = mix(resonance.energy, resonance.playing ? 1 : 0, Math.min(1, dt * 5));
-        const t = resonance.clock, b = t * bpm / 60, f = b % 1, pulse = Math.exp(-f * 9) * resonance.energy * resonance.intensity;
-        const hit = Math.exp(-((b * 2) % 1) * 12) * resonance.energy;
-        const bass = pulse * (resonance.beat === 'break' ? (Math.floor(b) % 3 === 1 ? .3 : 1) : 1);
+        const t = resonance.clock, b = resonance.phase, f = b % 1;
+        const amplitude = resonance.energy * resonance.response;
+        const bass = resonance.bass * amplitude, hit = resonance.treble * amplitude;
         const scale = Math.min(state.w * .26, state.h * .31), rows = design.density === 'Fine' ? 19 : 11, points = [];
 
         for (let j = 0; j < rows; j++) {
@@ -199,39 +168,50 @@ function createArtEngine() {
 
             for (let i = 0; i <= 170; i++) {
                 const a = i / 170 * TAU, r = 1.12 - .27 * bass + q * .24 + .03 * hit * Math.sin(a * 16 - t * 8);
-                const z = .40 * q * Math.sin(3 * a + t * .2) + .18 * hit * Math.sin(a * 9 - f * 14);
+                const z = .40 * q * Math.sin(3 * a + t * .2) + .18 * hit * Math.sin(a * 9 - b * 14);
                 const p = project(r * Math.cos(a), r * Math.sin(a), z, scale, t * .13 + .3, .62, state.w / 2, state.h / 2 + 5);
                 path.push(p);
 
-                if (i % 2 === 0)
-                    points.push(Object.assign(Object.assign({}, p), { edge: j === 0 || j === rows - 1 }));
+                if (i < 170 && i % 2 === 0)
+                    points.push(Object.assign({}, p, { edge: j === 0 || j === rows - 1 }));
             }
 
             line(path, j === 0 || j === rows - 1 ? bone(.65) : bone(.11 + .1 * resonance.energy), j === 0 || j === rows - 1 ? .9 : .55);
         }
 
-        points.sort((a, b) => b.z - a.z).forEach(p => dot(p.x, p.y, p.edge ? .9 : .6, bone(.25 + .25 * p.p)));
+        const dotGroups = Array.from({ length: 32 }, () => []);
+
+        for (const p of points) {
+            const depth = clamp(Math.floor((.25 + .25 * p.p - .4) * 80), 0, 15);
+            dotGroups[depth * 2 + Number(p.edge)].push(p);
+        }
+
+        for (let i = 0; i < dotGroups.length; i++) {
+            if (!dotGroups[i].length) continue;
+
+            const radius = i % 2 ? .9 : .6;
+            ctx.beginPath();
+
+            for (const p of dotGroups[i]) {
+                ctx.moveTo(p.x + radius, p.y);
+                ctx.arc(p.x, p.y, radius, 0, TAU);
+            }
+
+            ctx.fillStyle = bone(.40625 + Math.floor(i / 2) * .0125);
+            ctx.fill();
+        }
 
         if (resonance.energy > .03) {
             for (let k = 0; k < 3; k++) {
                 const age = (f + k / 3) % 1;
-                ctx.strokeStyle = accent((1 - age) * .36 * resonance.energy);
+                const fade = Math.pow(Math.sin(Math.PI * age), 2) * (1 - age);
+                ctx.strokeStyle = accent(fade * .6 * amplitude);
                 ctx.lineWidth = .7;
                 ctx.beginPath();
                 ellipse(state.w / 2, state.h / 2 + 5, scale * (1.35 + age * .7), scale * (.55 + age * .3), .05);
                 ctx.stroke();
             }
         }
-
-        const left = 26, bottom = state.h - 29;
-
-        for (let i = 0; i < 29; i++) {
-            const amp = (.16 + .84 * Math.pow(Math.abs(Math.sin(i * .53 + t * 2.3)), 3)) * resonance.energy;
-            ctx.fillStyle = i < 9 ? accent(.85) : bone(.5);
-            ctx.fillRect(left + i * 4, bottom - amp * 14, 2, Math.max(1, amp * 14));
-        }
-
-        text(resonance.playing ? bpm + ' BPM / DEMO SIGNAL' : 'DEMO SIGNAL / IDLE', state.w - 26, bottom, bone(.62), 'right');
     }
 
     function needsMotion() {
@@ -345,7 +325,7 @@ function createArtEngine() {
 
             const f = { id: state.forms.length + 1, time: state.time, ox: specimen.offsetX, oy: specimen.offsetY, motion: specimen.motion, ripples: specimen.ripples.slice() };
             state.forms.push(f);
-            archiveChip('forms', 'Form ' + String(f.id).padStart(2, '0'), () => holdForm(f));
+            archiveChip('Form ' + String(f.id).padStart(2, '0'), () => holdForm(f));
             holdForm(f);
         },
         'release-form': releaseForm,
@@ -392,7 +372,7 @@ function createArtEngine() {
 
             const i = signal.index;
             state.signals.push(i);
-            archiveChip('signals', String(i + 1).padStart(2, '0') + '// ' + discoveries[i], () => {
+            archiveChip(String(i + 1).padStart(2, '0') + '// ' + discoveries[i], () => {
                 signal.index = i;
                 signal.values = targets[i].slice();
                 updateSignal();
@@ -454,7 +434,7 @@ function createArtEngine() {
 
             const f = { sample: fossil.session, rotation: fossil.rotation, name };
             state.fossils.push(f);
-            archiveChip('fossils', String(state.fossils.length).padStart(2, '0') + '// ' + name, () => {
+            archiveChip(String(state.fossils.length).padStart(2, '0') + '// ' + name, () => {
                 setFossil(f.sample, f.rotation, f.name);
                 button('archive-fossil').disabled = true;
                 status('Viewing ' + f.name + '. Archive is kept in this preview only.');
@@ -709,7 +689,7 @@ function createArtEngine() {
             dirty();
         },
         inspect() {
-            return { time: state.time, forms: state.forms.length, signals: state.signals.slice(), fossils: state.fossils.map(f => (Object.assign({}, f))), held: !!specimen.freeze, orbit: orbit.bodies.map(b => (Object.assign({}, b))), selected: orbit.selected, locked: signal.locked, wells: wells().length, particles: gravity.particles.length, playing: resonance.playing, rotation: fossil.rotation, name: fossil.name };
+            return { time: state.time, forms: state.forms.length, signals: state.signals.slice(), fossils: state.fossils.map(f => (Object.assign({}, f))), held: !!specimen.freeze, orbit: orbit.bodies.map(b => (Object.assign({}, b))), selected: orbit.selected, locked: signal.locked, wells: wells().length, particles: gravity.particles.length, playing: resonance.playing, resonance: Object.assign({}, resonance), rotation: fossil.rotation, name: fossil.name };
         }
     };
 

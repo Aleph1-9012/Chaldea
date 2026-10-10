@@ -40,7 +40,7 @@
     </div>
     <a class="poster poster-lockscreens" href={libraryUrl('Lockscreens')}>
       <span class="lock-count">{count('Lockscreens')}</span><p>AFK<br />Editorial<br />Phase<br />Print<br />Reactive</p>
-      <h2>Lockscreens</h2><span class="poster-arrow">↗</span>
+      <h2><span class="lock-title">Lockscreens<span class="lock-title-copy" aria-hidden="true">Lockscreens</span></span></h2><span class="poster-arrow">↗</span>
     </a>
     <a class="poster poster-art" href={libraryUrl('Interactive art')}>
       <h2>Art</h2><p>{count('Interactive art')} interactive pieces<br />Push them around</p>

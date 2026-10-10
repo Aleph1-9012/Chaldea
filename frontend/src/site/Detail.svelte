@@ -23,6 +23,7 @@
   let failure = $state('');
   let fieldError = $state<FieldError>();
   let host: HTMLDivElement;
+  let playbackHost = $state<HTMLDivElement>();
   let interactionHost = $state<HTMLDivElement>();
   let preview: Preview | undefined;
   let commandStatus = $state('');
@@ -51,7 +52,10 @@
     const initial = defaults(definition);
     const interactions = definition.category === 'Interactive art' ? interactionControls((key, value) => preview?.action(key, value)) : undefined;
 
-    if (interactions) interactionHost?.append(interactions.pause, interactions.root);
+    if (interactions) {
+      playbackHost?.append(interactions.pause);
+      interactionHost?.append(interactions.root);
+    }
 
     preview = mountPreview(host, widget, initial, interactions);
     commit(initial);
@@ -73,20 +77,22 @@
   <div class="detail-slab">
     <header class="detail-heading grain">
       <div><p class="breadcrumb">Library / {familyLabel(definition.category)} / {padded(index + 1)}</p><h1>{display.title}</h1></div>
-      <div class="detail-facts"><a href={libraryUrl(definition.category)}>← Back to {familyLabel(definition.category)}</a><p>{definition.settings.length} settings · {definition.exports.length} files · {definition.license}{definition.status === 'draft' ? ' · draft' : ''}</p><span>{definition.title}</span></div>
+      <div class="detail-facts"><a href={libraryUrl(definition.category)}>← Back to {familyLabel(definition.category)}</a><p>{definition.exports.length} files · {definition.license}{definition.status === 'draft' ? ' · draft' : ''}</p><span>{definition.title}</span></div>
     </header>
-    <div class="detail-workbench" class:preview-only={!definition.settings.length && definition.category !== 'Interactive art'}>
+    <div class="detail-workbench" class:art-workbench={definition.category === 'Interactive art'} class:preview-only={!definition.settings.length && definition.category !== 'Interactive art'}>
       <section class="preview-stage" aria-label="Live widget preview">
         <header><span>Live preview</span><small>Browser demo</small></header>
         <div class="preview-viewport"><div class="preview-host" bind:this={host}></div></div>
-        <p class="preview-help">{definition.category === 'Quick notes' ? 'Write, edit and switch notes here.' : 'Use the controls inside the preview to try this widget.'}</p>
       </section>
       {#if definition.settings.length || definition.category === 'Interactive art'}
         <section class="customize-panel" aria-label="Customize widget">
           <header><h2>Customize</h2><button class="reset" onclick={() => commit(defaults(definition))}>Reset</button></header>
-          <Settings {definition} values={proposed} error={fieldError} change={(key, value) => commit({ ...proposed, [key]: value })} />
-          <div class="art-interactions" bind:this={interactionHost}></div>
-          {#if failure}<p class="generation-error" role="alert">{failure}</p>{/if}
+          {#if definition.category === 'Interactive art'}<div class="art-playback" bind:this={playbackHost}></div>{/if}
+          <div class:customize-scroll={definition.category === 'Interactive art'}>
+            {#if definition.category === 'Interactive art'}<div class="art-interactions" bind:this={interactionHost}></div>{/if}
+            <Settings {definition} values={proposed} error={fieldError} change={(key, value) => commit({ ...proposed, [key]: value })} />
+            {#if failure}<p class="generation-error" role="alert">{failure}</p>{/if}
+          </div>
         </section>
       {/if}
     </div>

@@ -10,7 +10,7 @@ function createArtEngine() {
         return v - Math.floor(v);
     };
 
-    const design = { grid: true, density: 'Fine', accent: '#cc1515' };
+    const design = { density: 'Fine', accent: '#cc1515' };
     const state = { mode: 3, paused: false, time: 0, visible: true, dirty: true, w: 700, h: 380, pointer: { x: 0, y: 0, inside: false, down: false }, forms: [], signals: [], fossils: [] };
     const specimen = { motion: .55, response: 1, freeze: null, ripples: [], offsetX: 0, offsetY: 0 };
     const orbit = { selected: 2, bodies: Array.from({ length: 5 }, (_, i) => ({ phase: i * 1.24, r: .4 + i * .125, speed: (i % 2 ? -1 : 1) * (.15 + i * .028), spin: 0 })), hits: [], drag: null };
@@ -51,7 +51,7 @@ function createArtEngine() {
         return fields.find(c => c.key === 'input:' + key);
     }
 
-    function archiveChip(container, label, callback) {
+    function archiveChip(label, callback) {
         view.archives.push({ label, callback });
     }
 
@@ -103,40 +103,6 @@ function createArtEngine() {
         ctx.clearRect(0, 0, w, h);
         ctx.fillStyle = '#0a0a0a';
         ctx.fillRect(0, 0, w, h);
-
-        if (design.grid) {
-            ctx.strokeStyle = accent(.1);
-            ctx.lineWidth = .65;
-            ctx.beginPath();
-
-            for (let x = 0; x < w; x += 20) {
-                ctx.moveTo(x + .5, 0);
-                ctx.lineTo(x + .5, h);
-            }
-
-            for (let y = 0; y < h; y += 20) {
-                ctx.moveTo(0, y + .5);
-                ctx.lineTo(w, y + .5);
-            }
-
-            ctx.stroke();
-        }
-
-        ctx.strokeStyle = accent(.38);
-        ctx.beginPath();
-        const m = 16, l = 12;
-        [[m, 36, 1, 1], [w - m, 36, -1, 1], [m, h - m, 1, -1], [w - m, h - m, -1, -1]].forEach(([x, y, sx, sy]) => {
-            ctx.moveTo(x + sx * l, y);
-            ctx.lineTo(x, y);
-            ctx.lineTo(x, y + sy * l);
-        });
-
-        ctx.stroke();
-
-        for (let i = 0; i < 9; i++) {
-            const y = 58 + i * (h - 100) / 8;
-            line([{ x: 8, y }, { x: i % 2 ? 11 : 14, y }], accent(.4));
-        }
     }
 
     function signalPoint(index, u, v) {
@@ -216,9 +182,6 @@ function createArtEngine() {
             line([{ x: state.w / 2 + sz + 12, y: y - 30 }, { x: state.w / 2 + sz + 12, y: y + 30 }], accent(.6));
             text(discoveries[signal.index].toUpperCase(), state.w / 2, state.h - 54, '#e8e8e8', 'center', 13);
         }
-
-        text(signal.locked ? 'SIGNAL LOCKED' : 'SEARCHING / ' + String(signal.index + 1).padStart(2, '0'), 26, state.h - 28, accent(.95));
-        text(signal.locked ? 'READY TO COLLECT' : Math.round((1 - error) * 100) + '% COHERENCE', state.w - 26, state.h - 28, bone(.6), 'right');
     }
 
     function needsMotion() {
@@ -332,7 +295,7 @@ function createArtEngine() {
 
             const f = { id: state.forms.length + 1, time: state.time, ox: specimen.offsetX, oy: specimen.offsetY, motion: specimen.motion, ripples: specimen.ripples.slice() };
             state.forms.push(f);
-            archiveChip('forms', 'Form ' + String(f.id).padStart(2, '0'), () => holdForm(f));
+            archiveChip('Form ' + String(f.id).padStart(2, '0'), () => holdForm(f));
             holdForm(f);
         },
         'release-form': releaseForm,
@@ -379,7 +342,7 @@ function createArtEngine() {
 
             const i = signal.index;
             state.signals.push(i);
-            archiveChip('signals', String(i + 1).padStart(2, '0') + '// ' + discoveries[i], () => {
+            archiveChip(String(i + 1).padStart(2, '0') + '// ' + discoveries[i], () => {
                 signal.index = i;
                 signal.values = targets[i].slice();
                 updateSignal();
@@ -441,7 +404,7 @@ function createArtEngine() {
 
             const f = { sample: fossil.session, rotation: fossil.rotation, name };
             state.fossils.push(f);
-            archiveChip('fossils', String(state.fossils.length).padStart(2, '0') + '// ' + name, () => {
+            archiveChip(String(state.fossils.length).padStart(2, '0') + '// ' + name, () => {
                 setFossil(f.sample, f.rotation, f.name);
                 button('archive-fossil').disabled = true;
                 status('Viewing ' + f.name + '. Archive is kept in this preview only.');

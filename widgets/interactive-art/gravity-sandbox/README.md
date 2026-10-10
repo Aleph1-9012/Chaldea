@@ -24,9 +24,9 @@ The artwork adapts to the component width. Font families use installed fonts wit
 
 ## Interaction and settings
 
-Hold and drag in the scene to pull particles toward the pointer. Release to scatter them. Hold center well and Add second well create fixed attraction points; their controls release them again. Escape clears the wells, and Scatter sends the particles outward. Adjust gravity strength and particle count. Coordinate grid and accent color adjust its appearance.
+Hold and drag in the scene to pull particles toward the pointer. Release to scatter them. Hold center well and Add second well create fixed attraction points; their controls release them again. Escape clears the wells, and Scatter sends the particles outward. Adjust gravity strength and particle count. Accent color adjusts its appearance.
 
-Use the controls inside the artwork. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
+Use the customization sidebar in the library, or the local controls in standalone previews and native QML. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
 
 Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and individual file downloads contain the same settings snapshot; they do not include the current scene or collections.
 

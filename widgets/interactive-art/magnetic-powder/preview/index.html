@@ -8,6 +8,8 @@
 #tsugumori-eight-studies * { box-sizing:border-box; }
 #tsugumori-eight-studies .eight-shell { background:var(--eight-bg); border:1px solid transparent; padding:19px 20px 16px; position:relative; }
 #tsugumori-eight-studies .eight-shell::before { content:''; position:absolute; width:7px; height:7px; border-top:1px solid var(--eight-ink); border-left:1px solid var(--eight-ink); left:-1px; top:-1px; pointer-events:none; }
+#tsugumori-eight-studies.is-hosted .eight-shell { padding:0; border:0; }
+#tsugumori-eight-studies.is-hosted .eight-shell::before { display:none; }
 #tsugumori-eight-studies .eight-brand { display:flex; justify-content:space-between; gap:12px; font-size:11px; letter-spacing:2px; color:var(--eight-dim); margin-bottom:15px; }
 #tsugumori-eight-studies .eight-brand span:last-child { color:var(--eight-red); }
 #tsugumori-eight-studies button, #tsugumori-eight-studies select, #tsugumori-eight-studies input { font:inherit; color:inherit; }

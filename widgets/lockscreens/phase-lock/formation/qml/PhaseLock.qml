@@ -287,7 +287,7 @@ Rectangle {
             onPaint: {
                 const ctx = getContext("2d"); ctx.reset();
                 const label = sequence.running ? session.target ? "LOCK / APPEAR" : "UNLOCK / CLEAR" : root.progress === 1 ? "LOCKED" : "LOCK RELEASED";
-                Art.drawCorners(ctx, stage.scene, root.progress, "formation", label);
+                Art.drawCorners(ctx, stage.scene, root.progress, label);
             }
         }
     }

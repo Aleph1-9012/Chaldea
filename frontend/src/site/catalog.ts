@@ -11,7 +11,6 @@ const plates = new Map<string, { title: string; ratio: number }>([
   ['interactive-art-fish-in-space', { title: 'Fish In Space', ratio: 686 / 429 }],
   ['interactive-art-gravity-sandbox', { title: 'Gravity Sandbox', ratio: 333 / 208 }],
   ['interactive-art-magnetic-powder', { title: 'Magnetic Powder', ratio: 333 / 208 }],
-  ['interactive-art-mechanical-rhythm', { title: 'Mechanical Rhythm', ratio: 333 / 208 }],
   ['interactive-art-orbital-playground', { title: 'Orbital Playground', ratio: 686 / 429 }],
   ['interactive-art-resonance-sculpture', { title: 'Resonance Sculpture', ratio: 333 / 208 }],
   ['interactive-art-signal-hunting', { title: 'Signal Hunting', ratio: 333 / 208 }],

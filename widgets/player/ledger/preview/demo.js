@@ -85,8 +85,6 @@
         c.rotate((index - 1) * .075);
         c.translate(-322, -318);
         // A printed architectural study. Each plate converges on the open shaft.
-        const van = { x: 340, y: 271 };
-
         for (let side = 0; side < 2; side++) {
             for (let k = 0; k < 18; k++) {
                 const t = k / 18, n = (k + 1) / 18, depth = Math.pow(t, 1.7), next = Math.pow(n, 1.7);

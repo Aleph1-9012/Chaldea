@@ -22,11 +22,15 @@ Art.Widget {
 
 The artwork adapts to the component width. Font families use installed fonts with system fallback. No remote assets are requested.
 
+Orbit tracks use the available canvas width while keeping bodies inside the drawing area. Body sizes scale with the canvas, and brighter front wires distinguish them from the dimmer rear wires. Labels use separate callouts that avoid other labels and bodies, including when several orbits converge. Drawing and dragging share the same geometry in the browser and native QML.
+
 ## Interaction and settings
 
-Select a body by clicking it or choosing a preview workspace. Drag a body and release it to change its orbit and momentum. Orbit changes the radius; Push and Reverse change its travel. The five workspaces are sample labels inside the artwork. Coordinate grid and accent color adjust its appearance.
+Select a body by clicking it or choosing a preview workspace. Drag a body and release it to change its orbit and momentum. Orbit changes the radius; Push and Reverse change its travel. The five workspaces are sample labels inside the artwork. Accent color adjusts its appearance.
 
-Use the controls inside the artwork. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
+Give it a push increases the selected body's speed from its current position. Reverse changes direction without moving it to another point on the orbit. Both preserve the current play/pause state; a push while paused takes effect when you resume.
+
+Use the customization sidebar in the library, or the local controls in standalone previews and native QML. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
 
 Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and individual file downloads contain the same settings snapshot; they do not include the current scene or collections.
 

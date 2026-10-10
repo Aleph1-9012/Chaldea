@@ -344,12 +344,5 @@ function densityChanged(){
 }
 watchDensity();
 document.fonts?.ready.then(()=>{if(root.isConnected)redraw();});
-if(globalThis.Tweak) {
-  const tweak=new Tweak({container:stage,onChange:redraw});
-  tweak.addToggle(settings,'panel',{label:'Show center box'});
-  tweak.addSlider(settings,'ink',{label:'Field contrast',min:55,max:100,step:5,unit:'%'});
-  tweak.addSlider(settings,'speed',{label:'Replay speed',min:.5,max:1.5,step:.25,unit:'×'});
-  tweak.addToggle(settings,'motion',{label:'Animations'});
-}
 
 })();

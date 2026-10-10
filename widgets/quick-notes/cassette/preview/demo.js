@@ -14,10 +14,10 @@
   function renderDesign(){root.dataset.inner=String(design.innerFrame);root.style.setProperty('--ta-body-size',design.bodySize+'px');}
   function render(){
     index.replaceChildren();
-    notes.forEach((note,i)=>{
+    for (const i of notes.keys()) {
       const button=document.createElement('button');button.type='button';button.className='ta-note';button.textContent=noteLabel(i);button.setAttribute('aria-pressed',String(i===active));
       button.addEventListener('click',()=>{active=i;render();index.children[i].focus();});index.appendChild(button);
-    });
+    }
     title.value=notes[active].title;body.value=notes[active].body;
     root.querySelector('[data-count]').textContent=String(active+1).padStart(2,'0')+' / '+String(notes.length).padStart(2,'0');
     ChaldeaNotes.updateCount();ChaldeaNotes.reveal(index,'[aria-pressed="true"]');
@@ -33,7 +33,7 @@
     renderDesign();
     root.dataset.palette=settings.s2Palette;
     ChaldeaNotes.apply(settings);
-    notes.forEach((note,i)=>{index.children[i].textContent=noteLabel(i);});
+    for (const i of notes.keys()) index.children[i].textContent=noteLabel(i);
     ChaldeaNotes.reveal(index,'[aria-pressed="true"]');
   });
 })();

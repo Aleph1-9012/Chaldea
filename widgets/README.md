@@ -4,7 +4,7 @@ Source folders use short names grouped by category. Larger collections group by 
 
 ```text
 widgets/
-  _shared/                  LICENSE and preview/support.js for the whole library
+  _shared/                  LICENSE for the whole library
   glyphs/
     _shared/qml/            helpers every Glyph design uses unchanged
     branch-grammar/

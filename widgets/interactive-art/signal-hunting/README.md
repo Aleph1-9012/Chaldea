@@ -24,9 +24,9 @@ The artwork adapts to the component width. Font families use installed fonts wit
 
 ## Interaction and settings
 
-Tune the three dials until each reads matched and the hidden shape resolves. Assist solves one dial. Collect discovery keeps a card, and Next signal starts the next search. There are three discoveries; select a collected card to revisit it. Coordinate grid, point detail, and accent color adjust its appearance.
+Tune the three dials until each reads matched and the hidden shape resolves. Assist solves one dial. Collect discovery keeps a card, and Next signal starts the next search. There are three discoveries; select a collected card to revisit it. Point detail and accent color adjust its appearance.
 
-Use the controls inside the artwork. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
+Use the customization sidebar in the library, or the local controls in standalone previews and native QML. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
 
 Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and individual file downloads contain the same settings snapshot; they do not include the current scene or collections.
 

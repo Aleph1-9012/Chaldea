@@ -16,6 +16,8 @@ Run commands from the repository root. `make -f /absolute/path/to/Chaldea/Makefi
 
 Open `/` for the public Svelte site, `/?page=library` for the catalog, or `/?workbench` for the original backend preview UI. The workbench is available only in development and is not included in production bundles. Site code lives in `frontend/src/site/`; the shared generator and preview protocol keep their existing paths.
 
+The dark initial background and keyboard skip-link styles live in `frontend/index.html` so they apply before JavaScript loads either application's stylesheet. Keep them in the HTML to prevent a white flash and an unstyled "Skip to content" link during refresh. The link appears when focused from the keyboard.
+
 The library supports A–Z and Family sorting. `sort=family` selects Family; missing or unsupported sort values use A–Z.
 
 There are no scope flags, per-widget test modes, browser test installations, fish simulations, or native test matrices. The former suites are available in Git history if a past investigation needs them.
@@ -66,7 +68,7 @@ If the browser shows an old or removed widget, rebuild local content and reload.
 
 ## Manual export inspection
 
-The browser's Download file button saves only the selected output, including binary images and audio. Copy file is available for text files. Save every listed file, including README.md and LICENSE, and preserve its displayed path in your widget folder. Browsers download the final file name only; create any listed subfolders yourself, such as `sounds/` for Mechanical rhythm. Invalid settings disable both actions until corrected.
+The public site's Save file button saves only the selected output, including binary assets. Copy is available for text files. The development workbench labels these actions Download file and Copy file. Save every listed file, including README.md and LICENSE, and preserve its displayed path in your widget folder. Browsers download the final file name only; create any listed subfolders yourself. Invalid settings disable both actions until corrected.
 
 To create exact generated files without a browser, run this inside `frontend/`:
 
@@ -82,11 +84,17 @@ Blurry library cards usually indicate old 640 × 400 captures. The capture scrip
 
 For an off-center capture or unwanted demo controls, inspect the widget's `frames` entry in `scripts/thumbnails.ts`. Console uses its notes section with 20 pixels of padding. Phase Lock uses its artwork section at a 1024-pixel viewport width so the full background and corner details fit the card. The capture expands around the selected element to match the card ratio, preserving the complete widget. Keep these adjustments in the capture script rather than changing the live preview's layout.
 
-Live widget detail pages use natural preview sizes rather than thumbnail proportions or iframe scaling. The preview can grow up to 1200 pixels wide, and its authenticated body-height messages set the stage's height. If a preview is clipped after a settings change, check that it sends an updated `resize` message; do not restore a fixed stage height or shrink the iframe. Compact widgets can report a preferred width, which is capped by the available space on mobile.
+Branch Grammar, Oblique Ligatures, and Radical Exchange frame their complete glyph and input panel, so the bottom controls fit the library thumbnail. Their live canvases resize with the preview to keep the line work sharp. Branch Grammar and Oblique Ligatures use at least three pixels per CSS pixel for their nested detail; Radical Exchange uses at least two.
+
+Interactive art thumbnails acknowledge the preview's external controls during startup, then frame the complete canvas and center it within the card proportions. This excludes standalone buttons, duplicate titles, and gesture instructions. Embedded artwork uses the same view, with actions in the customization sidebar and instructions retained in canvas accessibility labels. Widget detail pages omit the generic instruction paragraph below the preview.
+
+Preview frames stay invisible until their first authenticated settings render completes. The runtime publishes sidebar controls before its ready message, so the host acknowledges those controls before sending initial settings. This prevents standalone demo labels flashing during startup without a timed delay. Retained lockscreen previews remove the complete archive toolbar and layout description after selecting their fixed design, including the leftover “Glyph” label.
+
+Live widget detail pages use natural preview sizes rather than thumbnail proportions or iframe scaling. Most previews can grow up to 1200 pixels wide. Interactive art fills the preview column without outer padding or the standalone artwork frame, and its canvas height sets the panel height. Authenticated body-height messages resize the host, including Magnetic powder's Compact canvas setting. If a preview is clipped after a settings change, check that it sends an updated `resize` message; do not restore a fixed stage height or shrink the iframe. Compact widgets can report a preferred width, which is capped by the available space on mobile.
 
 The unfiltered A–Z library uses masonry placement and individual card proportions. Family filters, search results, and Family sorting use rows in the selected order, with each row starting at the left. Every card uses one column, and cards in the same family have equal dimensions. Family plate ratios live in `site/catalog.ts`: Glyphs 7:10, Art and Player 8:5, Lockscreens 1:1, and Notes 9:10. Art and Player filters use fewer, wider columns. Thumbnails fit inside their plates without additional cropping. Position, width, and plate proportions transition together when filters change.
 
-Entering the library through a link from another page uses a 620 ms green wipe through the browser's View Transitions API. Family, sort, and search changes keep their card transitions. Reduced motion and browsers without the API navigate immediately. Browser Back and Forward also update immediately so native scroll restoration can use the destination layout. The animated route update waits for Svelte's layout, and newer navigation cancels an unfinished wipe so a delayed callback cannot restore an old route.
+Entering the library through a link from another page uses a 460 ms transition through the browser's View Transitions API. The previous page moves up 12 pixels and fades out over 120 ms; the library then fades in and moves up 20 pixels over 340 ms against the site's ink background. The two pages do not overlap. Family, sort, and search changes keep their card transitions. Reduced motion and browsers without the API navigate immediately. Browser Back and Forward also update immediately so native scroll restoration can use the destination layout. The animated route update waits for Svelte's layout, and newer navigation cancels an unfinished transition so a delayed callback cannot restore an old route.
 
 ## Distribution notices
 
@@ -95,3 +103,5 @@ The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE
 ## Family notes
 
 Each family with native exports keeps its component, shared-file, and inspection notes beside its sources: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), and [Lockscreens](../widgets/lockscreens/README.md). Lockscreen exports are visual components with demo interactions; the preview launcher does not authenticate or lock the session.
+
+The eight AFK, Editorial, Print, and Reactive lockscreen previews now package their native `assets/GlyphArt.js` as `preview/GlyphArt.js`. Their existing settings keys connect directly to the preview runtime. The unused archive adapter and design selectors are removed; run `make content` after source edits so previews and exports use the same revision.

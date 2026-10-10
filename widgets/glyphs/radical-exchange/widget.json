@@ -18,7 +18,7 @@
       "key": "duration",
       "label": "Input transition",
       "type": "number",
-      "default": 100,
+      "default": 220,
       "min": 80,
       "max": 350,
       "step": 10

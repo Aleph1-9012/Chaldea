@@ -64,6 +64,7 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
   const messages: RuntimeOutput[] = [];
   const listeners = new Map<string, Set<RuntimeListener>>();
   const rendered: Settings[] = [];
+  const hostedAtRender: boolean[] = [];
   const actions: { key: string; value?: InteractionValue }[] = [];
   const hosted: boolean[] = [];
   const current = state();
@@ -99,10 +100,13 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
     escape() { escaped++; current.canEscape = false; },
   };
 
-  const disconnect = api.connect(settings => rendered.push(settings), withControls ? interactions : undefined);
+  const disconnect = api.connect(settings => {
+    rendered.push(settings);
+    hostedAtRender.push(hosted.at(-1) ?? false);
+  }, withControls ? interactions : undefined);
 
   return {
-    current, messages, rendered, actions, hosted, disconnect, body,
+    current, messages, rendered, hostedAtRender, actions, hosted, disconnect, body,
     get escaped() { return escaped; },
     changed: () => api.controlsChanged(),
     send(data: HostMessage, source = parent) {
@@ -176,7 +180,7 @@ test('runtime authenticates the parent and token, waits for mount acknowledgemen
   expect(runtime.messages).toHaveLength(0);
   expect(runtime.rendered).toHaveLength(0);
   runtime.send(init);
-  expect(runtime.messages[0]).toEqual({ ...envelope, type: 'ready' });
+  expect(runtime.messages).toContainEqual({ ...envelope, type: 'ready' });
   expect(runtime.latest()).toMatchObject({ revision: 1, ack: 0, state: runtime.current });
   runtime.send(command(1, 'button', 'capture'));
   runtime.send({ ...envelope, type: 'controls-mounted', revision: 2 });
@@ -210,6 +214,22 @@ test('runtime authenticates the parent and token, waits for mount acknowledgemen
   runtime.changed();
   expect(runtime.rendered).toHaveLength(2);
   expect(runtime.hosted).toEqual([true, false]);
+});
+
+test('the first hosted render runs after the sidebar acknowledgement removes standalone labels', async () => {
+  const runtime = await runtimeFixture();
+  runtime.send({ ...envelope, type: 'init', externalControls: true });
+
+  // Reply in postMessage order, just as the preview host does during startup.
+  for (const message of runtime.messages.slice()) {
+    if (message.type === 'controls') runtime.send({ ...envelope, type: 'controls-mounted', revision: message.revision });
+    if (message.type === 'ready') runtime.send({ ...envelope, type: 'settings', sequence: 1, settings: { detail: 3 } });
+  }
+
+  expect(runtime.rendered).toEqual([{ detail: 3 }]);
+  expect(runtime.hostedAtRender).toEqual([true]);
+  expect(runtime.messages).toContainEqual({ ...envelope, type: 'rendered', sequence: 1 });
+  runtime.disconnect();
 });
 
 test('runtime enforces live control bounds, rejects action replays, and reports focus and acknowledgements', async () => {

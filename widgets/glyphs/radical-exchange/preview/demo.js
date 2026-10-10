@@ -11,17 +11,25 @@
     const pass = root.querySelector('#tr-study-pass');
     const status = root.querySelector('.tr-status');
     const unlock = root.querySelector('.tr-unlock');
-    const state = { motion: true, duration: 100, red: 100 };
+    const state = { motion: true, duration: 220, red: 100 };
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
     let count = 0, phase = 0, motion = null, frame = null;
     let composing = false, compositionEcho = false, previewTimer = null;
     const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
     const lerp = (a, b, t) => a + (b - a) * t;
+
     function draw() {
         if (!context)
             return;
 
-        context.setTransform(2, 0, 0, 2, 0, 0);
+        const side = Math.max(1, Math.round(canvas.getBoundingClientRect().width * Math.max(2, Math.min(window.devicePixelRatio || 1, 4))));
+
+        if (canvas.width !== side || canvas.height !== side) {
+            canvas.width = side;
+            canvas.height = side;
+        }
+
+        context.setTransform(side / 252, 0, 0, side / 252, 0, 0);
         context.clearRect(0, 0, 252, 252);
         context.fillStyle = '#090909';
         context.fillRect(0, 0, 252, 252);
@@ -176,6 +184,17 @@
         animate();
     }
 
+    const observer = new ResizeObserver(() => {
+        if (!root.isConnected) {
+            observer.disconnect();
+
+            return;
+        }
+
+        draw();
+    });
+    observer.observe(canvas);
+    window.addEventListener('resize', draw);
     preference.addEventListener('change', render);
     render();
     // First render does not depend on the optional design-control helper.

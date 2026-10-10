@@ -1,16 +1,7 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Reactive lockscreen studies / Relay tiles</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden],[data-archive-omitted]{display:none!important}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn,.nav-link{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true],.nav-link.active{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px}.text-muted{color:#999}.form-control,.form-select{background:#151515;color:#eee;border:1px solid #666;padding:7px}.form-range{accent-color:#cc1515}.nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}figure{margin:0}svg{flex-shrink:0}.archive-settings{border-top:1px solid #383434;margin:18px 0 0;padding:12px 0;font-size:11px}.archive-settings summary{cursor:pointer;color:#aaa;letter-spacing:1px}.archive-settings label{display:flex;align-items:center;gap:12px;padding-top:10px;flex-wrap:wrap}.archive-settings label span{min-width:145px}.archive-settings input[type=range]{width:150px;max-width:100%;accent-color:#cc1515}.archive-settings select{max-width:100%;background:#151515;color:#ddd;border:1px solid #555;padding:5px}.archive-settings output{color:#aaa}.archive-settings input[type=checkbox]{accent-color:#cc1515}
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'"><title>Tsugumori / Reactive lockscreen studies / Relay tiles</title><style>html{color-scheme:dark}body{margin:0;padding:16px;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}*,*::before,*::after{box-sizing:border-box}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}[hidden] {display:none!important}figure{margin:0}svg{flex-shrink:0}
 </style></head><body>
 <div id="ts-reactive-lock-studies">
-<div aria-label="Artwork designs" class="viz-row" role="group">
-<button aria-pressed="true" class="btn" data-design="a" type="button">A · Relay tiles</button>
-<button aria-pressed="false" class="btn" data-design="b" type="button">B · Shutter bank</button>
-<button aria-pressed="false" class="btn" data-design="c" type="button">C · Phase screens</button>
-<button aria-pressed="false" class="btn" data-design="d" type="button">D · Formation field</button>
-<button aria-pressed="false" class="btn" data-design="e" type="button">E · Stencil assembly</button>
-<button aria-pressed="false" class="btn" data-design="f" type="button">F · Typesetter</button>
-</div>
-<p aria-live="polite" class="text-small" data-design-description="">A · Quarter-turn tiles reconnect as you type. Backspace turns them back.</p>
 <section aria-label="Tsugumori lockscreen design preview" class="tr-screen" data-design="a">
 <div aria-hidden="true" class="tr-grid"></div>
 <header class="tr-header">
@@ -29,7 +20,7 @@
 <label class="tr-label" for="tr-study-pass">DEMO PASSWORD <span lang="ja">本人確認</span></label>
 <div class="tr-input-wrap"><span aria-hidden="true" class="tr-input-mark">›</span><input aria-label="Demo password. Use dummy text to animate the artwork; Backspace reverses it." autocapitalize="off" autocomplete="off" id="tr-study-pass" maxlength="64" placeholder="Type dummy text…" spellcheck="false" type="password"/></div>
 <div aria-live="polite" class="tr-status" role="status">TYPE TO ACTIVATE</div>
-<button class="tr-unlock" type="button"><span>UNLOCK</span><i aria-hidden="true" data-lucide="arrow-up-right"></i></button>
+<button class="tr-unlock" type="button"><span>UNLOCK</span></button>
 <div class="tr-auth-foot"><span>SESSION / 01</span><span lang="ja">セッションロック中</span></div>
 </div>
 <div class="tr-bay">
@@ -41,7 +32,7 @@
 </div>
 <footer class="tr-footer">
 <div class="tr-ship"><span class="tr-plate">SID0NIA</span><span lang="ja">播種船 シドニア</span></div>
-<div class="tr-power-group"><button class="tr-power" data-power="restart" type="button"><i aria-hidden="true" data-lucide="rotate-ccw"></i>RESTART</button><button class="tr-power" data-power="shutdown" type="button"><i aria-hidden="true" data-lucide="power"></i>SHUTDOWN</button></div>
+<div class="tr-power-group"><button class="tr-power" data-power="restart" type="button">RESTART</button><button class="tr-power" data-power="shutdown" type="button">SHUTDOWN</button></div>
 </footer>
 <div aria-hidden="true" class="tr-curtain"><span lang="ja">継衛 / TYPE 17</span><span class="tr-curtain-title">SID0NIA</span><span>UNLOCK PREVIEW</span></div>
 <div class="tr-modal" hidden="">
@@ -124,63 +115,7 @@
   #ts-reactive-lock-studies .tr-dialog p { margin:0 0 26px; color:var(--tr-muted); font-size:12px; }
   #ts-reactive-lock-studies .tr-back { width:100%; padding:12px 10px; border:1px solid var(--tr-red); background:var(--tr-red); color:var(--tr-black); font-size:11px; letter-spacing:1px; }
   #ts-reactive-lock-studies .tr-screen[data-motion="off"] *, #ts-reactive-lock-studies .tr-screen[data-motion="off"] *::before { transition:none; }
-  /* B: three separate instruments, with the shutters occupying the centre. */
-  #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-main { padding:44px 36px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-layout { width:min(100%,850px); grid-template-columns:minmax(0,190px) 252px minmax(0,255px); gap:32px; align-items:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-clock { font-size:58px; letter-spacing:-4px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-date { white-space:normal; line-height:1.9; }
-  #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-bay { grid-column:2; grid-row:1; width:252px; padding:0; border:0; }
-  #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-auth { grid-column:3; grid-row:1; border-top:2px solid var(--tr-red); padding-top:20px; }
-  /* C: a screen sample and large clock above a single red access strip. */
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-layout { width:min(100%,740px); grid-template-columns:252px minmax(0,1fr); gap:28px 64px; align-items:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-bay { grid-column:1; grid-row:1; width:252px; padding:0; border:0; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-clock-block { grid-column:2; grid-row:1; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-clock { font-size:clamp(76px,11cqw,110px); letter-spacing:-7px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-auth { grid-column:1/-1; grid-row:2; background:var(--tr-red); color:var(--tr-black); padding:20px; display:grid; grid-template-columns:145px minmax(0,1fr) 94px; column-gap:18px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-user { grid-column:1; grid-row:1/3; justify-content:center; margin:0; font-size:13px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-user .tr-muted, #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-label, #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-status { color:var(--tr-black); }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-label { grid-column:2; grid-row:1; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-input-wrap { grid-column:2; grid-row:2; border-color:var(--tr-black); }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-unlock { grid-column:3; grid-row:2; border-color:var(--tr-black); letter-spacing:1px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-unlock::before { background:#30302b; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-status { grid-column:2/4; grid-row:3; min-height:24px; padding-top:8px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-auth-foot { display:none; }
-  /* D: a centred time mast, with artwork and authentication docked below. */
-  #ts-reactive-lock-studies .tr-screen[data-design="d"] .tr-layout { width:min(100%,630px); grid-template-columns:277px minmax(0,285px); gap:26px 50px; align-items:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="d"] .tr-clock-block { grid-column:1/-1; grid-row:1; text-align:center; padding-bottom:16px; border-bottom:1px solid var(--tr-line); }
-  #ts-reactive-lock-studies .tr-screen[data-design="d"] .tr-clock { font-size:86px; justify-content:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="d"] .tr-caption { justify-content:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="d"] .tr-bay { grid-column:1; grid-row:2; width:252px; padding:0; border:0; }
-  #ts-reactive-lock-studies .tr-screen[data-design="d"] .tr-auth { grid-column:2; grid-row:2; }
-  /* E: a typographic poster to the left of a compact inset login console. */
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-layout { grid-template-columns:252px minmax(0,305px); gap:22px 58px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-bay { grid-column:1; grid-row:1/3; width:252px; padding:0; border:0; }
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-bay-head span:first-child { font-size:18px; letter-spacing:3px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-clock-block { grid-column:2; grid-row:1; padding-left:22px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-clock { font-size:68px; letter-spacing:-4px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-auth { grid-column:2; grid-row:2; background:#101010; padding:22px; border-left:2px solid var(--tr-red); }
-  #ts-reactive-lock-studies .tr-screen[data-design="e"] .tr-auth-foot span:first-child { display:none; }
-  /* F: a narrow vertical composition; the moving type block becomes the mark. */
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-main { padding:26px 32px 36px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-layout { width:min(100%,310px); grid-template-columns:minmax(0,1fr); gap:22px; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-clock-block { grid-column:1; grid-row:1; text-align:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-caption { display:none; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-clock { font-size:58px; letter-spacing:-3px; margin:0 0 6px; justify-content:center; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-bay { grid-column:1; grid-row:2; width:252px; padding:0; border:0; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-art { margin:0; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-bay-head, #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-bay-foot { display:none; }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-auth { grid-column:1; grid-row:3; padding-top:18px; border-top:1px solid var(--tr-line); }
-  #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-user { flex-direction:row; justify-content:center; align-items:center; gap:12px; font-size:12px; margin-bottom:16px; }
-  @container (max-width:880px) and (min-width:671px) {
-    #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-layout { grid-template-columns:252px minmax(0,255px); gap:28px 40px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-clock-block { grid-column:1/-1; grid-row:1; display:flex; justify-content:space-between; align-items:center; gap:14px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-caption { display:none; }
-    #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-bay { grid-column:1; grid-row:2; }
-    #ts-reactive-lock-studies .tr-screen[data-design="b"] .tr-auth { grid-column:2; grid-row:2; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-layout { column-gap:36px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-clock { font-size:76px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-auth { grid-template-columns:130px minmax(0,1fr) 90px; gap:0 12px; }
-  }
+
   @container (max-width:800px) {
     #ts-reactive-lock-studies .tr-main { padding:32px 34px; }
     #ts-reactive-lock-studies .tr-layout { grid-template-columns:minmax(0,265px) 277px; column-gap:36px; }
@@ -201,12 +136,7 @@
     #ts-reactive-lock-studies .tr-screen[data-design] .tr-clock { justify-content:center; font-size:76px; }
     #ts-reactive-lock-studies .tr-screen[data-design] .tr-bay { grid-column:1; grid-row:2; width:252px; padding:0; border:0; }
     #ts-reactive-lock-studies .tr-screen[data-design] .tr-auth { grid-column:1; grid-row:3; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-auth { display:flex; flex-direction:column; padding:18px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-user { margin-bottom:18px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-status { order:1; }
-    #ts-reactive-lock-studies .tr-screen[data-design="c"] .tr-unlock { margin-top:12px; }
-    #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-layout { width:min(100%,310px); }
-    #ts-reactive-lock-studies .tr-screen[data-design="f"] .tr-clock { font-size:58px; }
+
   }
   @media (pointer:coarse) {
     #ts-reactive-lock-studies .tr-power, #ts-reactive-lock-studies .tr-unlock, #ts-reactive-lock-studies .tr-back { min-height:44px; }
@@ -216,4 +146,4 @@
   }
 </style>
 
-<style></style><script src="../preview-runtime.js"></script><script src="support.js"></script><script src="demo.js"></script></body></html>
+<script src="../preview-runtime.js"></script><script src="GlyphArt.js"></script><script src="demo.js"></script></body></html>

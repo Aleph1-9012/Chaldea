@@ -9,6 +9,9 @@
 #tsugumori-organic-lab [hidden] { display:none !important; }
 #tsugumori-organic-lab .org-window { background:#080808; padding:18px 20px 17px; border:1px solid transparent; position:relative; }
 #tsugumori-organic-lab .org-window::after { content:''; width:7px; height:7px; position:absolute; top:-1px; right:-1px; border-top:1px solid #e8e8e8; border-right:1px solid #e8e8e8; pointer-events:none; }
+#tsugumori-organic-lab.is-hosted .org-window { padding:0; border:0; }
+#tsugumori-organic-lab.is-hosted .org-window::after { display:none; }
+#tsugumori-organic-lab.is-hosted .org-stage { margin-top:0; }
 #tsugumori-organic-lab button { font:inherit; color:var(--org-fg); cursor:pointer; border:1px solid #493030; border-radius:0; padding:9px 12px; background:transparent; letter-spacing:.5px; position:relative; isolation:isolate; min-height:38px; }
 #tsugumori-organic-lab button::before { content:''; background:var(--org-red); position:absolute; inset:-1px; z-index:-1; transform:scaleX(0); transform-origin:left; transition:transform 220ms cubic-bezier(.76,0,.24,1); }
 #tsugumori-organic-lab button:hover::before, #tsugumori-organic-lab button[aria-pressed="true"]::before { transform:scaleX(1); }

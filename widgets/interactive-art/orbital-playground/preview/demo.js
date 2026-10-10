@@ -5,9 +5,10 @@
     const engine = createArtEngine();
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
     const standaloneLabel = canvas.getAttribute('aria-label'), standaloneText = canvas.textContent;
-    let width = 1, height = 1, last = 0, frame = 0, visible = true, archiveCount = -1;
+    let width = 1, height = 1, last = 0, frame = 0, visible = true;
     let hostedControls = false;
     engine.setPaused(preference.matches);
+
     function sync() {
         root.querySelector('[data-title]').textContent = engine.meta.title;
         root.querySelector('[data-gesture]').textContent = engine.meta.hint;
@@ -22,7 +23,7 @@
 
         for (const control of engine.controls()) {
             const [group, name] = control.key.split(':');
-            const element = group === 'input' ? root.querySelector(`[data-input="${name}"]`) : group === 'tune' ? root.querySelector(`[data-tune="${name}"]`) : root.querySelector(`[data-action="${control.key}"]`);
+            const element = group === 'input' ? root.querySelector(`[data-input="${name}"]`) : root.querySelector(`[data-action="${control.key}"]`);
 
             if (!element)
                 continue;
@@ -41,28 +42,7 @@
 
                 if (control.outputKey)
                     root.querySelector(`[data-output="${control.outputKey}"]`).textContent = control.output;
-
-                if (control.quality !== undefined)
-                    root.querySelector(`[data-quality="${name}"]`).style.width = control.quality + '%';
             }
-        }
-
-        const archives = engine.archives();
-
-        if (archives.length !== archiveCount) {
-            const archive = root.querySelector('[data-archive]');
-
-            if (archive)
-                archive.replaceChildren(...archives.map(item => {
-                    const b = document.createElement('button');
-                    b.type = 'button';
-                    b.textContent = item.label;
-                    b.addEventListener('click', () => act(item.key));
-
-                    return b;
-                }));
-
-            archiveCount = archives.length;
         }
 
         window.ChaldeaPreview.controlsChanged();
@@ -95,30 +75,38 @@
         window.ChaldeaPreview.controlsChanged();
     }
 
+    function redraw() {
+        if (visible && !document.hidden && !engine.paused)
+            schedule();
+        else
+            draw();
+    }
+
     function act(key, value) {
-        const focus = engine.action(key, value);
+        engine.action(key, value);
+
+        if (key === 'motion' && engine.paused)
+            stop();
+
         sync();
-        draw();
-        schedule();
-
-        if (!hostedControls && focus?.startsWith('input:'))
-            root.querySelector(`[data-input="${focus.slice(6)}"]`).focus();
-
-        return focus;
+        redraw();
     }
 
     root.querySelectorAll('[data-action]').forEach(el => el.addEventListener('click', () => act(el.dataset.action)));
     root.querySelectorAll('[data-input]').forEach(el => el.addEventListener('input', () => act('input:' + el.dataset.input, el.value)));
-    root.querySelectorAll('[data-tune]').forEach(el => el.addEventListener('input', () => act('tune:' + el.dataset.tune, el.value)));
+
     function point(kind, event) {
         const r = canvas.getBoundingClientRect();
         engine.pointer(kind, event.clientX - r.left, event.clientY - r.top, event.timeStamp);
         sync();
-        draw();
-        schedule();
+        redraw();
     }
 
-    canvas.addEventListener('pointermove', e => point('move', e));
+    canvas.addEventListener('pointermove', e => {
+        if (canvas.hasPointerCapture(e.pointerId))
+            point('move', e);
+    });
+
     canvas.addEventListener('pointerdown', e => {
         if (e.button !== 0)
             return;
@@ -136,25 +124,7 @@
 
     canvas.addEventListener('pointerup', release);
     canvas.addEventListener('pointercancel', release);
-    canvas.addEventListener('pointerleave', e => point('leave', e));
-    root.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            engine.key('Escape');
-            sync();
-            draw();
-            e.preventDefault();
-        }
-    });
-
     canvas.tabIndex = 0;
-    canvas.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            engine.key('activate');
-            sync();
-            draw();
-            e.preventDefault();
-        }
-    });
 
     function resize() {
         const r = canvas.getBoundingClientRect();
@@ -210,8 +180,8 @@
     const disconnect = window.ChaldeaPreview.connect(settings => {
         engine.configure(settings);
         root.style.setProperty('--ts-red', settings.accent);
-        draw();
         sync();
+        redraw();
     }, {
         read() {
             return { controls: engine.controls(), archives: engine.archives(), status: engine.status(), paused: engine.paused };
@@ -224,12 +194,12 @@
                 stop();
 
             sync();
-            draw();
-            schedule();
+            redraw();
         },
         hosted(active) {
+            root.classList.toggle('is-hosted', active);
             hostedControls = active;
-            root.querySelectorAll('.ts-mast, .ts-controls, [data-action="motion"], .ts-status, .ts-foot').forEach(element => {
+            root.querySelectorAll('.ts-mast, .ts-scene-heading, .ts-gesture, .ts-controls, .ts-status, .ts-foot').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', active ? engine.meta.title + '. ' + engine.meta.hint + ' Controls are beside the artwork.' : standaloneLabel);

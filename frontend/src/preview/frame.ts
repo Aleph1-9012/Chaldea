@@ -39,9 +39,8 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
   frame.title = `${widget.bundle.definition.title} browser preview`;
   // Artwork controls may save files, while the frame keeps its opaque origin.
   frame.setAttribute('sandbox', 'allow-scripts allow-downloads');
-  if (interactions) frame.allow = 'autoplay';
-
   frame.referrerPolicy = 'no-referrer';
+  frame.style.visibility = 'hidden';
   frame.src = new URL(widget.bundle.definition.preview, widget.base).href;
   const token = crypto.randomUUID();
   let ready = false, disposed = false, sequence = 0;
@@ -90,7 +89,11 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
     }
 
     if (data.type === 'ready' && !ready) { ready = true; send(); }
-    if (data.type === 'rendered' && data.sequence === sequence) { clearTimeout(timeout); host.dataset.ready = 'true'; }
+    if (data.type === 'rendered' && sequence > 0 && data.sequence === sequence) {
+      clearTimeout(timeout);
+      frame.style.removeProperty('visibility');
+      host.dataset.ready = 'true';
+    }
     if (data.type === 'error') fail();
     if (data.type === 'controls' && interactions && data.revision > interactionRevision && data.ack >= actionAck && data.ack <= actionSequence && validInteractionState(data.state)) {
       interactionRevision = data.revision;

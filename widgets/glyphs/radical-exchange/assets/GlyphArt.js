@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: 0BSD
-// Original drawing rules, used by both the HTML preview and native QML.
+// Radical exchange, used by both the HTML preview and native QML.
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -20,7 +20,7 @@ function hash(x, y, seed = 0) {
 
 function glyphColour(t, emphasis) {
     t = clamp(t * emphasis / 100);
-    const a = [104, 102, 94], b = [209, 22, 28];
+    const a = [142, 137, 126], b = [209, 22, 28];
 
     return `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], t))).join(',')})`;
 }
@@ -39,7 +39,7 @@ function glyphMarks(p, emphasis) {
     const project = (points, cx, cy, angle = 0) => {
         const co = Math.cos(angle), si = Math.sin(angle);
 
-        return points.map(([x, y]) => [cx + x * co - y * si, cy + x * si + y * co]);
+        return points.map(([x, y]) => [cx + (x * co - y * si) * 1.08, cy + (x * si + y * co) * 1.08]);
     };
 
     const strength = (x, y, seed, offset = 0) => {
@@ -48,18 +48,18 @@ function glyphMarks(p, emphasis) {
         return smooth(clamp((p + offset + 3 - rank) / 4));
     };
 
-    const stage = Math.floor(p / 2.5);
-    const fraction = smooth(p / 2.5 - stage);
-
-    for (let row = 0; row < 7; row++) {
-        for (let col = 0; col < 7; col++) {
-            const cx = 18 + col * 36, cy = 18 + row * 36;
+    for (let row = 0; row < 6; row++) {
+        for (let col = 0; col < 6; col++) {
+            const cx = 26 + col * 40, cy = 26 + row * 40;
             const orient = hash(col, row, 613) > 0.5 ? Math.PI / 2 : 0;
+            const travel = (p + hash(col, row, 607) * 1.5) / 3;
+            const stage = Math.floor(travel);
+            const fraction = smooth(travel - stage);
             const frame = step => {
                 const close = hash(col + step * 3, row, 617);
                 const shuttle = lerp(-4, 4, hash(col, row + step * 11, 619));
                 const upper = lerp(-3, 3, hash(col + step * 17, row, 631));
-                const gap = lerp(1.5, 5.5, close);
+                const gap = lerp(2, 6, close);
 
                 return [
                     [[-14, -12], [-8, -12], [-8, -3 + upper], [-gap, -3 + upper]],
@@ -73,9 +73,7 @@ function glyphMarks(p, emphasis) {
                     [[-gap, -6], [-gap, 6], [gap, 6]],
                     [[gap, 3], [gap, -3], [gap + 3, -6]],
                     [[-5, 3 + shuttle], [-9, 3 + shuttle]],
-                    [[5, -3 + shuttle], [9, -3 + shuttle]],
-                    [[-1 + shuttle, -14], [3 + shuttle, -14]],
-                    [[1 - shuttle, 14], [-3 - shuttle, 14]]
+                    [[5, -3 + shuttle], [9, -3 + shuttle]]
                 ];
             };
 
@@ -84,12 +82,13 @@ function glyphMarks(p, emphasis) {
             for (let j = 0; j < a.length; j++) {
                 const red = strength(col, row, 641 + Math.floor(j / 2) * 31, j === 8 || j === 9 ? 10 : 0);
                 const points = project(blend(a[j], b[j], fraction), cx, cy, orient);
-                path(points, red, j >= 12 ? 0.5 : j === 8 || j === 9 ? 0.96 : 0.71);
+                const central = j === 8 || j === 9;
+                path(points, red, central ? 1 : 0.78, central ? 1.45 : j < 2 ? 1.2 : 1);
             }
 
-            if (row < 6 && hash(col, row, 857) > 0.57) {
+            if (row < 5 && hash(col, row, 857) > 0.57) {
                 const shift = lerp(-7, 7, hash(col, row, 859));
-                path([[cx + shift, cy + 15], [cx + shift, cy + 18], [cx + shift + 3, cy + 21]], strength(col, row, 863, 4), 0.47);
+                path([[cx + shift, cy + 16], [cx + shift, cy + 20], [cx + shift + 3, cy + 24]], strength(col, row, 863, 4), 0.5, 0.85);
             }
         }
     }

@@ -149,7 +149,7 @@ function makeMagnetic() {
     return api;
 }
 
-function createArtEngine(driver) {
+function createArtEngine() {
     const study = makeMagnetic();
     let paused = false, time = 0, width = 700, height = 410;
     const settings = { compact: false };

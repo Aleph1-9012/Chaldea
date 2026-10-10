@@ -8,6 +8,9 @@ import { findWidget, repository, widgetSources, writeThumbnail } from './widget-
 
 // Capture the widget itself when its preview page includes extra space or demo controls.
 const frames = new Map<string, { selector: string; viewportWidth: number; padding: number }>([
+  ['glyphs-branch-grammar', { selector: '.tr-screen', viewportWidth: 800, padding: 0 }],
+  ['glyphs-oblique-ligatures', { selector: '.tr-screen', viewportWidth: 800, padding: 0 }],
+  ['glyphs-radical-exchange', { selector: '.tr-screen', viewportWidth: 800, padding: 0 }],
   ['quick-notes-console', { selector: '#ts-notes-c', viewportWidth: 800, padding: 20 }],
   ['tsugumori', { selector: '#fl-background-panel', viewportWidth: 1024, padding: 0 }],
 ]);
@@ -40,19 +43,25 @@ try {
     // Cover the largest one- and two-column cards at 2x without storing cropped-away pixels.
     const pixelWidth = ratio >= 1.59 ? 2000 : 1320;
     const density = pixelWidth / width;
-    const frame = frames.get(item.id);
+    const artwork = item.category === 'Interactive art';
+    const frame = frames.get(item.id) ?? (artwork ? { selector: 'canvas', viewportWidth: 800, padding: 0 } : undefined);
     const page = await browser.newPage({ viewport: { width: frame?.viewportWidth ?? 800, height: 500 }, deviceScaleFactor: density, reducedMotion: 'reduce' });
     const preview = new URL(bundle.definition.preview, new URL('.', new URL(item.bundleUrl, base)));
     await page.goto(preview.href);
-    await page.evaluate(async settings => {
+    await page.evaluate(async ({ settings, artwork }) => {
       const token = crypto.randomUUID();
       await new Promise<void>((done, reject) => {
         const timeout = setTimeout(() => reject(new Error('Preview did not render.')), 6000);
         window.addEventListener('message', event => { if (event.data?.type === 'rendered' && event.data.token === token) { clearTimeout(timeout); done(); } });
-        window.postMessage({ channel: 'chaldea:preview', type: 'init', token }, '*');
+        window.postMessage({ channel: 'chaldea:preview', type: 'init', token, externalControls: artwork }, '*');
+
+        // A fresh runtime publishes revision 1 during init. Acknowledge it before
+        // settings render so artwork uses the same clean view as the sidebar host.
+        if (artwork) window.postMessage({ channel: 'chaldea:preview', type: 'controls-mounted', token, revision: 1 }, '*');
+
         window.postMessage({ channel: 'chaldea:preview', type: 'settings', token, sequence: 1, settings }, '*');
       });
-    }, defaults(bundle.definition));
+    }, { settings: defaults(bundle.definition), artwork });
     await page.evaluate(async () => {
       await document.fonts.ready;
       await new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done())));
@@ -87,7 +96,7 @@ try {
     }
 
     const cdp = await page.context().newCDPSession(page);
-    await cdp.send('Emulation.setDefaultBackgroundColorOverride', { color: { r: 25, g: 27, b: 29, a: 1 } });
+    await cdp.send('Emulation.setDefaultBackgroundColorOverride', { color: artwork ? { r: 8, g: 8, b: 8, a: 1 } : { r: 25, g: 27, b: 29, a: 1 } });
     const { data } = await cdp.send('Page.captureScreenshot', { format: 'webp', quality: 95, captureBeyondViewport: true, clip });
     const destination = await writeThumbnail(source, Buffer.from(data, 'base64'));
 

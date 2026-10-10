@@ -134,7 +134,8 @@
         action: act,
         pause,
         hosted(active) {
-            root.querySelectorAll('.org-footer, .org-caption').forEach(element => {
+            root.classList.toggle('is-hosted', active);
+            root.querySelectorAll('.org-name, .org-footer, .org-caption, .org-hint').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', active ? standaloneLabel + ' Controls are beside the artwork.' : standaloneLabel);

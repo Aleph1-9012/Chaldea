@@ -82,6 +82,10 @@
         const dt = last ? Math.min(.04, (now - last) / 1000) : 0;
         last = now;
         draw(dt);
+
+        if (engine.paused || !engine.needsMotion())
+            last = 0;
+
         schedule();
     }
 
@@ -95,11 +99,21 @@
         window.ChaldeaPreview.controlsChanged();
     }
 
+    function redraw() {
+        if (visible && !document.hidden && !engine.paused && engine.needsMotion())
+            schedule();
+        else
+            draw();
+    }
+
     function act(key, value) {
         const focus = engine.action(key, value);
+
+        if (key === 'motion' && engine.paused)
+            stop();
+
         sync();
-        draw();
-        schedule();
+        redraw();
 
         if (!hostedControls && focus?.startsWith('input:'))
             root.querySelector(`[data-input="${focus.slice(6)}"]`).focus();
@@ -110,51 +124,7 @@
     root.querySelectorAll('[data-action]').forEach(el => el.addEventListener('click', () => act(el.dataset.action)));
     root.querySelectorAll('[data-input]').forEach(el => el.addEventListener('input', () => act('input:' + el.dataset.input, el.value)));
     root.querySelectorAll('[data-tune]').forEach(el => el.addEventListener('input', () => act('tune:' + el.dataset.tune, el.value)));
-    function point(kind, event) {
-        const r = canvas.getBoundingClientRect();
-        engine.pointer(kind, event.clientX - r.left, event.clientY - r.top, event.timeStamp);
-        sync();
-        draw();
-        schedule();
-    }
-
-    canvas.addEventListener('pointermove', e => point('move', e));
-    canvas.addEventListener('pointerdown', e => {
-        if (e.button !== 0)
-            return;
-
-        canvas.setPointerCapture(e.pointerId);
-        point('down', e);
-    });
-
-    function release(e) {
-        point('up', e);
-
-        if (canvas.hasPointerCapture(e.pointerId))
-            canvas.releasePointerCapture(e.pointerId);
-    }
-
-    canvas.addEventListener('pointerup', release);
-    canvas.addEventListener('pointercancel', release);
-    canvas.addEventListener('pointerleave', e => point('leave', e));
-    root.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            engine.key('Escape');
-            sync();
-            draw();
-            e.preventDefault();
-        }
-    });
-
     canvas.tabIndex = 0;
-    canvas.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            engine.key('activate');
-            sync();
-            draw();
-            e.preventDefault();
-        }
-    });
 
     function resize() {
         const r = canvas.getBoundingClientRect();
@@ -210,8 +180,8 @@
     const disconnect = window.ChaldeaPreview.connect(settings => {
         engine.configure(settings);
         root.style.setProperty('--ts-red', settings.accent);
-        draw();
         sync();
+        redraw();
     }, {
         read() {
             return { controls: engine.controls(), archives: engine.archives(), status: engine.status(), paused: engine.paused };
@@ -224,12 +194,12 @@
                 stop();
 
             sync();
-            draw();
-            schedule();
+            redraw();
         },
         hosted(active) {
+            root.classList.toggle('is-hosted', active);
             hostedControls = active;
-            root.querySelectorAll('.ts-mast, .ts-controls, [data-action="motion"], .ts-status, .ts-foot').forEach(element => {
+            root.querySelectorAll('.ts-mast, .ts-scene-heading, .ts-gesture, .ts-controls, .ts-status, .ts-foot').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', active ? engine.meta.title + '. ' + engine.meta.hint + ' Controls are beside the artwork.' : standaloneLabel);

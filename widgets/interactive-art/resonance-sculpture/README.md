@@ -24,9 +24,11 @@ The artwork adapts to the component width. Font families use installed fonts wit
 
 ## Interaction and settings
 
-Play demo beat animates the ring using a silent simulated rhythm. Choose a beat pattern and adjust Intensity; Pause demo beat lets the sculpture settle. It uses no microphone or media-player input. Coordinate grid, point detail, and accent color adjust its appearance.
+Play demo beat animates the ring using a silent simulated rhythm. Choose a beat pattern and adjust Response; Pause demo beat lets the sculpture settle. It uses no microphone or media-player input. Point detail and accent color adjust its appearance.
 
-Use the controls inside the artwork. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
+Bass compression and percussion ripples ease into each beat. Changing the pattern preserves the beat's current position, and Response adjusts both effects gradually. Stopping the demo fades the motion and deformation into a still ring; Pause animation freezes the current frame immediately. Restarting keeps the sculpture's orientation without catching up on time spent idle.
+
+Use the customization sidebar in the library, or the local controls in standalone previews and native QML. Pause freezes continuous motion while leaving controls usable. The browser starts paused when reduced motion is preferred. In native QML, set `paused: true` or use the pause control. Hiding a native component stops its animation and releases pointer drags.
 
 Appearance changes and Reset preserve the current scene and collections. All interaction state stays in memory for the component’s lifetime. Leaving the browser preview or closing the native component resets it. Copied QML and individual file downloads contain the same settings snapshot; they do not include the current scene or collections.
 

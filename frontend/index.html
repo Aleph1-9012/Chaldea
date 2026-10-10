@@ -1,5 +1,19 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#111111"><meta name="description" content="Browse and customize original Quickshell widgets. Preview changes and download matching QML."><title>Chaldea · Quickshell widget library</title><link rel="icon" href="/src/site/assets/modular-g.svg" type="image/svg+xml"></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Browse and customize original Quickshell widgets. Preview changes and download matching QML.">
+  <title>Chaldea · Quickshell widget library</title>
+  <link rel="icon" href="/src/site/assets/modular-g.svg" type="image/svg+xml">
+  <style>
+    /* Apply before JavaScript loads either application's stylesheet. */
+    html { background: #111; color: #f2eee6; }
+    body { margin: 0; }
+    .skip-link { position: fixed; left: 24px; top: -100px; z-index: 100; padding: 12px 20px; background: #f2eee6; color: #111; }
+    .skip-link:focus { top: 12px; }
+  </style>
+</head>
 <body><a class="skip-link" href="#main">Skip to content</a><div id="app"></div><script type="module" src="/src/main.ts"></script></body>
 </html>

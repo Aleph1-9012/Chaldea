@@ -1296,8 +1296,9 @@ return errors === 0;
         if (data.type === 'init' && token === null) {
           token = data.token;
           externalControls = Boolean(data.externalControls && interactions);
-          post({ type: 'ready' });
+          // Let the host acknowledge its sidebar before it sends initial settings.
           publish();
+          post({ type: 'ready' });
         }
 
         if (data.token !== token) return;

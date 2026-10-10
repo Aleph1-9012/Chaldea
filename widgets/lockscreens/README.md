@@ -4,6 +4,8 @@ Each retained widget represents one layout and includes a native QML export. Gly
 
 The retained AFK previews use Relay tiles. Editorial and print previews use Compound glyph. Those selections remain fixed in the retained previews. The original Phase lock represents the centered panel layout, including the related Folio and background or motion studies. Existing IDs and the retained previews' behavior are unchanged.
 
+The retained preview documents contain only their selected layout and use the same glyph drawing helper as their native exports. The obsolete layout toolbar, glyph selector, explanatory description, and unused design branches are removed. Input and power interactions remain available.
+
 | Study group | Retained previews |
 | --- | --- |
 | AFK layouts | [Relay index](afk-layouts/relay-index/relay-tiles/README.md), [Type folio](afk-layouts/type-folio/relay-tiles/README.md) |

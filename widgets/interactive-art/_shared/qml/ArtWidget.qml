@@ -6,14 +6,12 @@ import "ArtEngine.js" as Art
 
 Item {
     id: root
-    property bool coordinateGrid: true
     property string pointDetail: "Fine"
     property color accentColor: "#cc1515"
     property bool compactCanvas: false
     property bool particleTrails: true
     property real fishDetail: 1
     property bool paused: false
-    property var audioDriver: null
     readonly property var engine: session.engine
     readonly property string frameStyle: engine ? engine.meta.style : "lab"
     readonly property string heading: engine ? engine.meta.title : ""
@@ -54,7 +52,7 @@ Item {
     }
     function configure(): void {
         if (!engine) return;
-        engine.configure({grid:coordinateGrid, density:pointDetail, accent:String(accentColor), compact:compactCanvas, trails:particleTrails, detail:fishDetail});
+        engine.configure({density:pointDetail, accent:String(accentColor), compact:compactCanvas, trails:particleTrails, detail:fishDetail});
         drawing.requestPaint();
     }
     function act(key: string, value: var): void {
@@ -73,7 +71,6 @@ Item {
         engine.pointer(kind, x, y, Date.now()); refresh();
     }
     function keyAction(key: string): void { if (engine) { engine.key(key); refresh(); } }
-    onCoordinateGridChanged: configure()
     onPointDetailChanged: configure()
     onAccentColorChanged: configure()
     onCompactCanvasChanged: configure()
@@ -87,7 +84,7 @@ Item {
         session.lastTick = Date.now();
     }
     Component.onCompleted: {
-        session.engine = Art.createArtEngine(audioDriver);
+        session.engine = Art.createArtEngine();
         engine.setPaused(paused);
         const fieldKeys = [];
         const buttonKeys = [];

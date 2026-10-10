@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: 0BSD
-// Original drawing rules, used by both the HTML preview and native QML.
+// Branch grammar, used by both the HTML preview and native QML.
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -20,7 +20,7 @@ function hash(x, y, seed = 0) {
 
 function glyphColour(t, emphasis) {
     t = clamp(t * emphasis / 100);
-    const a = [104, 102, 94], b = [209, 22, 28];
+    const a = [142, 137, 126], b = [209, 22, 28];
 
     return `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], t))).join(',')})`;
 }
@@ -38,13 +38,13 @@ function glyphMarks(p, emphasis) {
         const tint = smooth((p * .011 + .19 - hash(key, depth, 18)) / .2);
 
         if (alpha > .004) {
-            const c = colour(tint), w = depth === 0 ? 1.05 : depth === 1 ? .85 : .65;
+            const c = colour(tint), w = depth === 0 ? 1.5 : depth === 1 ? 1.15 : depth === 2 ? .9 : .75;
             path(transform([[-hx, 0], [hx, 0]], cx, cy, angle), c, w, alpha);
             path(transform([[-hx, -hy], [-hx, hy]], cx, cy, angle), c, w, alpha);
             path(transform([[hx, -hy], [hx, hy]], cx, cy, angle), c, w, alpha);
 
             if (depth >= 3)
-                path(transform([[-hx, hy * .35], [0, hy * .35], [0, hy * .8]], cx, cy, angle), c, .65, alpha * .75);
+                path(transform([[-hx, hy * .35], [0, hy * .35], [0, hy * .8]], cx, cy, angle), c, .75, alpha * .75);
         }
 
         if (depth < 3)

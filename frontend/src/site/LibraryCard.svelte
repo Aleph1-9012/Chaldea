@@ -27,7 +27,7 @@
   </div>
   <div class="card-caption">
     <h2>{display.title}</h2><span class="card-number"><span>{padded(index + 1)}</span><i aria-hidden="true">↗</i></span>
-    <p>{familyLabel(widget.category)} · {widget.settingsCount} settings{widget.status === 'draft' ? ' · draft' : ''}</p>
+    <p>{familyLabel(widget.category)}{widget.status === 'draft' ? ' · draft' : ''}</p>
     <span class="sr-only" id={`summary-${widget.id}`}>{widget.summary}</span>
   </div>
 </a>

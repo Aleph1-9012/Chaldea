@@ -49,8 +49,8 @@
       "path": "preview/demo.js"
     },
     {
-      "source": "preview/support.js",
-      "path": "preview/support.js"
+      "source": "assets/GlyphArt.js",
+      "path": "preview/GlyphArt.js"
     },
     {
       "source": "thumbnail.webp",

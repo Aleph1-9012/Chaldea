@@ -316,7 +316,8 @@
         action: act,
         pause: setPaused,
         hosted(active) {
-            root.querySelectorAll('.eight-brand, .eight-controls, .eight-footer').forEach(element => {
+            root.classList.toggle('is-hosted', active);
+            root.querySelectorAll('.eight-brand, .eight-heading, .eight-controls, .eight-footer, .eight-hint').forEach(element => {
                 element.hidden = active;
             });
             canvas.setAttribute('aria-label', title + '. ' + hint + (active ? ' Controls are beside the artwork.' : ' Controls are below.'));

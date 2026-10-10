@@ -1,7 +1,7 @@
 {
   "id": "glyphs-oblique-ligatures",
   "title": "Tsugumori / Oblique ligatures",
-  "summary": "Diagonal fragments join into angular assemblies as you type. Type dummy text to change the glyphs, erase it to reverse them, and try the Unlock preview.",
+  "summary": "Connected, slanted glyphs contain smaller letter fragments. Each character advances one glyph in reading order, followed by a red highlight. Deleting reverses the sequence. Includes an Unlock preview.",
   "category": "Glyphs",
   "tags": [
     "glyphs",
@@ -18,7 +18,7 @@
       "key": "duration",
       "label": "Input transition",
       "type": "number",
-      "default": 100,
+      "default": 220,
       "min": 80,
       "max": 350,
       "step": 10

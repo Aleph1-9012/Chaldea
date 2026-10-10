@@ -8,6 +8,8 @@
 #ts-play-lab *{box-sizing:border-box}
 #ts-play-lab .ts-console{background:var(--ts-black);border:1px solid transparent;padding:5px;position:relative}
 #ts-play-lab .ts-inner{border:1px solid transparent}
+#ts-play-lab.is-hosted .ts-console{padding:0;border:0}
+#ts-play-lab.is-hosted .ts-inner{border:0}
 #ts-play-lab .ts-mast{padding:14px 16px;display:flex;gap:8px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--ts-line);flex-wrap:wrap}
 #ts-play-lab .ts-brand{letter-spacing:.13em;color:var(--ts-ink)}
 #ts-play-lab .ts-kicker{font-size:11px;letter-spacing:.08em;color:var(--ts-muted)}
@@ -55,8 +57,8 @@
 
 <div class="ts-scene-heading"><h2 class="ts-title" data-title="">Signal hunting</h2><button aria-pressed="false" data-action="motion" type="button">Pause motion</button></div>
 <div class="ts-field">
-<canvas aria-label="A living ribbed specimen. Use Send ripple and the motion controls to interact.">Interactive specimen preview. Use the controls below to change it.</canvas>
-<div class="ts-gesture" data-gesture="">Move to attract · Click to send a ripple</div>
+<canvas aria-label="A hidden signal in a field of points. Tune Frequency, Phase, and Gain, or use Assist to reveal it.">Interactive signal preview. Use the controls below to tune and collect discoveries.</canvas>
+<div class="ts-gesture" data-gesture="">Tune the three dials until the hidden shape resolves</div>
 <div aria-hidden="true" class="ts-shutter"></div>
 </div>
 
@@ -73,7 +75,7 @@
 </div>
 
 
-<div aria-live="polite" class="ts-status" role="status"><span data-status="">Specimen awake. Kept forms stay in this preview only.</span></div>
+<div aria-live="polite" class="ts-status" role="status"><span data-status="">Tune until every dial reads matched. Assist solves one dial.</span></div>
 </div></div>
 <footer class="ts-foot"><span>BLACK / BONE / SIGNAL RED</span><span>SIMULATED DATA · NO DESKTOP CHANGES</span></footer>
 </section>

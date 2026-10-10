@@ -15,12 +15,6 @@
   "usage": "README.md",
   "settings": [
     {
-      "key": "grid",
-      "label": "Red coordinate grid",
-      "type": "boolean",
-      "default": true
-    },
-    {
       "key": "accent",
       "label": "Signal accent",
       "type": "color",
