@@ -11,15 +11,15 @@ function advance(motion: MotionValue, target: number, elapsed: number, rate: num
   motion.velocity = (motion.velocity - rate * travel) * decay;
 }
 
-export function liquidSelection(node: HTMLElement, initialFamily: string) {
-  const svg = node.querySelector<SVGSVGElement>('.family-pill')!;
+export function liquidSelection(node: HTMLElement, initialValue: string) {
+  const svg = node.querySelector<SVGSVGElement>('[data-liquid-pill]')!;
   const path = svg.querySelector('path')!;
-  const buttons = [...node.querySelectorAll<HTMLButtonElement>('button[data-family]')];
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   const center: MotionValue = { value: 0, velocity: 0 };
   const width: MotionValue = { value: 0, velocity: 0 };
-  let boxes = buttons.map(button => ({ button, left: 0, width: 0 }));
-  let family = initialFamily;
+  let controls: HTMLElement[] = [];
+  let boxes: { control: HTMLElement; left: number; width: number }[] = [];
+  let value = initialValue;
   let targetCenter = 0;
   let targetWidth = 0;
   let height = 40;
@@ -84,7 +84,7 @@ export function liquidSelection(node: HTMLElement, initialFamily: string) {
   }
 
   function select(animate: boolean): void {
-    const selected = boxes.find(box => box.button.dataset.family === family);
+    const selected = boxes.find(box => box.control.dataset.liquidValue === value);
 
     if (!selected) {
       stop();
@@ -107,44 +107,56 @@ export function liquidSelection(node: HTMLElement, initialFamily: string) {
     node.dataset.liquidReady = 'true';
   }
 
-  function measure(): void {
+  function measure(animate = false): void {
     const bounds = node.getBoundingClientRect();
-    height = node.clientHeight;
-    boxes = buttons.map(button => {
-      const rect = button.getBoundingClientRect();
+    const nextControls = [...node.querySelectorAll<HTMLElement>('[data-liquid-value]')];
 
-      return { button, left: rect.left - bounds.left + node.scrollLeft, width: rect.width };
+    for (const control of controls) {
+      if (!nextControls.includes(control)) observer.unobserve(control);
+    }
+
+    for (const control of nextControls) {
+      if (!controls.includes(control)) observer.observe(control);
+    }
+
+    controls = nextControls;
+    height = node.clientHeight;
+    boxes = controls.map(control => {
+      const rect = control.getBoundingClientRect();
+
+      return { control, left: rect.left - bounds.left + node.scrollLeft, width: rect.width };
     });
     extent = Math.max(0, ...boxes.map(box => box.left + box.width));
     svg.style.width = `${Math.max(node.clientWidth, extent)}px`;
     svg.style.height = `${height}px`;
 
-    for (const box of boxes) box.button.style.setProperty('--family-left', `${box.left}px`);
+    for (const box of boxes) box.control.style.setProperty('--liquid-item-left', `${box.left}px`);
 
-    select(false);
+    select(animate);
   }
 
   function settle(): void {
     select(false);
   }
 
-  const observer = new ResizeObserver(measure);
+  const observer = new ResizeObserver(() => measure(frame !== 0));
+  const mutations = new MutationObserver(() => measure(frame !== 0));
   observer.observe(node);
-
-  for (const button of buttons) observer.observe(button);
+  mutations.observe(node, { childList: true, subtree: true });
 
   preference.addEventListener('change', settle);
   document.addEventListener('visibilitychange', settle);
   measure();
 
   return {
-    update(nextFamily: string): void {
-      family = nextFamily;
-      select(true);
+    update(nextValue: string): void {
+      value = nextValue;
+      measure(true);
     },
     destroy(): void {
       stop();
       observer.disconnect();
+      mutations.disconnect();
       preference.removeEventListener('change', settle);
       document.removeEventListener('visibilitychange', settle);
     },

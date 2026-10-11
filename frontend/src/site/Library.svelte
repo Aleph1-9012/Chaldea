@@ -68,7 +68,7 @@
 {/snippet}
 
 {#snippet familyButton(value: string, label: string, count: number)}
-  <button type="button" data-family={value} class:active={family === value} aria-pressed={family === value} onclick={() => navigate(libraryUrl(value, sort, query), false, false)}>
+  <button type="button" data-liquid-value={value} class:active={family === value} aria-pressed={family === value} onclick={() => navigate(libraryUrl(value, sort, query), false, false)}>
     {@render familyLabelContent(label, count)}
     <span class="family-label-lit" aria-hidden="true">{@render familyLabelContent(label, count)}</span>
   </button>
@@ -82,7 +82,7 @@
   </header>
   <div class="filter-bar grain">
     <div class="family-filters" aria-label="Filter by family" use:liquidSelection={family}>
-      <svg class="family-pill" aria-hidden="true"><path /></svg>
+      <svg class="family-pill" data-liquid-pill aria-hidden="true"><path /></svg>
       {@render familyButton('', 'All', widgets.length)}
       {#each categories as category}
         {@render familyButton(category, familyLabel(category), widgets.filter(widget => widget.category === category).length)}

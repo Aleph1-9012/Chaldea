@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snapshot } from '../generator';
   import { errorText } from '../components/dom';
+  import { liquidSelection } from './liquid-selection';
 
   let { snapshot }: { snapshot: Snapshot | null } = $props();
   let selected = $state('Widget.qml');
@@ -8,6 +9,9 @@
   let code: HTMLElement;
   const files = $derived(snapshot?.files ?? []);
   const current = $derived(files.find(file => file.path === selected) ?? files[0]);
+  const visibleFiles = $derived(files.slice(0, 5));
+  const overflowFiles = $derived(files.slice(5));
+  const overflowSelected = $derived(overflowFiles.some(file => file.path === current?.path));
   const lines = $derived((current?.text ?? (current ? `Binary asset · ${current.bytes.byteLength} bytes\nSave this file as ${current.path}.` : 'Code is unavailable until all settings are valid.')).split('\n'));
 
   $effect(() => {
@@ -60,10 +64,13 @@
 
 <section class="generated-code" aria-label="Generated files">
   <div class="code-toolbar">
-    <div class="file-tabs" aria-label="Output files">
-      {#each files.slice(0, 5) as file}<button class:active={current?.path === file.path} aria-pressed={current?.path === file.path} onclick={() => select(file.path)}>{file.path}</button>{/each}
-      {#if files.length > 5}
-        <select class="more-files" aria-label="More output files" value={files.slice(5).some(file => file.path === selected) ? selected : ''} onchange={event => select(event.currentTarget.value)}><option value="" disabled>+{files.length - 5}</option>{#each files.slice(5) as file}<option value={file.path}>{file.path}</option>{/each}</select>
+    <div class="file-tabs" aria-label="Output files" use:liquidSelection={overflowSelected ? '' : current?.path ?? ''}>
+      <svg class="file-pill" data-liquid-pill aria-hidden="true"><path /></svg>
+      {#each visibleFiles as file (file.path)}
+        <button data-liquid-value={file.path} class:active={current?.path === file.path} aria-pressed={current?.path === file.path} onclick={() => select(file.path)}>{file.path}<span class="file-label-lit" aria-hidden="true">{file.path}</span></button>
+      {/each}
+      {#if overflowFiles.length}
+        <select class="more-files" class:active={overflowSelected} data-liquid-value="" aria-label="More output files" value={overflowSelected ? current?.path : ''} onchange={event => select(event.currentTarget.value)}><option value="" disabled>+{overflowFiles.length}</option>{#each overflowFiles as file (file.path)}<option value={file.path}>{file.path}</option>{/each}</select>
       {/if}
     </div>
     <div class="code-actions"><button class="button" disabled={current?.text === undefined} onclick={copy}>Copy</button><button class="button paper" disabled={!current} onclick={save}>Save file ↓</button></div>
