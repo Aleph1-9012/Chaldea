@@ -6,7 +6,7 @@ on:
       release_tag:
         description: Published release to deploy, including for rollback
         required: true
-        default: v1.0.0
+        default: v1.0.1
         type: string
 
 permissions:
@@ -39,8 +39,6 @@ jobs:
       VERCEL_PUBLIC_ALIAS: chaldea.vercel.app
       VERCEL_TELEMETRY_DISABLED: '1'
       DO_NOT_TRACK: '1'
-      DEPLOYMENT_DIRECTORY: ${{ runner.temp }}/chaldea-deploy
-      RELEASE_DIRECTORY: ${{ runner.temp }}/chaldea-releases
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -48,6 +46,11 @@ jobs:
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version-file: .bun-version
+
+      - name: Set deployment directories
+        run: |
+          printf 'DEPLOYMENT_DIRECTORY=%s/chaldea-deploy\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+          printf 'RELEASE_DIRECTORY=%s/chaldea-releases\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
 
       - name: Download and verify all published site archives
         env:
