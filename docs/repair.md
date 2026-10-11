@@ -20,6 +20,8 @@ The Rust backend runs during `make content`, `make dev`, and `make build`. It pr
 
 The dark initial background and keyboard skip-link styles live in `frontend/index.html` so they apply before JavaScript loads the site's stylesheet. Keep them in the HTML to prevent a white flash and an unstyled "Skip to content" link during refresh. The link appears when focused from the keyboard.
 
+The outer page scrollbar is hidden in `site/site.css` while wheel, touch, keyboard, and Back to top scrolling remain available. This rule applies only to the document; customization panels and generated code retain their own scrollbars.
+
 The library supports A–Z and Family sorting. `sort=family` selects Family; missing or unsupported sort values use A–Z.
 
 There are no scope flags, per-widget test modes, browser test installations, fish simulations, or native test matrices. The former suites are available in Git history if a past investigation needs them.
@@ -100,7 +102,7 @@ The hero count and WIDGETS masthead share a curved liquid fill, implemented in `
 
 The family selector uses one ink indicator that stretches between buttons and settles into the selected button's outline. `site/liquid-selection.ts` preserves motion when a new family is selected mid-animation and remeasures after font or viewport changes. A decorative text layer changes label colors where the indicator passes. Drawing stops at rest, and reduced motion selects instantly. This animation is independent of the widget-card transitions.
 
-Entering the library through a link from another page uses a 460 ms transition through the browser's View Transitions API. The previous page moves up 12 pixels and fades out over 120 ms; the library then fades in and moves up 20 pixels over 340 ms against the site's ink background. The two pages do not overlap. Family, sort, and search changes keep their card transitions. Reduced motion and browsers without the API navigate immediately. Browser Back and Forward also update immediately so native scroll restoration can use the destination layout. The animated route update waits for Svelte's layout, and newer navigation cancels an unfinished transition so a delayed callback cannot restore an old route.
+Links between Home, Library, and widget details use the modular print in `site/PageTransition.svelte`. Fifteen rounded modules spread from the activated link and join into full ink coverage. Two oversized copies of the existing WIDGETS masthead move in opposite directions, one green and one paper. Matching windows open through that print to reveal the destination. The sequence takes about 900 ms, without moving either page. Mobile uses a three-column grid with vertical lettering. Detail navigation allows up to 180 ms under full coverage for the widget bundle to load; slower requests use the normal loading notice. Family, sort, and search changes keep their card transitions. Reduced motion, browser history, and browsers without Web Animations navigate immediately. Resize, a hidden tab, or enabling reduced motion clears the overlay. Newer navigation cancels older motion and guards delayed route updates so an old callback cannot restore the wrong page.
 
 ## Distribution notices
 

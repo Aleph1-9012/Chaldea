@@ -13,6 +13,8 @@
   import Library from './Library.svelte';
   import Detail from './Detail.svelte';
   import Footer from './Footer.svelte';
+  import PageTransition from './PageTransition.svelte';
+  import type { PageOrigin } from './PageTransition.svelte';
 
   function readRoute() {
     const params = new URLSearchParams(location.search);
@@ -35,7 +37,8 @@
   let footerVisible = $state(false);
   let main: HTMLElement;
   let catalogRequest: AbortController;
-  let pageTransition: ViewTransition | undefined;
+  let pageTransition = $state<ReturnType<typeof PageTransition>>();
+  let widgetReady: Promise<void> = Promise.resolve();
   let navigationVersion = 0;
 
   const index = $derived(catalog && widget ? [...catalog.widgets].sort((a, b) => presentation(a).title.localeCompare(presentation(b).title)).findIndex(item => item.id === widget?.bundle.id) : 0);
@@ -62,13 +65,12 @@
     return () => {
       catalogRequest?.abort();
       navigationVersion++;
-      pageTransition?.skipTransition();
-      document.documentElement.classList.remove('library-switching');
+      pageTransition?.cancel();
     };
   });
 
   $effect(() => {
-    if (prefersReducedMotion.current) pageTransition?.skipTransition();
+    if (prefersReducedMotion.current) pageTransition?.skip();
   });
 
   $effect(() => {
@@ -76,6 +78,7 @@
     const available = catalog;
     widget = undefined;
     widgetFailure = '';
+    widgetReady = Promise.resolve();
 
     if (!id || !available) return;
 
@@ -88,7 +91,7 @@
     }
 
     const request = new AbortController();
-    void loadWidget(item, request.signal).then(loaded => {
+    widgetReady = loadWidget(item, request.signal).then(loaded => {
       if (!request.signal.aborted) widget = loaded;
     }).catch(error => {
       if (!request.signal.aborted) widgetFailure = errorText(error);
@@ -97,19 +100,34 @@
     return () => request.abort();
   });
 
-  function switchRoute(next: ReturnType<typeof readRoute>, scroll: boolean, animate = true): void {
+  function pageId(value: ReturnType<typeof readRoute>): string {
+    return value.widget ? `widget:${value.widget}` : value.library ? 'library' : 'home';
+  }
+
+  function switchRoute(next: ReturnType<typeof readRoute>, scroll: boolean, animate = true, origin?: PageOrigin): void {
     const version = ++navigationVersion;
-    const enteringLibrary = next.library && !next.widget && (!route.library || Boolean(route.widget));
-    pageTransition?.skipTransition();
-    pageTransition = undefined;
-    document.documentElement.classList.remove('library-switching');
+    const transition = pageTransition;
+    const animated = animate && pageId(next) !== pageId(route) && catalog
+      && !prefersReducedMotion.current && !document.hidden && transition;
 
     const update = async (): Promise<void> => {
-      // A skipped transition can still call its update after another navigation.
       if (version !== navigationVersion) return;
 
       route = next;
       await tick();
+
+      if (animated && next.widget) {
+        // Give quick detail loads time to mount without holding slower requests behind ink.
+        let timeout: ReturnType<typeof setTimeout> | undefined;
+
+        try {
+          await Promise.race([widgetReady, new Promise<void>(resolve => { timeout = setTimeout(resolve, 180); })]);
+        } finally {
+          clearTimeout(timeout);
+        }
+
+        await tick();
+      }
 
       if (scroll && version === navigationVersion) {
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -117,33 +135,21 @@
       }
     };
 
-    if (!animate || !enteringLibrary || !catalog || prefersReducedMotion.current || !document.startViewTransition) {
+    if (!animated) {
+      transition?.cancel();
       void update();
 
       return;
     }
 
-    document.documentElement.classList.add('library-switching');
-    const transition = document.startViewTransition(update);
-    pageTransition = transition;
-
-    const finish = (): void => {
-      if (pageTransition !== transition) return;
-
-      pageTransition = undefined;
-      document.documentElement.classList.remove('library-switching');
-    };
-
-    // Captures may be skipped, but the navigation callback still runs.
-    void transition.ready.catch(() => {});
-    void transition.finished.then(finish, finish);
+    void animated.run(update, next.widget ? 'WIDGET / LIVE' : next.library ? 'THE LIBRARY' : 'HOME', origin);
   }
 
-  function navigate(href: string, replace = false, scroll = true): void {
+  function navigate(href: string, replace = false, scroll = true, origin?: PageOrigin): void {
     if (replace) history.replaceState(null, '', href);
     else history.pushState(null, '', href);
 
-    switchRoute(readRoute(), scroll);
+    switchRoute(readRoute(), scroll, true, origin);
   }
 
   function follow(event: MouseEvent): void {
@@ -152,10 +158,14 @@
     const link = event.target.closest<HTMLAnchorElement>('a[href]');
     const href = link?.getAttribute('href');
 
-    if (!href?.startsWith('?') || link?.target || link?.hasAttribute('download')) return;
+    if (!link || !href?.startsWith('?') || link.target || link.hasAttribute('download')) return;
 
     event.preventDefault();
-    navigate(href);
+    const bounds = link.getBoundingClientRect();
+    const origin = event.detail > 0
+      ? { x: event.clientX, y: event.clientY }
+      : { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 };
+    navigate(href, false, true, origin);
   }
 </script>
 
@@ -184,3 +194,4 @@
     <Footer bind:visible={footerVisible} />
   {/if}
 </div>
+<PageTransition bind:this={pageTransition} />

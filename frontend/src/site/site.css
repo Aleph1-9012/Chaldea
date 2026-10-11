@@ -19,7 +19,8 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
 body { margin: 0; isolation: isolate; }
 body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url('./assets/grain.svg'); opacity: .07; }
 button, input, select, textarea { font: inherit; }
@@ -52,19 +53,6 @@ main:focus { outline: none; }
 .github-link img { flex: none; filter: brightness(0) invert(.066667); transition: transform 300ms var(--ease); }
 .github-link:hover img { transform: rotate(72deg); }
 .site-nav :focus-visible { outline-color: var(--ink); }
-html.library-switching::view-transition { background: var(--ink); }
-html.library-switching::view-transition-group(root) { animation: none; }
-html.library-switching::view-transition-old(root), html.library-switching::view-transition-new(root) { mix-blend-mode: normal; }
-html.library-switching::view-transition-old(root) { animation: library-page-exit 120ms ease-out both; }
-html.library-switching::view-transition-new(root) { animation: library-page-enter 340ms var(--ease) 120ms both; }
-@keyframes library-page-exit {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-12px); }
-}
-@keyframes library-page-enter {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 .hero { height: 100svh; min-height: 720px; padding: 12px; }
 .hero-slab { height: 100%; border-radius: 12px; background: var(--green); color: var(--ink); overflow: hidden; display: flex; flex-direction: column; padding: 0 12px 19px; }
 .masthead { position: relative; aspect-ratio: 1392 / 162; flex: none; overflow: hidden; }
@@ -592,7 +580,6 @@ a.poster:hover { box-shadow: inset 0 0 0 2px var(--ink); filter: brightness(1.05
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  html.library-switching::view-transition-old(root), html.library-switching::view-transition-new(root) { animation: none; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   .reveal-pending { opacity: 1; transform: none; }
   .module-loader i:nth-child(-n+3) { background: var(--green); }
