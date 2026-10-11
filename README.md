@@ -1,10 +1,10 @@
-![Chaldea homepage hero](docs/assets/chaldea-hero.jpg)
+![Chaldea homepage hero](docs/assets/chaldea-hero-full.jpg)
 
 # Chaldea
 
 Chaldea is an interactive widget library for Quickshell. Try a design in your browser, adjust its appearance, and export native QML for your Linux desktop.
 
-[Download version 1.0.3](https://github.com/Aleph1-9012/Chaldea/releases/tag/v1.0.3) for the source and a prebuilt static site.
+[Download a packaged release](https://github.com/Aleph1-9012/Chaldea/releases/latest) for the source and a prebuilt static site snapshot. The live site may include newer changes.
 
 [Browse the live library](https://chaldea.vercel.app).
 
