@@ -240,10 +240,10 @@ a.poster:hover { box-shadow: inset 0 0 0 2px var(--ink); filter: brightness(1.05
 .library-search input::selection { background: var(--green); color: var(--ink); }
 .library-search input:focus { outline: none; }
 .masonry { position: relative; margin: 32px 12px 0; overflow: clip; overflow-clip-margin: 6px; }
-.masonry-item { position: absolute; top: 0; left: 0; transition: transform 480ms var(--ease), width 480ms var(--ease), opacity 220ms; }
+.masonry-item { position: absolute; top: 0; left: 0; contain: layout style; transition: transform 480ms var(--ease), width 480ms var(--ease), opacity 220ms; }
 .masonry-item.filtered-out { visibility: hidden; opacity: 0; pointer-events: none; }
 .library-card { display: block; border-radius: 12px; }
-.card-plate { position: relative; background: #080808; overflow: hidden; border-radius: 12px; transition: aspect-ratio 480ms var(--ease); }
+.card-plate { position: relative; background: #080808; overflow: hidden; border-radius: 12px; contain: layout paint; content-visibility: auto; transition: aspect-ratio 480ms var(--ease); }
 .card-plate::after { content: ''; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--green); opacity: 0; pointer-events: none; transition: opacity 140ms; }
 .card-plate > img { width: 100%; height: 100%; object-fit: contain; position: absolute; inset: 0; opacity: 0; transition: opacity 200ms; }
 .card-plate.ready > img { opacity: 1; }

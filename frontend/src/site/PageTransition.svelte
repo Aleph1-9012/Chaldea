@@ -8,13 +8,13 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
   import masthead from './assets/widgets-masthead.svg';
+  import mastheadArtwork from './assets/widgets-masthead.svg?raw';
 
   const id = `page-print-${crypto.randomUUID()}`;
   let active = $state(false);
   let phase = $state<'covering' | 'covered' | 'opening'>('covering');
   let width = $state(0);
   let height = $state(0);
-  let destination = $state('');
   let modules = $state<{ x: number; y: number; width: number; height: number; delay: number }[]>([]);
   let covers = $state<SVGRectElement[]>([]);
   let windows = $state<SVGRectElement[]>([]);
@@ -75,13 +75,12 @@
     await Promise.all(batch.map(animation => animation.finished)).catch(() => {});
   }
 
-  export async function run(update: () => Promise<void>, label: string, origin?: PageOrigin): Promise<void> {
+  export async function run(update: () => Promise<void>, origin?: PageOrigin): Promise<void> {
     cancel();
     const current = version;
     skipped = false;
     width = innerWidth;
     height = innerHeight;
-    destination = label;
     const columns = width < 600 ? 3 : 5;
     const rows = width < 600 ? 5 : 3;
     const cellWidth = width / columns;
@@ -168,31 +167,25 @@
           <rect class="print-module" x={cell.x} y={cell.y} width={cell.width} height={cell.height} fill="black" style:transform-origin={`${cell.x + cell.width / 2}px ${cell.y + cell.height / 2}px`} bind:this={windows[index]} />
         {/each}
       </mask>
-      <mask id={`${id}-type`} maskUnits="userSpaceOnUse" x={-typeWidth} y="0" width={typeWidth * 3} height={typeHeight} style="mask-type: alpha">
-        <image href={masthead} x={-typeWidth * .15} width={typeWidth} height={typeHeight} />
-      </mask>
     </defs>
-    <g mask={`url(#${id}-open)`}>
-      <g mask={`url(#${id}-cover)`}>
-        <rect width={width} height={height} fill="var(--ink)" />
-        <g transform={portrait ? `translate(${width / 2 - typeHeight - 12} ${height}) rotate(-90)` : `translate(0 ${height / 2 - typeHeight - 12})`}>
-          <g bind:this={greenType}>
-            <rect x={-typeWidth} width={typeWidth * 3} height={typeHeight} fill="var(--green)" mask={`url(#${id}-type)`} />
+    <g mask={`url(#${id}-${phase === 'covering' ? 'cover' : 'open'})`}>
+      <rect width={width} height={height} fill="var(--ink)" />
+      <g transform={portrait ? `translate(${width / 2 - typeHeight - 12} ${height}) rotate(-90)` : `translate(0 ${height / 2 - typeHeight - 12})`}>
+        <g bind:this={greenType}>
+          <g class="green-lettering" transform={`translate(${-typeWidth * .15} 0) scale(${typeWidth / 1392})`}>
+            <!-- Static, repository-owned SVG; direct paths avoid a third full-size mask. -->
+            {@html mastheadArtwork}
           </g>
         </g>
-        <g transform={portrait ? `translate(${width / 2 + 12} ${height}) rotate(-90)` : `translate(0 ${height / 2 + 12})`}>
-          <g bind:this={paperType}>
-            <image href={masthead} x={-typeWidth * .15} width={typeWidth} height={typeHeight} />
-          </g>
+      </g>
+      <g transform={portrait ? `translate(${width / 2 + 12} ${height}) rotate(-90)` : `translate(0 ${height / 2 + 12})`}>
+        <g bind:this={paperType}>
+          <image href={masthead} x={-typeWidth * .15} width={typeWidth} height={typeHeight} />
         </g>
-        <g class="print-imprint">
-          <rect x="16" y="16" width="140" height="34" fill="var(--ink)" />
-          <text x="24" y="38">CHALDEA /</text>
-          <rect x="16" y={height - 52} width={Math.max(0, width - 32)} height="36" fill="var(--ink)" />
-          <path d={`M24 ${height - 53}H${width - 24}`} />
-          <text x="24" y={height - 28}>{destination}</text>
-          <text x={width - 24} y={height - 28} text-anchor="end">↗</text>
-        </g>
+      </g>
+      <g class="print-imprint">
+        <rect x="16" y="16" width="140" height="34" fill="var(--ink)" />
+        <text x="24" y="38">CHALDEA /</text>
       </g>
     </g>
   </svg>
@@ -202,6 +195,6 @@
   .page-print { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
   svg { display: block; overflow: hidden; }
   .print-module { transform: scale(0); }
+  .green-lettering :global(path) { fill: var(--green); }
   .print-imprint { fill: var(--paper); font: 12px 'Faculty Glyphic', sans-serif; letter-spacing: .2em; }
-  .print-imprint path { stroke: var(--paper); stroke-width: 1; }
 </style>

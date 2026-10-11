@@ -2,7 +2,7 @@
   import { onMount, tick } from 'svelte';
   import { fade } from 'svelte/transition';
   import { prefersReducedMotion } from 'svelte/motion';
-  import type { Catalog, LoadedWidget } from '../catalog/contracts';
+  import type { Catalog, LoadedWidget, Summary } from '../catalog/contracts';
   import { loadCatalog, loadWidget } from '../catalog/load';
   import { errorText } from '../components/dom';
   import { presentation } from './catalog';
@@ -39,12 +39,15 @@
   let catalogRequest: AbortController;
   let pageTransition = $state<ReturnType<typeof PageTransition>>();
   let widgetReady: Promise<void> = Promise.resolve();
+  let pendingWidget: ReturnType<typeof requestWidget> | undefined;
   let navigationVersion = 0;
 
   const index = $derived(catalog && widget ? [...catalog.widgets].sort((a, b) => presentation(a).title.localeCompare(presentation(b).title)).findIndex(item => item.id === widget?.bundle.id) : 0);
 
   async function initialize(): Promise<void> {
     catalogRequest?.abort();
+    pendingWidget?.controller.abort();
+    pendingWidget = undefined;
     const request = new AbortController();
     catalogRequest = request;
     catalog = undefined;
@@ -64,6 +67,7 @@
 
     return () => {
       catalogRequest?.abort();
+      pendingWidget?.controller.abort();
       navigationVersion++;
       pageTransition?.cancel();
     };
@@ -73,31 +77,52 @@
     if (prefersReducedMotion.current) pageTransition?.skip();
   });
 
+  function requestWidget(item: Summary) {
+    const controller = new AbortController();
+    const ready = loadWidget(item, controller.signal).then(
+      loaded => ({ loaded, failure: '' }),
+      error => ({ loaded: undefined, failure: errorText(error) }),
+    );
+
+    return { item, controller, ready };
+  }
+
   $effect(() => {
     const id = route.widget;
     const available = catalog;
+    const prepared = pendingWidget;
+    pendingWidget = undefined;
     widget = undefined;
     widgetFailure = '';
     widgetReady = Promise.resolve();
 
-    if (!id || !available) return;
+    if (!id || !available) {
+      prepared?.controller.abort();
+
+      return;
+    }
 
     const item = available.widgets.find(candidate => candidate.id === id);
 
     if (!item) {
+      prepared?.controller.abort();
       widgetFailure = 'This widget is not in the current catalog.';
 
       return;
     }
 
-    const request = new AbortController();
-    widgetReady = loadWidget(item, request.signal).then(loaded => {
-      if (!request.signal.aborted) widget = loaded;
-    }).catch(error => {
-      if (!request.signal.aborted) widgetFailure = errorText(error);
+    const request = prepared?.item === item ? prepared : requestWidget(item);
+
+    if (prepared !== request) prepared?.controller.abort();
+
+    widgetReady = request.ready.then(result => {
+      if (request.controller.signal.aborted) return;
+
+      widget = result.loaded;
+      widgetFailure = result.failure;
     });
 
-    return () => request.abort();
+    return () => request.controller.abort();
   });
 
   function pageId(value: ReturnType<typeof readRoute>): string {
@@ -109,6 +134,10 @@
     const transition = pageTransition;
     const animated = animate && pageId(next) !== pageId(route) && catalog
       && !prefersReducedMotion.current && !document.hidden && transition;
+
+    pendingWidget?.controller.abort();
+    const item = animated ? catalog?.widgets.find(candidate => candidate.id === next.widget) : undefined;
+    pendingWidget = item ? requestWidget(item) : undefined;
 
     const update = async (): Promise<void> => {
       if (version !== navigationVersion) return;
@@ -142,7 +171,7 @@
       return;
     }
 
-    void animated.run(update, next.widget ? 'WIDGET / LIVE' : next.library ? 'THE LIBRARY' : 'HOME', origin);
+    void animated.run(update, origin);
   }
 
   function navigate(href: string, replace = false, scroll = true, origin?: PageOrigin): void {
