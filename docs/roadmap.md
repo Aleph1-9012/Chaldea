@@ -10,12 +10,12 @@ All five families have native QML exports: Quick notes, Player, Glyphs, Interact
 
 The public Svelte 5 frontend follows the Chaldea-Final and Chaldea Components Figma pages. It includes the poster homepage, searchable masonry library, grouped customization controls, and file-by-file export. It is the only frontend in both development and production, using Rust-packaged catalogs and revisions. The original vanilla backend preview UI has been removed. Bun runs Vite, Svelte diagnostics, and the shared unit tests.
 
-The site is hosted on Vercel at [chaldea.vercel.app](https://chaldea.vercel.app), with fluid selection and customization controls. Live previews show the block loader while starting. The native Vercel build runs project checks before publishing pushes to `main` once the repository is connected, independently of package releases. A cumulative manifest retains every published widget revision and hashed application asset across updates. [Publishing](publishing.md) records deployment evidence and Git integration setup.
+The site is hosted on Vercel at [chaldea.vercel.app](https://chaldea.vercel.app), with fluid selection and customization controls. Live previews show the block loader while starting. The native Vercel build runs project checks before publishing pushes to `main` independently of package releases. A cumulative manifest retains every published widget revision and hashed application asset across updates. [Publishing](publishing.md) records deployment evidence and Git integration setup.
 
 ## Next, in order
 
 1. **Preserve published URLs.** The 1.0.0 revision URLs are public. Keep existing revision bytes and IDs when changing layouts, packaging, or contracts; incompatible formats need a migration.
-2. **Complete recurring deployment setup.** Connect the Vercel project to the repository, verify automatic deployment, then practice rollback with retained revisions. Expand the initial browser and HTTP checks into representative device measurements, following [the publication requirements](publishing.md).
+2. **Verify recovery and device performance.** Automatic Git deployments are working. Practice rollback with retained revisions. Expand the initial browser and HTTP checks into representative device measurements, following [the publication requirements](publishing.md).
 3. **Build lockscreen authentication only on request.** The visual components are complete. A secure session lock, credential handling, and authentication need a separate design and integration review.
 4. **Add new designs** only on the owner's request, each as its own widget entry.
 

@@ -4,7 +4,7 @@ The public site is [chaldea.vercel.app](https://chaldea.vercel.app), hosted by t
 
 ## Automatic website updates
 
-In the existing Vercel project's **Settings → Git**, connect `Aleph1-9012/Chaldea`. Use `main` as the production branch and the repository root as the root directory. `vercel.json` selects the Other framework preset and supplies the install and build commands. The root must not be `frontend`, because Rust, schemas, and widgets are sibling directories.
+The existing Vercel project is connected to `Aleph1-9012/Chaldea` under **Settings → Git**. Its production branch is `main`, and its root directory is the repository root. `vercel.json` selects the Other framework preset and supplies the install and build commands. The root must not be `frontend`, because Rust, schemas, and widgets are sibling directories.
 
 Pushes to `main` build and deploy automatically through Vercel. `scripts/build-vercel.sh` installs the pinned Bun and Rust versions, runs `make setup` and `make check`, then assembles `.vercel/output`. Failed checks stop the build before publication. GitHub Actions checks the same source independently; Vercel runs its own checks rather than waiting for the Actions result. No GitHub deployment token is needed.
 
@@ -91,6 +91,6 @@ On 11 October 2026, the unchanged 1.0.3 site was deployed as `dpl_8C1SwRM2RJ1WtL
 
 The native source build at `b7dbe65fb6331127b87fe4d30f984e40eb45e8c5` completed on Vercel as `dpl_4pLzY6sjRHtLq9oUeSKQhtw9h9Wi`. It installed the pinned toolchains, passed `make setup` and `make check`, restored the complete history, and automatically assigned `chaldea.vercel.app`. Public byte, MIME, cache, retention, and 404 checks passed against locally assembled output. The initial test found that Vercel lacks `cmp`; the build now uses Bun to compare manifests.
 
-Connecting the existing Vercel project to the repository remains an owner setup step. Source builds and automatic alias assignment are verified; a Git-triggered deployment has not yet been observed.
+After the owner connected GitHub, pushing `0e646e74d997a133dba791b988e53be18e629316` triggered production deployment `dpl_EvZg48nRKajRpgXEXD7Njp6HfH3c` automatically. Its Vercel build passed in about 73 seconds, assigned the requested public address, and passed the public byte, header, retention, and 404 checks. [GitHub CI also passed](https://github.com/Aleph1-9012/Chaldea/actions/runs/38158197238). No GitHub release or deployment token was used.
 
 The catalog loads summaries and thumbnails; only the selected widget loads its complete revision. Measure loading and interaction on representative devices and the chosen host. Record the source revision, device, browser, and measurements. Automatic checks report structural and export correctness, not visual or performance benchmarks.
