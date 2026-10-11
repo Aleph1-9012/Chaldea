@@ -17,7 +17,7 @@
       <p>Widgets in the library ↓</p>
       <Numeral value={widgets.length} variant="hero" />
     </div>
-    <h1 class="masthead" use:heroLiquid={'self'}><span class="sr-only">Widgets</span><img src={masthead} alt="" width="1392" height="240" /></h1>
+    <h1 class="masthead" use:heroLiquid={'masthead'}><span class="sr-only">Widgets</span><img src={masthead} alt="" width="1392" height="240" /></h1>
     <Navigation hero />
     <div class="hero-top">
       <div>

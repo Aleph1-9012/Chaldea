@@ -21,12 +21,12 @@ function liquidCrest(progress: number, index: number): string {
   return `${segments.join(' ')} L 1.08 1.12 L -.08 1.12 Z`;
 }
 
-export function heroLiquid(node: HTMLElement, target: 'digits' | 'self' = 'digits') {
+export function heroLiquid(node: HTMLElement, target: 'digits' | 'masthead' = 'digits') {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
 
   if (preference.matches || document.hidden) return;
 
-  const elements = target === 'self' ? [node] : [...node.querySelectorAll<HTMLElement>('.numeral-hero > span')];
+  const elements = target === 'masthead' ? [node] : [...node.querySelectorAll<HTMLElement>('.numeral-hero > span')];
 
   if (!elements.length) return;
 
@@ -40,17 +40,21 @@ export function heroLiquid(node: HTMLElement, target: 'digits' | 'self' = 'digit
   svg.append(definitions);
   node.append(svg);
 
-  const clips = elements.map((element, index) => {
+  const paths = elements.map((element, index) => {
     const clip = document.createElementNS(svgNamespace, 'clipPath');
     const path = document.createElementNS(svgNamespace, 'path');
     clip.id = `${id}-${index}`;
     clip.setAttribute('clipPathUnits', 'objectBoundingBox');
     path.setAttribute('d', liquidCrest(0, index));
+
+    // Mirror only the clip so the masthead fills downward without moving its artwork.
+    if (target === 'masthead') path.setAttribute('transform', 'translate(0 1) scale(1 -1)');
+
     clip.append(path);
     definitions.append(clip);
     element.style.clipPath = `url("#${clip.id}")`;
 
-    return { element, path };
+    return path;
   });
   const started = performance.now();
   let frame = 0;
@@ -64,7 +68,6 @@ export function heroLiquid(node: HTMLElement, target: 'digits' | 'self' = 'digit
 
     for (const element of elements) {
       element.style.removeProperty('clip-path');
-      element.style.removeProperty('transform');
     }
 
     svg.remove();
@@ -75,11 +78,9 @@ export function heroLiquid(node: HTMLElement, target: 'digits' | 'self' = 'digit
   function tick(now: number): void {
     let complete = true;
 
-    for (const [index, { element, path }] of clips.entries()) {
+    for (const [index, path] of paths.entries()) {
       const progress = Math.max(0, Math.min(1, (now - started - 120 - index * 120) / 1320));
-      const swell = Math.sin(progress * Math.PI * 2) * Math.sin(progress * Math.PI);
       path.setAttribute('d', liquidCrest(progress, index));
-      element.style.transform = `translateY(${Math.pow(1 - progress, 3) * 3}%) scale(${1 + swell * .025}, ${1 - swell * .035})`;
 
       if (progress < 1) complete = false;
     }

@@ -67,7 +67,7 @@ html.library-switching::view-transition-new(root) { animation: library-page-ente
 }
 .hero { height: 100svh; min-height: 720px; padding: 12px; }
 .hero-slab { height: 100%; border-radius: 12px; background: var(--green); color: var(--ink); overflow: hidden; display: flex; flex-direction: column; padding: 0 12px 19px; }
-.masthead { position: relative; aspect-ratio: 1392 / 162; flex: none; overflow: hidden; transform-origin: 50% 100%; }
+.masthead { position: relative; aspect-ratio: 1392 / 162; flex: none; overflow: hidden; }
 .masthead img { position: absolute; bottom: 0; width: 100%; height: auto; }
 .hero-nav { margin-top: 16px; border-block: 1px solid var(--ink); position: relative; z-index: 1; }
 .hero-nav .site-nav { min-height: 49px; padding: 0; border-radius: 0; background: transparent; }
@@ -103,7 +103,6 @@ html.library-switching::view-transition-new(root) { animation: library-page-ente
 .numeral-library .designed-digit:last-child { width: 120px; }
 .numeral-menu .designed-digit { width: 181.5px; }
 .numeral-hero { height: auto; aspect-ratio: 900 / 460.311; gap: 4.12%; }
-.numeral-hero > span { transform-origin: 50% 100%; }
 @keyframes hero-count-label {
   from { clip-path: inset(0 100% 0 0); }
   to { clip-path: inset(0); }
