@@ -6,6 +6,8 @@ Chaldea is an interactive widget library for Quickshell. Try a design in your br
 
 [Download version 1.0.0](https://github.com/Aleph1-9012/Chaldea/releases/tag/v1.0.0) for the source and a prebuilt static site.
 
+[Browse the live library](https://chaldea.vercel.app).
+
 The collection includes quick notes, media players, animated glyphs, interactive art, and lockscreen layouts. Every current catalog entry has a native QML export. See the [inventory](docs/widget-inventory.md) for the designs and current counts.
 
 ## Features
@@ -39,7 +41,7 @@ Settings and preview state stay in memory and reset when the preview is left or 
 
 ## Browse locally
 
-The site runs locally and builds as static files. A public deployment is not configured yet.
+The public library runs at [chaldea.vercel.app](https://chaldea.vercel.app). You can also build and browse it locally.
 
 Local setup requires GNU Make, a C compiler, and the pinned [Rust](rust-toolchain.toml) and [Bun](.bun-version) versions.
 
@@ -68,7 +70,7 @@ Run these from the repository root:
 | `make build` | Build the production site in `dist/`, excluding drafts. |
 | `make preview` | Serve the existing production build on port 4173. |
 
-`make check` already builds the production site. CI runs the same check and saves `dist/` as the `chaldea-site` artifact; it does not deploy it. No browser is installed or launched by the checks.
+`make check` already builds the production site. CI runs the same check and saves `dist/` as the `chaldea-site` artifact. The separate manual deployment workflow publishes a selected GitHub release and retains previous widget revisions. See [deployment setup](docs/publishing.md). No browser is installed or launched by the checks.
 
 The library checker discovers new widgets automatically and validates preview script syntax and declared assets, settings, generated files and asset bytes, and the production catalog. Inspect changed layouts and interactions in `make dev`; inspect changed native exports in an isolated Quickshell configuration.
 
@@ -92,7 +94,7 @@ Generated content, build output, caches, and dependencies are ignored by Git. Ke
 
 Follow the [roadmap](docs/roadmap.md) for planned work and the [widget authoring guide](docs/widget-guide.md) for adding designs or settings. Use the [development guide](docs/repair.md) for troubleshooting and manual export commands, and the [architecture guide](docs/architecture.md) for the packaging and preview contracts.
 
-Before the first public deployment, follow the [publication requirements](docs/publishing.md), including retaining published revision URLs and verifying rollback.
+For production updates, follow the [publication requirements](docs/publishing.md), including retaining published revision URLs and verifying rollback.
 
 ## Support
 

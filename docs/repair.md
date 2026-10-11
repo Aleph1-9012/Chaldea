@@ -106,6 +106,8 @@ Links between Home, Library, and widget details use the modular print in `site/P
 
 ## Distribution notices
 
+Production uses the static release archive at [chaldea.vercel.app](https://chaldea.vercel.app). `frontend/scripts/prepare-vercel.ts` assembles Vercel output while retaining previous release revisions and assets; it refuses conflicting immutable bytes and existing output directories. Follow [publishing.md](publishing.md) for deployment, credentials, verification, and rollback. Changing application source and pushing `main` does not automatically publish a new site.
+
 The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Each widget's output file list includes its applicable license; save it with the other files.
 
 ## Family notes

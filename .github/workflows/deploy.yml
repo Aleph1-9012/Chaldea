@@ -1,0 +1,172 @@
+name: Deploy released site
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Published release to deploy, including for rollback
+        required: true
+        default: v1.0.0
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+# Configure the production environment with required reviewers and a main-only
+# deployment branch rule. Add VERCEL_TOKEN as its secret and VERCEL_ORG_ID and
+# VERCEL_PROJECT_ID as variables for the project serving chaldea.vercel.app.
+# Retain every published release archive and checksum, including after rollback.
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: production
+      url: https://chaldea.vercel.app
+    defaults:
+      run:
+        shell: bash
+    env:
+      RELEASE_TAG: ${{ inputs.release_tag }}
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+      VERCEL_CLI_VERSION: 63.1.2
+      VERCEL_PUBLIC_ALIAS: chaldea.vercel.app
+      VERCEL_TELEMETRY_DISABLED: '1'
+      DO_NOT_TRACK: '1'
+      DEPLOYMENT_DIRECTORY: ${{ runner.temp }}/chaldea-deploy
+      RELEASE_DIRECTORY: ${{ runner.temp }}/chaldea-releases
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: .bun-version
+
+      - name: Download and verify all published site archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]
+          : "${VERCEL_ORG_ID:?Configure the production environment variable}"
+          : "${VERCEL_PROJECT_ID:?Configure the production environment variable}"
+          mkdir -p "$RELEASE_DIRECTORY"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/releases?per_page=100" \
+            --jq '.[] | select(.draft == false and .prerelease == false and .published_at != null) | .tag_name | select(test("^v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"))' \
+            > "$RELEASE_DIRECTORY/tags.txt"
+          test -s "$RELEASE_DIRECTORY/tags.txt"
+          grep -Fxq -- "$RELEASE_TAG" "$RELEASE_DIRECTORY/tags.txt"
+
+          while IFS= read -r tag; do
+            directory="$RELEASE_DIRECTORY/$tag"
+            archive="chaldea-site-${tag#v}.zip"
+            mkdir "$directory"
+            gh release download "$tag" --repo "$GITHUB_REPOSITORY" \
+              --pattern "$archive" --pattern SHA256SUMS --dir "$directory"
+            test -s "$directory/$archive"
+            test -s "$directory/SHA256SUMS"
+            checksum="$(awk -v archive="$archive" '$2 == archive { print $1 }' "$directory/SHA256SUMS")"
+            [[ "$checksum" =~ ^[a-fA-F0-9]{64}$ ]]
+            printf '%s  %s\n' "$checksum" "$directory/$archive" | sha256sum --check --strict -
+
+            # Match the packaged path format before extracting. It excludes
+            # absolute paths, dot segments, backslashes, and control characters.
+            unzip -Z1 "$directory/$archive" > "$directory/entries.txt"
+            test -s "$directory/entries.txt"
+            while IFS= read -r entry; do
+              [[ "$entry" =~ ^[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)*/?$ ]]
+            done < "$directory/entries.txt"
+            test -z "$(sort "$directory/entries.txt" | uniq -d)"
+            zipinfo -l "$directory/$archive" > "$directory/metadata.txt"
+            awk '$2 ~ /^[0-9]+\.[0-9]+$/ { if ($1 !~ /^[-d][rwxstST?-]{9}$/) exit 1; entries++ } END { if (!entries) exit 1 }' \
+              "$directory/metadata.txt"
+            mkdir "$directory/site"
+            unzip -q "$directory/$archive" -d "$directory/site"
+          done < "$RELEASE_DIRECTORY/tags.txt"
+
+      - name: Assemble the selected site with retained revisions and assets
+        run: |
+          set -euo pipefail
+          retained=()
+          while IFS= read -r tag; do
+            retained+=("$RELEASE_DIRECTORY/$tag/site")
+          done < "$RELEASE_DIRECTORY/tags.txt"
+          bun frontend/scripts/prepare-vercel.ts \
+            "$RELEASE_DIRECTORY/$RELEASE_TAG/site" \
+            "$DEPLOYMENT_DIRECTORY/.vercel/output" "${retained[@]}"
+          jq -n --arg orgId "$VERCEL_ORG_ID" --arg projectId "$VERCEL_PROJECT_ID" \
+            '{orgId: $orgId, projectId: $projectId}' > "$DEPLOYMENT_DIRECTORY/.vercel/project.json"
+
+      - name: Install the pinned deployment CLI
+        run: |
+          set -euo pipefail
+          mkdir "$RUNNER_TEMP/chaldea-cli"
+          bun add --cwd "$RUNNER_TEMP/chaldea-cli" --no-save --ignore-scripts --exact "vercel@$VERCEL_CLI_VERSION"
+          printf '%s\n' "$RUNNER_TEMP/chaldea-cli/node_modules/.bin" >> "$GITHUB_PATH"
+
+      - name: Stage the production deployment
+        id: stage
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set -euo pipefail
+          : "${VERCEL_TOKEN:?Configure the production environment secret}"
+          deployment_url="$(vercel deploy --cwd "$DEPLOYMENT_DIRECTORY" --prebuilt --prod --skip-domain --no-wait --yes --meta "releaseTag=$RELEASE_TAG")"
+          [[ "$deployment_url" =~ ^https://[a-zA-Z0-9-]+\.vercel\.app$ ]]
+          printf 'url=%s\n' "$deployment_url" >> "$GITHUB_OUTPUT"
+
+      - name: Verify the staged site and retained revision URLs
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DEPLOYMENT_URL: ${{ steps.stage.outputs.url }}
+        run: |
+          set -euo pipefail
+          static="$DEPLOYMENT_DIRECTORY/.vercel/output/static"
+          vercel inspect "$DEPLOYMENT_URL" --cwd "$DEPLOYMENT_DIRECTORY" --wait --timeout 5m
+          vercel curl /catalog.json --cwd "$DEPLOYMENT_DIRECTORY" --deployment "$DEPLOYMENT_URL" -- \
+            --fail --silent --show-error --dump-header "$RUNNER_TEMP/catalog-headers.txt" --output "$RUNNER_TEMP/catalog.json"
+          jq -e '.formatVersion == 1 and (.widgets | type == "array") and (.widgets | length > 0)' "$RUNNER_TEMP/catalog.json"
+          cmp "$static/catalog.json" "$RUNNER_TEMP/catalog.json"
+          grep -Eiq '^content-type: application/json' "$RUNNER_TEMP/catalog-headers.txt"
+          grep -Eiq '^cache-control:.*no-cache' "$RUNNER_TEMP/catalog-headers.txt"
+          vercel curl / --cwd "$DEPLOYMENT_DIRECTORY" --deployment "$DEPLOYMENT_URL" -- \
+            --fail --silent --show-error --output "$RUNNER_TEMP/index.html"
+          cmp "$static/index.html" "$RUNNER_TEMP/index.html"
+
+          # Sample a complete bundle and thumbnail from every retained release.
+          while IFS= read -r tag; do
+            jq -er '.widgets[0] | .bundleUrl, .thumbnailUrl' "$RELEASE_DIRECTORY/$tag/site/catalog.json"
+          done < "$RELEASE_DIRECTORY/tags.txt" | sort -u > "$RUNNER_TEMP/revision-paths.txt"
+          test -s "$RUNNER_TEMP/revision-paths.txt"
+          while IFS= read -r resource; do
+            [[ "$resource" =~ ^revisions/[A-Za-z0-9_-][A-Za-z0-9_.-]*(/[A-Za-z0-9_-][A-Za-z0-9_.-]*)+$ ]]
+            vercel curl "/$resource" --cwd "$DEPLOYMENT_DIRECTORY" --deployment "$DEPLOYMENT_URL" -- \
+              --fail --silent --show-error --dump-header "$RUNNER_TEMP/revision-headers.txt" --output "$RUNNER_TEMP/revision-response"
+            cmp "$static/$resource" "$RUNNER_TEMP/revision-response"
+            grep -Eiq '^cache-control:.*max-age=31536000.*immutable' "$RUNNER_TEMP/revision-headers.txt"
+            grep -Eiq '^x-content-type-options: nosniff' "$RUNNER_TEMP/revision-headers.txt"
+          done < "$RUNNER_TEMP/revision-paths.txt"
+
+      - name: Promote the verified deployment
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DEPLOYMENT_URL: ${{ steps.stage.outputs.url }}
+        run: |
+          set -euo pipefail
+          vercel promote "$DEPLOYMENT_URL" --cwd "$DEPLOYMENT_DIRECTORY" --yes
+          vercel alias set "$DEPLOYMENT_URL" "$VERCEL_PUBLIC_ALIAS" --cwd "$DEPLOYMENT_DIRECTORY"
+
+      - name: Verify anonymous production access
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error "https://$VERCEL_PUBLIC_ALIAS/catalog.json" --output "$RUNNER_TEMP/public-catalog.json"
+          cmp "$DEPLOYMENT_DIRECTORY/.vercel/output/static/catalog.json" "$RUNNER_TEMP/public-catalog.json"
+          curl --fail --silent --show-error "https://$VERCEL_PUBLIC_ALIAS/" --output "$RUNNER_TEMP/public-index.html"
+          cmp "$DEPLOYMENT_DIRECTORY/.vercel/output/static/index.html" "$RUNNER_TEMP/public-index.html"

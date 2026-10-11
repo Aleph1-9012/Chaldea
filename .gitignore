@@ -1,5 +1,6 @@
 /build/
 /dist/
+/.vercel/
 /backend/target/
 /frontend/node_modules/
 .env

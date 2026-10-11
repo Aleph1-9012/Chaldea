@@ -10,12 +10,12 @@ All five families have native QML exports: Quick notes, Player, Glyphs, Interact
 
 The public Svelte 5 frontend follows the Chaldea-Final and Chaldea Components Figma pages. It includes the poster homepage, searchable masonry library, grouped customization controls, and file-by-file export. It is the only frontend in both development and production, using Rust-packaged catalogs and revisions. The original vanilla backend preview UI has been removed. Bun runs Vite, Svelte diagnostics, and the shared unit tests.
 
-The public website has not been deployed. No host, deploy workflow, or rollback drill exists yet.
+Version 1.0.0 is hosted on Vercel at [chaldea.vercel.app](https://chaldea.vercel.app). Deployment assembly retains released widget revisions and hashed application assets. A manual deployment workflow is checked in; its production environment needs a Vercel token before it can run. The first deployment has no earlier hosted release to roll back to.
 
 ## Next, in order
 
-1. **Settle source layout before the first publication.** Revision URLs become permanent once published, and a format change after that needs a migration. Until then, moving files, changing `chaldea.toml`, or changing packaging costs nothing.
-2. **Publish the native families.** Choose a host that keeps old revision URLs, add `.github/workflows/deploy.yml`, and follow [the publication requirements](publishing.md) through a practiced rollback and a performance measurement.
+1. **Preserve published URLs.** The 1.0.0 revision URLs are public. Keep existing revision bytes and IDs when changing layouts, packaging, or contracts; incompatible formats need a migration.
+2. **Complete recurring deployment setup.** Configure the manual workflow's production environment, then practice rollback with retained revisions when a second hosted release exists. Expand the initial browser and HTTP checks into representative device measurements, following [the publication requirements](publishing.md).
 3. **Build lockscreen authentication only on request.** The visual components are complete. A secure session lock, credential handling, and authentication need a separate design and integration review.
 4. **Add new designs** only on the owner's request, each as its own widget entry.
 
