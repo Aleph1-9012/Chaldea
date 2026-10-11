@@ -67,12 +67,8 @@ html.library-switching::view-transition-new(root) { animation: library-page-ente
 }
 .hero { height: 100svh; min-height: 720px; padding: 12px; }
 .hero-slab { height: 100%; border-radius: 12px; background: var(--green); color: var(--ink); overflow: hidden; display: flex; flex-direction: column; padding: 0 12px 19px; }
-.masthead { position: relative; aspect-ratio: 1392 / 162; flex: none; overflow: hidden; animation: masthead-reveal 1100ms var(--ease) 120ms both; }
+.masthead { position: relative; aspect-ratio: 1392 / 162; flex: none; overflow: hidden; transform-origin: 50% 100%; }
 .masthead img { position: absolute; bottom: 0; width: 100%; height: auto; }
-@keyframes masthead-reveal {
-  from { clip-path: inset(0 0 100% 0); }
-  to { clip-path: inset(0); }
-}
 .hero-nav { margin-top: 16px; border-block: 1px solid var(--ink); position: relative; z-index: 1; }
 .hero-nav .site-nav { min-height: 49px; padding: 0; border-radius: 0; background: transparent; }
 .hero-nav .brand { flex: none; padding: 6px 12px; background: var(--ink); }
@@ -107,11 +103,7 @@ html.library-switching::view-transition-new(root) { animation: library-page-ente
 .numeral-library .designed-digit:last-child { width: 120px; }
 .numeral-menu .designed-digit { width: 181.5px; }
 .numeral-hero { height: auto; aspect-ratio: 900 / 460.311; gap: 4.12%; }
-.numeral-hero > span { animation: hero-count-reveal 1100ms var(--ease) both; animation-delay: calc(120ms + var(--digit-index) * 140ms); }
-@keyframes hero-count-reveal {
-  from { clip-path: inset(100% 0 0 0); }
-  to { clip-path: inset(0); }
-}
+.numeral-hero > span { transform-origin: 50% 100%; }
 @keyframes hero-count-label {
   from { clip-path: inset(0 100% 0 0); }
   to { clip-path: inset(0); }
@@ -241,11 +233,17 @@ a.poster:hover { box-shadow: inset 0 0 0 2px var(--ink); filter: brightness(1.05
 .library-back-to-top:hover svg { transform: translateY(-2px); }
 .filter-bar { position: sticky; top: 12px; z-index: 10; display: flex; align-items: center; gap: 20px; padding: 12px; margin-top: 40px; background: var(--green); color: var(--ink); border-radius: 12px; }
 .family-filters, .sort-controls { display: flex; align-items: center; gap: 2px; }
-.family-filters { margin-right: auto; }
+.family-filters { position: relative; isolation: isolate; margin-right: auto; }
 .filter-bar button { height: 40px; padding: 0 14px; border: 0; border-radius: 8px; background: transparent; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; transition: color 160ms, background 160ms; }
 .filter-bar button:hover { background: rgb(17 17 17 / 10%); }
 .filter-bar button.active { background: var(--ink); color: var(--green); }
-.filter-bar button span { font: 15px/17px var(--mono); letter-spacing: 0; opacity: .65; margin-left: 8px; }
+.filter-bar .family-count { font: 15px/17px var(--mono); letter-spacing: 0; opacity: .65; margin-left: 8px; }
+.family-pill { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; fill: var(--ink); visibility: hidden; }
+.family-filters button { position: relative; flex: none; }
+.family-label-lit { display: none; }
+.family-filters[data-liquid-ready] .family-pill { visibility: visible; }
+.family-filters[data-liquid-ready] button.active { background: transparent; color: var(--ink); }
+.family-filters[data-liquid-ready] .family-label-lit { position: absolute; inset: 0; display: grid; place-items: center; color: var(--green); pointer-events: none; clip-path: inset(0 max(0px, calc(var(--family-left) + 100% - var(--liquid-right))) 0 max(0px, calc(var(--liquid-left) - var(--family-left)))); }
 .filter-bar :focus-visible { outline-color: var(--ink); }
 .sort-controls > span { font-size: 13px; line-height: 17px; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-right: 6px; }
 .library-search { flex: 0 1 248px; min-width: 180px; height: 40px; border-radius: 8px; padding: 0 14px; background: var(--ink); color: var(--green); display: flex; align-items: center; gap: 10px; }

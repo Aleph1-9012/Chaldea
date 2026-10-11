@@ -30,10 +30,10 @@
 
 <div class="numeral numeral-{variant}" role="img" aria-label={String(value)}>
   {#if value === 39}
-    {#each designs[variant] as src, index}<span class="designed-digit" style:--digit-index={index} style:mask-image={`url("${src}")`}></span>{/each}
+    {#each designs[variant] as src}<span class="designed-digit" style:mask-image={`url("${src}")`}></span>{/each}
   {:else}
-    {#each String(value).padStart(2, '0') as digit, index}
-      <span class="numeral-digit" class:narrow={digit === '1'} style:--digit-index={index} style:mask-image={`url("${digits[Number(digit)]}")`}></span>
+    {#each String(value).padStart(2, '0') as digit}
+      <span class="numeral-digit" class:narrow={digit === '1'} style:mask-image={`url("${digits[Number(digit)]}")`}></span>
     {/each}
   {/if}
 </div>

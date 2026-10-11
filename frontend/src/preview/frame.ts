@@ -92,7 +92,6 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
     if (data.type === 'rendered' && sequence > 0 && data.sequence === sequence) {
       clearTimeout(timeout);
       frame.style.removeProperty('visibility');
-      host.dataset.ready = 'true';
     }
     if (data.type === 'error') fail();
     if (data.type === 'controls' && interactions && data.revision > interactionRevision && data.ack >= actionAck && data.ack <= actionSequence && validInteractionState(data.state)) {
@@ -116,7 +115,7 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
     if (!disposed) frame.contentWindow?.postMessage({ channel: 'chaldea:preview', type: 'init', token, externalControls: Boolean(interactions) }, '*');
   });
   frame.addEventListener('error', fail);
-  host.dataset.ready = 'false'; host.replaceChildren(frame);
+  host.replaceChildren(frame);
   timeout = setTimeout(fail, 6000);
 
   return {

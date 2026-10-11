@@ -7,6 +7,7 @@
   import type { LibrarySort } from './links';
   import { masonry, rows } from './masonry';
   import { libraryExpansion } from './library-expansion';
+  import { liquidSelection } from './liquid-selection';
   import Numeral from './Numeral.svelte';
   import LibraryCard from './LibraryCard.svelte';
 
@@ -62,6 +63,17 @@
   }
 </script>
 
+{#snippet familyLabelContent(label: string, count: number)}
+  <span>{label} <span class="family-count">{padded(count)}</span></span>
+{/snippet}
+
+{#snippet familyButton(value: string, label: string, count: number)}
+  <button type="button" data-family={value} class:active={family === value} aria-pressed={family === value} onclick={() => navigate(libraryUrl(value, sort, query), false, false)}>
+    {@render familyLabelContent(label, count)}
+    <span class="family-label-lit" aria-hidden="true">{@render familyLabelContent(label, count)}</span>
+  </button>
+{/snippet}
+
 <svelte:window onkeydown={shortcut} bind:scrollY />
 <section class="library" aria-labelledby="library-title">
   <header class="library-heading">
@@ -69,10 +81,11 @@
     <p>Browse by name or family, then open any widget to try it live.</p>
   </header>
   <div class="filter-bar grain">
-    <div class="family-filters" aria-label="Filter by family">
-      <button class:active={!family} aria-pressed={!family} onclick={() => navigate(libraryUrl('', sort, query), false, false)}>All <span>{padded(widgets.length)}</span></button>
+    <div class="family-filters" aria-label="Filter by family" use:liquidSelection={family}>
+      <svg class="family-pill" aria-hidden="true"><path /></svg>
+      {@render familyButton('', 'All', widgets.length)}
       {#each categories as category}
-        <button class:active={family === category} aria-pressed={family === category} onclick={() => navigate(libraryUrl(category, sort, query), false, false)}>{familyLabel(category)} <span>{padded(widgets.filter(widget => widget.category === category).length)}</span></button>
+        {@render familyButton(category, familyLabel(category), widgets.filter(widget => widget.category === category).length)}
       {/each}
     </div>
     <div class="sort-controls" aria-label="Sort widgets"><span>Sort</span>

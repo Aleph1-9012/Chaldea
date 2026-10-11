@@ -1,8 +1,17 @@
 # Chaldea
 
-A widget library for Quickshell. Browse interactive previews, customize their appearance, and copy or download widgets for your desktop.
+[Sponsor on Ko-fi](https://ko-fi.com/aleph1_9012)
 
-All current catalog entries have native QML downloads. The site runs locally and builds as static files; a public deployment is not configured yet. See the [inventory](docs/widget-inventory.md) for the current designs and counts.
+Chaldea is an interactive widget library for Quickshell. Try a design in your browser, adjust its appearance, and export native QML for your Linux desktop.
+
+The collection includes quick notes, media players, animated glyphs, interactive art, and lockscreen layouts. Every current catalog entry has a native QML export. See the [inventory](docs/widget-inventory.md) for the designs and current counts.
+
+## Features
+
+- Search by name, filter by family, and try widgets in live previews.
+- Adjust colors, typography, layout, and motion through each widget's available settings.
+- Copy generated QML or download individual output files, supporting assets, and licenses.
+- Browse and customize without an account, telemetry, or saved visitor state.
 
 ## Widget families
 
@@ -24,9 +33,11 @@ Lockscreen and Glyph previews do not authenticate or lock the desktop session. T
 
 Save every file in the output selector: the generated QML, supporting files, the `shell.qml` preview launcher, `README.md`, and the applicable license. Preserve the listed file names and subfolders, including any images or audio. Follow the widget's README to try it or integrate it into your Quickshell configuration.
 
-Browsing, customization, copying, and downloading require no account. Settings and preview state stay in memory and reset when the preview is left or the page reloads. The application has no telemetry or saved visitor state.
+Settings and preview state stay in memory and reset when the preview is left or the page reloads.
 
 ## Browse locally
+
+The site runs locally and builds as static files. A public deployment is not configured yet.
 
 Local setup requires GNU Make, a C compiler, and the pinned [Rust](rust-toolchain.toml) and [Bun](.bun-version) versions.
 
@@ -39,7 +50,7 @@ make dev
 
 Open [localhost:5175](http://127.0.0.1:5175/) to browse the library.
 
-The Svelte 5 site is the only frontend. `make dev` runs the Rust backend to validate and package the widgets, then Vite serves the site with that catalog and its revision bundles. Frontend edits update through Vite. After editing files under `widgets/`, run `make content` and reload to use the new revisions. Old `?workbench` bookmarks open the Svelte library or the selected widget.
+`make dev` runs the Rust content packager, then Vite serves the site with the generated catalog and revision bundles. Frontend edits update through Vite. After editing files under `widgets/`, run `make content` and reload to use the new revisions.
 
 ## Development commands
 
@@ -61,6 +72,8 @@ The library checker discovers new widgets automatically and validates preview sc
 
 ## Project structure
 
+The frontend uses Svelte 5 and TypeScript, built with Vite and managed with Bun. Rust validates and packages widget content at build time. The browser generates QML locally, so the site needs no separate runtime API server.
+
 | Path | Contents |
 | --- | --- |
 | `backend/` | Rust source discovery, validation, and content packaging. |
@@ -78,6 +91,10 @@ Generated content, build output, caches, and dependencies are ignored by Git. Ke
 Follow the [roadmap](docs/roadmap.md) for planned work and the [widget authoring guide](docs/widget-guide.md) for adding designs or settings. Use the [development guide](docs/repair.md) for troubleshooting and manual export commands, and the [architecture guide](docs/architecture.md) for the packaging and preview contracts.
 
 Before the first public deployment, follow the [publication requirements](docs/publishing.md), including retaining published revision URLs and verifying rollback.
+
+## Support
+
+If Chaldea is useful to you, you can support its development on [Ko-fi](https://ko-fi.com/aleph1_9012).
 
 ## License
 
