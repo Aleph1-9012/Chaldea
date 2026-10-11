@@ -1,6 +1,6 @@
-# Chaldea
+![Chaldea homepage hero](docs/assets/chaldea-hero.jpg)
 
-[Sponsor on Ko-fi](https://ko-fi.com/aleph1_9012)
+# Chaldea
 
 Chaldea is an interactive widget library for Quickshell. Try a design in your browser, adjust its appearance, and export native QML for your Linux desktop.
 
