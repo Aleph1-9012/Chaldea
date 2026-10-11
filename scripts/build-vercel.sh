@@ -50,7 +50,12 @@ bun frontend/scripts/deployment-history.ts record "$root/.vercel/output/static" 
 curl --fail --silent --show-error --connect-timeout 10 --max-time 30 \
   --header 'Cache-Control: no-cache' "$production_origin/deployment.json" \
   --output "$temporary/current-deployment.json"
-if ! cmp -s "$temporary/history/deployment.json" "$temporary/current-deployment.json"; then
+if ! bun -e '
+  const previous = Buffer.from(await Bun.file(process.argv[1]).arrayBuffer());
+  const current = Buffer.from(await Bun.file(process.argv[2]).arrayBuffer());
+
+  process.exit(previous.equals(current) ? 0 : 1);
+' "$temporary/history/deployment.json" "$temporary/current-deployment.json"; then
   echo 'Production changed during this build. Redeploy to include its published files.' >&2
   exit 1
 fi
