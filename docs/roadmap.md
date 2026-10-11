@@ -10,7 +10,7 @@ All five families have native QML exports: Quick notes, Player, Glyphs, Interact
 
 The public Svelte 5 frontend follows the Chaldea-Final and Chaldea Components Figma pages. It includes the poster homepage, searchable masonry library, grouped customization controls, and file-by-file export. It is the only frontend in both development and production, using Rust-packaged catalogs and revisions. The original vanilla backend preview UI has been removed. Bun runs Vite, Svelte diagnostics, and the shared unit tests.
 
-Nothing is published. No host, deploy workflow, or rollback drill exists yet.
+The public website has not been deployed. No host, deploy workflow, or rollback drill exists yet.
 
 ## Next, in order
 

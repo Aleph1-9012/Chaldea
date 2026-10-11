@@ -4,6 +4,8 @@
 
 Chaldea is an interactive widget library for Quickshell. Try a design in your browser, adjust its appearance, and export native QML for your Linux desktop.
 
+[Download version 1.0.0](https://github.com/Aleph1-9012/Chaldea/releases/tag/v1.0.0) for the source and a prebuilt static site.
+
 The collection includes quick notes, media players, animated glyphs, interactive art, and lockscreen layouts. Every current catalog entry has a native QML export. See the [inventory](docs/widget-inventory.md) for the designs and current counts.
 
 ## Features

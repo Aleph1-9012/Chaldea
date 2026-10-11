@@ -2,7 +2,15 @@
 
 The repository builds a static site and has a CI workflow. No public host, domain, or deployment credentials have been chosen. Add `.github/workflows/deploy.yml` after the host is configured. Current local checks do not establish CDN behavior or a completed production rollback drill.
 
-## Release sequence
+## GitHub releases
+
+Version tags use `vMAJOR.MINOR.PATCH`. Align the frontend and backend package versions, run `make setup` and `make check`, and tag the checked source commit. Do not change content or settings schema versions for a package release.
+
+Each release provides GitHub's source archives and `chaldea-site-VERSION.zip`, containing the complete production `dist/` tree at the archive root. Publish `SHA256SUMS` alongside the site archive. Keep generated archives outside Git. Serve the extracted files over HTTP for local inspection; opening `index.html` directly does not support the catalog and preview requests.
+
+A GitHub release does not deploy the website. Public hosting still requires the sequence below.
+
+## Website publication sequence
 
 1. Run `make setup` and `make check`. This already builds and validates the production artifact. Inspect changed browser interactions and any native exports manually in an isolated environment; the automatic checks do not establish rendering or desktop behavior.
 2. Retain the previous working website and catalog. Record the source commit, tool versions, and native verification for the candidate.
