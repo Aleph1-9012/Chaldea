@@ -14,6 +14,8 @@ Routine website updates do not need package version changes, tags, or GitHub rel
 
 The project ID is `prj_j1kW0OcWUPIaJPK4zP23ylVpeclP` and team ID is `team_CktxYlUSi6kFhrNdcVlUHHkm`. These are identifiers, not credentials. Local `.vercel/` and environment files are ignored by Git.
 
+`vercel.json` retains the existing `chaldea.vercel.app` deployment alias so production source builds assign it automatically. Keep this entry until that address is managed as a project domain; otherwise deployments may update only the generated project address.
+
 The public `deployment.json` lists all retained `assets/` and `revisions/` files, with their paths, sizes, and SHA-256 hashes. After checks pass, `frontend/scripts/deployment-history.ts` restores and verifies these files from production. `frontend/scripts/prepare-vercel.ts` combines them with the newly built site and rejects conflicting immutable bytes. The history script then writes a cumulative manifest identifying `VERCEL_GIT_COMMIT_SHA`. Missing or invalid history stops deployment.
 
 Production is the source of retained files. Keep external backups of complete deployed output, including `deployment.json`. If production becomes unavailable, restore the newest complete backup before resuming Git deployments. Never rebuild using only current source, which would omit historical URLs. The initial migration includes immutable files from every existing release archive.
@@ -87,6 +89,8 @@ On 11 October 2026, patch `v1.0.3` at source commit `443391d7c4b7ebf18a40702022b
 
 On 11 October 2026, the unchanged 1.0.3 site was deployed as `dpl_8C1SwRM2RJ1WtLmu26E3N613DZXv` with a cumulative `deployment.json`. Its 642 immutable files were compared with all four published release archives. Staged and public checks verified the homepage, catalog, manifest, a bundle, thumbnail, preview, native QML, and the original application JavaScript, including bytes, MIME, cache headers, `nosniff`, and missing-revision 404 responses. This bootstraps future builds without creating a release.
 
-The repository supports native Git builds. Connecting the existing Vercel project to the repository remains an owner setup step; automatic Git-triggered deployment has not yet been verified.
+The native source build at `b7dbe65fb6331127b87fe4d30f984e40eb45e8c5` completed on Vercel as `dpl_4pLzY6sjRHtLq9oUeSKQhtw9h9Wi`. It installed the pinned toolchains, passed `make setup` and `make check`, restored the complete history, and automatically assigned `chaldea.vercel.app`. Public byte, MIME, cache, retention, and 404 checks passed against locally assembled output. The initial test found that Vercel lacks `cmp`; the build now uses Bun to compare manifests.
+
+Connecting the existing Vercel project to the repository remains an owner setup step. Source builds and automatic alias assignment are verified; a Git-triggered deployment has not yet been observed.
 
 The catalog loads summaries and thumbnails; only the selected widget loads its complete revision. Measure loading and interaction on representative devices and the chosen host. Record the source revision, device, browser, and measurements. Automatic checks report structural and export correctness, not visual or performance benchmarks.
