@@ -13,11 +13,11 @@
 
 <section class="hero" aria-label="Chaldea widget library">
   <div class="hero-slab grain">
-    <div class="hero-count" use:heroLiquid>
+    <div class="hero-count" data-liquid-pending use:heroLiquid>
       <p>Widgets in the library ↓</p>
       <Numeral value={widgets.length} variant="hero" />
     </div>
-    <h1 class="masthead" use:heroLiquid={'masthead'}><span class="sr-only">Widgets</span><img src={masthead} alt="" width="1392" height="240" /></h1>
+    <h1 class="masthead" data-liquid-pending use:heroLiquid={'masthead'}><span class="sr-only">Widgets</span><img src={masthead} alt="" width="1392" height="240" /></h1>
     <Navigation hero />
     <div class="hero-top">
       <div>

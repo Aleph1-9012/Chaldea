@@ -24,11 +24,13 @@ function liquidCrest(progress: number, index: number): string {
 export function heroLiquid(node: HTMLElement, target: 'digits' | 'masthead' = 'digits') {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (preference.matches || document.hidden) return;
-
   const elements = target === 'masthead' ? [node] : [...node.querySelectorAll<HTMLElement>('.numeral-hero > span')];
 
-  if (!elements.length) return;
+  if (preference.matches || document.hidden || !elements.length) {
+    node.removeAttribute('data-liquid-pending');
+
+    return;
+  }
 
   const svg = document.createElementNS(svgNamespace, 'svg');
   const definitions = document.createElementNS(svgNamespace, 'defs');
@@ -56,6 +58,10 @@ export function heroLiquid(node: HTMLElement, target: 'digits' | 'masthead' = 'd
 
     return path;
   });
+
+  // Replace the first-paint CSS clip only after every liquid clip is installed.
+  node.removeAttribute('data-liquid-pending');
+
   const started = performance.now();
   let frame = 0;
   let finished = false;

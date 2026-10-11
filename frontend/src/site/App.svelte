@@ -55,7 +55,15 @@
     catalogFailure = '';
 
     try {
-      const loaded = await loadCatalog(request.signal);
+      const [loaded] = await Promise.all([
+        loadCatalog(request.signal),
+        // Settle the two visible typefaces before the first page and its motion.
+        // Failed font requests still allow the site to render with its fallbacks.
+        Promise.allSettled([
+          document.fonts.load('400 16px "Faculty Glyphic"'),
+          document.fonts.load('400 16px "JetBrains Mono"'),
+        ]),
+      ]);
 
       if (!request.signal.aborted) catalog = loaded;
     } catch (error) {
@@ -204,12 +212,16 @@
 <svelte:window onpopstate={() => switchRoute(readRoute(), false, false)} />
 
 <div id="top">
-  {#if route.library || route.widget || !catalog}<Navigation />{/if}
+  {#if route.library || route.widget || catalogFailure}<Navigation />{/if}
   <main id="main" tabindex="-1" bind:this={main}>
     {#if catalogFailure}
       <div class="page-notice" role="alert"><h1>The library could not load.</h1><p>{catalogFailure}</p><button class="primary-link" onclick={initialize}>Try again</button></div>
     {:else if !catalog}
-      <div class="page-notice" role="status">Opening the library…</div>
+      {#if !route.library && !route.widget}
+        <section class="hero" aria-label="Loading Chaldea" aria-busy="true">
+          <div class="hero-slab grain"><span class="sr-only" role="status">Opening the library…</span></div>
+        </section>
+      {:else}<div class="page-notice" role="status">Opening the library…</div>{/if}
     {:else if route.widget}
       {#if widgetFailure}
         <div class="page-notice" role="alert"><h1>Widget unavailable</h1><p>{widgetFailure}</p><button class="primary-link" onclick={initialize}>Try again</button><a class="text-link" href={libraryUrl()}>Back to the library</a></div>
