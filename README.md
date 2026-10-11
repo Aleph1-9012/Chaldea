@@ -70,7 +70,7 @@ Run these from the repository root:
 | `make build` | Build the production site in `dist/`, excluding drafts. |
 | `make preview` | Serve the existing production build on port 4173. |
 
-`make check` already builds the production site. CI runs the same check and saves `dist/` as the `chaldea-site` artifact. The separate manual deployment workflow publishes a selected GitHub release and retains previous widget revisions. See [deployment setup](docs/publishing.md). No browser is installed or launched by the checks.
+`make check` already builds the production site. CI runs the same check and saves `dist/` as the `chaldea-site` artifact. Once the project is connected, Vercel's Git integration builds pushes to `main`, runs the same checks, and publishes the site while retaining previous widget revisions and application assets. Website updates do not require a version bump or GitHub release. See [deployment setup](docs/publishing.md). No browser is installed or launched by the checks.
 
 The library checker discovers new widgets automatically and validates preview script syntax and declared assets, settings, generated files and asset bytes, and the production catalog. Inspect changed layouts and interactions in `make dev`; inspect changed native exports in an isolated Quickshell configuration.
 

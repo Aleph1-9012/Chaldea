@@ -42,13 +42,13 @@ The library validator has no widget-ID list to update. Add a valid `widget.json`
 
 These are static and data checks. They do not claim to verify visible layouts, clicks, animation quality, browser clipboard behavior, QML rendering, or desktop integrations. Inspect a changed preview at desktop and narrow widths in `make dev`, try its controls and export, and check native changes in an isolated Quickshell configuration before publishing them.
 
-## CI and release builds
+## CI and deployment builds
 
-CI runs `make setup` followed by the same `make check`, then saves `dist/` as the release candidate. Pull requests and pushes to `main` are checked; ordinary branch pushes do not launch a second copy of a pull-request run. A newer run cancels a superseded run for the same ref. No browser is downloaded or launched.
+CI runs `make setup` followed by the same `make check`, then saves `dist/` as the `chaldea-site` artifact for 14 days. Pull requests and pushes to `main` are checked; ordinary branch pushes do not launch a second copy of a pull-request run. A newer run cancels a superseded run for the same ref. No browser is downloaded or launched.
 
 Local and production content are separate. `build/content/` always holds every widget, drafts included, and its source index; `build/production/` holds the published set that Vite copies into `dist/`. The source index never enters production bundles or revision hashes. A running `make dev` keeps its drafts through a check. Do not run `make build` again after a successful check unless sources have changed.
 
-No hosting provider is configured. A passing check creates a local candidate; it does not deploy the site. Follow `docs/publishing.md` for release and rollback requirements.
+Vercel hosts the public site through its Git integration. Pushes to `main` run `scripts/build-vercel.sh`, which installs the pinned tools and runs `make setup` and `make check` before assembling the deployment. GitHub Actions continues checking pull requests and `main` independently. No GitHub deployment token is needed. Follow [publishing.md](publishing.md) for setup, verification, and rollback. Website updates do not require a release or package version change.
 
 ## Setup and stale output
 
@@ -108,7 +108,7 @@ Links between Home, Library, and widget details use the modular print in `site/P
 
 ## Distribution notices
 
-Production uses the static release archive at [chaldea.vercel.app](https://chaldea.vercel.app). `frontend/scripts/prepare-vercel.ts` assembles Vercel output while retaining previous release revisions and assets; it refuses conflicting immutable bytes and existing output directories. Follow [publishing.md](publishing.md) for deployment, credentials, verification, and rollback. Changing application source and pushing `main` does not automatically publish a new site.
+Production serves checked static output at [chaldea.vercel.app](https://chaldea.vercel.app). `frontend/scripts/deployment-history.ts` restores retained files from the public `deployment.json`, verifying every byte count and SHA-256 hash. `frontend/scripts/prepare-vercel.ts` combines that history with the newly built site; it refuses conflicting immutable bytes and existing output directories. The history script records the resulting cumulative manifest before deployment. Missing or invalid history stops publication. Follow [publishing.md](publishing.md) for setup, verification, backup recovery, and rollback.
 
 The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Each widget's output file list includes its applicable license; save it with the other files.
 

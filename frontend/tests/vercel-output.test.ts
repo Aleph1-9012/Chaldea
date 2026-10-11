@@ -69,7 +69,7 @@ test('conflicting retained bytes fail before creating output and existing output
     const output = join(root, 'output');
 
     await writeFile(join(previous, 'assets/selected.js'), 'Different bytes at the same immutable URL');
-    await expect(prepareVercel(selected, output, [previous])).rejects.toThrow('Conflicting immutable release file: assets/selected.js');
+    await expect(prepareVercel(selected, output, [previous])).rejects.toThrow('Conflicting immutable site file: assets/selected.js');
     await expect(access(output)).rejects.toThrow();
     await mkdir(output);
     await writeFile(join(output, 'keep.txt'), 'Untouched');
@@ -79,7 +79,7 @@ test('conflicting retained bytes fail before creating output and existing output
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test('incomplete releases and symlinked input are rejected without creating output', async () => {
+test('incomplete sites and symlinked input are rejected without creating output', async () => {
   const root = await mkdtemp(join(tmpdir(), 'chaldea-vercel-'));
 
   try {
@@ -88,10 +88,10 @@ test('incomplete releases and symlinked input are rejected without creating outp
     const output = join(root, 'output');
 
     await rm(join(selected, 'licenses/faculty-glyphic.txt'));
-    await expect(prepareVercel(selected, output)).rejects.toThrow('Selected release is missing required file: licenses/faculty-glyphic.txt');
+    await expect(prepareVercel(selected, output)).rejects.toThrow('Selected site is missing required file: licenses/faculty-glyphic.txt');
     await writeFile(join(selected, 'licenses/faculty-glyphic.txt'), 'Font license');
     await rm(join(selected, 'assets'), { recursive: true });
-    await expect(prepareVercel(selected, output)).rejects.toThrow('Selected release is missing required directory: assets');
+    await expect(prepareVercel(selected, output)).rejects.toThrow('Selected site is missing required directory: assets');
     await mkdir(join(selected, 'assets'));
     await symlink(join(previous, 'assets/previous.js'), join(selected, 'assets/link.js'));
     await expect(prepareVercel(selected, output)).rejects.toThrow('symlink');
@@ -126,7 +126,7 @@ test('output config applies static headers and plain-text overrides without an H
     expect(config.version).toBe(3);
     expect(JSON.parse(await readFile(join(output, 'config.json'), 'utf8'))).toEqual(config);
 
-    for (const path of ['/', '/index.html', '/catalog.json']) {
+    for (const path of ['/', '/index.html', '/catalog.json', '/deployment.json']) {
       expect(headersFor(path)).toEqual({ 'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'no-cache' });
     }
 

@@ -9,13 +9,13 @@ const requiredFiles = [
 const retainedDirectories = ['revisions', 'assets'];
 
 async function checkDirectory(path: string): Promise<void> {
-  if (await realpath(path) !== path) throw new Error(`Release path includes a symlink: ${path}`);
+  if (await realpath(path) !== path) throw new Error(`Site path includes a symlink: ${path}`);
   if (!(await lstat(path)).isDirectory()) throw new Error(`Expected a directory: ${path}`);
 }
 
 export async function prepareVercel(selected: string, output: string, retained: string[] = []) {
   const destination = resolve(output);
-  const releases = [selected, ...retained].map(path => resolve(path));
+  const sites = [selected, ...retained].map(path => resolve(path));
   const files = new Map<string, string>();
   const directories = new Set<string>();
 
@@ -23,10 +23,10 @@ export async function prepareVercel(selected: string, output: string, retained: 
     const source = join(root, path);
     const metadata = await lstat(source);
 
-    if (metadata.isSymbolicLink()) throw new Error(`Release contains a symlink: ${source}`);
+    if (metadata.isSymbolicLink()) throw new Error(`Site contains a symlink: ${source}`);
 
     if (metadata.isDirectory()) {
-      if (files.has(path)) throw new Error(`Conflicting release path: ${path}`);
+      if (files.has(path)) throw new Error(`Conflicting site path: ${path}`);
 
       directories.add(path);
 
@@ -37,15 +37,15 @@ export async function prepareVercel(selected: string, output: string, retained: 
       return;
     }
 
-    if (!metadata.isFile()) throw new Error(`Release contains a non-file entry: ${source}`);
-    if (directories.has(path)) throw new Error(`Conflicting release path: ${path}`);
+    if (!metadata.isFile()) throw new Error(`Site contains a non-file entry: ${source}`);
+    if (directories.has(path)) throw new Error(`Conflicting site path: ${path}`);
 
     const previous = files.get(path);
 
     if (previous) {
       const [existing, incoming] = await Promise.all([readFile(previous), readFile(source)]);
 
-      if (!existing.equals(incoming)) throw new Error(`Conflicting immutable release file: ${path}`);
+      if (!existing.equals(incoming)) throw new Error(`Conflicting immutable site file: ${path}`);
 
       return;
     }
@@ -53,28 +53,28 @@ export async function prepareVercel(selected: string, output: string, retained: 
     files.set(path, source);
   }
 
-  for (const [index, release] of releases.entries()) {
-    const outputPath = relative(release, destination);
+  for (const [index, site] of sites.entries()) {
+    const outputPath = relative(site, destination);
 
     if (!outputPath || (outputPath !== '..' && !outputPath.startsWith(`..${sep}`))) {
-      throw new Error(`Output must be outside every release directory: ${destination}`);
+      throw new Error(`Output must be outside every site directory: ${destination}`);
     }
 
-    await checkDirectory(release);
+    await checkDirectory(site);
 
     if (index === 0) {
-      await collect(release, '');
+      await collect(site, '');
 
       for (const path of requiredFiles) {
-        if (!files.has(path)) throw new Error(`Selected release is missing required file: ${path}`);
+        if (!files.has(path)) throw new Error(`Selected site is missing required file: ${path}`);
       }
 
       for (const path of retainedDirectories) {
-        if (!directories.has(path)) throw new Error(`Selected release is missing required directory: ${path}`);
+        if (!directories.has(path)) throw new Error(`Selected site is missing required directory: ${path}`);
       }
     } else {
       for (const path of retainedDirectories) {
-        await collect(release, path);
+        await collect(site, path);
       }
     }
   }
@@ -91,7 +91,7 @@ export async function prepareVercel(selected: string, output: string, retained: 
     version: 3,
     routes: [
       { src: '^/.*$', headers: { 'X-Content-Type-Options': 'nosniff' }, continue: true },
-      { src: '^/(?:index\\.html|catalog\\.json)?$', headers: { 'Cache-Control': 'no-cache' }, continue: true },
+      { src: '^/(?:index\\.html|catalog\\.json|deployment\\.json)?$', headers: { 'Cache-Control': 'no-cache' }, continue: true },
       { src: '^/(?:revisions|assets)/.*$', headers: { 'Cache-Control': 'public, max-age=31536000, immutable' }, continue: true },
       { handle: 'filesystem' },
     ],

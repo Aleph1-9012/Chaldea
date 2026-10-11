@@ -30,7 +30,7 @@ jobs:
           rustup toolchain install "$version" --profile minimal --component rustfmt --component clippy
       - run: make setup
       - run: make check
-      - name: Preserve the static release candidate
+      - name: Preserve the checked static site
         uses: actions/upload-artifact@v7
         with:
           name: chaldea-site
