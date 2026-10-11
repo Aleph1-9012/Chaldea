@@ -12,6 +12,7 @@
   import { libraryUrl } from './links';
   import Settings from './Settings.svelte';
   import Code from './Code.svelte';
+  import ModuleLoader from './ModuleLoader.svelte';
 
   let { widget, index }: { widget: LoadedWidget; index: number } = $props();
 
@@ -26,6 +27,7 @@
   let playbackHost = $state<HTMLDivElement>();
   let interactionHost = $state<HTMLDivElement>();
   let preview: Preview | undefined;
+  let previewLoading = $state(true);
   let commandStatus = $state('');
   let usageOpen = $state(false);
   const hasShell = $derived(definition.exports.some(file => file.path === 'shell.qml'));
@@ -57,7 +59,7 @@
       interactionHost?.append(interactions.root);
     }
 
-    preview = mountPreview(host, widget, initial, interactions);
+    preview = mountPreview(host, widget, initial, interactions, () => { previewLoading = false; });
     commit(initial);
 
     return () => preview?.destroy();
@@ -82,7 +84,12 @@
     <div class="detail-workbench" class:art-workbench={definition.category === 'Interactive art'} class:preview-only={!definition.settings.length && definition.category !== 'Interactive art'}>
       <section class="preview-stage" aria-label="Live widget preview">
         <header><span>Live preview</span><small>Browser demo</small></header>
-        <div class="preview-viewport"><div class="preview-host" bind:this={host}></div></div>
+        <div class="preview-viewport" class:loading={previewLoading}>
+          <div class="preview-host" aria-busy={previewLoading} bind:this={host}></div>
+          {#if previewLoading}
+            <div class="preview-loading" role="status"><ModuleLoader /><span class="sr-only">Loading live preview…</span></div>
+          {/if}
+        </div>
       </section>
       {#if definition.settings.length || definition.category === 'Interactive art'}
         <section class="customize-panel" aria-label="Customize widget">

@@ -14,6 +14,7 @@
   import Detail from './Detail.svelte';
   import Footer from './Footer.svelte';
   import PageTransition from './PageTransition.svelte';
+  import ModuleLoader from './ModuleLoader.svelte';
   import type { PageOrigin } from './PageTransition.svelte';
 
   function readRoute() {
@@ -214,7 +215,7 @@
         <div class="page-notice" role="alert"><h1>Widget unavailable</h1><p>{widgetFailure}</p><button class="primary-link" onclick={initialize}>Try again</button><a class="text-link" href={libraryUrl()}>Back to the library</a></div>
       {:else if widget}
         {#key widget.bundle.id}<div in:fade={{ duration: prefersReducedMotion.current ? 0 : 180 }}><Detail {widget} {index} /></div>{/key}
-      {:else}<div class="page-notice" role="status">Opening widget…</div>{/if}
+      {:else}<div class="page-notice widget-loading" role="status"><ModuleLoader /><span class="sr-only">Opening widget…</span></div>{/if}
     {:else if route.library}
       <Library widgets={catalog.widgets} family={route.family} sort={route.sort} query={route.query} {navigate} {footerVisible} />
     {:else}<Home widgets={catalog.widgets} />{/if}

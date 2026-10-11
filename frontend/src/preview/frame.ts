@@ -34,7 +34,7 @@ export interface Preview {
   destroy(): void;
 }
 
-export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: Settings, interactions?: InteractionView): Preview {
+export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: Settings, interactions?: InteractionView, onLoadEnd?: () => void): Preview {
   const frame = document.createElement('iframe');
   frame.title = `${widget.bundle.definition.title} browser preview`;
   // Artwork controls may save files, while the frame keeps its opaque origin.
@@ -48,6 +48,14 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
   let interactionState: InteractionState | undefined;
   let interactionRevision = 0, actionSequence = 0, actionAck = 0;
   let timeout: ReturnType<typeof setTimeout>;
+  let loading = true;
+
+  const finishLoading = () => {
+    if (!loading) return;
+
+    loading = false;
+    onLoadEnd?.();
+  };
 
   const fail = () => {
     if (disposed) return;
@@ -65,6 +73,7 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
     host.replaceChildren(fallback, message);
     interactions?.unavailable('Preview unavailable. Reload to restore its controls.');
     disposed = true; window.removeEventListener('message', receive);
+    finishLoading();
   };
 
   const send = () => {
@@ -92,6 +101,7 @@ export function mountPreview(host: HTMLElement, widget: LoadedWidget, initial: S
     if (data.type === 'rendered' && sequence > 0 && data.sequence === sequence) {
       clearTimeout(timeout);
       frame.style.removeProperty('visibility');
+      finishLoading();
     }
     if (data.type === 'error') fail();
     if (data.type === 'controls' && interactions && data.revision > interactionRevision && data.ack >= actionAck && data.ack <= actionSequence && validInteractionState(data.state)) {
