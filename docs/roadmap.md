@@ -10,7 +10,7 @@ All five families have native QML exports: Quick notes, Player, Glyphs, Interact
 
 The public Svelte 5 frontend follows the Chaldea-Final and Chaldea Components Figma pages. It includes the poster homepage, searchable masonry library, grouped customization controls, and file-by-file export. It is the only frontend in both development and production, using Rust-packaged catalogs and revisions. The original vanilla backend preview UI has been removed. Bun runs Vite, Svelte diagnostics, and the shared unit tests.
 
-Version 1.0.2 is hosted on Vercel at [chaldea.vercel.app](https://chaldea.vercel.app), with lighter page transitions, offscreen card rendering, widget loading during navigation, and the existing block loader while live previews start. Deployment assembly retains released widget revisions and hashed application assets, including 1.0.0 and 1.0.1. A manual deployment workflow is checked in; its production environment needs a Vercel token before it can run.
+Version 1.0.3 is hosted on Vercel at [chaldea.vercel.app](https://chaldea.vercel.app), with fluid selection and customization controls. Live previews show the block loader while starting. Deployment assembly retains every released widget revision and hashed application asset from earlier releases. A manual deployment workflow is checked in; its production environment needs a Vercel token before it can run.
 
 ## Next, in order
 
