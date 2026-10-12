@@ -183,10 +183,6 @@
           <image href={masthead} x={-typeWidth * .15} width={typeWidth} height={typeHeight} />
         </g>
       </g>
-      <g class="print-imprint">
-        <rect x="16" y="16" width="140" height="34" fill="var(--ink)" />
-        <text x="24" y="38">CHALDEA /</text>
-      </g>
     </g>
   </svg>
 </div>
@@ -196,5 +192,4 @@
   svg { display: block; overflow: hidden; }
   .print-module { transform: scale(0); }
   .green-lettering :global(path) { fill: var(--green); }
-  .print-imprint { fill: var(--paper); font: 12px 'Faculty Glyphic', sans-serif; letter-spacing: .2em; }
 </style>
