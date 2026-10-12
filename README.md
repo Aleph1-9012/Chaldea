@@ -1,4 +1,4 @@
-![Chaldea homepage hero](docs/assets/chaldea-hero-full.jpg)
+![Chaldea homepage hero at 1440 × 900](docs/assets/chaldea-hero-laptop.jpg)
 
 # Chaldea
 
