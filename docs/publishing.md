@@ -61,7 +61,17 @@ The host must serve revision files at stable public URLs across deployments. A p
 
 Serve over HTTPS so Clipboard and random preview tokens work. Preview iframes need scripts, but must keep their opaque origin. Check any site-wide content security policy against that design and the preview's own policy.
 
-The application uses no third-party font requests, analytics SDK, cookies, or error-reporting integration. It stores settings in memory only. Vercel still handles operational request data as the hosting provider; do not describe hosting as having zero logs or zero IP processing. Project analytics identifiers alone do not establish visitor tracking, and no analytics script was added for deployment. Account-specific log retention and provider privacy terms need review before broader privacy claims.
+The application serves its fonts locally, stores customization settings in memory only, and has no error-reporting integration. Vercel handles operational request data as the hosting provider as well as the Web Analytics described below.
+
+## Web analytics
+
+Vercel Web Analytics records visitors and page views on production deployments, as requested by the owner. It uses [Vercel's cookie-free visitor measurement](https://vercel.com/docs/analytics/privacy-policy). Chaldea sends no custom events, search text, customization values, or user identifiers.
+
+The Svelte application uses `@vercel/analytics` through its generic browser API. Automatic history tracking is disabled because the site routes through query parameters. After a route is committed and the catalog is available, the app reports `/`, `/library`, or `/widgets/<catalog-id>`. Unknown widget IDs report `/widgets/not-found`; arbitrary URL input is not sent as an ID. All page URL queries and fragments are removed before sending. Family, sort, and search changes within the library do not add page views; returning from another page does. These analytics paths are reporting labels, not new site URLs.
+
+Enable Web Analytics in the existing project's **Analytics** tab and deploy through the normal Git flow. `frontend/vite.config.ts` passes Vercel's public observability client configuration to the SDK for the project's script and collection endpoints. The SDK falls back to `/_vercel/insights/script.js` when that configuration is absent. Only builds with `VERCEL_ENV=production` enable collection; local development, ordinary local builds, and Vercel preview deployments do not. No token or new secret is required.
+
+After deployment, visit Home, Library, and a widget, then check the project's Analytics tab. Content blockers and Vercel's bot filtering can exclude visits. Missing counts should not prevent browsing or preview loading. See [Vercel's setup guide](https://vercel.com/docs/analytics/quickstart) for dashboard setup and collection troubleshooting.
 
 ## First deployment evidence
 

@@ -15,7 +15,9 @@ The collection includes quick notes, media players, animated glyphs, interactive
 - Search by name, filter by family, and try widgets in live previews.
 - Adjust colors, typography, layout, and motion through each widget's available settings.
 - Copy generated QML or download individual output files, supporting assets, and licenses.
-- Browse and customize without an account, telemetry, or saved visitor state.
+- Browse and customize without an account or saved customization state.
+
+The hosted site uses Vercel Web Analytics for visitor and page-view counts. Search text and customization values are excluded. See [analytics and privacy](docs/publishing.md#web-analytics).
 
 ## Widget families
 

@@ -12,6 +12,8 @@ The public Svelte 5 frontend follows the Chaldea-Final and Chaldea Components Fi
 
 The site is hosted on Vercel at [chaldea.vercel.app](https://chaldea.vercel.app), with fluid selection and customization controls. Live previews show the block loader while starting. The native Vercel build runs project checks before publishing pushes to `main` independently of package releases. A cumulative manifest retains every published widget revision and hashed application asset across updates. [Publishing](publishing.md) records deployment evidence and Git integration setup.
 
+At the owner's request, Vercel production builds now include Web Analytics for visitors and page views. Search text and customization values are excluded; local and preview builds do not collect analytics.
+
 ## Next, in order
 
 1. **Preserve published URLs.** The 1.0.0 revision URLs are public. Keep existing revision bytes and IDs when changing layouts, packaging, or contracts; incompatible formats need a migration.

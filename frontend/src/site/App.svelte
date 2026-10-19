@@ -6,6 +6,7 @@
   import { loadCatalog, loadWidget } from '../catalog/load';
   import { errorText } from '../components/dom';
   import { presentation } from './catalog';
+  import { analyticsPath, startAnalytics } from './analytics';
   import { libraryUrl } from './links';
   import type { LibrarySort } from './links';
   import Home from './Home.svelte';
@@ -42,6 +43,14 @@
   let widgetReady: Promise<void> = Promise.resolve();
   let pendingWidget: ReturnType<typeof requestWidget> | undefined;
   let navigationVersion = 0;
+
+  const reportPage = import.meta.env.PROD && import.meta.env.VITE_VERCEL_ENV === 'production'
+    ? startAnalytics()
+    : undefined;
+
+  $effect(() => {
+    if (catalog) reportPage?.(analyticsPath(route, catalog.widgets));
+  });
 
   const index = $derived(catalog && widget ? [...catalog.widgets].sort((a, b) => presentation(a).title.localeCompare(presentation(b).title)).findIndex(item => item.id === widget?.bundle.id) : 0);
 

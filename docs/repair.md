@@ -108,6 +108,8 @@ Links between Home, Library, and widget details use the modular print in `site/P
 
 ## Distribution notices
 
+Vercel Web Analytics is enabled only in Vercel production builds. `site/analytics.ts` records committed page navigation with URL queries and fragments removed; filtering and customization do not produce extra views or events. Local development and preview deployments do not collect analytics. If production counts stay empty, check that Web Analytics is enabled for the project, the injected script loads, and content blockers are not suppressing it. Follow [the analytics setup](publishing.md#web-analytics). The unit suite checks safe page names, query removal, and repeat-view behavior.
+
 Production serves checked static output at [chaldea.vercel.app](https://chaldea.vercel.app). `frontend/scripts/deployment-history.ts` restores retained files from the public `deployment.json`, verifying every byte count and SHA-256 hash. `frontend/scripts/prepare-vercel.ts` combines that history with the newly built site; it refuses conflicting immutable bytes and existing output directories. The history script records the resulting cumulative manifest before deployment. Missing or invalid history stops publication. Follow [publishing.md](publishing.md) for setup, verification, backup recovery, and rollback.
 
 The application uses Apache 2.0; original widgets use 0BSD. Builds emit `LICENSE.txt`, `NOTICE.txt`, and `THIRD_PARTY_LICENSES.txt`. Keep them with the distributed site. Each widget's output file list includes its applicable license; save it with the other files.

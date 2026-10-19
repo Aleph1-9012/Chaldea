@@ -16,6 +16,11 @@ const mime: Record<string, string> = {
 
 export default defineConfig(({ command }) => ({
   base: './',
+  // The Other preset does not expose Vercel's public client configuration to Vite.
+  define: {
+    'import.meta.env.VITE_VERCEL_ENV': JSON.stringify(process.env.VERCEL_ENV ?? ''),
+    'import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG': JSON.stringify(process.env.VERCEL_OBSERVABILITY_CLIENT_CONFIG ?? ''),
+  },
   publicDir: command === 'build' ? production : content,
   plugins: [svelte(), {
     name: 'generated-content',

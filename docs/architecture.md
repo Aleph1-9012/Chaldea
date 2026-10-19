@@ -44,7 +44,7 @@ A six-second load/render timeout replaces the frame with a thumbnail. Independen
 
 ## Launch boundaries
 
-The library has no backend server, user accounts, creator uploads, saved visitor state, telemetry, or remote fonts. All declared widget files and applicable licenses are available individually in the output selector. Native behavior is verified separately in isolated Quickshell configurations.
+The library has no backend server, user accounts, creator uploads, saved customization state, or remote fonts. Vercel production builds use Web Analytics for visitor and page-view counts. `site/analytics.ts` maps committed routes to `/`, `/library`, and `/widgets/<catalog-id>`, excludes URL queries and fragments, and suppresses duplicate views from filters and searches. Unknown widget IDs use `/widgets/not-found`. Local and preview builds do not load the analytics SDK's remote script. All declared widget files and applicable licenses are available individually in the output selector. Native behavior is verified separately in isolated Quickshell configurations.
 
 An account API, private storage, authentication, preset migrations, and server-side permissions remain deferred. If needed later, start with an API executable in the existing Rust package. Anonymous browsing, customization, and export must continue independently.
 
