@@ -2,6 +2,7 @@
   import { onMount, tick } from 'svelte';
   import { fade } from 'svelte/transition';
   import { prefersReducedMotion } from 'svelte/motion';
+  import { inject } from '@vercel/analytics';
   import type { Catalog, LoadedWidget, Summary } from '../catalog/contracts';
   import { loadCatalog, loadWidget } from '../catalog/load';
   import { errorText } from '../components/dom';
@@ -16,6 +17,8 @@
   import PageTransition from './PageTransition.svelte';
   import ModuleLoader from './ModuleLoader.svelte';
   import type { PageOrigin } from './PageTransition.svelte';
+
+  inject();
 
   function readRoute() {
     const params = new URLSearchParams(location.search);
