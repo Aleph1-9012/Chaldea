@@ -1,5 +1,6 @@
 import type { InteractionControl, InteractionState } from '../preview/interactions';
 import { el } from './dom';
+import { optionLabel } from './option-label';
 
 interface ControlView {
   type: InteractionControl['type'];
@@ -129,7 +130,9 @@ export function interactionControls(send: (key: string, value?: string | number 
               options.set(choice.value, option);
             }
 
-            if (option.textContent !== choice.label) option.textContent = choice.label;
+            const caption = optionLabel(choice.label, index);
+
+            if (option.textContent !== caption) option.textContent = caption;
 
             place(input, option, index);
           });
@@ -154,8 +157,16 @@ export function interactionControls(send: (key: string, value?: string | number 
       quality.max = 100;
       quality.hidden = true;
       field.append(quality);
+
+      function showProgress(): void {
+        const span = Number(input.max) - Number(input.min);
+        const progress = span > 0 ? Math.max(0, Math.min(100, (input.valueAsNumber - Number(input.min)) / span * 100)) : 0;
+        input.style.setProperty('--progress', `${progress}%`);
+      }
+
       input.addEventListener('input', () => {
         output.value = input.value;
+        showProgress();
         action(control.key, input.valueAsNumber);
       });
 
@@ -165,15 +176,16 @@ export function interactionControls(send: (key: string, value?: string | number 
           if (next.type !== 'range') return;
 
           if (!waiting) {
-            input.min = String(next.min);
-            input.max = String(next.max);
-            input.step = String(next.step);
+            if (input.min !== String(next.min)) input.min = String(next.min);
+            if (input.max !== String(next.max)) input.max = String(next.max);
+            if (input.step !== String(next.step)) input.step = String(next.step);
 
             if (input.valueAsNumber !== next.value) input.value = String(next.value);
 
             output.value = next.output ?? String(next.value);
           }
 
+          showProgress();
           quality.hidden = next.quality === undefined;
 
           if (next.quality !== undefined) {

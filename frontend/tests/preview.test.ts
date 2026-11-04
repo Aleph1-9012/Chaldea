@@ -56,12 +56,17 @@ interface RuntimeApi {
 
 interface RuntimeWindow {
   parent: RuntimeParent; ChaldeaPreview?: RuntimeApi;
+  requestAnimationFrame(callback: () => void): number;
+  cancelAnimationFrame(id: number): void;
   addEventListener(type: string, listener: RuntimeListener): void;
   removeEventListener(type: string, listener: RuntimeListener): void;
 }
 
 async function runtimeFixture(action: EngineAction = () => undefined, withControls = true) {
   const messages: RuntimeOutput[] = [];
+  const frames = new Map<number, () => void>();
+  let frameId = 0;
+  let onResize = () => {};
   const listeners = new Map<string, Set<RuntimeListener>>();
   const rendered: Settings[] = [];
   const hostedAtRender: boolean[] = [];
@@ -69,11 +74,31 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
   const hosted: boolean[] = [];
   const current = state();
   const parent = { postMessage(message: RuntimeOutput) { messages.push(message); } };
-  const body = { dataset: { previewWidth: '' }, getBoundingClientRect: () => ({ height: 321.2 }) };
+  const attributes = new Set<string>();
+  const documentElement = {
+    style: { overflow: '' },
+    toggleAttribute(name: string, active: boolean) { if (active) attributes.add(name); else attributes.delete(name); },
+    removeAttribute(name: string) { attributes.delete(name); },
+    setAttribute(name: string) { attributes.add(name); },
+  };
+  let naturalHeight = 321.2;
+  let frameHeight = 900;
+  let measurements = 0;
+  const dataset = { previewWidth: '', previewLayout: '' };
+  const body = {
+    dataset,
+    getBoundingClientRect: () => {
+      measurements++;
+
+      return { height: dataset.previewLayout === 'fill' && attributes.has('data-preview-hosted') ? frameHeight : naturalHeight };
+    },
+  };
   let escaped = 0;
 
   const window: RuntimeWindow = {
     parent,
+    requestAnimationFrame(callback) { frames.set(++frameId, callback); return frameId; },
+    cancelAnimationFrame(id) { frames.delete(id); },
     addEventListener(type, listener) {
       if (!listeners.has(type)) listeners.set(type, new Set());
 
@@ -84,8 +109,12 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
 
   new Script(await generatePreviewRuntime()).runInNewContext({
     window,
-    document: { body },
-    ResizeObserver: class { observe() {} disconnect() {} },
+    document: { body, documentElement },
+    ResizeObserver: class {
+      constructor(callback: () => void) { onResize = callback; }
+      observe() {}
+      disconnect() { onResize = () => {}; }
+    },
   });
 
   const api = window.ChaldeaPreview;
@@ -107,6 +136,16 @@ async function runtimeFixture(action: EngineAction = () => undefined, withContro
 
   return {
     current, messages, rendered, hostedAtRender, actions, hosted, disconnect, body,
+    layout(contentHeight: number, viewportHeight: number) { naturalHeight = contentHeight; frameHeight = viewportHeight; },
+    resized: () => onResize(),
+    nextFrame() {
+      const pending = [...frames.values()];
+      frames.clear();
+
+      for (const callback of pending) callback();
+    },
+    get fillsFrame() { return attributes.has('data-preview-hosted'); },
+    get measurements() { return measurements; },
     get escaped() { return escaped; },
     changed: () => api.controlsChanged(),
     send(data: HostMessage, source = parent) {
@@ -206,6 +245,7 @@ test('runtime authenticates the parent and token, waits for mount acknowledgemen
   runtime.send(command(40, 'button', 'capture'));
   runtime.body.dataset.previewWidth = '468';
   runtime.send({ ...settings, sequence: 2 });
+  runtime.nextFrame();
   expect(runtime.rendered).toHaveLength(2);
   expect(runtime.messages).toContainEqual({ ...envelope, type: 'resize', height: 322, width: 468 });
   expect(runtime.latest().ack).toBe(40);
@@ -214,6 +254,56 @@ test('runtime authenticates the parent and token, waits for mount acknowledgemen
   runtime.changed();
   expect(runtime.rendered).toHaveLength(2);
   expect(runtime.hosted).toEqual([true, false]);
+});
+
+test('full-area previews report natural content height and can shrink after a larger viewport', async () => {
+  const runtime = await runtimeFixture();
+  runtime.body.dataset.previewLayout = 'fill';
+  runtime.send({ ...envelope, type: 'init', externalControls: true });
+  runtime.send({ ...envelope, type: 'controls-mounted', revision: 1 });
+  expect(runtime.messages).toContainEqual({ ...envelope, type: 'resize', height: 322 });
+  expect(runtime.fillsFrame).toBe(true);
+
+  runtime.layout(600, 1200);
+  runtime.resized();
+  expect(runtime.messages.some(message => message.type === 'resize' && message.height === 600)).toBe(false);
+  runtime.nextFrame();
+  expect(runtime.messages).toContainEqual({ ...envelope, type: 'resize', height: 600 });
+
+  runtime.layout(350, 1200);
+  runtime.resized();
+  runtime.nextFrame();
+  expect(runtime.messages).toContainEqual({ ...envelope, type: 'resize', height: 350 });
+  expect(runtime.messages.some(message => message.type === 'resize' && message.height === 1200)).toBe(false);
+  expect(runtime.fillsFrame).toBe(true);
+  runtime.layout(700, 1200);
+  runtime.resized();
+  runtime.disconnect();
+  runtime.nextFrame();
+  expect(runtime.messages.some(message => message.type === 'resize' && message.height === 700)).toBe(false);
+});
+
+test('slider bursts acknowledge every action without measuring layout during input', async () => {
+  const runtime = await runtimeFixture();
+  runtime.body.dataset.previewLayout = 'fill';
+  runtime.send({ ...envelope, type: 'init', externalControls: true });
+  runtime.send({ ...envelope, type: 'controls-mounted', revision: 1 });
+  const initialMeasurements = runtime.measurements;
+
+  for (let sequence = 1; sequence <= 30; sequence++) {
+    runtime.send(command(sequence, 'range', 'amount', sequence % 6 * 2));
+  }
+
+  runtime.send({ ...envelope, type: 'settings', sequence: 1, settings: {} });
+  runtime.resized();
+  expect(runtime.actions).toHaveLength(30);
+  expect(runtime.latest().ack).toBe(30);
+  expect(runtime.rendered).toHaveLength(1);
+  expect(runtime.measurements).toBe(initialMeasurements);
+  runtime.nextFrame();
+  expect(runtime.measurements).toBe(initialMeasurements + 1);
+  expect(runtime.fillsFrame).toBe(true);
+  runtime.disconnect();
 });
 
 test('the first hosted render runs after the sidebar acknowledgement removes standalone labels', async () => {

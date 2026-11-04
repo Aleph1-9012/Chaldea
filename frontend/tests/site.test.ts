@@ -1,6 +1,15 @@
 import { expect, test } from 'bun:test';
 import { masonry, rows } from '../src/site/masonry';
 import { libraryUrl } from '../src/site/links';
+import { folderDuration } from '../src/site/folder-motion';
+
+test('folder timing preserves CSS milliseconds and minified seconds', () => {
+  expect(folderDuration('820ms')).toBe(820);
+  expect(folderDuration('.82s')).toBe(820);
+  expect(folderDuration(' 0.82s ')).toBe(820);
+  expect(folderDuration('1.2s')).toBe(1200);
+  expect(folderDuration('0s')).toBe(0);
+});
 
 test('library layouts keep every card inside the container without overlapping at desktop and phone widths', () => {
   const items = Array.from({ length: 39 }, (_, index) => ({ id: `card-${index}`, ratio: [0.69, 1, 1.6, 2.02, 0.89][index % 5]! }));

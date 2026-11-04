@@ -14,7 +14,6 @@
 
   const descriptions = new Map([
     ['Glyphs', 'Animated lettering that reacts as you type.'],
-    ['Lockscreens', 'Clocks, lettering, and layouts for your lockscreen.'],
     ['Interactive art', 'Interactive pieces. Push, pull, and play.'],
     ['Quick notes', 'Write, edit, and switch between your notes.'],
     ['Player', 'Media controls for whatever is playing.'],

@@ -3,6 +3,7 @@
   import type { FieldError } from '../customizer/settings';
   import { fade } from 'svelte/transition';
   import { prefersReducedMotion } from 'svelte/motion';
+  import { optionLabel } from '../components/option-label';
 
   let { definition, values, error, change }: {
     definition: Definition;
@@ -49,7 +50,7 @@
           <label for={id}>{setting.label}</label>
           {#if setting.type === 'enum'}
             <div class="select-wrap"><select {id} value={String(values[setting.key])} aria-invalid={invalid} aria-describedby={invalid ? `${id}-error` : undefined} onchange={event => change(setting.key, event.currentTarget.value)}>
-              {#each setting.choices as choice}<option value={choice}>{choice}</option>{/each}
+              {#each setting.choices as choice, index}<option value={choice}>{optionLabel(choice, index)}</option>{/each}
             </select><span aria-hidden="true">↓</span></div>
           {:else if setting.type === 'number'}
             <input class="setting-number" type="number" aria-label={`${setting.label} value`} value={Number(values[setting.key])} min={setting.min} max={setting.max} step={setting.step} aria-invalid={invalid} aria-describedby={invalid ? `${id}-error` : undefined} oninput={event => change(setting.key, event.currentTarget.valueAsNumber)} />

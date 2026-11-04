@@ -1,6 +1,6 @@
 # Author a widget
 
-Discuss new designs with the maintainer before adding or porting a widget. Preserve its existing identity and behavior. Give each approved design its own widget entry. Keep palettes and tuning options as settings, and preserve the design's purpose. `widgets/lockscreens/phase-lock/formation/` keeps an existing interactive HTML design alongside its native visual component.
+Discuss new designs with the maintainer before adding or porting a widget. Preserve its existing identity and behavior. Give each approved design its own widget entry. Keep palettes and tuning options as settings, and preserve the design's purpose. `widgets/interactive-art/sea-turtle/` keeps its interactive HTML preview alongside its native visual component.
 
 ## Source files
 

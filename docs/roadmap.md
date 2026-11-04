@@ -6,7 +6,7 @@ Where the library stands, what gets added next, and how to add it. Update this f
 
 The tooling is complete for anonymous browsing, customization, copying, and downloading: one Rust packager, one QML generator, and a browser-free `make check` that discovers every widget. Rust owns source discovery and emits a local source index for frontend authoring tools; production output contains no source index.
 
-All six families have native QML exports: Quick notes, Player, Glyphs, Interactive art, Lockscreens, and Sliders. The Sliders family preserves the supplied Comb, Slats, Stipple Blade, and Weave designs as separate controls. The five extracted Glyphs and nine Lockscreens export native components with their existing IDs and settings keys. Lockscreens provide visual components and demo interactions, with authentication and desktop session locking left to a separate host. [The inventory](widget-inventory.md) has the counts.
+All five active families have native QML exports: Quick notes, Player, Glyphs, Interactive art, and Sliders. The Sliders family preserves the supplied Comb, Slats, Stipple Blade, and Weave designs as separate controls. At the owner's request, the Lockscreens family was retired from the site and catalog. Its sources, including local preview edits, are archived outside this repository. The glyph designs extracted from that family remain available with their existing IDs and settings keys. [The inventory](widget-inventory.md) has the counts.
 
 [Fish murmuration](../widgets/interactive-art/fish-murmuration/README.md) draws its animation in shared browser and Qt code with pointer interaction, adjustable speed, and native QML export. It is included in production builds. The supplied video is kept only as a private reference outside the repository.
 
@@ -24,12 +24,11 @@ Search discovery now includes a static homepage rendered from the same Svelte co
 
 1. **Preserve published URLs.** The 1.0.0 revision URLs are public. Keep existing revision bytes and IDs when changing layouts, packaging, or contracts; incompatible formats need a migration.
 2. **Verify recovery and device performance.** Automatic Git deployments are working. Practice rollback with retained revisions. Expand the initial browser and HTTP checks into representative device measurements, following [the publication requirements](publishing.md).
-3. **Build lockscreen authentication only on request.** The visual components are complete. A secure session lock, credential handling, and authentication need a separate design and integration review.
-4. **Add new designs** only on the owner's request, each as its own widget entry.
+3. **Add new designs** only on the owner's request, each as its own widget entry.
 
 ## Adding to the library
 
-Keep one entry per lockscreen layout. Artwork, glyph, background, and motion variations of that layout do not get separate entries. Preserve the retained preview's selected design; future variation controls belong in its settings when the owner requests them. [The lockscreen guide](../widgets/lockscreens/README.md) records the retained previews.
+Keep one entry per approved design. Artwork, background, and motion variations remain settings within that entry. Restoring a retired family requires an owner request.
 
 | Addition | What to do |
 | --- | --- |

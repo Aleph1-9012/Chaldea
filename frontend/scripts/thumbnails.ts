@@ -23,7 +23,6 @@ const frames = new Map<string, ThumbnailFrame>([
   ['quick-notes-console', { selector: '#ts-notes-c', viewportWidth: 800, padding: 20 }],
   ['interactive-art-fish-murmuration', { selector: 'canvas', viewportWidth: 968, padding: 64, background: { r: 3, g: 3, b: 3, a: 1 } }],
   ['interactive-art-sea-turtle', { selector: 'canvas', viewportWidth: 1280, canvasWidth: 1280, pixelWidth: 3200, padding: 0, background: { r: 254, g: 251, b: 244, a: 1 } }],
-  ['tsugumori', { selector: '#fl-background-panel', viewportWidth: 1024, padding: 0 }],
 ]);
 
 const local = await readCatalog(resolve(repository, 'build/content'));
@@ -113,14 +112,6 @@ try {
       }, { x, y });
 
       clip = { x: Math.max(0, x), y: Math.max(0, y), width: frameWidth, height: frameHeight, scale: pixelWidth / frameWidth };
-    } else if (item.category === 'Lockscreens') {
-      await page.evaluate(({ width, height }) => {
-        const body = document.body;
-        const bounds = body.getBoundingClientRect();
-        const scale = Math.min(1, width / bounds.width, height / bounds.height);
-        body.style.transformOrigin = 'top left';
-        body.style.transform = `translate(${(800 - bounds.width * scale) / 2}px, ${(500 - bounds.height * scale) / 2}px) scale(${scale})`;
-      }, { width, height });
     }
 
     const cdp = await page.context().newCDPSession(page);

@@ -2,7 +2,14 @@
 
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'" http-equiv="Content-Security-Policy"/>
-<title>Tsugumori / Magnetic powder</title><style>html{color-scheme:dark}body{margin:0;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}body>*{box-sizing:border-box}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true]{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px;padding:0 12px}[hidden]{display:none!important}</style></head><body>
+<title>Tsugumori / Magnetic powder</title><style>html{color-scheme:dark}body{margin:0;display:flow-root;background:#080808;color:#e4e2dc;font:400 12px/1.5 "JetBrains Mono","DejaVu Sans Mono",monospace}body>*{box-sizing:border-box}button,input,select{font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #e4e2dc;outline-offset:3px}.viz-row{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.btn{background:#151515;color:#ddd;border:1px solid #555;padding:8px 10px;cursor:pointer}.btn[aria-pressed=true]{background:#cc1515;border-color:#cc1515;color:#080808}.text-small{font-size:11px;padding:0 12px}[hidden]{display:none!important}</style>
+<style>
+/* The hosted surface fills the frame; standalone sizing remains intrinsic. */
+html[data-preview-hosted] #tsugumori-eight-studies { min-height: 100vh; }
+html[data-preview-hosted] #tsugumori-eight-studies .eight-shell { position: fixed; inset: 0; margin: 0; width: 100%; height: 100%; }
+html[data-preview-hosted] #tsugumori-eight-studies canvas { width: 100%; height: 100% !important; }
+</style>
+</head><body data-preview-layout="fill">
 <style>
 #tsugumori-eight-studies { --eight-bg:#080808; --eight-ink:#e8e4d8; --eight-red:#cc1515; --eight-dim:#9b9790; font-family:'JetBrains Mono','DejaVu Sans Mono',monospace; color:var(--eight-ink); color-scheme:dark; width:100%; font-size:12px; line-height:1.5; }
 #tsugumori-eight-studies * { box-sizing:border-box; }

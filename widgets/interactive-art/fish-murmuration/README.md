@@ -10,7 +10,7 @@ Run `make dev` from the repository root and open [Fish murmuration](http://127.0
 
 Move the pointer through the school to part the fish. Focus the artwork and press Space to pause or resume; press R to restart. Chaldea's sidebar also provides Play/Pause and Restart. The browser starts paused when reduced motion is preferred. Interaction state stays in memory and resets when the preview closes.
 
-The artwork defaults to 360 × 477 pixels and shrinks to fit narrower screens. Fish speed ranges from 0.25× to 3×, with 1× as the default. Speed changes preserve the current positions and pause state, and the exported QML uses the same selected speed. Pointer response stays the same at every speed.
+The black canvas fills the live preview panel. The fish formation stays centered at its original 360 × 477 scale and shrinks to fit narrower screens. Pointer coordinates follow that centered formation, including when the panel resizes. Fish speed ranges from 0.25× to 3×, with 1× as the default. Speed changes preserve the current positions and pause state, and the exported QML uses the same selected speed. Pointer response stays the same at every speed.
 
 Opening `preview/index.html` directly provides the same drawing, pointer interaction, and keyboard controls. The Chaldea sidebar connection is available in the packaged preview.
 

@@ -1,5 +1,12 @@
 import { flushSync } from 'svelte';
 
+export function folderDuration(time: string): number {
+  const value = time.trim();
+
+  // Production CSS can shorten 820ms to .82s; Web Animations expects milliseconds.
+  return Number.parseFloat(value) * (value.endsWith('ms') ? 1 : 1000);
+}
+
 function labelSize(node: HTMLElement): number {
   const style = getComputedStyle(node);
   const scale = style.scale === 'none' ? 1 : Number.parseFloat(style.scale);
@@ -29,7 +36,6 @@ export function folderMotion(section: HTMLElement) {
     label: node.querySelector<HTMLElement>('.folder-toggle > span:nth-child(2)')!,
     surface: node.querySelector<HTMLElement>('.folder-surface')!,
     content: node.querySelector<HTMLElement>('.folder-content')!,
-    inner: node.querySelector<HTMLElement>('.folder-content-inner')!,
   }));
   const animations: Animation[] = [];
   let width = section.clientWidth;
@@ -74,7 +80,6 @@ export function folderMotion(section: HTMLElement) {
         buttonHeight: folder.button.getBoundingClientRect().height,
         buttonPadding: getComputedStyle(folder.button).paddingRight,
         contentHeight: folder.content.getBoundingClientRect().height,
-        opacity: getComputedStyle(folder.inner).opacity,
         labelSize: labelSize(folder.label),
       })),
     };
@@ -107,7 +112,7 @@ export function folderMotion(section: HTMLElement) {
     const opened = button.closest<HTMLElement>('.family-folder')!;
     const scrollEnd = visibleScroll(button, opened.getBoundingClientRect().height);
     const options: KeyframeAnimationOptions = {
-      duration: Number.parseFloat(style.getPropertyValue('--folder-duration')),
+      duration: folderDuration(style.getPropertyValue('--folder-duration')),
       easing: style.getPropertyValue('--folder-ease').trim(),
       fill: 'both',
     };
@@ -148,7 +153,6 @@ export function folderMotion(section: HTMLElement) {
 
       if (start.contentHeight !== 0 || end.contentHeight !== 0) {
         animate(folder.content, [{ height: `${start.contentHeight}px` }, { height: `${end.contentHeight}px` }]);
-        animate(folder.inner, [{ opacity: start.opacity }, { opacity: end.opacity }]);
       }
 
       if (Math.abs(start.labelSize - end.labelSize) >= .01) {

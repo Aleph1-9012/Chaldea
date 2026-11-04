@@ -28,7 +28,7 @@
       </div>
       <div class="hero-intro">
         <h2>Quickshell<br />Widget library</h2>
-        <p class="hero-small">Glyphs. Art. Lockscreens.<br />Notes. Player. Sliders.</p>
+        <p class="hero-small">Glyphs. Art.<br />Notes. Player. Sliders.</p>
       </div>
     </div>
     <div class="hero-bottom">

@@ -19,7 +19,7 @@
   const definition = $derived(widget.bundle.definition);
   const native = $derived(definition.exports.some(file => file.kind === 'template'));
   const display = $derived(presentation(definition));
-  const compactPreview = $derived(definition.id === 'interactive-art-sea-turtle' || definition.id === 'interactive-art-fish-murmuration');
+  const fillPreview = $derived(definition.category === 'Interactive art' || definition.category === 'Glyphs');
   let proposed = $state<SettingValues>({});
   let snapshot = $state.raw<Snapshot | null>(null);
   let failure = $state('');
@@ -29,10 +29,6 @@
   let interactionHost = $state<HTMLDivElement>();
   let preview: Preview | undefined;
   let previewLoading = $state(true);
-  let commandStatus = $state('');
-  let usageOpen = $state(false);
-  const hasShell = $derived(definition.exports.some(file => file.path === 'shell.qml'));
-  const command = 'qs -p /path/to/your-folder/shell.qml';
 
   function commit(values: SettingValues): void {
     proposed = values;
@@ -65,25 +61,16 @@
 
     return () => preview?.destroy();
   });
-
-  async function copyCommand(): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(command);
-      commandStatus = 'Command copied.';
-    } catch {
-      commandStatus = 'Select the command and copy it manually.';
-    }
-  }
 </script>
 
-<article>
+<article class="widget-detail">
   <div class="detail-slab">
     <header class="detail-heading grain">
       <div><p class="breadcrumb">Library / {familyLabel(definition.category)} / {padded(index + 1)}</p><h1>{display.title}</h1></div>
       <div class="detail-facts"><a href={libraryUrl(definition.category)}>← Back to {familyLabel(definition.category)}</a><p>{definition.exports.length} files · {definition.license}{definition.status === 'draft' ? ' · draft' : ''}</p><span>{definition.title}</span></div>
     </header>
-    <div class="detail-workbench" class:art-workbench={definition.category === 'Interactive art'} class:slider-workbench={definition.category === 'Sliders'} class:preview-only={!definition.settings.length && definition.category !== 'Interactive art'}>
-      <section class="preview-stage" class:compact-preview={compactPreview} class:fill-preview={definition.id === 'interactive-art-sea-turtle'} aria-label="Live widget preview">
+    <div class="detail-workbench" class:art-workbench={definition.category === 'Interactive art'} class:fill-workbench={fillPreview} class:slider-workbench={definition.category === 'Sliders'} class:preview-only={!definition.settings.length && definition.category !== 'Interactive art'}>
+      <section class="preview-stage" aria-label="Live widget preview">
         <header><span>Live preview</span><small>Browser demo</small></header>
         <div class="preview-viewport" class:loading={previewLoading} style:background-color={definition.id === 'interactive-art-sea-turtle' ? proposed.background === 'White' ? '#fff' : '#fefbf4' : undefined}>
           <div class="preview-host" aria-busy={previewLoading} bind:this={host}></div>
@@ -96,7 +83,7 @@
         <section class="customize-panel" aria-label="Customize widget">
           <header><h2>Customize</h2><button class="reset" onclick={() => commit(defaults(definition))}>Reset</button></header>
           {#if definition.category === 'Interactive art'}<div class="art-playback" bind:this={playbackHost}></div>{/if}
-          <div class:customize-scroll={definition.category === 'Interactive art'}>
+          <div class="customize-content">
             {#if definition.category === 'Interactive art'}<div class="art-interactions" bind:this={interactionHost}></div>{/if}
             <Settings {definition} values={proposed} error={fieldError} change={(key, value) => commit({ ...proposed, [key]: value })} />
             {#if failure}<p class="generation-error" role="alert">{failure}</p>{/if}
@@ -110,16 +97,4 @@
   {:else}
     <p class="draft-notice">This design is available as a browser preview. Native QML export is not available yet.</p>
   {/if}
-  <section class="installation" aria-labelledby="installation-title">
-    <div>
-      <h2 id="installation-title">{native ? 'Run it locally' : 'About this preview'}</h2>
-      {#if native}
-        <ol><li>Copy or save each file into one folder, keeping any subfolders.</li><li>{hasShell ? 'Run the included shell.' : 'Follow the installation notes to load the component in your shell.'}</li></ol>
-        {#if hasShell}<div class="run-command"><code>{command}</code><button onclick={copyCommand}>Copy</button></div><p class="command-status" role="status">{commandStatus}</p>{/if}
-        <p class="native-baseline">{widget.bundle.nativeBaseline}</p>
-      {:else}<p>{definition.summary}</p>{/if}
-    </div>
-    <div class="installation-notes"><button class="text-link" aria-expanded={usageOpen} aria-controls="usage-notes" onclick={() => { usageOpen = !usageOpen; }}>Read installation notes {usageOpen ? '↑' : '↓'}</button></div>
-    <div id="usage-notes" class="usage-notes" hidden={!usageOpen}><pre>{widget.bundle.usage || 'This draft has no native installation yet.'}</pre><p>Revision {widget.bundle.revision.slice(0, 12)} · Settings stay in this tab.</p></div>
-  </section>
 </article>

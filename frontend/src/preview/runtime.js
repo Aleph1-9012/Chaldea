@@ -1171,6 +1171,8 @@ return errors === 0;
 (() => {
   'use strict';
 
+  const embedded = window.parent !== window;
+  document.documentElement.toggleAttribute('data-preview-hosted', embedded);
   let publishControls = () => {};
 
   function controlState(source) {
@@ -1238,6 +1240,7 @@ return errors === 0;
       let sequence = -1;
       let lastHeight = 0;
       let lastWidth = 0;
+      let resizeFrame = 0;
       let externalControls = false;
       let hosted = false;
       let revision = 0;
@@ -1252,7 +1255,21 @@ return errors === 0;
       const resize = () => {
         if (!token) return;
 
+        // Measure the content's natural height, not the height supplied by the parent.
+        // Otherwise a full-height preview can only grow and never shrink on resize.
+        const fill = embedded && document.body.dataset.previewLayout === 'fill';
+
+        if (fill) {
+          // The host owns scrolling; measurement must not introduce a scrollbar
+          // that narrows the content and changes its natural height.
+          document.documentElement.style.overflow = 'hidden';
+          document.documentElement.removeAttribute('data-preview-hosted');
+        }
+
         const height = Math.ceil(document.body.getBoundingClientRect().height);
+
+        if (fill) document.documentElement.setAttribute('data-preview-hosted', '');
+
         const preferredWidth = Number(document.body.dataset.previewWidth);
         const width = Number.isFinite(preferredWidth) && preferredWidth > 0 ? Math.ceil(preferredWidth) : 0;
 
@@ -1285,7 +1302,17 @@ return errors === 0;
 
       publishControls = publish;
 
-      const observer = new ResizeObserver(resize);
+      const scheduleResize = () => {
+        if (resizeFrame) return;
+
+        // Batch input bursts and measure outside observer delivery. Restoring
+        // the fill layout must not interrupt every slider event or canvas resize.
+        resizeFrame = window.requestAnimationFrame(() => {
+          resizeFrame = 0;
+          resize();
+        });
+      };
+      const observer = new ResizeObserver(scheduleResize);
       observer.observe(document.body);
 
       const receive = event => {
@@ -1331,7 +1358,7 @@ return errors === 0;
           if (focus) post({ type: 'focus', key: focus, sequence: actionSequence });
           if (failed) post({ type: 'action-error', message: 'That action could not complete. Try again.', sequence: actionSequence });
 
-          resize();
+          scheduleResize();
         }
 
         if (data.type !== 'settings' || data.sequence <= sequence) return;
@@ -1342,7 +1369,7 @@ return errors === 0;
           render(Object.freeze({ ...data.settings }));
           post({ type: 'rendered', sequence });
           publish();
-          resize();
+          scheduleResize();
         } catch {
           post({ type: 'error' });
         }
@@ -1362,6 +1389,7 @@ return errors === 0;
         if (publishControls === publish) publishControls = () => {};
 
         observer.disconnect();
+        window.cancelAnimationFrame(resizeFrame);
         window.removeEventListener('message', receive);
         window.removeEventListener('error', reportError);
       };

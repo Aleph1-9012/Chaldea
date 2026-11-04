@@ -11,7 +11,7 @@
   let opened = $state('');
   let section: HTMLElement;
   let motion: ReturnType<typeof folderMotion>;
-  const order = ['Glyphs', 'Lockscreens', 'Interactive art', 'Quick notes', 'Player', 'Sliders'];
+  const order = ['Glyphs', 'Interactive art', 'Quick notes', 'Player', 'Sliders'];
   const categories = $derived(families(widgets).sort((a, b) => {
     const first = order.indexOf(a);
     const second = order.indexOf(b);

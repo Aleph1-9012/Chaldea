@@ -6,7 +6,7 @@ export const siteUrl = 'https://chaldea.vercel.app/';
 
 export const homeTitle = 'Chaldea | Quickshell widget library';
 
-export const homeDescription = 'Preview and customize open-source Quickshell widgets for your Linux desktop. Download QML for notes, media players, glyphs, interactive art, lockscreens, and sliders.';
+export const homeDescription = 'Preview and customize open-source Quickshell widgets for your Linux desktop. Download QML for notes, media players, glyphs, interactive art, and sliders.';
 
 type MetadataRoute = { library: boolean; widget: string };
 

@@ -41,8 +41,14 @@
   @media (pointer:coarse) { .tr-unlock { min-height:44px; } }
   @media (prefers-reduced-motion:reduce) { *, *::before { transition:none !important; } }
 </style>
+
+<style>
+/* The hosted surface fills the frame; standalone sizing remains intrinsic. */
+html[data-preview-hosted] .tr-screen { box-sizing: border-box; width: 100%; min-height: 100vh; display: grid; place-items: center; }
+html[data-preview-hosted] .tr-layout { width: min(100%, 310px); }
+</style>
 </head>
-<body>
+<body data-preview-layout="fill">
 <div id="ts-glyph-study">
 <section class="tr-screen" aria-label="Typesetter glyph preview">
 <div class="tr-layout">

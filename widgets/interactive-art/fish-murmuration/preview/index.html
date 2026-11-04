@@ -9,6 +9,9 @@
       html { color-scheme: dark; overflow: hidden; }
       body { margin: 0; display: flow-root; background: #030303; }
       canvas { display: block; width: 100%; max-width: 360px; height: auto; margin-inline: auto; aspect-ratio: 40 / 53; outline: none; touch-action: pan-y; user-select: none; -webkit-tap-highlight-color: transparent; }
+      /* Keep height negotiation independent of the canvas that fills the iframe. */
+      html[data-hosted] body { min-height: min(132.5vw, 477px); }
+      html[data-hosted] canvas { position: fixed; inset: 0; max-width: none; height: 100%; aspect-ratio: auto; }
       canvas:focus-visible:not([data-pointer-focus]) { outline: 2px solid #effbf8; outline-offset: -2px; }
     </style>
   </head>

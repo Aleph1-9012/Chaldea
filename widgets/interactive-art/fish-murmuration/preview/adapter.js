@@ -4,6 +4,11 @@
   const canvas = document.getElementById('school');
   const context = canvas.getContext('2d');
   const preview = window.ChaldeaPreview;
+  const hosted = window.parent !== window;
+  document.documentElement.toggleAttribute('data-hosted', hosted);
+
+  if (hosted) delete document.body.dataset.previewWidth;
+
   const scene = create();
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let paused = motion.matches;
@@ -11,18 +16,30 @@
   let lastTime = 0;
   let request = 0;
 
+  function artworkFrame(width, height) {
+    const fittedWidth = Math.min(width, 360, height * 40 / 53);
+    const fittedHeight = fittedWidth * 53 / 40;
+
+    return { x: (width - fittedWidth) / 2, y: (height - fittedHeight) / 2, width: fittedWidth, height: fittedHeight };
+  }
+
   function paint() {
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
+    const { width, height } = canvas.getBoundingClientRect();
+
+    if (!width || !height) return;
 
     if (canvas.width !== Math.round(width * ratio) || canvas.height !== Math.round(height * ratio)) {
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
     }
 
-    context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    draw(context, scene, width, height);
+    context.setTransform(canvas.width / width, 0, 0, canvas.height / height, 0, 0);
+    context.fillStyle = '#030303';
+    context.fillRect(0, 0, width, height);
+    const frame = artworkFrame(width, height);
+    context.translate(frame.x, frame.y);
+    draw(context, scene, frame.width, frame.height);
   }
 
   function tick(now) {
@@ -56,10 +73,13 @@
     paint();
   }
 
-  canvas.addEventListener('pointermove', event => {
+  function pointFrom(event) {
     const box = canvas.getBoundingClientRect();
-    setPointer(scene, (event.clientX - box.left) / box.width, (event.clientY - box.top) / box.height, true);
-  });
+    const frame = artworkFrame(box.width, box.height);
+    setPointer(scene, (event.clientX - box.left - frame.x) / frame.width, (event.clientY - box.top - frame.y) / frame.height, true);
+  }
+
+  canvas.addEventListener('pointermove', pointFrom);
   canvas.addEventListener('pointerleave', () => setPointer(scene, .5, .5, false));
   canvas.addEventListener('pointerdown', event => {
     if (!event.isPrimary || event.button !== 0) return;
@@ -67,8 +87,7 @@
     event.preventDefault();
     canvas.dataset.pointerFocus = '';
     canvas.focus({ preventScroll: true });
-    const box = canvas.getBoundingClientRect();
-    setPointer(scene, (event.clientX - box.left) / box.width, (event.clientY - box.top) / box.height, true);
+    pointFrom(event);
   });
   canvas.addEventListener('pointerup', event => {
     if (event.pointerType !== 'mouse') setPointer(scene, .5, .5, false);

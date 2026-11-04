@@ -1,6 +1,6 @@
 # Widget inventory
 
-The library contains 44 published entries: six Quick notes, five Players, eleven Glyphs, nine Interactive art widgets, nine Lockscreens, and four Sliders. All have native QML exports and are included in production builds. Lockscreens export visual components and demo interactions; they do not implement authentication or desktop session locking. Sliders expose a percentage value and user-change signal for a host model. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
+The library contains 35 published entries: six Quick notes, five Players, eleven Glyphs, nine Interactive art widgets, and four Sliders. All have native QML exports and are included in production builds. Sliders expose a percentage value and user-change signal for a host model. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
 
 [Sea turtle](../widgets/interactive-art/sea-turtle/README.md), identified as `interactive-art-sea-turtle`, is published with a native Quickshell export and browser preview sharing its vector artwork and skeleton. Its preview bundle and native export retain the reference-derived artwork notice. The earlier Tidal turtle and Skeleton studies are kept outside this repository and do not appear in previews or builds.
 
@@ -11,16 +11,13 @@ The library contains 44 published entries: six Quick notes, five Players, eleven
 | `tsugumori-eight-play-studies.html` | [Magnetic powder](../widgets/interactive-art/magnetic-powder/README.md) |
 | `tsugumori-play-lab.html` | [Specimen chamber](../widgets/interactive-art/specimen-chamber/README.md), [Orbital playground](../widgets/interactive-art/orbital-playground/README.md), [Resonance sculpture](../widgets/interactive-art/resonance-sculpture/README.md), [Signal hunting](../widgets/interactive-art/signal-hunting/README.md), [Gravity sandbox](../widgets/interactive-art/gravity-sandbox/README.md) |
 
-The existing entries remain available:
-
-- [Phase lock](../widgets/lockscreens/phase-lock/formation/README.md)
-- [Glyph Bay typing](../widgets/glyphs/glyph-bay-typing/README.md)
+[Glyph Bay typing](../widgets/glyphs/glyph-bay-typing/README.md) remains available.
 
 Open a design with `/?widget=<widget-id>`. Each widget has its own in-memory state. Leaving a preview resets it.
 
 ## Native families
 
-All six families have native QML exports. Each family's components, shared files, and inspection notes are in its category folder: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), [Lockscreens](../widgets/lockscreens/README.md), and [Sliders](../widgets/sliders/README.md).
+All five active families have native QML exports. Each family's components, shared files, and inspection notes are in its category folder: [Quick notes](../widgets/quick-notes/README.md), [Player](../widgets/player/README.md), [Glyphs](../widgets/glyphs/README.md), [Interactive art](../widgets/interactive-art/README.md), and [Sliders](../widgets/sliders/README.md).
 
 ## Interactive art addition
 
@@ -39,19 +36,18 @@ The owner supplied these retained designs in `Lib-assests/chaldea assets/`. Each
 
 ## Archive import
 
-The library retains 24 entries from the archive import alongside the 14 earlier designs. All 125 HTML files are accounted for in [the import manifest](archive-imports.json), including excluded categories, duplicates, and palette companions. Auxiliary images, PDFs, and helper scripts remain references. The archive is unchanged.
+[The historical import manifest](archive-imports.json) accounts for all 125 original HTML files, including excluded categories, duplicates, palette companions, and subsequently retired entries. Auxiliary images, PDFs, and helper scripts remain references. The archive is unchanged.
 
 The import manifest records excluded sources and designs, consolidated lockscreen variants, and palette companions.
 
 Punch record, Shutter bank, Formation field, Stencil assembly, and Typesetter belong to Glyphs and now have native exports. They retain artwork and input in the Glyph preview host, with lockscreen clocks, power actions, and surrounding layouts removed. Their IDs and settings keys are unchanged.
 
-Lockscreens retain one entry per layout; artwork and motion variations share that representative. [The lockscreen guide](../widgets/lockscreens/README.md) lists the retained previews and their selected artwork. Only the entries listed below are available in the catalog.
+The Lockscreens family, including Phase Lock, was retired on 4 November 2026 at the owner's request. Its source files and local preview edits were archived outside the repository. The five extracted Glyphs remain active. Published immutable revision files remain in deployment history for existing downloads; retired entries no longer appear in the catalog, navigation, or sitemap.
 
 | Category | Widgets |
 | --- | ---: |
 | Glyphs | 11 |
 | Interactive art | 9 |
-| Lockscreens | 9 |
 | Player | 5 |
 | Quick notes | 6 |
 | Sliders | 4 |
@@ -60,11 +56,8 @@ Lockscreens retain one entry per layout; artwork and motion variations share tha
 
 | Source page | Widgets |
 | --- | --- |
-| `lockscreen/tsugumori-afk-layout-previews.html` | [Afk layout previews / Relay index / Relay tiles](../widgets/lockscreens/afk-layouts/relay-index/relay-tiles/README.md), [Afk layout previews / Type folio / Relay tiles](../widgets/lockscreens/afk-layouts/type-folio/relay-tiles/README.md) |
-| `lockscreen/tsugumori-lockscreen-editorial-studies.html` | [Lockscreen editorial studies / Assembly mark / Compound glyph](../widgets/lockscreens/editorial/assembly-mark/compound-glyph/README.md), [Lockscreen editorial studies / Foundry poster / Compound glyph](../widgets/lockscreens/editorial/foundry-poster/compound-glyph/README.md), [Lockscreen editorial studies / Reverse print / Compound glyph](../widgets/lockscreens/editorial/reverse-print/compound-glyph/README.md) |
-| `lockscreen/tsugumori-lockscreen-print-iterations.html` | [Lockscreen print iterations / Index spine / Compound glyph](../widgets/lockscreens/print/index-spine/compound-glyph/README.md), [Lockscreen print iterations / Open masthead / Compound glyph](../widgets/lockscreens/print/open-masthead/compound-glyph/README.md) |
 | `lockscreen/tsugumori-mechanical-lockscreen-studies.html` | [Punch record](../widgets/glyphs/punch-record/README.md) |
-| `lockscreen/tsugumori-reactive-lockscreen-studies.html` | [Reactive lockscreen studies / Relay tiles](../widgets/lockscreens/reactive/relay-tiles/README.md), [Shutter bank](../widgets/glyphs/shutter-bank/README.md), [Formation field](../widgets/glyphs/formation-field/README.md), [Stencil assembly](../widgets/glyphs/stencil-assembly/README.md), [Typesetter](../widgets/glyphs/typesetter/README.md) |
+| `lockscreen/tsugumori-reactive-lockscreen-studies.html` | [Shutter bank](../widgets/glyphs/shutter-bank/README.md), [Formation field](../widgets/glyphs/formation-field/README.md), [Stencil assembly](../widgets/glyphs/stencil-assembly/README.md), [Typesetter](../widgets/glyphs/typesetter/README.md) |
 | `player/tsugumori-player-directions.html` | [Player directions / Matrix](../widgets/player/matrix/README.md), [Player directions / Sleeve](../widgets/player/sleeve/README.md), [Player directions / Rail](../widgets/player/rail/README.md), [Player directions / Ledger](../widgets/player/ledger/README.md), [Player directions / Title](../widgets/player/title/README.md) |
 | `quick-notes/tsugumori-notes-a-cassette.html` | [Notes a cassette](../widgets/quick-notes/cassette/README.md) |
 | `quick-notes/tsugumori-notes-b-index.html` | [Notes b index](../widgets/quick-notes/index/README.md) |
