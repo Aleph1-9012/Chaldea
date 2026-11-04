@@ -15,6 +15,7 @@
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const headings = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
   let paused = motion.matches || frozen || !sea.animated;
+  let visible = false;
   let speed = 1;
   let request = 0;
   let lastTime = 0;
@@ -23,7 +24,7 @@
   function tick(now) {
     request = 0;
 
-    if (paused || document.hidden) return;
+    if (paused || !visible || document.hidden) return;
 
     if (lastTime) sea.advance(Math.min((now - lastTime) / 1000, .05) * speed);
 
@@ -34,9 +35,10 @@
 
   function schedule() {
     cancelAnimationFrame(request);
+    request = 0;
     lastTime = 0;
 
-    if (!paused && !document.hidden) request = requestAnimationFrame(tick);
+    if (!paused && visible && !document.hidden) request = requestAnimationFrame(tick);
 
     preview?.controlsChanged();
   }
@@ -147,6 +149,15 @@
     }
   });
   document.addEventListener('visibilitychange', schedule);
+  const intersection = new IntersectionObserver(entries => {
+    const next = entries.some(entry => entry.isIntersecting);
+
+    if (visible === next) return;
+
+    visible = next;
+    schedule();
+  });
+  intersection.observe(canvas);
   motion.addEventListener('change', () => {
     paused = motion.matches || frozen || !sea.animated;
     schedule();

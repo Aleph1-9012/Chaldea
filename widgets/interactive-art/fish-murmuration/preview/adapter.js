@@ -12,6 +12,7 @@
   const scene = create();
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let paused = motion.matches;
+  let visible = false;
   let speed = 1;
   let lastTime = 0;
   let request = 0;
@@ -45,7 +46,7 @@
   function tick(now) {
     request = 0;
 
-    if (paused || document.hidden) return;
+    if (paused || !visible || document.hidden) return;
     if (lastTime && now - lastTime < 1000 / 30) {
       request = requestAnimationFrame(tick);
 
@@ -61,9 +62,10 @@
 
   function schedule() {
     cancelAnimationFrame(request);
+    request = 0;
     lastTime = 0;
 
-    if (!paused && !document.hidden) request = requestAnimationFrame(tick);
+    if (!paused && visible && !document.hidden) request = requestAnimationFrame(tick);
 
     preview?.controlsChanged();
   }
@@ -106,6 +108,15 @@
     if (event.key.toLowerCase() === 'r') restart();
   });
   document.addEventListener('visibilitychange', schedule);
+  const intersection = new IntersectionObserver(entries => {
+    const next = entries.some(entry => entry.isIntersecting);
+
+    if (visible === next) return;
+
+    visible = next;
+    schedule();
+  });
+  intersection.observe(canvas);
   motion.addEventListener('change', () => {
     paused = motion.matches;
     schedule();

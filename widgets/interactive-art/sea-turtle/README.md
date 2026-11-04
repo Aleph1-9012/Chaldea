@@ -38,6 +38,8 @@ Use the repository's Quickshell and Qt baseline with an accelerated Qt Quick bac
 
 For the browser preview, run `make dev`, then open `/?widget=interactive-art-sea-turtle`. The canvas fills the entire preview area for swimming, clicking, and dragging. Turtle size uses the previous 640 × 400 reference area, shrinking on narrow screens with a 300-pixel minimum height, so a larger swimming area does not enlarge the turtle. Its controls customize speed, size, and background, and it starts paused when reduced motion is enabled. A paused click places the turtle at that spot. Without WebGL2 the browser shows the painted turtle still.
 
+Drawing stops while the canvas is off-screen or the tab is hidden. Returning to the preview resumes from the current position without changing the user's Play/Pause setting or advancing through time spent away.
+
 ## Motion and rendering
 
 The existing swim cycle is preserved. Foreflipper downstrokes supply thrust, recovery feathers the flippers, and runs of strokes alternate with glides. Rear flippers steer, the body banks, and the head leads turns. Once the turtle moves fully beyond the stage, it enters from another edge.

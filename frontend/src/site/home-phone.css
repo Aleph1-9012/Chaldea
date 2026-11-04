@@ -25,8 +25,7 @@
   .hero-count .numeral-hero > span { flex: 1; width: auto; height: auto; aspect-ratio: auto; }
   .hero-bottom { position: relative; inset: auto; display: block; padding: 12px 0 0; background: transparent; }
   .hero-actions { position: relative; isolation: isolate; display: block; }
-  .hero-actions::before, .hero-actions::after { content: ''; position: absolute; z-index: -1; inset: 0; border-image: url('./assets/home-v2/hero-label.svg') 28 28 12 12 fill / 28px 28px 12px 12px; }
-  .hero-actions::after { border-image-source: url('./assets/home-v2/hero-grain.png'); border-image-slice: 56 56 24 24 fill; mix-blend-mode: multiply; opacity: .48; }
+  .hero-actions::before { content: ''; position: absolute; z-index: -1; inset: 0; border-image: url('./assets/home-v2/hero-textured.webp') 56 56 24 24 fill / 28px 28px 12px 12px; }
   .hero-tree { padding: 12px 16px; font: 10px/14px var(--mono); }
   .hero-buttons { display: flex; gap: 0; align-items: stretch; }
   .hero-buttons .primary-link { min-height: 56px; padding: 12px 16px; justify-content: space-between; color: var(--paper); background: var(--ink); font-size: 14px; line-height: 20px; letter-spacing: .18em; }
