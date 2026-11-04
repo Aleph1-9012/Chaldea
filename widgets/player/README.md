@@ -2,6 +2,8 @@
 
 Matrix, Sleeve, Rail, Ledger, and Title each have an independent QML export and are included in production builds. The exports use Quickshell’s MPRIS service, `Quickshell.Services.Mpris`, for metadata, artwork, playback, seeking, and source selection. Controls follow each media application’s capabilities. A source list replaces the preview’s sample collection. Browser previews use silent sample tracks. Appearance settings preserve the selected track or source.
 
+Browser previews show only the player on a transparent stage. The archive's outer title bar, footer labels, background, and page padding are removed. Each player's own panels, labels, artwork, sizing, and controls remain part of its design. Library thumbnails frame the full player without the archive page.
+
 ## Shared files
 
 `_shared/qml/` holds the helpers all five designs use unchanged: `PlayerBase.qml`, `PlayerBackend.qml`, `PlayerArtwork.qml`, `PlayerButton.qml`, `PlayerSeek.qml`, `PlayerSources.qml`, `PlayerText.qml`, `PlayerTransport.qml`, and the `shell.qml` launcher. Each widget folder keeps its design component, such as `MatrixPlayer.qml`, with its `Widget.qml.tmpl`, preview, thumbnail, and README.

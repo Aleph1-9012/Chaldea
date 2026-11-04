@@ -23,14 +23,36 @@
   let animations: Animation[] = [];
   let version = 0;
   let skipped = false;
+  let paintFrame = 0;
+  let finishPaint: (() => void) | undefined;
 
   const portrait = $derived(width < 600);
   const typeWidth = $derived(portrait ? height * 1.4 : Math.max(width * 1.5, height * 2.8));
   const typeHeight = $derived(typeWidth * 240 / 1392);
 
+  function endPaintWait(): void {
+    cancelAnimationFrame(paintFrame);
+    paintFrame = 0;
+    const finish = finishPaint;
+    finishPaint = undefined;
+    finish?.();
+  }
+
+  function waitForPaint(): Promise<void> {
+    if (skipped || document.hidden) return Promise.resolve();
+
+    return new Promise(resolve => {
+      finishPaint = resolve;
+      paintFrame = requestAnimationFrame(() => {
+        paintFrame = requestAnimationFrame(endPaintWait);
+      });
+    });
+  }
+
   export function cancel(): void {
     version++;
     active = false;
+    endPaintWait();
 
     for (const animation of animations) animation.cancel();
 
@@ -42,6 +64,7 @@
 
     skipped = true;
     active = false;
+    endPaintWait();
 
     for (const animation of animations) animation.finish();
   }
@@ -129,6 +152,16 @@
 
       if (current !== version) return;
 
+      // Let the new page's first layout and ResizeObservers settle under solid
+      // ink, before the moving windows expose it. No fixed loading delay.
+      if (!skipped) {
+        await tick();
+
+        if (current === version) await waitForPaint();
+      }
+
+      if (current !== version) return;
+
       phase = 'opening';
 
       if (!skipped) await spread(windows, 410);
@@ -156,11 +189,11 @@
 <div class="page-print" hidden={!active} aria-hidden="true">
   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <mask id={`${id}-cover`} maskUnits="userSpaceOnUse" x="0" y="0" width={width} height={height} style="mask-type: luminance">
+      <clipPath id={`${id}-cover`} clipPathUnits="userSpaceOnUse">
         {#each modules as cell, index}
           <rect class="print-module" x={cell.x} y={cell.y} width={cell.width} height={cell.height} fill="white" style:transform-origin={`${cell.x + cell.width / 2}px ${cell.y + cell.height / 2}px`} bind:this={covers[index]} />
         {/each}
-      </mask>
+      </clipPath>
       <mask id={`${id}-open`} maskUnits="userSpaceOnUse" x="0" y="0" width={width} height={height} style="mask-type: luminance">
         <rect width={width} height={height} fill="white" />
         {#each modules as cell, index}
@@ -168,7 +201,7 @@
         {/each}
       </mask>
     </defs>
-    <g mask={`url(#${id}-${phase === 'covering' ? 'cover' : 'open'})`}>
+    <g clip-path={phase === 'covering' ? `url(#${id}-cover)` : undefined} mask={phase === 'opening' ? `url(#${id}-open)` : undefined}>
       <rect width={width} height={height} fill="var(--ink)" />
       <g transform={portrait ? `translate(${width / 2 - typeHeight - 12} ${height}) rotate(-90)` : `translate(0 ${height / 2 - typeHeight - 12})`}>
         <g bind:this={greenType}>

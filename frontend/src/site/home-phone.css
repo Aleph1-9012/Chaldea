@@ -27,12 +27,12 @@
   .hero-actions { position: relative; isolation: isolate; display: block; }
   .hero-actions::before, .hero-actions::after { content: ''; position: absolute; z-index: -1; inset: 0; border-image: url('./assets/home-v2/hero-label.svg') 28 28 12 12 fill / 28px 28px 12px 12px; }
   .hero-actions::after { border-image-source: url('./assets/home-v2/hero-grain.png'); border-image-slice: 56 56 24 24 fill; mix-blend-mode: multiply; opacity: .48; }
-  .hero-tree { padding: 16px; font: 10px/15px var(--mono); }
+  .hero-tree { padding: 12px 16px; font: 10px/14px var(--mono); }
   .hero-buttons { display: flex; gap: 0; align-items: stretch; }
-  .hero-buttons .primary-link { min-height: 64px; padding: 16px; justify-content: space-between; color: var(--paper); background: var(--ink); font-size: 15px; line-height: 20px; letter-spacing: .18em; }
+  .hero-buttons .primary-link { min-height: 56px; padding: 12px 16px; justify-content: space-between; color: var(--paper); background: var(--ink); font-size: 14px; line-height: 20px; letter-spacing: .18em; }
   .hero-buttons .primary-link:hover { background: #242424; }
   .hero-buttons .primary-link img, .hero-buttons .underlined-link img { width: 13.5312px; height: 13.5312px; filter: none; }
-  .hero-buttons .underlined-link { min-height: 52px; padding: 16px; margin: 0; border: 0; display: flex; align-items: center; justify-content: space-between; font-size: 12px; line-height: 18px; letter-spacing: .2em; }
+  .hero-buttons .underlined-link { min-height: 48px; padding: 12px 16px; margin: 0; border: 0; display: flex; align-items: center; justify-content: space-between; font-size: 12px; line-height: 18px; letter-spacing: .2em; }
   .hero-signoff { position: absolute; right: 0; top: calc(100% + 20px); display: block; font-size: 12px; line-height: 16.8px; }
   .hero-signoff small { font-size: 12px; line-height: 16.8px; letter-spacing: .18em; }
   .registration { display: grid; top: calc(50% - 70px); }

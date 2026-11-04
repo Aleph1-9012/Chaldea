@@ -1,6 +1,7 @@
 .menu-section { --preview-inset: 28px; min-height: 800px; height: 100svh; padding: 24px; display: grid; grid-template-columns: minmax(300px, 480px) minmax(0, 1fr); gap: 24px; scroll-margin-top: -100px; }
 .family-directory { min-width: 0; display: flex; flex-direction: column; }
 .family-directory-heading h2 { font-size: 34px; line-height: 44px; letter-spacing: .14em; text-transform: uppercase; }
+.directory-title-compact { display: none; }
 .family-directory-heading p { max-width: 440px; margin-top: 8px; font: 13px/20px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: rgb(242 238 230 / 70%); }
 .family-directory-heading { min-height: 112px; padding: 4px 0 16px; }
 .folder-instruction, .family-folders { display: none; }
@@ -85,16 +86,24 @@
 }
 
 @media (max-width: 850px) {
-  .menu-section { --folder-duration: 650ms; --folder-ease: cubic-bezier(.37, 0, .63, 1); height: auto; min-height: 100svh; display: block; padding: 0 12px 12px; overflow-anchor: none; }
+  .menu-section { --folder-duration: 900ms; --folder-ease: cubic-bezier(.333333, 0, .666667, 1); height: auto; min-height: 100svh; display: block; padding: 0 12px 12px; overflow-anchor: none; }
+  .menu-section.folder-open { --folder-duration: 800ms; }
   .family-directory { display: block; }
   .family-directory-heading { position: relative; min-height: 0; height: clamp(288px, calc(288px + (100vw - 390px) * .2), 360px); padding: 28px 4px 0; overflow: hidden; }
-  .family-directory-heading h2 { position: absolute; top: 28px; left: 4px; max-width: none; font-size: clamp(62px, 20.51282vw, 110px); line-height: 1.05; letter-spacing: .14em; white-space: nowrap; transform-origin: top left; scale: 1; }
-  .directory-title > span { display: block; width: max-content; }
-  .folder-open .family-directory-heading h2 { top: 24px; scale: var(--title-compact-scale); }
+  .family-directory-heading h2 { position: absolute; top: 28px; left: 4px; max-width: none; font-size: clamp(62px, 20.51282vw, 110px); line-height: 1.05; letter-spacing: .14em; white-space: nowrap; }
+  .directory-title-large, .directory-title-compact, .directory-title > span > span { display: block; width: max-content; }
+  .directory-title-compact { position: absolute; top: -4px; left: 0; font-size: 24px; letter-spacing: .14em; clip-path: inset(0 0 100%); }
+  .folder-open .directory-title-large { clip-path: inset(0 0 100%); }
+  .folder-open .directory-title-compact { clip-path: none; }
   .family-directory-heading p { position: absolute; bottom: 19px; left: 4px; right: 4px; max-width: none; margin: 0; font-size: 10px; line-height: 13px; letter-spacing: .08em; }
   .directory-instruction, .family-directory-rows, .family-directory > .menu-browse, .menu-featured { display: none; }
   .folder-instruction { display: inline; }
-  .family-folders { display: block; }
+  .family-folders { position: relative; display: block; }
+  .family-folders[data-moving] > .family-folder, .family-folders[data-moving] > .folder-browse { position: absolute; top: var(--folder-top); left: 0; right: 0; will-change: transform; }
+  .family-folders[data-moving] .folder-surface { bottom: auto; height: var(--folder-art-height); }
+  .family-folder[data-resizing] .folder-surface { will-change: clip-path; }
+  .family-folder[data-resizing] .folder-content { will-change: transform, clip-path; }
+  .family-folder[data-resizing] .folder-toggle > span { will-change: transform; }
   .family-folder, .folder-browse { position: relative; isolation: isolate; color: var(--ink); --folder-art: url('./assets/home-v2/folder-green.svg'); --folder-grain: url('./assets/home-v2/folder-green-grain.png'); }
   .folder-surface { position: absolute; z-index: -1; inset: 0 0 -28px; overflow: clip; pointer-events: none; }
   .folder-surface::before, .folder-surface::after, .folder-browse::before, .folder-browse::after { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; border-image: var(--folder-art) 28 28 12 12 fill / 28px 28px 12px 12px; }

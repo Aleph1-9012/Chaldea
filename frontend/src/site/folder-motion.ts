@@ -1,9 +1,10 @@
 import { flushSync } from 'svelte';
+import { liquidCrest } from './liquid-crest';
 
 export function folderDuration(time: string): number {
   const value = time.trim();
 
-  // Production CSS can shorten 820ms to .82s; Web Animations expects milliseconds.
+  // Production CSS can shorten 900ms to .9s; Web Animations expects milliseconds.
   return Number.parseFloat(value) * (value.endsWith('ms') ? 1 : 1000);
 }
 
@@ -29,24 +30,64 @@ export function folderMotion(section: HTMLElement) {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   const phone = matchMedia('(max-width: 850px)');
   const heading = section.querySelector<HTMLElement>('.family-directory-heading')!;
-  const title = heading.querySelector<HTMLElement>('.directory-title')!;
+  const stack = section.querySelector<HTMLElement>('.family-folders')!;
+  const browse = stack.querySelector<HTMLElement>('.folder-browse')!;
+  const titles = [
+    heading.querySelector<HTMLElement>('.directory-title-large')!,
+    heading.querySelector<HTMLElement>('.directory-title-compact')!,
+  ];
   const folders = [...section.querySelectorAll<HTMLElement>('.family-folder')].map(node => ({
     node,
     button: node.querySelector<HTMLButtonElement>('.folder-toggle')!,
     label: node.querySelector<HTMLElement>('.folder-toggle > span:nth-child(2)')!,
+    labels: [...node.querySelectorAll<HTMLElement>('.folder-toggle > span')],
     surface: node.querySelector<HTMLElement>('.folder-surface')!,
     content: node.querySelector<HTMLElement>('.folder-content')!,
+    inner: node.querySelector<HTMLElement>('.folder-content-inner')!,
   }));
   const animations: Animation[] = [];
+  const svgNamespace = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNamespace, 'svg');
+  const definitions = document.createElementNS(svgNamespace, 'defs');
+  const id = `folder-liquid-${crypto.randomUUID()}`;
+  svg.setAttribute('width', '0');
+  svg.setAttribute('height', '0');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.position = 'absolute';
+  svg.append(definitions);
+  section.append(svg);
+
+  const clips = titles.map((node, index) => {
+    const clip = document.createElementNS(svgNamespace, 'clipPath');
+    const path = document.createElementNS(svgNamespace, 'path');
+    clip.id = `${id}-${index}`;
+    clip.setAttribute('clipPathUnits', 'objectBoundingBox');
+    clip.append(path);
+    definitions.append(clip);
+
+    return { node, clip, path };
+  });
   let width = section.clientWidth;
+  let titleProgress = section.classList.contains('folder-open') ? 1 : 0;
+  let titleFrame = 0;
   let scrollFrame = 0;
+  let transition: {
+    before: ReturnType<typeof measureLayout>;
+    after: ReturnType<typeof measureLayout>;
+    clock: Animation;
+  } | null = null;
 
-  function sizeTitle(): void {
-    const size = Number.parseFloat(getComputedStyle(title).fontSize);
-    title.style.setProperty('--title-compact-scale', String(24 / size));
+  function revealTitle(progress: number): void {
+    titleProgress = progress;
+    // The large print drains before the smaller print fills. Their lettering
+    // stays still and opaque, using the hero count's exact curved crest.
+    const fills = [1 - Math.min(1, progress / .6), Math.max(0, (progress - .35) / .65)];
+
+    for (const [index, item] of clips.entries()) {
+      item.path.setAttribute('d', liquidCrest(fills[index]!, index));
+      item.node.style.clipPath = `url("#${item.clip.id}")`;
+    }
   }
-
-  sizeTitle();
 
   function stopScroll(): void {
     cancelAnimationFrame(scrollFrame);
@@ -55,6 +96,11 @@ export function folderMotion(section: HTMLElement) {
 
   function stop(): void {
     stopScroll();
+    cancelAnimationFrame(titleFrame);
+    titleFrame = 0;
+    titleProgress = section.classList.contains('folder-open') ? 1 : 0;
+
+    for (const title of titles) title.style.removeProperty('clip-path');
 
     for (const animation of animations) {
       animation.onfinish = null;
@@ -62,33 +108,73 @@ export function folderMotion(section: HTMLElement) {
     }
 
     animations.length = 0;
+    transition = null;
+    stack.removeAttribute('data-moving');
+    stack.style.removeProperty('height');
+    browse.style.removeProperty('--folder-top');
 
-    for (const folder of folders) folder.surface.style.removeProperty('--folder-art-height');
+    for (const folder of folders) {
+      folder.node.removeAttribute('data-resizing');
+      folder.node.style.removeProperty('--folder-top');
+      folder.node.style.removeProperty('height');
+      folder.surface.style.removeProperty('--folder-art-height');
+      folder.content.style.removeProperty('height');
+    }
+  }
+
+  function measureLayout() {
+    const stackRect = stack.getBoundingClientRect();
+
+    return {
+      headingHeight: heading.getBoundingClientRect().height,
+      stackHeight: stackRect.height,
+      browseTop: browse.getBoundingClientRect().top - stackRect.top,
+      folders: folders.map(folder => {
+        const rect = folder.node.getBoundingClientRect();
+
+        return {
+          top: rect.top - stackRect.top,
+          height: rect.height,
+          buttonHeight: folder.button.getBoundingClientRect().height,
+          contentHeight: folder.content.getBoundingClientRect().height,
+          fullContentHeight: folder.inner.getBoundingClientRect().height,
+          labelSize: labelSize(folder.label),
+          labels: folder.labels.map(node => {
+            const label = node.getBoundingClientRect();
+
+            return { x: label.left - rect.left, centerY: label.top + label.height / 2 - rect.top };
+          }),
+        };
+      }),
+    };
   }
 
   function measure() {
-    const headingRect = heading.getBoundingClientRect();
-    const titleRect = title.getBoundingClientRect();
+    const layout = measureLayout();
 
-    return {
-      headingHeight: headingRect.height,
-      titleX: titleRect.left - headingRect.left,
-      titleY: titleRect.top - headingRect.top,
-      titleScale: getComputedStyle(title).scale,
-      folders: folders.map(folder => ({
-        height: folder.node.getBoundingClientRect().height,
-        buttonHeight: folder.button.getBoundingClientRect().height,
-        buttonPadding: getComputedStyle(folder.button).paddingRight,
-        contentHeight: folder.content.getBoundingClientRect().height,
-        labelSize: labelSize(folder.label),
-      })),
-    };
+    if (transition) {
+      const { before, after, clock } = transition;
+      const progress = clock.effect?.getComputedTiming().progress ?? 1;
+
+      // Fixed layers report their full dimensions. Recover the visible geometry
+      // from the current timeline before reversing or switching folders.
+      for (const [index, folder] of layout.folders.entries()) {
+        const start = before.folders[index]!;
+        const end = after.folders[index]!;
+        folder.height = start.height + (end.height - start.height) * progress;
+        folder.buttonHeight = start.buttonHeight + (end.buttonHeight - start.buttonHeight) * progress;
+        folder.contentHeight = start.contentHeight + (end.contentHeight - start.contentHeight) * progress;
+      }
+    }
+
+    return layout;
   }
 
   function run(update: () => void, button: HTMLButtonElement): void {
     if (!phone.matches || preference.matches || document.hidden) {
       stop();
       flushSync(update);
+      titleProgress = section.classList.contains('folder-open') ? 1 : 0;
 
       if (phone.matches && !document.hidden) {
         const folder = button.closest<HTMLElement>('.family-folder')!;
@@ -99,6 +185,7 @@ export function folderMotion(section: HTMLElement) {
     }
 
     const before = measure();
+    const titleStart = titleProgress;
     const minimum = section.style.minHeight;
     // Keep the document tall enough while measuring, so the browser cannot clamp
     // the scroll position to the final layout before the animation starts.
@@ -107,6 +194,7 @@ export function folderMotion(section: HTMLElement) {
     flushSync(update);
 
     const after = measure();
+    const titleEnd = section.classList.contains('folder-open') ? 1 : 0;
     const style = getComputedStyle(section);
     const scrollStart = window.scrollY;
     const opened = button.closest<HTMLElement>('.family-folder')!;
@@ -128,40 +216,72 @@ export function folderMotion(section: HTMLElement) {
       { height: `${before.headingHeight}px` },
       { height: `${after.headingHeight}px` },
     ]);
+    transition = { before, after, clock };
 
-    if (before.titleScale !== after.titleScale || before.titleX !== after.titleX || before.titleY !== after.titleY) {
-      // Keep the full-size type on one layer. Scaling the same two-line layout
-      // avoids both a mid-motion pause and a font-size change on completion.
-      animate(title, [
-        { translate: `${before.titleX - after.titleX}px ${before.titleY - after.titleY}px`, scale: before.titleScale },
-        { translate: '0 0', scale: after.titleScale },
-      ]);
+    // Reserve the stack's space with one height animation. The folder artwork,
+    // controls and text move as fixed layers without relaying out their contents.
+    stack.dataset.moving = '';
+    stack.style.height = `${after.stackHeight}px`;
+    animate(stack, [{ height: `${before.stackHeight}px` }, { height: `${after.stackHeight}px` }]);
+    browse.style.setProperty('--folder-top', `${after.browseTop}px`);
+    animate(browse, [{ translate: `0 ${before.browseTop - after.browseTop}px` }, { translate: '0 0' }]);
+
+    if (titleStart !== titleEnd) {
+      revealTitle(titleStart);
+
+      function reveal(): void {
+        const progress = clock.effect?.getComputedTiming().progress ?? 1;
+        revealTitle(titleStart + (titleEnd - titleStart) * progress);
+        titleFrame = requestAnimationFrame(reveal);
+      }
+
+      titleFrame = requestAnimationFrame(reveal);
     }
 
     for (const [index, folder] of folders.entries()) {
       const start = before.folders[index]!;
       const end = after.folders[index]!;
-      // Clip a fixed-size print instead of stretching its grain on each frame.
-      folder.surface.style.setProperty('--folder-art-height', `${Math.max(start.height, end.height) + 28}px`);
+      const height = Math.max(start.height, end.height);
+      folder.node.style.setProperty('--folder-top', `${end.top}px`);
+      folder.node.style.height = `${height}px`;
+      folder.surface.style.setProperty('--folder-art-height', `${height + 28}px`);
 
-      if (start.buttonHeight !== end.buttonHeight || start.buttonPadding !== end.buttonPadding) {
-        animate(folder.button, [
-          { height: `${start.buttonHeight}px`, minHeight: `${start.buttonHeight}px`, paddingRight: start.buttonPadding },
-          { height: `${end.buttonHeight}px`, minHeight: `${end.buttonHeight}px`, paddingRight: end.buttonPadding },
+      if (start.top !== end.top) {
+        animate(folder.node, [{ translate: `0 ${start.top - end.top}px` }, { translate: '0 0' }]);
+      }
+
+      if (start.buttonHeight !== end.buttonHeight || start.contentHeight !== end.contentHeight) {
+        folder.node.dataset.resizing = '';
+        animate(folder.surface, [
+          { clipPath: `inset(0 0 ${height - start.height}px)` },
+          { clipPath: `inset(0 0 ${height - end.height}px)` },
         ]);
       }
 
       if (start.contentHeight !== 0 || end.contentHeight !== 0) {
-        animate(folder.content, [{ height: `${start.contentHeight}px` }, { height: `${end.contentHeight}px` }]);
+        const contentHeight = Math.max(start.fullContentHeight, end.fullContentHeight);
+        folder.content.style.height = `${contentHeight}px`;
+        animate(folder.content, [
+          { translate: `0 ${start.buttonHeight - end.buttonHeight}px`, clipPath: `inset(0 0 ${contentHeight - start.contentHeight}px)` },
+          { translate: '0 0', clipPath: `inset(0 0 ${contentHeight - end.contentHeight}px)` },
+        ]);
       }
 
-      if (Math.abs(start.labelSize - end.labelSize) >= .01) {
-        animate(folder.label, [{ scale: String(start.labelSize / end.labelSize) }, { scale: '1' }]);
+      for (const [labelIndex, node] of folder.labels.entries()) {
+        const first = start.labels[labelIndex]!;
+        const last = end.labels[labelIndex]!;
+        const scale = node === folder.label ? start.labelSize / end.labelSize : 1;
+
+        if (first.x !== last.x || first.centerY !== last.centerY || Math.abs(scale - 1) >= .001) {
+          animate(node, [
+            { translate: `${first.x - last.x}px ${first.centerY - last.centerY}px`, scale: String(scale) },
+            { translate: '0 0', scale: '1' },
+          ]);
+        }
       }
     }
 
-    // The animated heights now reserve their own space. Following rows and the
-    // footer stay in flow, including during a reversal or a change of folder.
+    // The heading and stack reserve their own space, keeping the footer in flow.
     if (minimum) section.style.minHeight = minimum;
     else section.style.removeProperty('min-height');
 
@@ -187,7 +307,6 @@ export function folderMotion(section: HTMLElement) {
 
     width = section.clientWidth;
     stop();
-    sizeTitle();
   });
   observer.observe(section);
   preference.addEventListener('change', stop);
@@ -199,7 +318,7 @@ export function folderMotion(section: HTMLElement) {
     run,
     destroy(): void {
       stop();
-      title.style.removeProperty('--title-compact-scale');
+      svg.remove();
       observer.disconnect();
       preference.removeEventListener('change', stop);
       document.removeEventListener('visibilitychange', stop);

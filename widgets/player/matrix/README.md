@@ -34,7 +34,7 @@ Cover art comes from the URL supplied by the selected media player, which can be
 
 ## Browser preview
 
-The browser uses four silent sample tracks to demonstrate playback, seeking, track selection, and artwork. It does not connect to desktop services or play audio. Appearance changes preserve the selected sample track and playback position. The native download controls real media applications instead of using those samples.
+The browser shows the player on a transparent stage without the archive header or footer. It uses four silent sample tracks to demonstrate playback, seeking, track selection, and artwork. It does not connect to desktop services or play audio. Appearance changes preserve the selected sample track and playback position. The native download controls real media applications instead of using those samples.
 
 ## Source and license
 

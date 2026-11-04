@@ -47,6 +47,7 @@
   let widgetReady: Promise<void> = Promise.resolve();
   let pendingWidget: ReturnType<typeof requestWidget> | undefined;
   let navigationVersion = 0;
+  let transitioning = $state(false);
 
   // Wait for the catalog before deciding whether a widget URL is missing.
   const metadata = $derived(catalog ? pageMetadata(route, catalog.widgets) : undefined);
@@ -59,7 +60,12 @@
     if (catalog) reportPage?.(analyticsPath(route, catalog.widgets));
   });
 
-  const index = $derived(catalog && widget ? [...catalog.widgets].sort((a, b) => presentation(a).title.localeCompare(presentation(b).title)).findIndex(item => item.id === widget?.bundle.id) : 0);
+  const orderedWidgets = $derived(catalog ? [...catalog.widgets].sort((a, b) => presentation(a).title.localeCompare(presentation(b).title)) : []);
+  const index = $derived(widget ? orderedWidgets.findIndex(item => item.id === widget?.bundle.id) : 0);
+  const familyWidgets = $derived(widget ? orderedWidgets.filter(item => item.category === widget?.bundle.definition.category) : []);
+  const familyIndex = $derived(familyWidgets.findIndex(item => item.id === widget?.bundle.id));
+  const previousWidget = $derived(familyIndex > 0 ? familyWidgets[familyIndex - 1] : undefined);
+  const nextWidget = $derived(familyIndex >= 0 ? familyWidgets[familyIndex + 1] : undefined);
 
   async function initialize(): Promise<void> {
     catalogRequest?.abort();
@@ -159,6 +165,7 @@
     const transition = pageTransition;
     const animated = animate && pageId(next) !== pageId(route) && catalog
       && !prefersReducedMotion.current && !document.hidden && transition;
+    transitioning = Boolean(animated);
 
     pendingWidget?.controller.abort();
     const item = animated ? catalog?.widgets.find(candidate => candidate.id === next.widget) : undefined;
@@ -196,7 +203,9 @@
       return;
     }
 
-    void animated.run(update, origin);
+    void animated.run(update, origin).finally(() => {
+      if (version === navigationVersion) transitioning = false;
+    });
   }
 
   function navigate(href: string, replace = false, scroll = true, origin?: PageOrigin): void {
@@ -252,7 +261,7 @@
       {#if widgetFailure}
         <div class="page-notice" role="alert"><h1>Widget unavailable</h1><p>{widgetFailure}</p><button class="primary-link" onclick={initialize}>Try again</button><a class="text-link" href={libraryUrl()}>Back to the library</a></div>
       {:else if widget}
-        {#key widget.bundle.id}<div in:fade={{ duration: prefersReducedMotion.current ? 0 : 180 }}><Detail {widget} {index} /></div>{/key}
+        {#key widget.bundle.id}<div in:fade={{ duration: prefersReducedMotion.current ? 0 : 180 }}><Detail {widget} {index} {previousWidget} {nextWidget} previewActive={!transitioning} /></div>{/key}
       {:else}<div class="page-notice widget-loading" role="status"><ModuleLoader /><span class="sr-only">Opening widget…</span></div>{/if}
     {:else if route.library}
       <Library widgets={catalog.widgets} family={route.family} sort={route.sort} query={route.query} {navigate} {footerVisible} />

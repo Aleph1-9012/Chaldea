@@ -63,7 +63,9 @@ try {
     const width = Math.min(800, 500 * ratio);
     const height = width / ratio;
     const artwork = item.category === 'Interactive art';
-    const frame: ThumbnailFrame | undefined = frames.get(item.id) ?? (artwork ? { selector: 'canvas', viewportWidth: 800, padding: 0 } : undefined);
+    const frame: ThumbnailFrame | undefined = frames.get(item.id) ?? (artwork
+      ? { selector: 'canvas', viewportWidth: 800, padding: 0 }
+      : item.category === 'Player' ? { selector: '.ps-surface', viewportWidth: 800, padding: 20, background: { r: 8, g: 8, b: 8, a: 1 } } : undefined);
     // Render compact canvases at the capture resolution instead of enlarging their pixels.
     const pixelWidth = frame?.pixelWidth ?? (ratio >= 1.59 ? 2000 : 1320);
     const density = pixelWidth / (frame?.canvasWidth ?? width);

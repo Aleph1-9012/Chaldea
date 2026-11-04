@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { LoadedWidget, Settings as SettingValues } from '../catalog/contracts';
+  import { onMount, untrack } from 'svelte';
+  import type { LoadedWidget, Settings as SettingValues, Summary } from '../catalog/contracts';
   import type { Preview } from '../preview/frame';
   import { mountPreview } from '../preview/frame';
   import { interactionControls } from '../components/interaction-controls';
@@ -10,11 +10,19 @@
   import { errorText } from '../components/dom';
   import { familyLabel, presentation, padded } from './catalog';
   import { libraryUrl } from './links';
+  import { liquidHover } from './liquid-hover';
   import Settings from './Settings.svelte';
   import Code from './Code.svelte';
   import ModuleLoader from './ModuleLoader.svelte';
+  import arrow from './assets/arrow-right.svg';
 
-  let { widget, index }: { widget: LoadedWidget; index: number } = $props();
+  let { widget, index, previousWidget, nextWidget, previewActive }: {
+    widget: LoadedWidget;
+    index: number;
+    previousWidget: Summary | undefined;
+    nextWidget: Summary | undefined;
+    previewActive: boolean;
+  } = $props();
 
   const definition = $derived(widget.bundle.definition);
   const native = $derived(definition.exports.some(file => file.kind === 'template'));
@@ -28,7 +36,10 @@
   let playbackHost = $state<HTMLDivElement>();
   let interactionHost = $state<HTMLDivElement>();
   let preview: Preview | undefined;
+  let previewSettings: SettingValues = {};
   let previewLoading = $state(true);
+  let mounted = $state(false);
+  let interactions: ReturnType<typeof interactionControls> | undefined;
 
   function commit(values: SettingValues): void {
     proposed = values;
@@ -37,6 +48,7 @@
       const next = native ? generate(definition, widget.bundle.templates, values, widget.assets) : null;
       const settings = next?.settings ?? validateSettings(definition, values);
       snapshot = next;
+      previewSettings = settings;
       preview?.update(settings);
       failure = '';
       fieldError = undefined;
@@ -49,17 +61,29 @@
 
   onMount(() => {
     const initial = defaults(definition);
-    const interactions = definition.category === 'Interactive art' ? interactionControls((key, value) => preview?.action(key, value)) : undefined;
+    interactions = definition.category === 'Interactive art' ? interactionControls((key, value) => preview?.action(key, value)) : undefined;
 
     if (interactions) {
       playbackHost?.append(interactions.pause);
       interactionHost?.append(interactions.root);
     }
 
-    preview = mountPreview(host, widget, initial, interactions, () => { previewLoading = false; });
     commit(initial);
+    mounted = true;
 
     return () => preview?.destroy();
+  });
+
+  $effect(() => {
+    if (!mounted || !previewActive) return;
+
+    // Canvas/WebGL startup must not block the page reveal. Settings and output
+    // are already usable; keep the existing loader until the preview is ready.
+    untrack(() => {
+      if (preview) return;
+
+      preview = mountPreview(host, widget, previewSettings, interactions, () => { previewLoading = false; });
+    });
   });
 </script>
 
@@ -67,7 +91,22 @@
   <div class="detail-slab">
     <header class="detail-heading grain">
       <div><p class="breadcrumb">Library / {familyLabel(definition.category)} / {padded(index + 1)}</p><h1>{display.title}</h1></div>
-      <div class="detail-facts"><a href={libraryUrl(definition.category)}>← Back to {familyLabel(definition.category)}</a><p>{definition.exports.length} files · {definition.license}{definition.status === 'draft' ? ' · draft' : ''}</p><span>{definition.title}</span></div>
+      <nav class="detail-navigation" aria-label="Widget navigation">
+        <a class="detail-folder detail-back" href={libraryUrl(definition.category)} aria-label={`Back to ${familyLabel(definition.category)}`} use:liquidHover><img src={arrow} alt="" width="16" height="16" /><span class="detail-back-label">Back to {familyLabel(definition.category)}</span></a>
+        <div class="detail-neighbors">
+          {#each [{ label: 'Previous', widget: previousWidget, rel: 'prev' }, { label: 'Next', widget: nextWidget, rel: 'next' }] as sibling (sibling.rel)}
+            {#if sibling.widget}
+              <a class="detail-folder detail-sibling" class:previous={sibling.rel === 'prev'} href={`?widget=${sibling.widget.id}`} rel={sibling.rel} aria-label={`${sibling.label} widget: ${presentation(sibling.widget).title}`} title={presentation(sibling.widget).title} use:liquidHover>
+                <img src={arrow} alt="" width="16" height="16" /><span class="detail-sibling-label">{sibling.label}</span>
+              </a>
+            {:else}
+              <button class="detail-folder detail-sibling" class:previous={sibling.rel === 'prev'} type="button" disabled aria-label={`${sibling.label} widget`}>
+                <img src={arrow} alt="" width="16" height="16" /><span class="detail-sibling-label">{sibling.label}</span>
+              </button>
+            {/if}
+          {/each}
+        </div>
+      </nav>
     </header>
     <div class="detail-workbench" class:art-workbench={definition.category === 'Interactive art'} class:fill-workbench={fillPreview} class:slider-workbench={definition.category === 'Sliders'} class:preview-only={!definition.settings.length && definition.category !== 'Interactive art'}>
       <section class="preview-stage" aria-label="Live widget preview">
