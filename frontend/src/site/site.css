@@ -164,8 +164,9 @@ main:focus { outline: none; }
 .library-card { display: block; border-radius: 12px; }
 .card-plate { position: relative; background: #080808; overflow: hidden; border-radius: 12px; contain: layout paint; content-visibility: auto; transition: aspect-ratio 480ms var(--ease); }
 .card-plate::after { content: ''; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--green); opacity: 0; pointer-events: none; transition: opacity 140ms; }
-.card-plate > img { width: 100%; height: 100%; object-fit: contain; position: absolute; inset: 0; opacity: 0; transition: opacity 200ms; }
-.card-plate.ready > img { opacity: 1; }
+.card-plate > img { width: 100%; height: 100%; object-fit: contain; position: absolute; inset: 0; }
+.thumbnail-image { opacity: 0; transition: opacity 200ms; }
+.thumbnail-image.ready { opacity: 1; }
 .open-tab { position: absolute; right: 0; bottom: 0; width: 112px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--green); color: var(--ink); border-radius: 10px 0 12px 0; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; transform: translate(100%, 100%); transition: transform 140ms ease-out; }
 .open-tab::before, .open-tab::after { content: ''; position: absolute; width: 10px; height: 10px; border-bottom-right-radius: 10px; box-shadow: 3px 3px 0 3px var(--green); }
 .open-tab::before { right: 0; top: -10px; }

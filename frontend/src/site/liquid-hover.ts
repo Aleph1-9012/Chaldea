@@ -48,7 +48,7 @@ export function liquidHover(node: HTMLElement) {
 
   function tick(now: number): void {
     frame = 0;
-    const step = Math.min(now - previousTime, 64) / 650;
+    const step = Math.min(now - previousTime, 64) / 450;
     previousTime = now;
     progress = target > progress ? Math.min(target, progress + step) : Math.max(target, progress - step);
     paint();

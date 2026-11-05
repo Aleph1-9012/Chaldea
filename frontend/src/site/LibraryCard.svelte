@@ -1,28 +1,16 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import type { Summary } from '../catalog/contracts';
   import { contentUrl } from '../catalog/load';
   import { presentation, familyLabel, padded } from './catalog';
-  import ModuleLoader from './ModuleLoader.svelte';
+  import Thumbnail from './Thumbnail.svelte';
 
   let { widget, index, ratio }: { widget: Summary; index: number; ratio: number } = $props();
-  let ready = $state(false);
-  let failed = $state(false);
-  let showLoader = $state(false);
   const display = $derived(presentation(widget));
-
-  onMount(() => {
-    const timer = setTimeout(() => { showLoader = true; }, 150);
-
-    return () => clearTimeout(timer);
-  });
 </script>
 
 <a class="library-card" href={`?widget=${widget.id}`} title={widget.summary} aria-describedby={`summary-${widget.id}`}>
-  <div class="card-plate" style:aspect-ratio={ratio} class:ready>
-    <img src={contentUrl(widget.thumbnailUrl)} alt="" loading={index < 8 ? 'eager' : 'lazy'} decoding="async" onload={() => { ready = true; }} onerror={() => { failed = true; }} />
-    {#if failed}<span class="preview-unavailable">Preview unavailable</span>
-    {:else if !ready && showLoader}<ModuleLoader />{/if}
+  <div class="card-plate" style:aspect-ratio={ratio}>
+    <Thumbnail src={contentUrl(widget.thumbnailUrl)} loading={index < 8 ? 'eager' : 'lazy'} />
     <span class="open-tab">Open <span>↗</span></span>
   </div>
   <div class="card-caption">

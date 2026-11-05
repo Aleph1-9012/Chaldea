@@ -3,6 +3,7 @@
   import { familyLabel, padded, presentation } from './catalog';
   import { libraryUrl } from './links';
   import Numeral from './Numeral.svelte';
+  import Thumbnail from './Thumbnail.svelte';
 
   let { family, widgets, index, total, compact = false }: {
     family: string;
@@ -40,7 +41,7 @@
       <div class="family-thumbnails" style:--preview-count={Math.max(1, previews.length)}>
         {#each previews as widget (widget.id)}
           <a href={`?widget=${widget.id}`} aria-label={`Preview ${presentation(widget).title}`}>
-            <img src={`${import.meta.env.BASE_URL}${widget.thumbnailUrl}`} alt={presentation(widget).title} loading="lazy" decoding="async" />
+            <Thumbnail src={`${import.meta.env.BASE_URL}${widget.thumbnailUrl}`} alt={presentation(widget).title} />
           </a>
         {/each}
       </div>
