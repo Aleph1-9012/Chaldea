@@ -1,19 +1,21 @@
-![Chaldea homepage with the current widget count and library navigation](docs/assets/chaldea-hero-laptop.jpg)
+![Chaldea homepage showing 42 widgets and library navigation](docs/assets/chaldea-hero-laptop.jpg)
 
 # Chaldea
 
 Chaldea is an interactive widget library for Quickshell. Try a design in your browser, adjust its appearance, and export native QML for your Linux desktop.
 
-[Download a packaged release](https://github.com/Aleph1-9012/Chaldea/releases/latest) for the source and a prebuilt static site snapshot. The live site may include newer changes.
+[Browse the live library](https://chaldea.vercel.app/?page=library) · [Read the docs](docs/roadmap.md) · [Download a packaged release](https://github.com/Aleph1-9012/Chaldea/releases/latest)
 
-[Browse the live library](https://chaldea.vercel.app).
+The live collection has **42 widgets across five families**, all with native QML exports. It includes quick notes, media players, animated glyphs, interactive art, and eleven slider designs. See the [inventory](docs/widget-inventory.md) for individual designs and source provenance.
 
-The collection includes quick notes, media players, animated glyphs, interactive art, and sliders. Every current catalog entry has a native QML export. See the [inventory](docs/widget-inventory.md) for the designs and current counts.
+Packaged releases contain the source and a prebuilt static site snapshot. The live site follows updates to `main` and may include newer changes than the latest release.
 
 ## Features
 
 - Search by name, filter by family, and try widgets in live previews.
 - Adjust colors, typography, layout, and motion through each widget's available settings.
+- Browse on desktop or phone, with customization controls beside or below the preview.
+- Try slider tracks that bend, rotate, or shift as you drag, with vector previews and thumbnails that remain sharp when enlarged.
 - Copy generated QML or download individual output files, supporting assets, and licenses.
 - Browse and customize without an account or saved customization state.
 
@@ -25,21 +27,23 @@ The library offers family filters, search, and previews of each widget.
 
 ![Chaldea library with family filters and widget cards](docs/assets/chaldea-library.jpg)
 
-Open a widget to try it live and adjust its settings. This is the Weave slider's preview and customization panel.
+Open a widget to try it live and adjust its settings. This is [Braid](https://chaldea.vercel.app/?widget=sliders-braid), with its live preview, grouped settings, and previous/next navigation.
 
-![Weave slider with its live preview and customization controls](docs/assets/chaldea-customization.jpg)
+![Braid slider with its live preview, customization controls, and widget navigation](docs/assets/chaldea-customization.jpg)
 
-These screenshots show the current library interface.
+Screenshots were captured from the live site on 7 November 2026 at 2× pixel density.
 
 ## Widget families
 
-| Family | What it provides |
-| --- | --- |
-| [Quick notes](widgets/quick-notes/README.md) | Compact note widgets with editing, selection, and in-memory note state. |
-| [Player](widgets/player/README.md) | Media controls and artwork, with MPRIS integration in native exports. Browser previews use silent sample tracks. |
-| [Glyphs](widgets/glyphs/README.md) | Drawings that respond to dummy input, deletion, and motion controls. |
-| [Interactive art](widgets/interactive-art/README.md) | Interactive canvases with live controls and collections in the customization panel. |
-| [Sliders](widgets/sliders/README.md) | Compact percentage controls with comb, slat, stipple, and woven tracks. |
+| Family | Widgets | What it provides |
+| --- | ---: | --- |
+| [Glyphs](widgets/glyphs/README.md) | 11 | Drawings that respond to dummy input, deletion, and motion controls. |
+| [Interactive art](widgets/interactive-art/README.md) | 9 | Interactive canvases, including Sea turtle and Fish murmuration, with live controls beside the preview. |
+| [Quick notes](widgets/quick-notes/README.md) | 6 | Compact note widgets with editing, selection, and in-memory note state. |
+| [Player](widgets/player/README.md) | 5 | Media controls and artwork, with MPRIS integration in native exports. Browser previews use silent sample tracks. |
+| [Sliders](widgets/sliders/README.md) | 11 | Percentage controls with distinct track patterns, direct pointer and keyboard input, and adjustable appearance. |
+
+The slider collection includes Comb, Slats, Stipple Blade, Weave, Louvers, Membrane, Braid, Fuse, Lattice, Field, and Interference. Each exports a value and user-change signal for your host application to connect to volume, brightness, or another control.
 
 Glyph previews do not authenticate or lock the desktop session. Those integrations belong in a separate host. Native requirements are listed in each widget's README; the shared Quickshell and Qt baseline is in [chaldea.toml](chaldea.toml).
 
@@ -49,7 +53,7 @@ Glyph previews do not authenticate or lock the desktop session. Those integratio
 2. Adjust its available settings to fit your setup.
 3. Choose an output file, then copy its text or download that file.
 
-Save every file in the output selector: the generated QML, supporting files, the `shell.qml` preview launcher, `README.md`, and the applicable license. Preserve the listed file names and subfolders, including any images or audio. Follow the widget's README to try it or integrate it into your Quickshell configuration.
+Save every file in the output selector: the generated QML, supporting files, the `shell.qml` preview launcher, `README.md`, and the applicable license. Preserve the listed file names and subfolders, including fonts, artwork, and shaders. Follow the widget's README to try it or integrate it into your Quickshell configuration.
 
 Settings and preview state stay in memory and reset when the preview is left or the page reloads.
 

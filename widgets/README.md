@@ -10,14 +10,15 @@ widgets/
     branch-grammar/
   interactive-art/
     fish-in-space/
-  lockscreens/
-    phase-lock/formation/
-    editorial/assembly-mark/compound-glyph/
+    sea-turtle/
   player/
     README.md               family notes
     matrix/
   quick-notes/
     refined/
+  sliders/
+    braid/
+    interference/
 ```
 
 Each widget owns its `widget.json`, `preview/`, thumbnail, and README, plus `qml/` where implemented. Category and study folders organize sources. The packager stops descending once it finds `widget.json`.
