@@ -1,6 +1,6 @@
 # Widget inventory
 
-The library contains 35 published entries: six Quick notes, five Players, eleven Glyphs, nine Interactive art widgets, and four Sliders. All have native QML exports and are included in production builds. Sliders expose a percentage value and user-change signal for a host model. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
+The library contains 42 published entries: six Quick notes, five Players, eleven Glyphs, nine Interactive art widgets, and eleven Sliders. All have native QML exports and are included in production builds. Sliders expose a percentage value and user-change signal for a host model. This file is the one place these counts are recorded; `make check` prints the current totals. Each distinct design has its own catalog entry, preview document, thumbnail, and settings. Palettes and other appearance controls remain settings. Archive paths identify source provenance; the original archive is not required to build this repository.
 
 [Sea turtle](../widgets/interactive-art/sea-turtle/README.md), identified as `interactive-art-sea-turtle`, is published with a native Quickshell export and browser preview sharing its vector artwork and skeleton. Its preview bundle and native export retain the reference-derived artwork notice. The earlier Tidal turtle and Skeleton studies are kept outside this repository and do not appear in previews or builds.
 
@@ -33,6 +33,13 @@ The owner supplied these retained designs in `Lib-assests/chaldea assets/`. Each
 | `slats.html` | [Slats](../widgets/sliders/slats/README.md) |
 | `stipple-blade.html` | [Stipple Blade](../widgets/sliders/stipple-blade/README.md) |
 | `weave.html` | [Weave](../widgets/sliders/weave/README.md) |
+| `louvers.html` | [Louvers](../widgets/sliders/louvers/README.md) |
+| `membrane.html` | [Membrane](../widgets/sliders/membrane/README.md) |
+| `braid.html` | [Braid](../widgets/sliders/braid/README.md) |
+| `fuse.html` | [Fuse](../widgets/sliders/fuse/README.md) |
+| `lattice.html` | [Lattice](../widgets/sliders/lattice/README.md) |
+| `field.html` | [Field](../widgets/sliders/field/README.md) |
+| `interference.html` | [Interference](../widgets/sliders/interference/README.md) |
 
 ## Archive import
 
@@ -50,7 +57,7 @@ The Lockscreens family, including Phase Lock, was retired on 4 November 2026 at 
 | Interactive art | 9 |
 | Player | 5 |
 | Quick notes | 6 |
-| Sliders | 4 |
+| Sliders | 11 |
 
 ### Retained source pages
 

@@ -12,7 +12,7 @@
         { title: 'THE LONG WAY HOME // ORBITAL ARCHIVE', artist: 'Tsugumori archive', album: 'HOMEBOUND / 04', length: 346 }
     ];
 
-    const state = { design: 'A', track: 0, position: 84, playing: false };
+    const state = { track: 0, position: 84, playing: false };
     const design = { artwork: true, strongFrames: false };
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const announcement = root.querySelector('[data-announcement]');
@@ -168,12 +168,6 @@
 
     function renderArt() {
         makeArtwork();
-        root.querySelectorAll('canvas[data-art]').forEach(canvas => {
-            canvas.width = 640;
-            canvas.height = 640;
-            canvas.getContext('2d').drawImage(art, 0, 0);
-        });
-
         drawMatrix();
     }
 
@@ -210,7 +204,7 @@
         cancelAnimationFrame(matrixFrame);
         matrixFrame = 0;
 
-        if (reduced.matches || state.design !== 'A' || document.hidden || !inView) {
+        if (reduced.matches || document.hidden || !inView) {
             drawMatrix();
 
             return;
@@ -219,7 +213,7 @@
         const started = performance.now();
         let last = 0;
         const step = now => {
-            if (!root.isConnected || document.hidden || !inView || state.design !== 'A') {
+            if (!root.isConnected || document.hidden || !inView) {
                 matrixFrame = 0;
                 drawMatrix();
 

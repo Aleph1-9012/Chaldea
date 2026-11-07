@@ -12,15 +12,14 @@
         { title: 'THE LONG WAY HOME // ORBITAL ARCHIVE', artist: 'Tsugumori archive', album: 'HOMEBOUND / 04', length: 346 }
     ];
 
-    const state = { design: 'D', track: 0, position: 84, playing: false };
+    const state = { track: 0, position: 84, playing: false };
     const design = { artwork: true, strongFrames: false };
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const announcement = root.querySelector('[data-announcement]');
     const art = document.createElement('canvas');
     art.width = 640;
     art.height = 640;
     const ac = art.getContext('2d');
-    let interval = null, lastTick = 0, inView = true, matrixFrame = 0;
+    let interval = null, lastTick = 0, inView = true;
     const pad = n => String(n).padStart(2, '0');
     const time = value => {
         const s = Math.max(0, Math.floor(value));
@@ -173,73 +172,6 @@
             canvas.height = 640;
             canvas.getContext('2d').drawImage(art, 0, 0);
         });
-
-        drawMatrix();
-    }
-
-    function drawMatrix(scramble = 0) {
-        const canvas = root.querySelector('[data-matrix]');
-
-        if (!canvas)
-            return;
-
-        const c = canvas.getContext('2d');
-        const pixels = ac.getImageData(0, 0, 640, 640).data;
-        c.fillStyle = '#090909';
-        c.fillRect(0, 0, 640, 640);
-        c.font = '18px monospace';
-        c.textAlign = 'center';
-        c.textBaseline = 'middle';
-        const glyphs = ' .·:+x*#@';
-
-        for (let row = 0; row < 32; row++)
-            for (let col = 0; col < 32; col++) {
-                const x = col * 20 + 10, y = row * 20 + 10, p = (y * 640 + x) * 4;
-                const luminance = (pixels[p] * .3 + pixels[p + 1] * .59 + pixels[p + 2] * .11) / 255;
-                const tone = Math.min(1, Math.max(0, (luminance - .025) / .47));
-                const k = Math.min(glyphs.length - 1, Math.floor(Math.pow(tone, .65) * (glyphs.length - 1)));
-                const hash = (row * 131 + col * 71 + state.track * 127 + Math.floor(scramble * 100));
-                const char = scramble > 0 && hash % 7 < scramble * 7 ? '╱╲+·#'[hash % 5] : glyphs[k];
-                const isRed = pixels[p] > pixels[p + 1] * 1.45 && pixels[p] > 65;
-                c.fillStyle = isRed ? '#e13a2c' : `rgba(232,232,224,${.22 + Math.sqrt(tone) * .72})`;
-                c.fillText(char, x, y);
-            }
-    }
-
-    function settleMatrix() {
-        cancelAnimationFrame(matrixFrame);
-        matrixFrame = 0;
-
-        if (reduced.matches || state.design !== 'A' || document.hidden || !inView) {
-            drawMatrix();
-
-            return;
-        }
-
-        const started = performance.now();
-        let last = 0;
-        const step = now => {
-            if (!root.isConnected || document.hidden || !inView || state.design !== 'A') {
-                matrixFrame = 0;
-                drawMatrix();
-
-                return;
-            }
-
-            const progress = Math.min(1, (now - started) / 380);
-
-            if (now - last > 45 || progress === 1) {
-                drawMatrix(1 - progress);
-                last = now;
-            }
-
-            if (progress < 1)
-                matrixFrame = requestAnimationFrame(step);
-            else
-                matrixFrame = 0;
-        };
-
-        matrixFrame = requestAnimationFrame(step);
     }
 
     function renderLibraries() {
@@ -300,7 +232,6 @@
         state.position = 0;
         renderArt();
         render();
-        settleMatrix();
 
         if (announce)
             say(pad(state.track + 1) + ' // ' + tracks[state.track].title);
@@ -362,15 +293,7 @@
             selectTrack(state.track + (action === 'next' ? 1 : -1));
             syncClock();
         }
-        else if (action === 'library') {
-            const panel = button.closest('[data-design]'), library = panel.querySelector('[data-library-panel]') || panel.querySelector('[data-library]');
 
-            if (library) {
-                library.hidden = !library.hidden;
-                button.setAttribute('aria-expanded', String(!library.hidden));
-                button.textContent = library.hidden ? 'TRACKS' : 'CLOSE TRACKS';
-            }
-        }
     });
 
     root.addEventListener('input', event => {
@@ -386,32 +309,12 @@
             say('Position ' + time(state.position));
     });
 
-    document.addEventListener('visibilitychange', () => {
-        syncClock();
-
-        if (document.hidden) {
-            cancelAnimationFrame(matrixFrame);
-            matrixFrame = 0;
-            drawMatrix();
-        }
-    });
-
-    reduced.addEventListener('change', () => {
-        cancelAnimationFrame(matrixFrame);
-        matrixFrame = 0;
-        drawMatrix();
-    });
+    document.addEventListener('visibilitychange', syncClock);
 
     if (globalThis.IntersectionObserver) {
         const observer = new IntersectionObserver(entries => {
             inView = entries[0].isIntersecting;
             syncClock();
-
-            if (!inView) {
-                cancelAnimationFrame(matrixFrame);
-                matrixFrame = 0;
-                drawMatrix();
-            }
         }, { threshold: 0 });
 
         observer.observe(root);

@@ -35,6 +35,13 @@ const plates = new Map<string, { title: string; ratio: number }>([
   ['sliders-slats', { title: 'Slats', ratio: 3 }],
   ['sliders-stipple-blade', { title: 'Stipple Blade', ratio: 3 }],
   ['sliders-weave', { title: 'Weave', ratio: 3 }],
+  ['sliders-louvers', { title: 'Louvers', ratio: 3 }],
+  ['sliders-membrane', { title: 'Membrane', ratio: 3 }],
+  ['sliders-braid', { title: 'Braid', ratio: 3 }],
+  ['sliders-fuse', { title: 'Fuse', ratio: 3 }],
+  ['sliders-lattice', { title: 'Lattice', ratio: 3 }],
+  ['sliders-field', { title: 'Field', ratio: 3 }],
+  ['sliders-interference', { title: 'Interference', ratio: 3 }],
 ]);
 
 export function presentation(widget: Pick<Summary, 'id' | 'title'>) {

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src data:; base-uri 'none'; form-action 'none'">
+<title>Interference</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="slider" aria-label="Interference slider">
+  <div class="heading"><label for="level">VOLUME</label><output for="level" data-value>66%</output></div>
+  <div class="field">
+    <div class="drawing" aria-hidden="true">
+      <svg class="track-art" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="track-bounds"><rect data-bounds height="48" /></clipPath><clipPath id="active-track"><rect data-clip height="48" /></clipPath></defs>
+        <g data-marks></g>
+      </svg>
+    </div>
+    <input type="range" id="level" min="0" max="100" step="1" value="66">
+  </div>
+</div>
+<script src="../assets/Track.js"></script>
+<script src="../preview-runtime.js"></script>
+<script src="adapter.js"></script>
+</body>
+</html>

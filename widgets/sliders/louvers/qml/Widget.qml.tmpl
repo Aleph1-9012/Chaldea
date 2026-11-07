@@ -1,0 +1,146 @@
+// SPDX-License-Identifier: 0BSD
+pragma ComponentBehavior: Bound
+import QtQuick
+import QtQuick.Shapes
+import "Track.js" as Track
+import QtQuick.Controls.Basic as Controls
+
+Rectangle {
+    id: root
+    property real response: {{response}}
+    property string label: {{label}}
+    property int initialValue: {{initialValue}}
+    property int widgetWidth: {{widgetWidth}}
+    property color backgroundColor: {{backgroundColor}}
+    property color textColor: {{textColor}}
+    property color accentColor: {{accentColor}}
+    property alias value: control.value
+    signal moved(real value)
+
+    implicitWidth: widgetWidth
+    implicitHeight: 84
+    color: backgroundColor
+    border.color: "#333333"
+    border.width: 1
+
+    FontLoader { id: mono; source: "assets/JetBrainsMono-Regular.ttf" }
+
+    Text {
+        x: 13; y: 7; width: Math.max(0, percentage.x - 13 - 16); height: 16
+        text: root.label
+        textFormat: Text.PlainText
+        elide: Text.ElideRight
+        verticalAlignment: Text.AlignVCenter
+        color: root.textColor
+        font.family: mono.status === FontLoader.Ready ? mono.name : "monospace"
+        font.pixelSize: 12
+        font.weight: Font.Medium
+        font.letterSpacing: 0.7
+    }
+
+    Text {
+        id: percentage
+        x: root.width - width - 13; y: 7; height: 16
+        text: Math.round(control.value) + "%"
+        textFormat: Text.PlainText
+        horizontalAlignment: Text.AlignRight
+        verticalAlignment: Text.AlignVCenter
+        color: root.textColor
+        font.family: mono.status === FontLoader.Ready ? mono.name : "monospace"
+        font.pixelSize: 13
+    }
+
+    Controls.Slider {
+        id: control
+        objectName: "level-control"
+        x: 3; y: 23; width: root.width - 6; height: 52
+        from: 0; to: 100; stepSize: 1; value: root.initialValue
+        padding: 0
+        snapMode: Controls.Slider.SnapAlways
+        touchDragThreshold: 0
+        focusPolicy: Qt.StrongFocus
+        Accessible.name: root.label
+        onMoved: root.moved(value)
+
+        Keys.onPressed: event => {
+            let next = value;
+
+            if (event.key === Qt.Key_Home) next = from;
+            else if (event.key === Qt.Key_End) next = to;
+            else if (event.key === Qt.Key_PageUp) next = Math.min(to, value + 10);
+            else if (event.key === Qt.Key_PageDown) next = Math.max(from, value - 10);
+            else if (event.key === Qt.Key_Up) next = Math.min(to, value + stepSize);
+            else if (event.key === Qt.Key_Down) next = Math.max(from, value - stepSize);
+            else return;
+
+            if (next !== value) {
+                // Native setters retain a host's binding to the exported value.
+                const step = stepSize;
+                stepSize = Math.abs(next - value);
+
+                if (next > value) increase();
+                else decrease();
+
+                stepSize = step;
+                root.moved(value);
+            }
+
+            event.accepted = true;
+        }
+
+        background: Item {
+            id: drawing
+            x: 10; y: 2
+            width: Math.max(0, control.width - 20); height: 48
+            property real contact: control.pressed || control.visualFocus ? 1 : 0
+            readonly property real position: width * control.visualPosition
+            readonly property var paths: Track.geometry(width, position, contact * root.response)
+
+            Behavior on contact {
+                NumberAnimation { duration: 180; easing.type: Easing.OutExpo }
+            }
+
+            // A numeric model retains the vector items while the paths bend.
+            Repeater {
+                model: drawing.paths.length
+
+                delegate: Item {
+                    id: segment
+                    required property int index
+                    readonly property var entry: drawing.paths[index]
+                    readonly property color ink: entry.role === "accent" ? root.accentColor : entry.role === "paper" ? root.backgroundColor : root.textColor
+                    width: entry.clip ? drawing.position : drawing.width
+                    height: drawing.height
+                    clip: entry.clip
+                    opacity: entry.opacity
+
+                    Shape {
+                        width: drawing.width; height: drawing.height
+                        preferredRendererType: Shape.CurveRenderer
+
+                        ShapePath {
+                            strokeColor: segment.entry.fill ? "transparent" : segment.ink
+                            fillColor: segment.entry.fill ? segment.ink : "transparent"
+                            strokeWidth: segment.entry.lineWidth
+                            capStyle: ShapePath.FlatCap
+                            joinStyle: ShapePath.MiterJoin
+                            fillRule: ShapePath.WindingFill
+                            PathSvg { path: segment.entry.d }
+                        }
+                    }
+                }
+            }
+        }
+
+        handle: Item {
+            width: 20; height: control.height
+            x: control.visualPosition * (control.width - width)
+        }
+    }
+
+    Rectangle {
+        anchors.fill: parent; anchors.margins: -3
+        color: "transparent"; border.width: 1; border.color: root.textColor
+        visible: control.visualFocus
+    }
+}
